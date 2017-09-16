@@ -1,0 +1,165 @@
+Tendo em vista a análise feita no Capítulo anterior e a estrutura de um modelo de
+dinâmicas de opinião passamos para a proposta de modelo.
+
+
+\section{Da diferença entre preferências e opiniões}
+
+
+Dada a centralidade da variável preferência/opinião e sua atualização a
+discutiremos mais a fundo. Na área de Teoria da Escolha Social, é comum seguir a
+distinção Humeana entre desejas e crenças, e, portanto, diferenciar o estudo de
+mecanismos de agregação de preferências e o estudo de mecanismos de agregação de
+julgamentos/crenças/opiniões, onde o primeiro grupo lida com atribuições de
+caráter subjetivo : como preferir morango a chocolate, e o segundo lida com
+questões objetivas: como crer que um candidato é melhor para o desenvolvimento
+político de seu país\footnote{Isto é, têm-se um estado $\theta$, desconhecido, e
+  estuda-se as propriedades de mecanismos que agregam os julgamentos, no caso
+  binário, probabilidades ordinais, no caso discreto, ou probabilidades
+  subjetivas, no caso contínuo, dos agentes sobre $\theta$
+  \cite{dietrich2010aggregation}.}
+\cite{brandt2016handbook,dietrich2010aggregation}. Contudo, a visão Humeana da
+separação estrita entre crenças e preferências não é a única teoria da agência
+racional \cite{dietrich2010aggregation}. Na Lógica, trabalhos que buscam
+formalizar a mudança de preferência tem a anos seguido \citeonline{von1972logic}
+na distinção entre preferências extrínsecas, as quais dependem de razões, e
+intrínsecas, que não dependem \cite{liu2010wright}. \todo[color =
+yellow!10]{Posso discutir isso mais.}
+
+
+Do ponto de vista empíricos, \citeonline{poole2005spatial} considera que
+ideologias, pensadas como sistemas de crenças, seriam o que explica a razão da
+dimensionalidade da política pode ser reduzida, mapeada, em geral, para um
+espaço com poucas (no máximo 3) dimensões fundamentais. Haveria assim uma
+relação fundamental entre crenças e preferências.
+
+Já na modelagem em OD, \citeonline{lorenz2017modeling} considera que as opiniões
+são manifestações de preferencias individuais devido a sua natureza
+sumarizadora. Opiniões seriam assertivas subjetivas que resumiriam e
+comunicariam crenças, atitudes e valores para outros. Opiniões poderiam ser
+usadas então como \textit{proxies} de preferências e serem usadas para
+derivarmos pontos ideais, que é o que Lorenz faz ao modificar o modelo de
+\citeonline{deffuant2000mixing} e dele extrair pontos ideais.
+
+
+
+\section{Da definição do elemento O}\todo[inline,color=yellow!10]{eu
+    chamo isso como? elemento, variável?}
+
+Tendo em vista a possibilidade de entrelaçamento entre opiniões e preferências,
+vamos seguir a estratégia de modelagem de \citeonline{lorenz2017modeling}: usar
+um modelo de dinâmicas de opinião para derivar os pontos ideais. Nisso vamos
+fazer uso da ligação entre preferências extrínsecas e crenças/opiniões e fazer
+um modelo que dinamiza as preferências dos agentes, nos retendo aso seus pontos ideais
+\footnote{Não vamos, assim, estabelecer uma forma funcional específica para a
+  função de utilidade dos eleitores. Pressupõem-se, porém, que sejam aproximadas
+  por alguma das funções de utilidade tradicionalmente usadas em política e
+  apresentadas no Capítulo 1. \citeonline{carroll2013structure} considera que,
+  no congresso americano, os legisladores têm uma função de utilidade melhor
+  aproximada por uma Normal do que por uma função quadrática.}, a partir da
+mudança em suas opiniões \footnote{As quais, como discutido mais a frente, vão
+  ser representadas por probabilidades subjetivas.}.
+
+\citeonline{lorenz2017modeling} pode ser, portanto, visto como uma primeira
+aproximação na criação de modelos em que os pontos ideais dos eleitores não são
+fixos. O modelo baseia-se no modelo de \citeonline{deffuant2000mixing}, o qual é
+um modelo canônico na área de Sociofísica \cite{galam1982sociophysics}. O modelo
+tornou-se canônico ao, de maneira simples, incorporar à modelagem de dinâmicas
+de opinião um elemento importante na interação dos agentes: o fato de agentes
+ideologicamente distantes muitas vezes se recusarem a trocar informação, em
+decorrência da distância ideológica. Nisso, o modelo foi mais um passo de
+aumento da fidelidade dos modelos de dinâmicas de opiniões, com o objetivo de
+aumentar sua capacidade  explicativa\footnote{Como lembra \citeonline{de2014agent}, a busca por
+  fidelidade só é justificada se tiver como consequência uma maior capacidade
+  explicativa, devendo ser de outra maneira evitada. Se um elemento vai
+  contribuir ou não em \textit{insights} é, contudo, ainda muito vago, e uma
+  lacuna metodológica a ser superada
+  \cite{ragan2010embarrassment}.}. 
+
+Uma preocupação da literatura em OD tem sido, assim, em ir além e garantir um
+maior realismo cognitivo dos agentes \cite{duggins2014psychologically,homer2013complex,abrica2017effects}. Nisso a
+área tem feito um empreendimento semelhante ao de
+\citeonline{epstein2014agent_zero} de dar uma melhor fundamentação
+(neuro)cognitiva aos modelos que usam a metodologia da Modelagem Baseada em
+Agentes, dado que ela nos permite incorporar esses elementos sem uma grande
+perda de tratabilidade. Contudo, um princípio básico da modelagem é a
+parcimônia, e é questionável em que medida estamos tendo uma alavancagem
+explicativa na área de dinâmicas de opinião ao complicarmos demais a cognição
+dos agentes \cite{lave1993introduction,sznajd2014person}.
+
+Essa preocupação em balancear plausibilidade, capacidade explicativa, parcimônia
+e tratabilidade também coloca em cheque o uso de modelos derivados da Teoria da
+Decisão, conhecidos como Bayesianos, e tipicamente usados na Economia
+\cite{acemoglu2011opinion}. \citeonline{acemoglu2011opinion} considera que
+modelos de OD com agentes Bayesianos pressupõem  muito tanto em relação a
+estrutura da opinião dos agentes, exigindo que tenham um ``modelo'' do mundo,
+quanto em relação à sua capacidade ``computacional'', ou de processamento de
+informação, isto é, de calcular o \textit{posterior} num ambiente com muita
+informação e em constante mudança. Seriam mais úteis, portanto, como
+contrafactuais extremos ou \textit{benchmark} para comparação com modelos com
+agentes mais plausíveis.
+
+Se nem agentes hiper-racionais, nem agentes com excesso de fundamentação
+(neuro)-cognitiva são a resposta às limitações dos modelo em OD, nos mantemos
+usando modelos  com agentes que mudam de opinião segundo alguma
+heurística, como imitação ou rateamento, típicos da literatura em Sociofísica,
+mas com pouca fundamentação empírica e comportamental
+\cite{acemoglu2011opinion}?
+
+Se temos por objetivo modelos explicativos/preditivos\footnote{Estamos aqui nos
+  retendo a modelos que propositalmente buscam fidelidade com sistemas
+  concretos, com objetivos explicativos/preditivos. Existe uma gama de outros
+  usos, positivos e normativos, para modelos teóricos. Para discussões sobre
+  usos de modelos teóricos, particularmente em Ciência Política, ver:
+  \citeonline{clarke2012model} e \citeonline{johnson2014models}.} é interessante
+que o uso de agentes que seguem heurísticas se coadune com a fundamentação
+empírica, mesmo que seja uma calibração informal \cite{flache2017}.\footnote{Não
+  necessariamente, contudo, o teste empírico. Como argumenta
+  \citeonline{clarke2012model}, não necessariamente modelos empíricos devem ser
+  apresentados com um modelo teórico acoplado e vice-versa. Porém, cremos que se
+  o propósito do modelo é explicativo  é relevante que tenha  ao menos uma calibração
+  informal \cite{flache2017}, e em algum momento seja confrontado, validado,
+  com os dados. Em particular, em comparação com outros modelos concorrentes
+  \cite{clarke2012model}. } Uma alternativa é o \textit{framework} proposto por
+\citeonline{martins2012bayesian} que é inspirado nos modelos Bayesianos, mas não
+pressupõe agentes totalmente racionais, modelando-os com uma capacidade de
+processamento de informação limitada\footnote{Diferentemente dos modelos
+  bayesianos em que os agentes usam toda a informação disponível para tomar sua
+  decisão \cite{jackman2009bayesian}}. Um conjunto de trabalhos em psicologia e
+ciência cognitiva vêm, nos últimos anos, defendendo a possibilidade de que o
+cérebro humano possa ser pensado como um mecanismo de teste de hipóteses
+imperfeito\footnote{Essa imperfeição, contudo, teria um fundamento evolucionário
+  \cite{price2016hierarchical,martins2005adaptive}.}
+\cite{hohwy2013predictive,sanborn2016bayesian}. Inspirar-se na Teoria da
+Decisão, a qual lida tradicionalmente com o problema da inferência, pode ser,
+portanto, uma boa estratégia na tentativa de modelar dinâmicas de opinião com
+agentes ``imperfeitamente bayesianos''
+\cite{griffiths2006optimal,fujikawa2007perfect,baker2017rational}.
+
+Sendo assim, \citeonline{martins2012bayesian} oferece o seguinte passo a passo
+para a construção de um modelo de dinâmicas de opinião no qual a opinião dos
+agentes é uma função de probabilidade:
+
+\begin{enumerate}
+\item Identificar uma questão sob debate e chamá-la de $x$ . Uma
+  escolha sobre diferentes ideais ou teorias é uma escolha discreta
+  logo $x$ deve ser discreta. Se o debate for sobre uma variável
+  contínua então $x$ é contínua.
+\item cada agente tem uma opinião subjetiva sobre $x$ essa opinião é
+  representada pela distribuição de probabilidade $f_i(x)$ .
+\item Ocorre comunicação : a comunicação é a declaração de um valor
+  $ A_j$ pelo agente $j$ de tal forma que $A_j[f]$ é um funcional de
+  $f_j(x)$.
+\item Os agentes tem que ter em sua mente  uma relação entre o
+  verdadeiro valor entre $x$ e o valor declarado $A_j$. Isso é dado
+  pela distribuição de probabilidade $P(A_j|x)$.
+\item Dado o prior $f_i(x)$ a opinião posterior $f_i(x|A_j)$ é dada
+  por $A_i[f_i(x|A_j)]$ que é a nova opinião de $i$ .
+\end{enumerate}
+
+Como queremos atualizar pontos ideias, localizados num espaço contínuo, vamos
+aplicar o modelo de \citeonline{martins2009bayesian}.
+
+  \textcolor{red}{Tenho coisa escrita daqui em diante, mas ainda não está
+    apresentavel kkkkk }
+  \textcolor{red}{Vou adicionar noise assim como Lorenz. Vou testar o modelo com
+  e sem noise.}

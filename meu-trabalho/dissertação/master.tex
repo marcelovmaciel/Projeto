@@ -1,0 +1,240 @@
+\documentclass[
+% -- opções da classe memoir --
+12pt,				% tamanho da fonte
+openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+oneside,			% para impressão em verso e anverso. Oposto a oneside
+a4paper,			% tamanho do papel. 
+% -- opções da classe abntex2 --
+%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+% -- opções do pacote babel --
+english, % idioma adicional para hifenização
+french, % idioma adicional para hifenização
+spanish, % idioma adicional para hifenização
+brazil % o último idioma é o principal do documento
+]{abntex2}
+
+% --- Pacotes básicos ---
+\usepackage{lmodern} % Usa a fonte Latin Modern
+\usepackage[T1]{fontenc} % Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc} % Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage} % Usado pela Ficha catalográfica
+\usepackage{indentfirst} % Indenta o primeiro parágrafo de cada seção.
+\usepackage{color} % Controle das cores
+\usepackage{graphicx} % Inclusão de gráficos
+\usepackage{microtype} % para melhorias de justificação
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{float}
+\usetikzlibrary{patterns,arrows,decorations.pathreplacing}
+
+% ---
+
+% --- Pacotes adicionais, usados apenas no âmbito do Modelo Canônico
+% do abnteX2 ---
+\usepackage{lipsum} % para geração de dummy text
+% ---
+
+% --- Pacotes de citações
+
+\usepackage[alf]{abntex2cite} % Citações padrão ABNT
+\usepackage{verbatim} \usepackage[colorinlistoftodos]{todonotes}
+\usepackage{soul}
+% --- CONFIGURAÇÕES DE PACOTES ---
+
+% ---
+
+% ---
+
+% --- Informações de dados para CAPA e FOLHA DE ROSTO ---
+\titulo{Emergência de Distribuições de Preferência no caso Unidimensional: Uma abordagem computacional}
+\autor{Marcelo Veloso Maciel} \local{Brasil} \data{2017}
+\orientador{André Cavalcanti Rocha Martins}
+
+\instituicao{%
+  Universidade de São Paulo -  USP
+  \par
+  Escola de Artes, Ciências e Humanidades - EACH
+  \par
+  Mestrado em Modelagem de Sistemas Complexos} \tipotrabalho{Dissertação de Mestrado)}
+% O preambulo deve conter o tipo do trabalho, o objetivo, o nome da
+% instituição e a área de concentração
+\preambulo{\textcolor{red}{ Informações sobre a qualificação }}
+% ---
+
+
+% --- Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter \hypersetup{
+  % pagebackref=true,
+  pdftitle={\@title}, pdfauthor={\@author},
+  pdfsubject={\imprimirpreambulo}, pdfcreator={LaTeX with abnTeX2},
+  pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico},
+  colorlinks=true, % false: boxed links; true: colored links
+  linkcolor=blue, % color of internal links
+  citecolor=blue, % color of links to bibliography
+  filecolor=magenta, % color of file links
+  urlcolor=blue, bookmarksdepth=4 } \makeatother
+% ---
+
+% --- Espaçamentos entre linhas e parágrafos ---
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm} % tente também \onelineskip
+
+% --- compila o indice ---
+\makeindex
+% ---
+
+% ---- Início do documento ----
+\begin{document}
+	
+	% Seleciona o idioma do documento (conforme pacotes do babel)
+	%\selectlanguage{english}
+	\selectlanguage{brazil}
+	
+	% Retira espaço extra obsoleto entre as frases.
+	\frenchspacing 
+	
+	% ----------------------------------------------------------
+	% ELEMENTOS PRÉ-TEXTUAIS
+	% ----------------------------------------------------------
+	% \pretextual
+	
+	% ---
+	% Capa
+	% ---
+	\imprimircapa
+	% ---
+	
+	% ---
+	% Folha de rosto
+	% (o * indica que haverá a ficha bibliográfica)
+	% ---
+	\imprimirfolhaderosto*
+	
+	\begin{agradecimentos}
+\textcolor{red}{lalalallal}
+		
+        
+		
+		
+	\end{agradecimentos}
+	
+	\begin{epigrafe}
+		\vspace*{\fill}
+		\begin{flushright}
+			\textit{ \textcolor{red}{lalalla}	}
+		\end{flushright}
+	\end{epigrafe}
+	
+	\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+	\begin{resumo}
+		[Resumo]
+                \textcolor{red}{lalalala}
+		
+		\textbf{Palavras-chave}:lalala
+	\end{resumo}
+	
+	% resumo em inglês
+	\begin{resumo}[Abstract]
+		\begin{otherlanguage*}{english}
+	 \textcolor{red}{lalalala in english}
+			
+			\vspace{\onelineskip}
+			
+			\noindent 
+			\textbf{Keywords}: \textcolor{red}{lalalala}
+		\end{otherlanguage*}
+	\end{resumo}
+	
+	% ---
+	% inserir lista de ilustrações
+	% ---
+	\pdfbookmark[0]{\listfigurename}{lof}
+	\listoffigures* 
+    
+	\cleardoublepage
+	% ---
+	
+	% ---
+
+	
+	% ---
+	
+	% ---
+	
+% ---
+\begin{siglas}
+\item[ABM] \textit{Agent-based model(s) or modelling}
+  \item[OD] \textit{ Opinion Dynamics}
+ 
+\end{siglas}
+% -
+	% ---
+	% inserir o sumario
+	% ---
+	\pdfbookmark[0]{\contentsname}{toc}
+	\tableofcontents*
+	\cleardoublepage
+	% ---
+	\textual
+	
+	%-----
+	
+	
+\chapter*[Introdução]{Introdução}
+	    \addcontentsline{toc}{chapter}{Introdução}
+  \textcolor{red}{Só faço introdução e conclusão no final.}
+\chapter{Revisão Bibliográfica}
+
+
+
+\input{chap1.tex}
+
+\chapter{chap2}
+
+
+ \input{chap2.tex}
+
+
+ \chapter{Proposta de Modelo}
+
+ 
+\input{chap3}
+
+
+
+\chapter{Análise do Modelo}
+
+\input{chap4.tex}
+
+\chapter*[Considerações Finais]{Considerações Finais}
+\addcontentsline{toc}{chapter}{Considerações Finais}
+  
+    
+
+	
+\postextual
+	
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{master-bib.bib}
+	
+% ---------------------------------------------------------------------
+% INDICE REMISSIVO
+% ---------------------------------------------------------------------
+\phantompart \printindex
+% ---------------------------------------------------------------------
+	
+\end{document}
