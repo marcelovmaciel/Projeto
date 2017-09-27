@@ -1,8 +1,9 @@
 using PyCall
 using Distributions
+#using DataTables
+using DataFrames
 @pyimport seaborn as sns
 @pyimport matplotlib.pyplot as plt
-@pyimport pandas as pd
 
 
 
@@ -41,17 +42,30 @@ function ij_comparison(nw)
     return(i,j)
 end
 
-
-
 function update_step(nw,ϵ)
     i,j = ij_comparison(nw)
-    if abs(i.opinion - j.opinion) < ϵ
+    if abs(i.opinion + j.opinion) < ϵ
         i.opinion = (i.opinion - j.opinion)/2
     end
 end
 
 # Information Storing ----------------------------------------
+
+
 function init_df(nw)
+    dt = DataFrame(time = [], opinion = [], id  = [])
+    for i in nw
+        time = 0
+         push!(dt,[time i.opinion i.id]) 
+    end
+    return dt
+end
+
+function update_df(nw,dt,time)
+    for i in nw
+        push!(dt,[time i.opinion i.id])
+    end
+end
 
 
 
@@ -67,26 +81,48 @@ function get_opinions(nw)
     return(a)
 end
 
-function opinion_series()
-
-end
-
-function opinion_dist(nw)
-    x = get_opinions(nw)
-    g = sns.distplot(x,hist = false, kde_kws = Dict("shade" => true))
-    plt.show(g)
-end
-
 
 function run_simulation(size_nw,ϵ, time)
     nw = create_nw(size_nw)
-    for i in 1:time
+    df = init_df(nw)
+    for step in 1:time
         update_step(nw,ϵ)
+        update_df(nw,df,step)
     end
+    return(df)
 end
 
 
 
-# run_simulation(500,0.25,1000)
+# testing stuff ----------------------------------------
+
+#network = create_nw(10)
+
+# network creation = ok
+
+# i,j = ij_comparison(network)
+
+# ij_comparison  = ok
+
+
+#=
+function update_step2(nw,ϵ,i,j)
+    @printf( "initial i,j = %f, %f\n", i.opinion,j.opinion)
+    if abs(i.opinion - j.opinion) < ϵ
+        i.opinion = (i.opinion + j.opinion)/2
+    end
+    @printf( " after update i,j = %f, %f\n", i.opinion,j.opinion)
+end
+update_step2(network,0.25,i,j) #it works...
+
+=#
+
+result = run_simulation(10,0.3,2)
+
+writetable("output.csv", result)
+
+
+
+
 
 
