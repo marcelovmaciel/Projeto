@@ -2,7 +2,11 @@ using PyCall
 using Distributions
 @pyimport seaborn as sns
 @pyimport matplotlib.pyplot as plt
+@pyimport pandas as pd
 
+
+
+# Define the entities = agents and network ----------------------------------
 
 #define the agent
 mutable struct Agent
@@ -13,13 +17,19 @@ end
 
 # network creation
 
-#=
-since it's a complete graph + pairwise interaction i can create a list of Agents and pick two of them to interact!!
 
-=#
+"""
+Creates an 1-d array of Agents with opinions  ∈ [0,1]
+Since it's a complete graph + pairwise interaction i
+can create a list of Agents and pick two of them to interact!!
+"""
 function create_nw(size)
     nw = [Agent(rand(Uniform()),i) for i in 1:size]
 end
+
+
+
+# Define the actions ----------------------------------------
 
 
 #helper function for the update rule/step
@@ -31,6 +41,8 @@ function ij_comparison(nw)
     return(i,j)
 end
 
+
+
 function update_step(nw,ϵ)
     i,j = ij_comparison(nw)
     if abs(i.opinion - j.opinion) < ϵ
@@ -38,6 +50,15 @@ function update_step(nw,ϵ)
     end
 end
 
+# Information Storing ----------------------------------------
+function init_df(nw)
+
+
+
+
+# plotting functions ----------------------------------------
+
+# useful for the plot
 function get_opinions(nw)
     a = []
     for i in nw
@@ -46,20 +67,26 @@ function get_opinions(nw)
     return(a)
 end
 
+function opinion_series()
 
-#=
-to pick a random element from the array
-array = [1 2 3 4]
+end
 
-rand(array)
-=#
-
-
-#=
-To plot the distribution
+function opinion_dist(nw)
+    x = get_opinions(nw)
+    g = sns.distplot(x,hist = false, kde_kws = Dict("shade" => true))
+    plt.show(g)
+end
 
 
-sns.distplot(x,hist = false, kde_kws = Dict("shade" => true))
-plt.show()
-=#
+function run_simulation(size_nw,ϵ, time)
+    nw = create_nw(size_nw)
+    for i in 1:time
+        update_step(nw,ϵ)
+    end
+end
+
+
+
+# run_simulation(500,0.25,1000)
+
 
