@@ -40,7 +40,7 @@ function ij_comparison(nw)
     return(i,j)
 end
 
-function update_step(nw,ϵ,i,j)
+function update_step(ϵ,i,j)
     if abs(i.opinion - j.opinion) < ϵ
         i.opinion = (i.opinion + j.opinion)/2
     end
@@ -70,7 +70,7 @@ function run_simulation(size_nw, ϵ, time)
     df = init_df(nw)
     for step in 1:time
         i,j = ij_comparison(nw)
-        update_step(nw,ϵ,i,j)
+        update_step(ϵ,i,j)
         update_df(nw,df,step)
     end
     return(df)
@@ -79,6 +79,6 @@ end
 
 
 
-result = run_simulation(500,0.5,10000)
+result = run_simulation(500,0.7,10000)
 
 writetable("output.csv", result)
