@@ -109,7 +109,7 @@ function update_df2(nw,dt,time)
 end
 
 # Running Commands ----------------------------------------
-function run_simulation_v1(size_nw, p, σ, time)
+function run_simulation_v1(; size_nw = size_nw, p = p, σ = σ, time = time)
     nw = create_nw(size_nw,p, σ)
     df = init_df1(nw)
     for step in 1:time
@@ -120,7 +120,7 @@ function run_simulation_v1(size_nw, p, σ, time)
     return(df)
 end
 
-function run_simulation_v2(size_nw, p, σ, time)
+function run_simulation_v2(; size_nw = size_nw, p = p, σ = σ, time = time)
     nw = create_nw(size_nw,p, σ)
     df = init_df2(nw)
     for step in 1:time
@@ -135,7 +135,7 @@ end
 
 #result = run_simulation_v1(500,0.7,0.3,10000)
 
-result = run_simulation_v2(500, 0.7, 0.5, 10000)
+result = run_simulation_v2( size_nw = 500, p =  0.7, σ =  0.5, time =  10000)
 
 
 #writetable("output.csv", result)
