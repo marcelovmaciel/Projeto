@@ -20,7 +20,6 @@ end
 " Creates an 1-d array of Agents with opinions ∈ [0,1]. Since it's a complete
 graph + pairwise interaction i can create a list of Agents and pick two of them to
 interact!!"
-
 function create_nw(size, p, σ)
     nw = [Agent(rand(Uniform()),σ,p,i) for i in 1:size]
 end
@@ -63,13 +62,13 @@ end
 
 
 # update_step for the version with changing opinions but unchanging uncertainty
-function update_step1(i,j,σ,p)
+function update_step1!(i,j,σ,p)
     posterior_opinion = calculate_posterior(i,j,σ,p)
     i.opinion = posterior_opinion
 end
 
 # update_step for the version with changing opinions and changing uncertainty
-function update_step2(i,j,σ,p)
+function update_step2!(i,j,σ,p)
     posterior_opinion = calculate_posterior(i,j,σ,p)
     posterior_uncertainty = calculate_pos_uncertainty(i,j,σ,p)
     i.opinion = posterior_opinion
@@ -89,7 +88,7 @@ function init_df1(nw)
     return dt
 end
 
-function update_df1(nw,dt,time)
+function update_df1!(nw,dt,time)
     for i in nw
         push!(dt,[time i.opinion i.id])
     end
@@ -107,7 +106,7 @@ function init_df2(nw)
 end
 
 
-function update_df2(nw,dt,time)
+function update_df2!(nw,dt,time)
     for i in nw
         push!(dt,[time i.opinion i.σ  i.id])
     end
@@ -119,8 +118,8 @@ function run_simulation_v1(; size_nw = size_nw, p = p, σ = σ, time = time)
     df = init_df1(nw)
     for step in 1:time
         i,j = ij_comparison(nw)
-        update_step1(i,j,σ,p)
-        update_df1(nw,df,step)
+        update_step1!(i,j,σ,p)
+        update_df1!(nw,df,step)
     end
     return(df)
 end
@@ -130,8 +129,8 @@ function run_simulation_v2(; size_nw = size_nw, p = p, σ = σ, time = time)
     df = init_df2(nw)
     for step in 1:time
         i,j = ij_comparison(nw)
-        update_step2(i,j,σ,p)
-        update_df2(nw,df,step)
+        update_step2!(i,j,σ,p)
+        update_df2!(nw,df,step)
     end
     return(df)
 end
