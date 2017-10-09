@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+% This allows us to add our colors
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+%just input either solarized light or dark to change between the colors
+%\input{solarizeddark.tex}
+\input{solarizeddark.tex}
+\input{styling.tex}
+
+
+\title{\textcolor{red}{Estrutura da Dissertação}}
+\author{Marcelo Veloso Maciel}
+\date{}
+
+\begin{document}
+
+% Global Page color base03
+\pagecolor{base03}
+% Global Text color base1
+\color{base1}
+\maketitle
+
+\newtcolorbox{mybox}[1]{colback=base03,
+  colframe=base00,fonttitle=\bfseries, title=#1}
+
+\begin{abstract}
+  Estrutura da Dissertação a partir da conversa com Fernando
+\end{abstract}
+
+\section*{Introdução}
+
+Aqui apresento o tema de maneira generica (opinião em geral, opinião publica,
+nexo democratico, distribuição de preferencias) e apresento o objetivo do
+trabalho :
+
+\begin{mybox}{Objetivo}
+  \textcolor{base1}{\textbf{O trabalho tem por objetivo explorar, por meio de
+      simulação, a geração de distribuições de preferências da população.}}
+  \begin{mybox}{Objetivos Específicos}
+    \textcolor{base1}{\begin{itemize}
+    \item Simular, por meio de modelos baseados em agentes, a geração de
+      distribuições de preferências, formalizadas como pontos ideais.
+    \item Dentro do quadro estabelecido por Andre (2012), e a partir do modelo
+      de 2009 simular uns variantes (mudança aleatória + topologias distintas)
+    \item Validar esses variantes: ver qual melhor se aproxima da distribuição
+      empírica;
+    \end{itemize}}
+    \vspace{0.2cm}
+  \end{mybox}
+\end{mybox}
+
+\section*{Capítulo 1 - Distribuição de preferencias e Teoria Espacial }
+
+Discutir teoria espacial e a importancia de estudar distribuições
+
+\section*{Capítulo 2 - Revisão de OD }
+
+Discutir modelos canônicos, discutir a relação entre preferencias e opiniões,
+discutir porque o framework de andre.
+
+
+\section*{Capítulo 3 - Apresentação dos Modelos}
+
+Modelo + Resultados Parciais
+
+
+\section*{Considerações Finais}
+
+Limitações, o que falta, cronograma.
+
+
+
+\end{document}
