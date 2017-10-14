@@ -1,8 +1,7 @@
-
 Como discutido na introdução, o nexo entre cidadãos e governo é a base dos
 sistemas democráticos. Dada a importância desse nexo, não é surpresa que na
 Ciência Política exista uma grande gama de trabalhos e abordagens que busquem
-descrever, explicar e prever as várias dimensões desse nexo. A caracterização e
+descrever, explicar e prevê-lo. A caracterização e
 justificativa para nosso problema de pesquisa parte de um diálogo com a Teoria
 Política Formal, a ser definida e discutida em seguida.
 
@@ -47,30 +46,27 @@ forma que a seguinte relação fique clara:
   Fonte: Adaptado de \citeonline{downey2012think}
 \end{figure}
 
-
-\textcolor{red}{Ficou faltando a história aqui.
-  \begin{itemize}
-  \item usar Mclean
-  \item usar SE sobre free riding
-  \item usar Ordeshook
-  \end{itemize}
-}
+O estudo formal da ação e escolha coletiva teve como período de fundação moderno
+o período entre \citeonline{black1948rationale} (marco no estudo da escolha coletiva)
+e \citeonline{olson1965logic} (marco para os estudos da ação coletiva), embora
+\textit{insights} típicos da literatura, como paradoxos da agregação ou o
+problema do caroneiro, tenham sido discutidos anteriormente por pensadores como
+Plínio, o Jovem (64-114 d.C.); Ramon Lull (1232-1315); David Hume; e John Stuart
+Mill \cite{mclean2015strange, sep-free-rider, ordeshook1990emerging}. 
 
 
 Embora não seja a única forma de se modelar formalmente fenômenos políticos,
 modelos de escolha racional são em larga medida os mais comuns
-\cite{austen1998social}.
-
-De uma forma geral, os modelos da Teoria da Escolha Racional, em política,
-buscam representar fenômenos segundo alguma variante da seguinte equação, a
-Equação de Plott \cite{munger2015choosing, ostrom1986agenda}\footnote{Essa
-  ``equação'' é conceitual. \(\oplus\) é usado como um operador abstrato não
-  especificado \cite{ostrom1986agenda}. }:
-
+\cite{austen1998social}. De uma forma geral, os modelos da Teoria da Escolha
+Racional, em política, buscam representar fenômenos segundo alguma variante da
+seguinte equação, a Equação de Plott \cite{munger2015choosing,
+  ostrom1986agenda}\footnote{Essa ``equação'' é conceitual. \(\oplus\) é usado como
+  um operador abstrato não especificado \cite{ostrom1986agenda}. }:
+\begin{figure}[H]
 \begin{align*}
   \text{Preferences} \oplus \text{Beliefs}  \oplus  \text{Physical Possibilities} \oplus \text{Institutions} = \text{Outcomes}
 \end{align*}
-
+\end{figure}
 O conjunto de modelos conhecidos como ``Teoria da Escolha Racional'' podem ser
 dividido em duas variantes: \textit{thin} ou \textit{thick}
 \cite{hechter1997sociological, green1996pathologies}. Ambos os tipos de modelos
@@ -80,9 +76,111 @@ A diferença entre eles é que os modelos \textit{thin} não fazem pressupostos
 substantivos sobre os valores e objetivos dos agentes. Neles os teóricos buscam
 modelar a combinação entre agentes e instituições da maneira mais geral
 possível. Já modelos \textit{thick} adicionam um conjunto de pressupostos extras
-para representar fenômenos como o comparecimento às urnas, a competição
-partidária, a escolha de candidatos pelo eleitorado, independência burocrática,
-o efeito fiscal de constituições, dentre outros \cite{bendor2011behavioral}.
+sobre objetivos, valores, incerteza, com o objetivo de representar fenômenos
+particulares como o comparecimento às urnas, a competição partidária, a escolha
+de candidatos pelo eleitorado, independência burocrática, o efeito fiscal de
+constituições, dentre outros \cite{bendor2011behavioral}.
+
+Todo modelo formal da escolha racional em política envolve os seguintes
+elementos primitivos: o conjunto $N$ de agentes, o conjunto \(X\) de
+alternativas possíveis, e para cada agente em \(N\) uma descrição de suas
+preferências em relação às alternativas em \(X\) \cite[p.
+263]{austen1998social}.
+
+A preferência é uma relação de comparação de valor, onde dois conceitos são
+fundamentais: o de melhor (preferência estrita), denotado por \(\succ\) e o de igual
+em valor (indiferença), denotado por \(\sim\). As seguintes propriedades definem a
+noção lógica de relação de preferência \cite{sep-preferences}:
+
+\begin{enumerate}
+\item \textit{Assimetria da preferência}: \( x \succ y \to \neg (y \succ x )\); 
+\item \textit{Simetria de indiferença}: \(x \sim y \to  y \sim x\); 
+\item \textit{Reflexividade da indiferença }: \(x \sim x\); 
+\item \textit{Incompatibilidade entre preferência e indiferença}: \(x \succ y \to \neg ( x
+  \sim y)\).
+\end{enumerate}
+
+Por fim, a relação de preferência fraca pode ser definida como:
+
+\begin{align*}
+  \text{x} \succeq y \leftrightarrow x \succ y \lor x \sim y
+\end{align*}
+
+A aplicação dessa definição de preferência no modelo do ator racional pressupõe
+que ela seja uma relação binária no conjunto de alternativas \(X\), com as
+seguintes propriedades, para todo \(x,y,z\) $\in$ \(X\), e para todo conjunto
+\(Z\) $\subset$ \(X\) \cite{gintis2016individuality,
+  binmore2008rational}:
+
+
+
+\begin{enumerate}
+\item \textit{Completude}: \(\{ x \succeq y | \vspace{0.4cm} X \}\) ou \(\{ y \succeq x |
+  \vspace{0.4cm} X \}\);
+\item \textit{Transitividade}: \( \{x \succeq y | \vspace{0.4cm} X\} \) e \(\{y \succeq z |
+  \vspace{0.4cm} X \}\) tem por implicação \(\{x \succeq z | \vspace{0.4cm} X\}\);
+\item \textit{Independência das alternativas irrelevantes}: para \(x,z \in Z\),
+  \(\{x \succeq y | \vspace{0.4cm} Z \}\) se e somente se \(\{x \succeq y | \vspace{0.4cm}
+  X\}\).
+\end{enumerate}
+
+Um pressuposto adicional é que existe um \(x \in X\) tal que para todo \(y \in X\),
+\(x \succeq y\), e que num ambiente sem restrição os atores escolhem essa alternativa
+\cite{gintis2009bounds}. Esses pressupostos constituem o primeiro princípio do
+modelo do ator racional: os agentes possuem \textit{preferências consistentes ou
+racionais}, o que significa que são completas, transitivas e independentes de
+alternativas irrelevantes.
+
+Uma conveniência analítica é representar relações de preferência por meio de
+funções de utilidade, que são funções que atribuem um número real para cada
+elemento do conjunto de alternativas \cite{sep-preferences}. A relação \( \succeq\) é
+representada pela função \(u\): \(X \longrightarrow \mathbb{R}\) se e somente se:
+
+\begin{align*}
+  u(a) \geq u(b)
+  \text{ se e somente se }
+  a \succeq b
+\end{align*}
+
+Por meio dessa representação, a alternativa preferida, ou ótima, para um ator $i
+\in N$ é dada por \cite{binmore2008rational}:
+\[\max_{\substack{x \in X}}
+  u_i(x)
+  \]
+
+Importante notar que funções de utilidade são um dispositivo matemático. Modelar
+agentes por meio de funções de utilidade 
+não implica que eles sejam  egoístas, instrumentais, utilitários,
+hedonistas, ou que estejam ``tentando maximizar sua utilidade''
+\cite{gaus2007philosophy}.
+
+O segundo princípio dos modelos de ator racional é a \textit{racionalidade
+  bayesiana} \cite{gintis2016individuality}. Quando as alternativas são
+probabilísticas primeiro pressupomos que os agentes tem um \textit{modelo do
+  mundo}\cite{acemoglu2011opinion}: os agentes vão ter uma crença, uma função de
+distribuição de probabilidade, a qual vai atribuir uma probabilidade para cada
+evento em \(X\). A partir disso pressupõe-se que agentes vão ter uma relação de
+preferência sobre \textit{apostas}\cite{jehle2001advanced}, onde o conjunto de
+apostas \(\mathcal{G}\) em \(X\) é dado por
+
+
+
+
+
+%Quando o conjunto de alternativas é
+%probabilístico o modelo considera a noção adicional de estados ( \(w \in W\)), 
+%ações ( \( a \in A\)) e loterias : \(W\) é o conjunto de fatos fora do controle do ator que
+%influenciam o resultado de sua decisão; ações do agente que levam a um
+%determinado resultado; e loterias são funções \cite{sep-rationality-normative-utility}. 
+
+%Tendo em vista a
+%noção de estados, a teoria da escolha racional pressupõe que os agentes tem uma
+%crença, uma distribuição de probabilidade, que atribui uma probabilidade
+%\(p(w)\) para cada \(w \in W\).
+
+ 
+
+
 
 
 
