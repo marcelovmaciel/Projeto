@@ -5,7 +5,7 @@ descrever, explicar e prevê-lo. A caracterização e
 justificativa para nosso problema de pesquisa parte de um diálogo com a Teoria
 Política Formal, a ser definida e discutida em seguida.
 
-\subsection{Fundamentos da Teoria Política Formal}
+\section{Fundamentos da Teoria Política Formal}
 
 Vamos definir Teoria Política Formal como: conjunto de modelos e hipóteses
 teóricas explicitamente definidos que buscam representar atividades e
@@ -100,7 +100,7 @@ noção lógica de relação de preferência \cite{sep-preferences}:
   \sim y)\).
 \end{enumerate}
 
-Por fim, a relação de preferência fraca pode ser definida como:
+A relação de preferência fraca \( \succeq \)pode ser definida da seguinte forma:
 
 \begin{align*}
   \text{x} \succeq y \leftrightarrow x \succ y \lor x \sim y
@@ -137,16 +137,16 @@ elemento do conjunto de alternativas \cite{sep-preferences}. A relação \( \suc
 representada pela função \(u\): \(X \longrightarrow \mathbb{R}\) se e somente se:
 
 \begin{align*}
-  u(a) \geq u(b)
+  u(x) \geq u(y)
   \text{ se e somente se }
-  a \succeq b
+  x \succeq y
 \end{align*}
 
 Por meio dessa representação, a alternativa preferida, ou ótima, para um ator $i
 \in N$ é dada por \cite{binmore2008rational}:
-\[\max_{\substack{x \in X}}
+\[\max_{\substack{x \in  X}}
   u_i(x)
-  \]
+\]
 
 Importante notar que funções de utilidade são um dispositivo matemático. Modelar
 agentes por meio de funções de utilidade 
@@ -157,27 +157,42 @@ hedonistas, ou que estejam ``tentando maximizar sua utilidade''
 O segundo princípio dos modelos de ator racional é a \textit{racionalidade
   bayesiana} \cite{gintis2016individuality}. Quando as alternativas são
 probabilísticas primeiro pressupomos que os agentes tem um \textit{modelo do
-  mundo}\cite{acemoglu2011opinion}: os agentes vão ter uma crença, uma função de
-distribuição de probabilidade, a qual vai atribuir uma probabilidade para cada
-evento em \(X\). A partir disso pressupõe-se que agentes vão ter uma relação de
-preferência sobre \textit{apostas}\cite{jehle2001advanced}, onde o conjunto de
-apostas \(\mathcal{G}\) em \(X\) é dado por
+  mundo}\cite{acemoglu2011opinion}: os agentes vão ter uma crença, representada
+por meio de uma função de distribuição de probabilidade\footnote{O modelo da
+  escolha racional então pressupõe que as crenças dos agentes são coerentes ou
+  consistentes, o que equivale a dizer que estão em conformidade com os axiomas
+  da probabilidade \cite{jackman2009bayesian}.}, a qual vai atribuir uma
+probabilidade \(p\) para cada evento em \(X\). A partir disso pressupõe-se que
+agentes vão ter uma relação de preferência sobre
+\textit{apostas}\cite{jehle2001advanced}, onde o conjunto de apostas
+\(\mathcal{G}\) em \(X = \{ x_1, \ldots, x_n \}\) é dado por:
+
+\begin{align*}
+  \mathcal{G} \equiv \big{\{}  (p_1 \circ x_1, \ldots, p_n \circ x_n  ) | p_i \geq 0, \sum_{i = 1 }^n p_i = 1  \big{\}}  
+\end{align*}
+
+Sendo assim, quando as alternativas são probabilísticas o modelo do agente
+racional pressupõe que os agentes vão ter uma função de utilidade esperada \(u:
+\mathcal{G} \to \mathbb{R} \):
+
+\begin{align*}
+  u(\mathcal{G}) = \sum_{i =1}^n p_i u(x_i)
+\end{align*}
+
+O último elemento do princípio da \textit{racionalidade bayesiana} é a
+\textit{atualização bayesiana}\cite[p.104]{gintis2016individuality}: os agentes
+atualizam suas crenças segundo a Regra de Bayes.
+
+Sendo assim, os modelos de escolha racional na sua versão mais básica pressupõem
+agentes com preferências consistentes, o que implica que sejam transitivas,
+completas e independente de alternativas irrelevantes. Caso o contexto de
+decisão seja incerto também pressupõem que os agentes tem uma crença em
+conformidade com os axiomas da probabilidade, agem de acordo com princípio da
+utilidade esperada e atualizam suas crenças de acordo com o Teorema de Bayes.
 
 
 
-
-
-%Quando o conjunto de alternativas é
-%probabilístico o modelo considera a noção adicional de estados ( \(w \in W\)), 
-%ações ( \( a \in A\)) e loterias : \(W\) é o conjunto de fatos fora do controle do ator que
-%influenciam o resultado de sua decisão; ações do agente que levam a um
-%determinado resultado; e loterias são funções \cite{sep-rationality-normative-utility}. 
-
-%Tendo em vista a
-%noção de estados, a teoria da escolha racional pressupõe que os agentes tem uma
-%crença, uma distribuição de probabilidade, que atribui uma probabilidade
-%\(p(w)\) para cada \(w \in W\).
-
+\section{Teoria Política Espacial}
  
 
 
