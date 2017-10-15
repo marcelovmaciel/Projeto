@@ -1,9 +1,9 @@
 Como discutido na introdução, o nexo entre cidadãos e governo é a base dos
-sistemas democráticos. Dada a importância desse nexo, não é surpresa que na
-Ciência Política exista uma grande gama de trabalhos e abordagens que busquem
-descrever, explicar e prevê-lo. A caracterização e
-justificativa para nosso problema de pesquisa parte de um diálogo com a Teoria
-Política Formal, a ser definida e discutida em seguida.
+sistemas democráticos. Dada a importância desse nexo não é surpresa que na
+Ciência Política exista uma grande gama de trabalhos e abordagens que buscam
+descrever, explicar e prevê-lo. A caracterização e justificativa para nosso
+problema de pesquisa parte de um diálogo com a Teoria Política Formal, a ser
+definida e discutida em seguida.
 
 \section{Fundamentos da Teoria Política Formal}
 
@@ -67,19 +67,19 @@ seguinte equação, a Equação de Plott \cite{munger2015choosing,
   \text{Preferences} \oplus \text{Beliefs}  \oplus  \text{Physical Possibilities} \oplus \text{Institutions} = \text{Outcomes}
 \end{align*}
 \end{figure}
-O conjunto de modelos conhecidos como ``Teoria da Escolha Racional'' podem ser
-dividido em duas variantes: \textit{thin} ou \textit{thick}
-\cite{hechter1997sociological, green1996pathologies}. Ambos os tipos de modelos
-são construídos com base nos pressupostos mínimos de um modelo de ator racional:
-preferências racionais e racionalidade bayesiana \cite{gintis2016individuality}.
-A diferença entre eles é que os modelos \textit{thin} não fazem pressupostos
-substantivos sobre os valores e objetivos dos agentes. Neles os teóricos buscam
-modelar a combinação entre agentes e instituições da maneira mais geral
-possível. Já modelos \textit{thick} adicionam um conjunto de pressupostos extras
-sobre objetivos, valores, incerteza, com o objetivo de representar fenômenos
-particulares como o comparecimento às urnas, a competição partidária, a escolha
-de candidatos pelo eleitorado, independência burocrática, o efeito fiscal de
-constituições, dentre outros \cite{bendor2011behavioral}.
+Esses modelos podem ser dividido em duas variantes: \textit{thin} ou
+\textit{thick} \cite{hechter1997sociological, green1996pathologies}. Ambos os
+tipos de modelos são construídos com base nos pressupostos mínimos de um modelo
+de ator racional: preferências racionais e racionalidade bayesiana
+\cite{gintis2016individuality}. A diferença entre eles é que os modelos
+\textit{thin} não fazem pressupostos substantivos sobre os valores e objetivos
+dos agentes. Neles os teóricos buscam modelar a combinação entre agentes e
+instituições da maneira mais geral possível. Já modelos \textit{thick} adicionam
+um conjunto de pressupostos extras sobre objetivos, valores, incerteza, com o
+objetivo de representar fenômenos particulares como o comparecimento às urnas, a
+competição partidária, a escolha de candidatos pelo eleitorado, independência
+burocrática, o efeito fiscal de constituições, dentre outros
+\cite{bendor2011behavioral}.
 
 Todo modelo formal da escolha racional em política envolve os seguintes
 elementos primitivos: o conjunto $N$ de agentes, o conjunto \(X\) de
@@ -88,7 +88,7 @@ preferências em relação às alternativas em \(X\) \cite[p.
 263]{austen1998social}.
 
 A preferência é uma relação de comparação de valor, onde dois conceitos são
-fundamentais: o de melhor (preferência estrita), denotado por \(\succ\) e o de igual
+fundamentais: o de melhor (preferência estrita), denotado por \(\succ\),  e o de igual
 em valor (indiferença), denotado por \(\sim\). As seguintes propriedades definem a
 noção lógica de relação de preferência \cite{sep-preferences}:
 
@@ -115,21 +115,18 @@ seguintes propriedades, para todo \(x,y,z\) $\in$ \(X\), e para todo conjunto
 
 
 \begin{enumerate}
-\item \textit{Completude}: \(\{ x \succeq y | \vspace{0.4cm} X \}\) ou \(\{ y \succeq x |
-  \vspace{0.4cm} X \}\);
-\item \textit{Transitividade}: \( \{x \succeq y | \vspace{0.4cm} X\} \) e \(\{y \succeq z |
-  \vspace{0.4cm} X \}\) tem por implicação \(\{x \succeq z | \vspace{0.4cm} X\}\);
-\item \textit{Independência das alternativas irrelevantes}: para \(x,z \in Z\),
-  \(\{x \succeq y | \vspace{0.4cm} Z \}\) se e somente se \(\{x \succeq y | \vspace{0.4cm}
-  X\}\).
+\item \textit{Completude}: \(\{ x \succeq y | X \}\) ou \(\{ y \succeq x | X \}\);
+\item \textit{Transitividade}: \( \{x \succeq y | X\} \) e \(\{y \succeq z | X \}\) tem por
+  implicação \(\{x \succeq z | X\}\);
+ \item \textit{Independência das alternativas irrelevantes}: para \(x,y,z \in Z\),
+   \(\{x \succeq y | Z \}\) se e somente se \(\{x \succeq y | X\}\).
 \end{enumerate}
 
 Um pressuposto adicional é que existe um \(x \in X\) tal que para todo \(y \in X\),
 \(x \succeq y\), e que num ambiente sem restrição os atores escolhem essa alternativa
 \cite{gintis2009bounds}. Esses pressupostos constituem o primeiro princípio do
 modelo do ator racional: os agentes possuem \textit{preferências consistentes ou
-racionais}, o que significa que são completas, transitivas e independentes de
-alternativas irrelevantes.
+racionais}.
 
 Uma conveniência analítica é representar relações de preferência por meio de
 funções de utilidade, que são funções que atribuem um número real para cada
@@ -157,14 +154,14 @@ hedonistas, ou que estejam ``tentando maximizar sua utilidade''
 O segundo princípio dos modelos de ator racional é a \textit{racionalidade
   bayesiana} \cite{gintis2016individuality}. Quando as alternativas são
 probabilísticas primeiro pressupomos que os agentes tem um \textit{modelo do
-  mundo}\cite{acemoglu2011opinion}: os agentes vão ter uma crença, representada
+  mundo} \cite{acemoglu2011opinion}: os agentes vão ter uma crença, representada
 por meio de uma função de distribuição de probabilidade\footnote{O modelo da
   escolha racional então pressupõe que as crenças dos agentes são coerentes ou
   consistentes, o que equivale a dizer que estão em conformidade com os axiomas
   da probabilidade \cite{jackman2009bayesian}.}, a qual vai atribuir uma
 probabilidade \(p\) para cada evento em \(X\). A partir disso pressupõe-se que
 agentes vão ter uma relação de preferência sobre
-\textit{apostas}\cite{jehle2001advanced}, onde o conjunto de apostas
+\textit{apostas} \cite{jehle2001advanced}, onde o conjunto de apostas
 \(\mathcal{G}\) em \(X = \{ x_1, \ldots, x_n \}\) é dado por:
 
 \begin{align*}
@@ -179,22 +176,33 @@ racional pressupõe que os agentes vão ter uma função de utilidade esperada \
   u(\mathcal{G}) = \sum_{i =1}^n p_i u(x_i)
 \end{align*}
 
-O último elemento do princípio da \textit{racionalidade bayesiana} é a
+O último elemento do princípio da racionalidade bayesiana é a
 \textit{atualização bayesiana}\cite[p.104]{gintis2016individuality}: os agentes
-atualizam suas crenças segundo a Regra de Bayes.
+atualizam suas crenças segundo a Regra de Bayes.Suponha que um agente quer
+atualizar sua crença uma alternativa \(x \in X\), tendo em vista a observação de
+um dado \(m\). Se ele atualizar sua crença segundo o pressuposto de atualização
+bayesiana temos que:
+
+\begin{align*}
+  p(x|m) =
+  \frac{p(m|x)
+  p(x)}
+  {\int p(m|x)
+  p(x)
+  dx}
+\end{align*}
 
 Sendo assim, os modelos de escolha racional na sua versão mais básica pressupõem
 agentes com preferências consistentes, o que implica que sejam transitivas,
 completas e independente de alternativas irrelevantes. Caso o contexto de
 decisão seja incerto também pressupõem que os agentes tem uma crença em
-conformidade com os axiomas da probabilidade, agem de acordo com princípio da
-utilidade esperada e atualizam suas crenças de acordo com o Teorema de Bayes.
-
+conformidade com os axiomas da probabilidade, suas preferências podem ser
+representadas por meio de funções de utilidade esperada e atualizam suas crenças
+de acordo com o Teorema de Bayes.
 
 
 \section{Teoria Política Espacial}
  
-
 
 
 
