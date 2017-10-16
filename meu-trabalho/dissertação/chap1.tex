@@ -15,7 +15,7 @@ Com essa definição estamos conjugando três definições: a de Teoria, a de
 Política e a de Formal. O conceito de política, e em certa medida o de teoria,
 pode ser considerado como ``essencialmente contestado'', isto é, é um conceito
 cuja grande importância normativa faz com que haja uma disputa em relação à sua
-definição e uso\cite{collier2006essentially}. Existe assim um grande debate
+definição e uso\cite{collier2006essentially}. Há assim um grande debate
 sobre a melhor definição de  política. Vamos usar a definição
 dada por Joe Oppenheimer, para o qual  a ``política consiste
 no comportamento realizado com o objetivo de tomar decisões centralizadas para
@@ -139,17 +139,17 @@ representada pela função \(u\): \(X \longrightarrow \mathbb{R}\) se e somente 
   x \succeq y
 \end{align*}
 
-Por meio dessa representação, a alternativa preferida, ou ótima, para um ator $i
-\in N$ é dada por \cite{binmore2008rational}:
+Por meio dessa representação podemos dizer que os atores agem \textit{como se}
+estivessem maximizando sua função de utilidade tendo em vista o fato da alternativa
+preferida, ou ótima, para um ator $i \in N$ ser dada por \cite{binmore2008rational}:
 \[\max_{\substack{x \in  X}}
   u_i(x)
 \]
 
 Importante notar que funções de utilidade são um dispositivo matemático. Modelar
-agentes por meio de funções de utilidade 
-não implica que eles sejam  egoístas, instrumentais, utilitários,
-hedonistas, ou que estejam ``tentando maximizar sua utilidade''
-\cite{gaus2007philosophy}.
+agentes por meio de funções de utilidade não implica que eles sejam egoístas,
+instrumentais, utilitários, hedonistas, ou que estejam ``tentando maximizar sua
+utilidade'' \cite{gaus2007philosophy}.
 
 O segundo princípio dos modelos de ator racional é a \textit{racionalidade
   bayesiana} \cite{gintis2016individuality}. Quando as alternativas são
@@ -207,7 +207,7 @@ consistentes \cite{binmore2008rational}.
 \section{Teoria Política Espacial}
 
 Dentre as várias formas de modelar política por meio do modelo do ator racional
-a representação é o conjunto de modelos conhecido como Teoria Espacial (ou
+a a principal é o conjunto de modelos conhecido como Teoria Espacial (ou
 Geométrica) de Política \cite{van2005political}.
 
 A Teoria Espacial de Política tem suas origens nos trabalhos canônicos de Duncan
@@ -254,23 +254,23 @@ O pressuposto modal  é que métrica é Euclidiana: os agentes
 medem a distância entre dois pontos no espaço de alternativas usando o Teorema
 de Pitágoras \cite{munger2015choosing}. Ademais, assume-se funções com um único
 pico ( o ponto ideal do agente) e simétricas. Funções de utilidade comumente
-usadas na ciência política são a linear, a quadrática e a gaussiana,
-demonstradas na Figura 2: 
+usadas na ciência política são a linear, a quadrática e a gaussiana, ilustradas
+na  Figura 2: 
 
 
 \begin{figure}[H]
-  \centering \includegraphics[scale = 0.8]{ims/utilities.pdf}
+  \centering \includegraphics[scale = 0.7]{ims/utilities.pdf}
   \caption{Funções de Utilidade comuns em Política}
   Fonte: Adaptado de \citeonline{poole2005spatial}
 \end{figure}
 
 Essa estrutura básica do modelo espacial é aplicada em dois tipos de fenômenos:
 votos em comitê e eleições de massa \cite{munger2015choosing}. Há, contudo, uma
-grande diferença entre essas duas situações de ação, e essa diferença é o que
-suscita nosso problema.
+grande diferença entre essas duas situações de ação, e essa diferença suscita
+nosso problema.
 
 
-\section{Preferências, Eleições e Complexidade}
+\section{Teoria Espacial e Eleições}
 
 
 A diferença entre os dois contextos de ação é reconhecida desde as contribuições
@@ -288,15 +288,15 @@ tocante ao contexto de escolha dos agentes quanto ao seu comportamento
 sua versão mais \textit{thin}, não é universalmente aplicável.
 
 
-O primeiro pressuposto refere-se a propriedades dos agentes alvo: as crenças e
-preferências deles são independentes \cite{binmore2008rational}. Os outros três
-lidam com o contexto de ação alvo: a situação de ação é simples, tanto em
-estrutura, quanto informacionalmente; os agentes têm incentivo para agir e
-informar-se; e há tempo disponível para os agentes aprenderem
+O primeiro pressuposto de aplicação refere-se a propriedades dos agentes alvo:
+as crenças e preferências deles são independentes \cite{binmore2008rational}. Os
+outros três lidam com o contexto de ação alvo: a situação de ação é simples,
+tanto em estrutura, quanto informacionalmente; os agentes têm incentivo para
+agir e informar-se; e há tempo disponível para os agentes aprenderem
 \cite{binmore2007work, page2008uncertainty}.
 
 A aplicação do modelo racional ao contexto do comportamento eleitoral é assim
-não trivial, por uma razão: a escala. Como argumenta \cite{binmore2008rational}
+não trivial, por uma razão: a escala. Como argumenta \citeonline{binmore2008rational}
 a aplicação do modelo da decisão racional em  ``large worlds'' é problemática,
 pois provavelmente estaremos violando algum dos pressupostos de aplicação
 apresentados.
@@ -304,6 +304,80 @@ apresentados.
 Desde seu surgimento o programa de pesquisa ``Downsiano'' reconhece a distância
 entre a aplicação ideal, do ponto de vista preditivo, e o sistema alvo,
 eleições. \citeonline{downs1999teoria} dedica uma grande porção do livro à
-incerteza e a problemas de incentivos, e a obra suscitou uma ampla literatura
+incerteza e a problemas de incentivos, e a obra inspirou uma ampla literatura
 sobre comparecimento às eleições, tomada de decisão do eleitor e competição
 partidária \cite{bendor2011behavioral}.
+
+Em relação à tomada de decisão do eleitor há uma tensão entre a literatura em
+teoria formal e a literatura em psicologia política: a primeira costuma
+pressupor que agentes têm ideologias bem definidas e são bem informados, ou tem
+alguma noção probabilística, sobre as alternativas partidárias, algo contestado
+veementemente pela segunda \cite[p.5]{bendor2011behavioral}. A falta de
+conhecimento sobre temas/questões e a instabilidade de resposta a
+\textit{surveys} é um dos resultados recorrentes na literatura em opinião
+pública desde sua fundação \cite{berelson1952democratic, converse2006nature,
+  zaller1992simple, kuklinski2000misinformation}.
+
+A instabilidade nas resposta e  a suscetibilidade dos cidadãos a \textit{framing
+  effects}\todo{definir isso no rodapé} levam \citeonline{bartels2003democracy}
+a contestar o uso da noção de preferência como base para o estudo do nexo
+democrático, pois cidadãos não teriam preferências consistentes, coerentes ou
+estáveis. Ele argumenta, contudo, que os eleitores têm posicionamentos, os quais
+são melhor teorizados como \textit{atitudes}\footnote{ Ele define atitude como
+  uma tendência psicológica que é expressa pela avaliação de uma entidade
+  particular com algum grau de aprovação ou desaprovação
+  \cite[p.52]{bartels2003democracy}.}.
+
+Embora possa-se contestar a validade externa dos questionários que buscam
+demonstrar a instabilidade de posicionamento dos cidadãos
+\cite{druckman2012public}, e a relevância dos \textit{framing effects} para o
+modelo do ator racional \cite[p. 107]{gintis2016individuality}, Bartels levanta
+um ponto incontornável: o pressuposto de preferências racionais não é inócuo, em
+especial no contexto eleitoral.
+
+O pressuposto de que agentes têm preferências racionais sobre todas questões
+políticas é exigente do ponto de vista cognitivo. Contudo, não é necessário.
+Para aplicar o modelo geométrico de política em um contexto macro não é
+necessário supor que cada questão (\textit{issue}) vá definir uma dimensão no
+espaço de alternativas. O que é necessário é que os agentes tenham
+\textit{algum} posicionamento nas questões, e que exista uma interrelação entre
+a resposta do eleitor entre posicionamentos, de forma que possamos descrever as
+atitudes dos agentes em todas as questões segundo a correlação com alguma
+dimensão latente \cite{poole2008scaling,laver2014measuring}.
+\citeonline{poole1985ideology} encontra que $80\%$ dos votos no Congresso
+americano podem ser explicados por uma única dimensão latente
+(liberal-conservador). Já \citeonline{benoit2006party} encontra que no máximo
+três dimensões são necessárias para capturar a informação relevante sobre os
+posicionamentos dos eleitores, em um banco de dados de 47 países.
+
+A preferência dos agentes nessas dimensões é, portanto, construída a partir do
+posicionamento, atitudes, considerações, opiniões e crenças, deles num
+agrupamento de questões. Isso significa que as preferências dos eleitores são
+\textit{extrínsecas}. Preferências intrínsecas são preferências irredutíveis.
+Independem de mudanças do ambiente ou de alguma razão em particular. O agente
+\(i\) simplesmente prefere \(x\) a \(y\). Já preferências extrínsecas dependem
+de um julgamento, uma crença, de que uma alternativa, é, em algum sentido, melhor
+que a outra. Preferências extrínsecas têm razões subjacentes, e, portanto,
+possivelmente mudam quando ocorrem mudanças no ambiente \cite{liu2010wright,
+  binmore2008rational}.
+
+Preferências extrínsecas violam o pressuposto de que as preferências e crenças
+dos agentes são independentes, o que complica sua aplicação, dado que não
+podemos pressupor que elas são estáveis. Como as preferências no contexto
+eleitoral necessariamente são construídas a partir de posicionamentos num
+conjunto de questões, por definição, elas são extrínsecas. Logo, são,
+potencialmente, sensíveis à mudanças no ambiente.Tendo em vista tanto a
+complexidade informacional do contexto, quanto os baixos incentivos à busca de
+informação, isso vai significar que os agentes vão ser \textit{incertos} quanto
+às suas preferências. Essa incerteza em relação às preferências, e o baixo
+custo, percebido, da mudança permitem que modelos de dinâmicas de
+opinião\footnote{Área a ser discutida no Capítulo 2.} possam ser usados para
+representar seu processo de formação e cristalização.
+
+
+
+
+Isso não significa, contudo, que elas necessariamente vão ser altamente
+instáveis.
+
+
