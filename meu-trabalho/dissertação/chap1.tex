@@ -161,30 +161,14 @@ por meio de uma função de distribuição de probabilidade, a qual vai atribuir
 probabilidade \(p\) para cada evento em \(X\). O modelo da escolha racional
 então pressupõe que as crenças dos agentes são coerentes ou consistentes, o que
 equivale a dizer que estão em conformidade com os axiomas da probabilidade
-\cite{jackman2009bayesian}. A partir disso pressupõe-se que agentes vão ter uma
-relação de preferência sobre \textit{apostas} \cite{jehle2001advanced}, onde o
-conjunto de apostas \(\mathcal{G}\) em \(X = \{ x_1, \ldots, x_n \}\) é dado
-por:
+\cite{jackman2009bayesian}.
 
-\begin{align*}
-  \mathcal{G} \equiv \big{\{}  (p_1 \circ x_1, \ldots, p_n \circ x_n  ) | p_i \geq 0, \sum_{i = 1 }^n p_i = 1  \big{\}}  
-\end{align*}
-
-Sendo assim, quando as alternativas são probabilísticas o modelo do agente
-racional pressupõe que os agentes vão ter uma função de utilidade esperada \(u:
-\mathcal{G} \to \mathbb{R} \)
-\cite{jehle2001advanced,sep-rationality-normative-utility}:
-
-\begin{align*}
-  u(\mathcal{G}) = \sum_{i =1}^n p_i u(x_i)
-\end{align*}
-
-O último elemento do princípio da racionalidade bayesiana é a
-\textit{atualização bayesiana}\cite[p.104]{gintis2016individuality}: os agentes
-atualizam suas crenças segundo a Regra de Bayes.Suponha que um agente quer
-atualizar sua crença uma alternativa \(x \in X\), tendo em vista a observação de
-um dado \(m\). Se ele atualizar sua crença segundo o pressuposto de atualização
-bayesiana temos que:
+O outro elemento do princípio da racionalidade bayesiana é a \textit{atualização
+  bayesiana}\cite[p.104]{gintis2016individuality}: os agentes atualizam suas
+crenças segundo a Regra de Bayes.Suponha que um agente quer atualizar sua crença
+sobre uma alternativa \(x \in X\), tendo em vista a observação de um dado \(m\).
+Se ele atualizar sua crença segundo o pressuposto de atualização bayesiana temos
+que:
 
 \begin{align*}
   p(x|m) =
@@ -195,15 +179,35 @@ bayesiana temos que:
   dx}
 \end{align*}
 
-Sendo assim, os modelos de escolha racional na sua versão mais básica pressupõem
+Um corolário de agentes que têm preferências e crenças consistentes, é que vão
+agir segundo o \textit{princípio da utilidade esperada}
+\cite{jehle2001advanced}. Para tal pressupõe-se que agentes vão ter uma relação
+de preferência sobre \textit{apostas} \cite{jehle2001advanced}, onde o conjunto
+de apostas \(\mathcal{G}\) em \(X = \{ x_1, \ldots, x_n \}\) é dado por:
+
+\begin{align*}
+  \mathcal{G} \equiv \big{\{}
+  (p_1 \circ x_1, \ldots, p_n \circ x_n  )
+  | p_i \geq 0,
+  \sum_{i = 1 }^n p_i
+  = 1  \big{\}}  
+\end{align*}
+
+Sendo assim, quando as alternativas são probabilísticas a utilidadde \(u:
+\mathcal{G} \to \mathbb{R} \) do agente é
+\cite{jehle2001advanced,sep-rationality-normative-utility}:
+
+\begin{align*}
+  u(\mathcal{G}) = \sum_{i =1}^n p_i u(x_i)
+\end{align*}
+
+Sumarizando, os modelos de escolha racional na sua versão mais básica pressupõem
 agentes com preferências consistentes, o que implica que sejam transitivas,
 completas e independente de alternativas irrelevantes. Caso o contexto de
 decisão seja incerto também pressupõem que os agentes tem uma crença em
 conformidade com os axiomas da probabilidade, suas preferências podem ser
 representadas por meio de funções de utilidade esperada e atualizam suas crenças
-de acordo com o Teorema de Bayes. Sumarizando, um ator é racional se tiver
-preferências, crenças, e um mecanismo de processamento de informação
-consistentes \cite{binmore2008rational}.
+de acordo com o Teorema de Bayes.
 
 
 \section{Teoria Política Espacial}
@@ -261,7 +265,7 @@ na  Figura 2:
 
 
 \begin{figure}[H]
-  \centering \includegraphics[scale = 0.7]{ims/utilities.pdf}
+  \centering \includegraphics[scale = 0.6]{ims/utilities.pdf}
   \caption{Funções de Utilidade comuns em Política}
   Fonte: Adaptado de \citeonline{poole2005spatial}
 \end{figure}
@@ -322,15 +326,17 @@ conhecimento sobre temas/questões e a instabilidade de resposta a
 pública desde sua fundação \cite{berelson1952democratic, converse2006nature,
   zaller1992simple, kuklinski2000misinformation}.
 
-A instabilidade nas resposta e  a suscetibilidade dos cidadãos a \textit{framing
-  effects}\todo{definir isso no rodapé} levam \citeonline{bartels2003democracy}
-a contestar o uso da noção de preferência como base para o estudo do nexo
-democrático, pois cidadãos não teriam preferências consistentes, coerentes ou
-estáveis. Ele argumenta, contudo, que os eleitores têm posicionamentos, os quais
-são melhor teorizados como \textit{atitudes}\footnote{ Ele define atitude como
-  uma tendência psicológica que é expressa pela avaliação de uma entidade
-  particular com algum grau de aprovação ou desaprovação
-  \cite[p.52]{bartels2003democracy}.}.
+A instabilidade nas resposta e a suscetibilidade dos cidadãos a \textit{framing
+  effects}\footnote{\textit{Framing effects} são ``situações nas quais formas
+  alternativas de apresentar uma questão política levam a diferentes respostas
+  do público'' \cite[p.56]{bartels2003democracy}.} levam
+\citeonline{bartels2003democracy} a contestar o uso da noção de preferência como
+base para o estudo do nexo democrático, pois cidadãos não teriam preferências
+consistentes, coerentes ou estáveis. Ele argumenta, contudo, que os eleitores
+têm posicionamentos, os quais são melhor teorizados como
+\textit{atitudes}\footnote{ Ele define atitude como uma tendência psicológica
+  que é expressa pela avaliação de uma entidade particular com algum grau de
+  aprovação ou desaprovação \cite[p.52]{bartels2003democracy}.}.
 
 Embora possa-se contestar a validade externa dos questionários que buscam
 demonstrar a instabilidade de posicionamento dos cidadãos
@@ -384,10 +390,10 @@ significa, contudo, que elas necessariamente vão ser altamente instáveis. Como
 as preferências são construídas a partir de um conjunto de posicionamentos e
 crenças em várias questões, é de se esperar que elas sejam mais estáveis do que
 o posicionamento dos atores em cada questão específica, o objeto dos estudos em
-opinião pública que tem por objetivo analisar a instabilidade de resposta dos
+opinião pública que têm por objetivo analisar a instabilidade de resposta dos
 eleitores \cite{druckman2012public}. Do ponto de vista macro, é de se esperar,
 desta forma, que a distribuição de preferência dos eleitores seja consistente. A
-Figura 3, a qual mostra o auto-posicionamento político, numa escala de 0 a 7
+Figura 3, a qual mostra o auto-posicionamento político, numa escala de 0 a 10
 (esquerda-direita), de respondentes\footnote{A cada edição uma nova amostrada é
   selecionada.} em sete edições do \textit{European Social Survey},
 condiz\footnote{Para questões metodológicas em relação a esses dados ver o
@@ -404,11 +410,11 @@ condiz\footnote{Para questões metodológicas em relação a esses dados ver o
 A escala do fenômeno eleitoral também afeta uma segunda categoria de agentes: os
 partidos. Os partidos também estão posicionados no espaço de alternativas \(X\)e
 competem pelos votos dos eleitores. Para os partidos \(X\) é um espaço de
-plataformas. Para tal têm de ser capazes de determinar qual o percentual de
-votos das posições nesse espaço. A literatura reconhece que talvez os partidos
-não sejam capazes de fazê-lo, adicionando a possibilidade de que eles sejam
-incertos quanto as preferências políticas dos eleitores \cite{glazer1989model,
-  grofman2004downs}.
+plataformas. Para competirem têm de ser capazes de determinar qual o percentual
+de votos das posições nesse espaço. A literatura reconhece que talvez os
+partidos não sejam capazes de fazê-lo, adicionando a possibilidade de que eles
+sejam incertos quanto as preferências políticas dos eleitores
+\cite{glazer1989model, grofman2004downs}.
 
 
 Como argumenta \citeonline[p.144]{page2008uncertainty} essa é a estratégia
@@ -427,6 +433,17 @@ ponto de vista empírico, a Figura 4 dá suporte à essa possibilidade:
   Fonte: Dados do \textit{European Social Survey} (primeira edição)
 \end{figure}
 
+Dado que as eleições são o principal mecanismo de conexão entre cidadãos e
+governo nas poliarquias \cite{dahl1989democracy} e dado que a sobrevivência dos
+partidos na competição eleitoral depende da sua capacidade de captar o voto dos
+eleitores, podemos concluir que o \textit{formato} da distribuição das
+preferências dos eleitores é central para o estudo do nexo democrático.
+
+Temos, desta forma, duas diretrizes para o estudo. Do ponto de vista micro,
+podemos modelar os pontos ideais dos agentes segundo um modelo de dinâmicas de
+opinião. Esse é o nosso ponto de partida. Do ponto de vista macro, aspiramos que
+nossos modelos consigam gerar distribuições que sejam plausíveis do ponto de
+vista empírico, dado que o formato delas importa. Esse é o nosso \textit{benchmark}.
 
 
 
