@@ -14,22 +14,22 @@ Concluímos o capítulo com uma discussão sobre nossa abordagem.
 OD é uma área que pode ser definida a partir de 3 elementos: primeiramente,
 sistemas alvo em comum, delimitados pela pergunta central: quais elementos
 determinam se um grupo de agentes chega ao consenso sobre algo, ou ao invés
-disso persistem em discórdia \cite{castellano2012social} ; segundo, um conjunto
-de modelos que partilham elementos constitutivos, particularmente fazendo uso da
-técnica da Modelagem Baseada em Agentes\footnote{De agora em diante vamos usar a
-  abreviação ABM para modelagem (ou modelo(s)) baseada(os) em agentes.}, e em,
-alguma medida, de \textit{insights} e técnicas da Física Estatística
-\cite{galam1990social}; terceiro, uma comunidade de pesquisadores que partilham
-do interesse no objeto, fazem uso de referenciais e técnicas compartilhadas e se
-reconhecem como membros dessa comunidade.
+disso persistem em discórdia? \cite{castellano2012social}\footnote{Essa pode ser
+  pensada como a pergunta \textit{fundacional} da área \cite{flache2017}.} ;
+segundo, um conjunto de modelos que partilham elementos constitutivos,
+particularmente fazendo uso da técnica da Modelagem Baseada em
+Agentes\footnote{De agora em diante vamos usar a abreviação ABM para modelagem
+  (ou modelo(s)) baseada(os) em agentes.}, e em, alguma medida, de
+\textit{insights} e técnicas da Física Estatística \cite{galam1990social};
+terceiro, uma comunidade de pesquisadores que partilham do interesse no objeto,
+fazem uso de referenciais e técnicas compartilhadas e se reconhecem como membros
+dessa comunidade.
 
-Importante notar a aceitação de um significado amplo e abstrato de opinião como
-uma característica de um agente que pode ser mudada com pouco custo
-\cite[p.312]{castellano2012social}. Isso permite com que a área vise sistemas
-alvos tais como voto, ciência, cultura, difusão de tarifas, dentre
-outros
+Na área há a aceitação de um significado amplo e abstrato de opinião como uma
+característica de um agente que pode ser mudada com pouco custo
+\cite[p.312]{castellano2012social}. Isso permite com que ela vise sistemas alvos
+tais como voto, ciência, cultura, difusão de tarifas, dentre outros
 \cite{kowalska2013going,martins2015thou,axelrod1997dissemination,galam1990social}.
-
 Essa gama de aplicações está relacionada com a base disciplinar dos pesquisadores,
 envolvendo pessoas de áreas como Física, Sociologia, Ciência Política, Economia,
 Psicologia Social, dentre outras, o que nos permite considerar a área como um
@@ -97,7 +97,7 @@ propriedades típicas:
   numa \textit{regra de interação}. A topologia de interação define quais
   agentes estão conectados com \(i\), e podem, potencialmente, afetá-lo. A regra
   de interação define como \(i\) interage com os agentes desse conjunto(seus
-  ``vizinhos''). Em OD as regras de interação, por sua vez, definem qual a
+  ``vizinhos''). Em OD as regras de interação definem qual a
   relação que o agente \(i\) tem com seus vizinhos: se interage com um vizinho
   por vez, uma interação em díade, ou com algum subconjunto de seus vizinhos,
   uma interação em grupo. Por fim, a regra de atualização define como o agente
@@ -109,13 +109,14 @@ propriedades típicas:
   
 \subsection{Modelos Discretos}
 
-\quad \quad Modelos baseados no Modelo de Ising são os modelos mais fundamentais na área.
-Nele os agentes tem como opinião uma variável binária; interagem numa grade; com
-interação social ( um agente interage com todos seus vizinhos mais próximos na
-grade); e tem por regra de atualização mudar de opinião caso a maioria dos
-vizinhos forem do tipo oposto - caso haja empate mudam de opinião com
-probabilidade $\frac{1}{2}$. \todo[inline]{vou discutir melhor o que é o modelo
-  de ising}
+\quad \quad Modelos baseados no Modelo de Ising são os modelos mais fundamentais na
+área. Nele os agentes tem como opinião uma variável binária; interagem numa
+grade, com todos seus vizinhos; e tem por regra de atualização mudar de opinião
+caso a maioria dos vizinhos forem do tipo oposto - caso haja empate mudam de
+opinião com probabilidade $\frac{1}{2}$. \todo[inline, color = yellow]{{\Large
+    discutir melhor o que é o modelo de ising}}
+
+
 \begin{figure}[H]
   \centering \includegraphics[scale = 0.5]{ims/ising.png}
   \caption{Evolução do modelo de Ising em duas dimensões numa grade (rede quadrada)
@@ -125,14 +126,14 @@ probabilidade $\frac{1}{2}$. \todo[inline]{vou discutir melhor o que é o modelo
 
 
 Outros modelos discretos importantes são o Modelo ``Voter'' , o Modelo da
-Maioria, o Modelo de Sznajd e o Modelo do ``q-voter''.
+Maioria, o Modelo de Sznajd e o Modelo de Cultura de Axelrod.
 
 No Modelo ``Voter'' cada agente têm uma opinião binária, como o modelo
 de Ising ; tem por topologia um grafo regular \footnote{Em um grafo
   regular todos os agentes têm o mesmo número de conexões \cite{sayama2015introduction}} ; e a cada
 passo da simulação um agente é selecionado aleatoriamente e assume a
 opinião de algum de seus vizinhos (sendo assim a interação é entre
-pares, enquanto que a interação no modelo de ising é social ).
+pares).
 
 \begin{figure}[H]
   \centering \includegraphics[scale = 0.5]{ims/voter.png}
@@ -143,70 +144,61 @@ pares, enquanto que a interação no modelo de ising é social ).
 
 
 
-No Modelo da Maioria os agentes tem opinião binária e interagem com os
-outros agentes num grafo completo. A forma de interação é : a cada
-``tick'' um grupo de tamanho ``r'' é selecionado aleatoriamente e
-todos os agentes mudam sua opinião para a opinião da maioria do grupo
-( a interação é social ). O tamanho ``r'' pode ser fixo ou ser tirado
-de alguma distribuição a cada passo. Se ele for par podem podem
-ocorrer empates nos grupos, o que pode ser solucionado introduzindo um
-viés para uma opinião, ou por um lançamento de moeda.
+No Modelo da Maioria os agentes tem opinião binária e interagem com os outros
+agentes num grafo completo. \textcolor{red}{ta errado. apresentar de forma
+  independente do grafo como andre falou.} A forma de interação é : a cada
+``tick'' um grupo de tamanho ``r'' é selecionado aleatoriamente e todos os
+agentes mudam sua opinião para a opinião da maioria do grupo ( a interação é
+social ). O tamanho ``r'' pode ser fixo ou ser tirado de alguma distribuição a
+cada passo. Se ele for par podem podem ocorrer empates nos grupos, o que pode
+ser solucionado introduzindo um viés para uma opinião, ou por um lançamento de
+moeda.
 
-No modelo de sznajd os agentes também tem opinião binária, mudando a regra de
+No Modelo de Sznajd os agentes também tem opinião binária, mudando a regra de
 interação. O modelo busca levar em conta que um grupo de indivíduos com a mesma
 opinião pode influenciar seus vizinhos mais do que um único indivíduo. A cada
 passo um par de vizinhos é selecionado e se sua opinião convergir os seus
 vizinhos mudam para opinião de convergência, sendo assim a interação é entre
 pares $ij$, mas a atualização é social tendo em vista a interação do par.
 
-No modelo q-voter os agentes também estão numa rede completa, com
-opinião binária, mas sua interação é dada da seguinte forma: a cada
-``tick'' um conjunto de tamanho $q$ de agentes é selecionado e se sua
-opinião coincidir um outro agente copia a opinião desse grupo. Se o
-grupo não coincidir o outro agente muda de opinião segundo uma
-probabilidade p.
 
-Todos os modelos até agora foram unidimensionais. O modelo de Axelrod
-é um modelo em que a opinião é discreta, mas multidimensional. Como
-opinião é pensada de forma ampla, o modelo de Axelrod pode ser pensado
-como um modelo de opinião, embora se proponha a representar
-cultura. Baseia-se em dois princípios: a preferência dos indivíduos em
-interagir com pessoas similares (homofilia) e o aumento de
-similaridade após a interação (influência social). Cada agente tem por
-opinião um conjunto $F$ de variáveis $(\sigma_1 , \ldots,
-\sigma_f)$. Esses $\sigma_i$ podem tomar valores $q$ de 0 a $q-1$. As
-variáveis são chamadas de ``cultural features'' e seus possíveis
-valores de ``traits per feature''. O modelo considera interação entre
-pares de agentes, como o modelo voter, os quais só interagem se
-houverem ``traits'' iguais. Isso significa que a interação só é
-possível para indivíduos similares e acaba por torná-los mais
-similares. O sistema tem dois estados finais possíveis: ou estado
-absorvente, ou coexistência de regiões culturais. O que determina a
-convergência para esses estados é número $q$ de traits.
+Todos os modelos até agora foram unidimensionais. O modelo de Axelrod é um
+modelo em que a opinião é discreta, mas multidimensional. Como opinião é pensada
+de forma ampla, o modelo de Axelrod pode ser pensado como um modelo de opinião,
+embora se proponha a representar cultura. Baseia-se em dois princípios: a
+preferência dos indivíduos em interagir com pessoas similares (homofilia) e o
+aumento de similaridade após a interação (influência social). Cada agente tem
+por opinião um conjunto $F$ de variáveis $(\sigma_1 , \ldots, \sigma_f)$. Esses $\sigma_i$ podem
+tomar valores $q$ de 0 a $q-1$. As variáveis são chamadas de ``cultural
+features'' e seus possíveis valores de ``traits per feature''. O modelo
+considera interação entre pares de agentes, como o modelo voter, os quais só
+interagem se houverem ``traits'' iguais. Isso significa que a interação só é
+possível para indivíduos similares e acaba por torná-los mais similares. O
+sistema tem dois estados finais possíveis: hegemonia de uma cultura ou
+coexistência de regiões culturais. O que determina a convergência para essas
+configurações é número $q$ de traits.
 
 
 
 \subsection{Modelos Contínuos}
 
+
+
 \quad \quad Um dos modelos mais citados em OD é o modelo de
-\citeonline{deffuant2000mixing}\footnote{1122 citações segundo o Google Scholar
-  \url{https://scholar.google.com.br/scholar?hl=pt-BR&as_sdt=0,5&q=deffuant+opinion}.}.
+\citeonline{deffuant2000mixing}..
 Nele a opinião é uma variável contínua que pode tomar valores de -1 a 1, $x_i \in
 [-1,1]$. Dois agentes são escolhidos aleatoriamente e interagem se suas opiniões
 forem próximas o bastante, onde próximo é um parâmetro de ``confiança'' ``d''.
 Se eles interagirem suas opiniões se aproximam de acordo com um parâmetro $\mu$ :
 $x_i = x_i + \mu(x_j - x_i)$. A população converge para um determinado ``cluster''
 dependendo do parâmetro $d$. O parâmetro $\mu$ e o tamanho da população determinam
-a velocidade de convergência e a largura da distribuição final de opiniões. Uma
-característica desses clusters é que sejam extremos.
+a velocidade de convergência e a largura da distribuição final de opiniões.
 
-Outro modelo importante\footnote{1554 citações no Google Scholar
-  \url{https://scholar.google.com.br/scholar?q=+Hegselmann+opinion&btnG=&hl=pt-BR&as_sdt=0\%2C5
-  }} com agentes que tem uma opinião contínua é o modelo de Hegselmann-Krause.
-Nesse modelo a regra de interação, e de atualização, difere do modelo de
-Deffuant por ser social: os agentes interagem com todos os vizinhos
+Outro modelo importante com agentes que tem uma opinião contínua é o modelo de
+Hegselmann-Krause. Nesse modelo a regra de interação, e de atualização, difere
+do modelo de Deffuant por ser social: os agentes interagem com todos os vizinhos
 compatíveis,dado um parâmetro de confiança, ao mesmo tempo, e toma a média das
-opiniões dos agentes vizinhos. O sistema converge para um estado absorvente e é
+opiniões dos agentes vizinhos. O sistema converge para uma opinião e é
 completamente determinado pelo parâmetro de confiança.
 
 
@@ -241,100 +233,23 @@ deles, que é uma função de probabilidade contínua. Nos podemos pensar
 que existem dois campos, o campo visível das ``ações'' e o campo por
 detrás das opiniões \cite{martins2008continuous}.
 
+ \citeonline{martins2012bayesian} oferece o seguinte passo a passo
+para a construção de um modelo de dinâmicas de opinião no qual a opinião dos
+agentes é uma função de probabilidade:
 
-\section{Modelos em Política}
-
-Fica claro então que a área de dinâmicas de opinião é ampla e volumosa, mas qual
-sua relação com a política? Temos aqui de diferenciar o sistema alvo, que
-buscamos representar e compreender, e as ferramentas para analisar o sistema
-alvo, os modelos.
-
-
-A Ciência Política faz uso de um conjunto de modelos utilizados para representar
-fenômenos que chamamos de políticos, o sistema alvo. Os cientistas usam modelos
-teóricos com o objetivo de ter \textit{insights}, por meio da analogia, sobre os
-processos geradores de dados subjacentes aos fenômenos
-\cite{clarke2012model,morton1999methods}. Sendo assim modelos de OD podem
-interagir tanto com os modelos já usados, ou serem aplicados diretamente ao
-sistema alvo, sem a mediação da teoria tradicional. Isso permite uma grande gama
-de abordagens na interface entre as áreas, ainda mais quando política, o objeto,
-não é monopólio da Ciência Política, sendo estudada por diversas disciplinas,
-como Sociologia, Economia, Antropologia, Psicologia, dentre outras.
-
-
-Vamos discutir 3 trabalhos em OD, por buscarem dialogar com a literatura em Ciência
-Política. O modelo de \citeonline{gomes2014}; o modelo de
-\citeonline{pulick2016} ; e \citeonline{lorenz2017modeling}.
-
-
-O modelo de \citeonline{gomes2014} é uma modificação do modelo de Axelrod. Nele
-há 15 features, com traits binários. As vizinhanças definidas são neumann, moore
-e grafo completo (global). Além disso existem dois parâmetros: ativa-confiança -
-indica se a exposição a opiniões diferentes da do agente vão influencia-lo ;
-ativa-axelrod - delimita um limiar para que haja interação (ativa-homofilia
-deveria ser...). A regra de interação é entre pares $ij$ (como voter e axelrod)
-e seguindo axelrod a interaçao ocorre se o limiar for atingido (isso se o
-parâmetro ativa axelrod estiver ligado, senão a interação necessariamente vai
-ocorrer). A regra de atualização é acrescentar +1 ou -1 caso a opinião do agente
-$i$ se aproxime da do agente $j$. Se houver confiança o update depende da
-proporção de opiniões similares, se 30\% das opiniões sao iguais então aumenta
-em 0.3 ao invés de 1. A confiança não determina se há ou não interação, mas
-influi no quanto de atualização ocorre.
-
-O modelo de \citeonline{pulick2016} também é uma modificação no modelo de
-Axelrod. Os agentes tem uma opinião multivariada e contínua - é uma lista de 5
-números opinion topics, que podem variar de 1 a 9, os ``beliefs''. Existem três
-tipos de interação - interação entre vizinhos ( pares $ij$, mas a vizinhança é
-moore ) , interação com a mídia ( que no caso é um agente externo extremista) ,
-e interações de grupo (algo a la majority model = uma posição aleatória é
-escolhida, um `$r$ é escolhido, e agentes dentro desse $r$ fazem parte do
-meeting. Tira-se uma média do grupo e cada agente ajusta suas crenças para mais
-a metade da crença do grupo.). A interação só ocorre se for atingido um limiar
-de homofilia entre o agente e o alvo (para vizinhos e mídia). A similaridade é
-calculada pela soma das diferenças entre os beliefs normalizado pela diferença
-máxima possível e subtraído de 1. Se a similaridade entre o agente e o alvo é x
-ele tem x\% de chance de mudar um de seus beliefs.
-
-Uma diferença fundamental para o modelo de Axelrod é que nesse modelo um feature
-com trait value de 8 não é mais próximo de 9 do que de 2. Já no modelo de
-\citeonline{pulick2016} ,uma série 8.027.563.190.615.97 é uma configuração de
-posições em espaços contínuos. Isso quer dizer que nesse caso 8 é sim mais
-próximo de 9 do que de 2, de forma que agentes interagem com uma probabilidade
-derivada de sua similaridade, mas essa similaridade é mensurada não em termos de
-pareamento exato em algum dos features, mas na proximidade do conjunto inteiro.
-No modelo de Axelrod quando os agentes não tem trait match em algum feature a
-probabilidade de interação é zero, enquanto que no modelo de
-\citeonline{pulick2016} a similaridade é mensurada como distância de crença,
-nunca sendo completamente zero. Ademais eles modificam a regra de atualização
-também, ao invés da opinião mudar para à do alvo, é acrescido metade da
-distancia da opinião entre o $a_i$ e $a_j$.
-
-
-Por fim temos o modelo de \citeonline{lorenz2017modeling}. Nesse artigo Lorenz
-propõe um modelo que gere a distribuição de preferências de eleitores. Ele tem
-por ``background'' a literatura em ciência política sobre competição política
-espacial, na qual partidos competem sobre um espaço delimitado pela preferência
-dos eleitores. Essa literatura tende a assumir que para cada dimensão os
-eleitores tem uma distribuição normal de preferências, estática. Contudo, Lorenz
-demonstra, usando dados do ESS, que na verdade a distribuição tende a
-ter\todo[color = yellow!10]{Vou ajeitar esse paragrafo!}
-múltiplos picos, e é dificilmente aproximável por uma função a la a gaussiana ,
-ou até mesmo a distribuição beta. Além disso essa distribuição muda ao longo do
-tempo, mesmo que lentamente. Essas limitações da literatura serão esmiuçadas
-mais à frente.
-
-Sendo assim ele propõe-se a apresentar um modelo de dinâmicas de opinião que
-gere uma distribuição unidimensional de preferências dos eleitores. O modelo que
-ele propõe é um modelo de Deffuant modificado. Nele, uma população N de agentes
-$a_i$ têm posição ideológica modelada como uma variável $x_i \in [0,1]$. Cada
-agente também tem um limiar de confiança $\epsilon \in [0,1]$, homogêneo na população e
-imutável, o qual determina o máximo de distância ideológica em relação a outro
-agente $a_j$ que $a_i$ aceita quando interage com ele. Sendo assim as posições
-ideológicas da população num tempo $t$ forma um vetor $x(t) \in [0,1]^N$. O $\epsilon$ é
-uma forma de modelar homofilia. A regra de interação é entre pares $ij$ ( a la
-voter) um agente $a_i$ é escolhido aleatoriamente e é pareado com um outro
-agente escolhido aleatoriamente $a_j$. São duas regras de atualização: se os
-agentes interagem, o agente $a_i$ assume a média da opinião dele com $a_j$. Além
-disso Lorenz adiciona ruído, de forma que a cada ``tick'' os agentes
-reconsideram sua opinião segundo uma probabilidade $p$, pequena (0.1) e retirada
-de uma distribuição uniforme.
+\begin{enumerate}
+\item Identificar uma questão sob debate e chamá-la de $x$ . Uma
+  escolha sobre diferentes ideais ou teorias é uma escolha discreta
+  logo $x$ deve ser discreta. Se o debate for sobre uma variável
+  contínua então $x$ é contínua.
+\item cada agente tem uma opinião subjetiva sobre $x$ essa opinião é
+  representada pela distribuição de probabilidade $f_i(x)$ .
+\item Ocorre comunicação : a comunicação é a declaração de um valor
+  $ A_j$ pelo agente $j$ de tal forma que $A_j[f]$ é um funcional de
+  $f_j(x)$.
+\item Os agentes tem que ter em sua mente  uma relação entre o
+  verdadeiro valor entre $x$ e o valor declarado $A_j$. Isso é dado
+  pela distribuição de probabilidade $P(A_j|x)$.
+\item Dado o prior $f_i(x)$ a opinião posterior $f_i(x|A_j)$ é dada
+  por $A_i[f_i(x|A_j)]$ que é a nova opinião de $i$ .
+\end{enumerate}

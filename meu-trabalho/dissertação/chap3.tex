@@ -1,23 +1,4 @@
-Tendo em vista a análise feita no Capítulo anterior e a estrutura de um modelo de
-dinâmicas de opinião passamos para a proposta de modelo.
 
-
-\section{Da diferença entre preferências e opiniões}
-
-
-
-Já na modelagem em OD, \citeonline{lorenz2017modeling} considera que as opiniões
-são manifestações de preferencias individuais devido a sua natureza
-sumarizadora. Opiniões seriam assertivas subjetivas que resumiriam e
-comunicariam crenças, atitudes e valores para outros. Opiniões poderiam ser
-usadas então como \textit{proxies} de preferências e serem usadas para
-derivarmos pontos ideais, que é o que Lorenz faz ao modificar o modelo de
-\citeonline{deffuant2000mixing} e dele extrair pontos ideais.
-
-
-
-\section{Da definição do elemento O}\todo[inline,color=yellow!10]{eu
-    chamo isso como? elemento, variável?}
 
 Tendo em vista a possibilidade de entrelaçamento entre opiniões e preferências,
 vamos seguir a estratégia de modelagem de \citeonline{lorenz2017modeling}: usar
@@ -109,31 +90,3 @@ portanto, uma boa estratégia na tentativa de modelar dinâmicas de opinião com
 agentes ``imperfeitamente bayesianos''
 \cite{griffiths2006optimal,fujikawa2007perfect,baker2017rational}.
 
-Sendo assim, \citeonline{martins2012bayesian} oferece o seguinte passo a passo
-para a construção de um modelo de dinâmicas de opinião no qual a opinião dos
-agentes é uma função de probabilidade:
-
-\begin{enumerate}
-\item Identificar uma questão sob debate e chamá-la de $x$ . Uma
-  escolha sobre diferentes ideais ou teorias é uma escolha discreta
-  logo $x$ deve ser discreta. Se o debate for sobre uma variável
-  contínua então $x$ é contínua.
-\item cada agente tem uma opinião subjetiva sobre $x$ essa opinião é
-  representada pela distribuição de probabilidade $f_i(x)$ .
-\item Ocorre comunicação : a comunicação é a declaração de um valor
-  $ A_j$ pelo agente $j$ de tal forma que $A_j[f]$ é um funcional de
-  $f_j(x)$.
-\item Os agentes tem que ter em sua mente  uma relação entre o
-  verdadeiro valor entre $x$ e o valor declarado $A_j$. Isso é dado
-  pela distribuição de probabilidade $P(A_j|x)$.
-\item Dado o prior $f_i(x)$ a opinião posterior $f_i(x|A_j)$ é dada
-  por $A_i[f_i(x|A_j)]$ que é a nova opinião de $i$ .
-\end{enumerate}
-
-Como queremos atualizar pontos ideias, localizados num espaço contínuo, vamos
-aplicar o modelo de \citeonline{martins2009bayesian}.
-
-  \textcolor{red}{Tenho coisa escrita daqui em diante, mas ainda não está
-    apresentavel kkkkk }
-  \textcolor{red}{Vou adicionar noise assim como Lorenz. Vou testar o modelo com
-  e sem noise.}
