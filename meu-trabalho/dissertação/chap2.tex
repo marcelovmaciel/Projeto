@@ -1,24 +1,27 @@
+\section{Introdução}
 
-\begin{tcolorbox}[{colback=yellow!10!white,
-colframe=yellow!75!black}]
-OS CAPÍTULOS 2 E 3 SÃO LEGADO DA VERSÃO 1 E VÃO SER MODIFICADOS
-\end{tcolorbox}
+Nesse capítulo fazemos uma revisão bibliográfica da área de Dinâmicas de
+Opinião\footnote{Doravante OD (\textit{Opinion Dynamics}).} Definimos a área, o
+que são modelos baseados em agente e quais os constituintes típicos de um modelo
+de OD. Depois apresentamos modelos que podem ser considerados canônicos na
+literatura  pelo fato de inspirarem uma gama de modificações e extensões. Os
+apresentamos no seu formato mais simples para que sirvam de ``baseline''.
+Concluímos o capítulo com uma discussão sobre nossa abordagem.
 
 
 \section{Definição da Área}
 
-A área de dinâmicas de opinião\footnote{Doravante OD (\textit{Opinion
-    Dynamics}).} é uma área que pode ser definida a partir de 3 elementos:
-primeiramente, sistemas alvo em comum, delimitados pela pergunta central: quais
-elementos determinam se um grupo de agentes chega ao consenso sobre algo, ou ao
-invés disso persistem em discórdia \cite{castellano2012social} ; segundo, um
-conjunto de modelos que partilham elementos constitutivos, particularmente
-fazendo uso da técnica da Modelagem Baseada em Agentes\footnote{De agora em
-  diante vamos usar a abreviação ABM para modelagem (ou modelo(s)) baseada(os)
-  em agentes.}, e em, alguma medida, de \textit{insights} e técnicas da Física
-Estatística \cite{galam1990social}; terceiro, uma comunidade de pesquisadores
-que partilham do interesse no objeto, fazem uso de referenciais e técnicas
-compartilhadas e se reconhecem como membros dessa comunidade.
+OD é uma área que pode ser definida a partir de 3 elementos: primeiramente,
+sistemas alvo em comum, delimitados pela pergunta central: quais elementos
+determinam se um grupo de agentes chega ao consenso sobre algo, ou ao invés
+disso persistem em discórdia \cite{castellano2012social} ; segundo, um conjunto
+de modelos que partilham elementos constitutivos, particularmente fazendo uso da
+técnica da Modelagem Baseada em Agentes\footnote{De agora em diante vamos usar a
+  abreviação ABM para modelagem (ou modelo(s)) baseada(os) em agentes.}, e em,
+alguma medida, de \textit{insights} e técnicas da Física Estatística
+\cite{galam1990social}; terceiro, uma comunidade de pesquisadores que partilham
+do interesse no objeto, fazem uso de referenciais e técnicas compartilhadas e se
+reconhecem como membros dessa comunidade.
 
 Importante notar a aceitação de um significado amplo e abstrato de opinião como
 uma característica de um agente que pode ser mudada com pouco custo
@@ -35,14 +38,13 @@ subgrupo da Sociofísica \cite{galam1982sociophysics,galam2012sociophysics}.
 
 \section{Modelagem Baseada em Agentes e Dinâmicas de Opinião}
 
-Modelos Baseados em Agentes podem ser definidos, de maneira minimalista, como
-simulações que envolvem agentes discretos, onde agentes, seus atributos, e
-possivelmente um ambiente são definidos algoritmicamente
-\cite{sayama2015introduction} \footnote{Embora existam modelos baseados em
-  agentes que historicamente não tenham sido diretamente implementados em
+Modelos Baseados em Agentes podem ser definidos como modelos que envolvem
+agentes discretos, onde agentes, seus atributos, e possivelmente um ambiente são
+definidos algoritmicamente \cite{sayama2015introduction} \footnote{ ABMs
+  costumam ser implementados como simulações num computador, embora existam
+  modelos baseados em agentes que historicamente não tenham sido diretamente em
   computadores, como os modelos de Schelling e de Sakoda
-  \cite{hegselmann2017thomas}, ABMs costumam ser implementados como simulações
-  num computador.}. Num ABM existem três noções primitivas: os
+  \cite{hegselmann2017thomas}.}. Num ABM existem três noções primitivas: os
 \textit{atributos}, os \textit{estados} e as \textit{configurações}
 \cite[p.7]{de2014agent}. Os atributos dos agentes são o conjunto de propriedades
 que cada cada agente \(i\) tem. Os estados dos agentes são os valores de seus
@@ -89,39 +91,22 @@ propriedades típicas:
   A opinião dos agentes pode ser representada como uma variável ou conjunto de
   variáveis, que por sua vez podem ser discretas ou contínuas. Já a estrutura de
   interação consiste no conjunto de agentes cujas ações e propriedades podem
-  afetar a opinião de um agente \(i\) \cite{page2008uncertainty}. Podemos
-  dividir a estrutura de interação numa \textit{topologia} de interação e numa
-  \textit{regra de interação}. A topologia de interação define quais agentes
-  estão conectados com \(i\), e podem, potencialmente, afetá-lo. A regra de
-  interação define como \(i\) interage com os agentes desse conjunto(seus
+  afetar a opinião de um agente \(i\) \cite{page2008uncertainty}.
+
+  Podemos dividir a estrutura de interação numa \textit{topologia} de interação e
+  numa \textit{regra de interação}. A topologia de interação define quais
+  agentes estão conectados com \(i\), e podem, potencialmente, afetá-lo. A regra
+  de interação define como \(i\) interage com os agentes desse conjunto(seus
   ``vizinhos''). Em OD as regras de interação, por sua vez, definem qual a
   relação que o agente \(i\) tem com seus vizinhos: se interage com um vizinho
-  por vez, uma interação em diáde, ou com algum subconjunto de seus vizinhos.
+  por vez, uma interação em díade, ou com algum subconjunto de seus vizinhos,
+  uma interação em grupo. Por fim, a regra de atualização define como o agente
+  \textit{processa a informação}. Isto é, como ele muda de opinião.
 
+  
 
-  Mais precisamente, um modelo de
-  dinâmica de opinião pode ser definido \footnote{Seguindo
-    \citeonline{troitzsch2017axiomatic}}. como um conjunto \textbf{M} tal que
-  \textbf{M} é igual a \{A, O, T, I, U\}, onde:
-\begin{itemize}
-\item A são os agentes;
-\item O é a opinião(ões) dos agentes, que podem ser representadas como uma
-  variável ou conjunto de variáveis, que por sua vez podem ser discretas ou
-  contínuas ;
-\item T é a topologia de interação entre os agentes;
-\item I é o tipo de interação entre os agentes;
-\item e U é a regra de atualização da opinião dos agentes;
-\end{itemize}
-
-Em acordo com a literatura \cite{castellano2012social}, apresentaremos os
-modelos segundo a distinção opinião discreta \textit{versus} contínua, sempre
-atentando para os elementos da definição M. Focamos nos modelos que podem ser
-considerados canônicos na literatura em OD pelo fato de inspirarem uma gama de
-modificações e extensões. Os apresentamos no seu formato mais simples para que
-sirvam de ``baseline''.Em seguida discutiremos alguns trabalhos que buscam
-aplicar OD à política.
-
-\section{Modelos Canônicos}
+  \section{Modelos Canônicos}
+  
 \subsection{Modelos Discretos}
 
 \quad \quad Modelos baseados no Modelo de Ising são os modelos mais fundamentais na área.
