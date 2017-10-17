@@ -5,9 +5,7 @@ OS CAPÍTULOS 2 E 3 SÃO LEGADO DA VERSÃO 1 E VÃO SER MODIFICADOS
 \end{tcolorbox}
 
 
-
-
-\section{Introdução}
+\section{Definição da Área}
 
 A área de dinâmicas de opinião\footnote{Doravante OD (\textit{Opinion
     Dynamics}).} é uma área que pode ser definida a partir de 3 elementos:
@@ -20,7 +18,7 @@ fazendo uso da técnica da Modelagem Baseada em Agentes\footnote{De agora em
   em agentes.}, e em, alguma medida, de \textit{insights} e técnicas da Física
 Estatística \cite{galam1990social}; terceiro, uma comunidade de pesquisadores
 que partilham do interesse no objeto, fazem uso de referenciais e técnicas
-compartilhadas e se reconhecem como membros de uma comunidade.
+compartilhadas e se reconhecem como membros dessa comunidade.
 
 Importante notar a aceitação de um significado amplo e abstrato de opinião como
 uma característica de um agente que pode ser mudada com pouco custo
@@ -35,15 +33,32 @@ Psicologia Social, dentre outras, o que nos permite considerar a área como um
 subgrupo da Sociofísica \cite{galam1982sociophysics,galam2012sociophysics}.
 
 
+\section{Modelagem Baseada em Agentes e Dinâmicas de Opinião}
+
 Modelos Baseados em Agentes podem ser definidos, de maneira minimalista, como
-simulações computacionais que envolvem agentes discretos
-\cite{sayama2015introduction}. Embora existam modelos baseados em agentes que
-historicamente não tenham sido diretamente implementados em computadores, como
-os modelos de Schelling e de Sakoda \cite{hegselmann2017thomas}, ABMs costumam
-ser implementados como simulações num computador, onde os agentes, seus
-atributo, e possivelmente o ambiente, são definidos algoritmicamente. Segundo
-\citeonline[p.430-1]{sayama2015introduction}, ABMs têm as seguintes propriedades
-típicas:
+simulações que envolvem agentes discretos, onde agentes, seus atributos, e
+possivelmente um ambiente são definidos algoritmicamente
+\cite{sayama2015introduction} \footnote{Embora existam modelos baseados em
+  agentes que historicamente não tenham sido diretamente implementados em
+  computadores, como os modelos de Schelling e de Sakoda
+  \cite{hegselmann2017thomas}, ABMs costumam ser implementados como simulações
+  num computador.}. Num ABM existem três noções primitivas: os
+\textit{atributos}, os \textit{estados} e as \textit{configurações}
+\cite[p.7]{de2014agent}. Os atributos dos agentes são o conjunto de propriedades
+que cada cada agente \(i\) tem. Os estados dos agentes são os valores de seus
+atributos num determinado tempo \(t\). Já as configurações são as coleções de
+todos os estados dos agentes num modelo.
+
+ABMs é uma técnica flexível: podemos construir modelos ``metafóricos'' com
+objetivo de auxiliar o desenvolvimento de intuição segundo a elucidação de
+princípios; ou de alta-fidelidade, com dezenas de atributos e um
+ambiente incluindo casas, escolas, sistemas de transporte, dentre outros, com o
+objetivo avaliar contrafactuais próximos a determinados casos concretos
+\cite{de2014agent, epstein2006generative}.
+
+
+Segundo \citeonline[p.430-1]{sayama2015introduction}, ABMs têm as seguintes
+propriedades típicas:
 \begin{itemize}
 \item agentes podem ter estados internos;
 \item agentes podem ser espacialmente localizados;
@@ -56,23 +71,38 @@ típicas:
   \end{itemize}
 
   Tendo em vista essas propriedades, ABMs são particularmente úteis para o
-  estudo de sistemas complexos \cite{wilensky2015introduction}, tendo em vista:
-  sua capacidade de incluir redes e espaço;  seu potencial de ligar múltiplos
+  estudo de sistemas complexos \cite{wilensky2015introduction}, dada: sua
+  capacidade de incluir redes e espaço; seu potencial de ligar múltiplos
   domínios e de incluir uma maior heterogeneidade de agentes; além de seu foco
-  na robustez de resultados, tendo em vista a contingência de resultados
-  \cite{de2014agent,wilensky2015introduction}. Não por acaso, ABMs são
-  amplamente usados na área de dinâmicas de opinião
-  \cite{castellano2012social,flache2017}.
+  na robustez de resultados \cite{de2014agent,wilensky2015introduction}. Não por
+  acaso, ABMs são amplamente usados em OD  \cite{castellano2012social,flache2017}.
 
-Que elementos constituem os modelos de OD ? Podemos delimitar um modelo de
-dinâmicas de opinião da seguinte forma: agentes,conectados, possuem opiniões
-como variáveis e interagem segundo regras que explicam a mudança ou manutenção
-das opiniões individuais sob efeito da interação com outros agentes ou outras
-fontes (como a mídia) \cite{sirbu2017opinion}. Mais precisamente, um modelo de
-dinâmica de opinião pode ser definido\footnote{Seguindo a Perspectiva Semântica
-  de Teorias \cite{sep-structure-scientific-theories, troitzsch2017axiomatic}}
-como um conjunto \textbf{M} tal que \textbf{M} é igual a \{A, O, T, I, U\},
-onde:
+  Que elementos constituem os modelos de OD ? Podemos delimitar um modelo de
+  dinâmicas de opinião da seguinte forma: agentes,conectados, possuem opiniões
+  como variáveis e interagem segundo regras que explicam a mudança ou manutenção
+  das opiniões individuais sob efeito da interação com outros agentes ou outras
+  fontes (como a mídia) \cite{sirbu2017opinion}. Os agentes num modelo em OD tem
+  então : uma \textit{opinião}; uma \textit{estrutura de interação}; e uma
+  \textit{regra de atualização} de sua opinião.
+
+
+  A opinião dos agentes pode ser representada como uma variável ou conjunto de
+  variáveis, que por sua vez podem ser discretas ou contínuas. Já a estrutura de
+  interação consiste no conjunto de agentes cujas ações e propriedades podem
+  afetar a opinião de um agente \(i\) \cite{page2008uncertainty}. Podemos
+  dividir a estrutura de interação numa \textit{topologia} de interação e numa
+  \textit{regra de interação}. A topologia de interação define quais agentes
+  estão conectados com \(i\), e podem, potencialmente, afetá-lo. A regra de
+  interação define como \(i\) interage com os agentes desse conjunto(seus
+  ``vizinhos''). Em OD as regras de interação, por sua vez, definem qual a
+  relação que o agente \(i\) tem com seus vizinhos: se interage com um vizinho
+  por vez, uma interação em diáde, ou com algum subconjunto de seus vizinhos.
+
+
+  Mais precisamente, um modelo de
+  dinâmica de opinião pode ser definido \footnote{Seguindo
+    \citeonline{troitzsch2017axiomatic}}. como um conjunto \textbf{M} tal que
+  \textbf{M} é igual a \{A, O, T, I, U\}, onde:
 \begin{itemize}
 \item A são os agentes;
 \item O é a opinião(ões) dos agentes, que podem ser representadas como uma
