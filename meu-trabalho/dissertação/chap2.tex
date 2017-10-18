@@ -66,7 +66,7 @@ propriedades típicas:
 \item agentes podem ser espacialmente localizados;
 \item agentes podem perceber e interagir com o ambiente;
 \item agentes podem interagir segundo regras pré-definidas;
-\item agentes podem ser capaz de aprender e adaptar-se;
+\item agentes podem ser capazes de aprender e adaptar-se;
 \item agentes podem interagir com outros agentes;
 \item AMBs muitas vezes não tem supervisores/controladores centrais;
   \item ABMs podem produzir comportamentos coletivos não triviais.
@@ -110,7 +110,7 @@ propriedades típicas:
 \subsection{Modelos Discretos}
 
 \quad \quad Modelos baseados no Modelo de Ising são os modelos mais fundamentais na
-área. Nele os agentes tem como opinião uma variável binária; interagem numa
+área. Nele os agentes têm como opinião uma variável binária; interagem numa
 grade, com todos seus vizinhos; e tem por regra de atualização mudar de opinião
 caso a maioria dos vizinhos forem do tipo oposto - caso haja empate mudam de
 opinião com probabilidade $\frac{1}{2}$. \todo[inline, color = yellow]{{\Large
@@ -128,12 +128,11 @@ opinião com probabilidade $\frac{1}{2}$. \todo[inline, color = yellow]{{\Large
 Outros modelos discretos importantes são o Modelo ``Voter'' , o Modelo da
 Maioria, o Modelo de Sznajd e o Modelo de Cultura de Axelrod.
 
-No Modelo ``Voter'' cada agente têm uma opinião binária, como o modelo
-de Ising ; tem por topologia um grafo regular \footnote{Em um grafo
-  regular todos os agentes têm o mesmo número de conexões \cite{sayama2015introduction}} ; e a cada
-passo da simulação um agente é selecionado aleatoriamente e assume a
-opinião de algum de seus vizinhos (sendo assim a interação é entre
-pares).
+No Modelo ``Voter'' cada agente tem uma opinião binária, como o modelo de Ising
+; tem por topologia um grafo regular \footnote{Em um grafo regular todos os
+  agentes têm o mesmo número de conexões \cite{sayama2015introduction}} ; e a
+cada passo da simulação um agente é selecionado aleatoriamente e assume a
+opinião de algum de seus vizinhos (sendo assim a interação é entre pares).
 
 \begin{figure}[H]
   \centering \includegraphics[scale = 0.5]{ims/voter.png}
@@ -144,7 +143,7 @@ pares).
 
 
 
-No Modelo da Maioria os agentes tem opinião binária e interagem com os outros
+No Modelo da Maioria os agentes têm opinião binária e interagem com os outros
 agentes num grafo completo. \textcolor{red}{ta errado. apresentar de forma
   independente do grafo como andre falou.} A forma de interação é : a cada
 ``tick'' um grupo de tamanho ``r'' é selecionado aleatoriamente e todos os
@@ -172,7 +171,7 @@ por opinião um conjunto $F$ de variáveis $(\sigma_1 , \ldots, \sigma_f)$. Esse
 tomar valores $q$ de 0 a $q-1$. As variáveis são chamadas de ``cultural
 features'' e seus possíveis valores de ``traits per feature''. O modelo
 considera interação entre pares de agentes, como o modelo voter, os quais só
-interagem se houverem ``traits'' iguais. Isso significa que a interação só é
+interagem se existerem ``traits'' iguais. Isso significa que a interação só é
 possível para indivíduos similares e acaba por torná-los mais similares. O
 sistema tem dois estados finais possíveis: hegemonia de uma cultura ou
 coexistência de regiões culturais. O que determina a convergência para essas
@@ -210,11 +209,11 @@ completamente determinado pelo parâmetro de confiança.
     opinions and discrete actions}.}.Uma contribuição do modelo é exatamente em
 deixar claro o papel da regra de atualização em separado à da interação. Agentes
 observam opiniões discretas de outros agentes, e mudam sua opinião contínua
-$p_i$ sobre essa essa opção a depender dos outros agentes. Esse $p_i$ quantifica
-a adesão a uma opinião. E é atualizado por meio de atualização bayesiana. O
-modelo é aplicado para regras de interação tanto voter ( $x_i $ versus $x_j$)
-quanto ao sznajd, e em ambos ocorre a emergência de ``clusters'' de extremismo.
-\todo{Eu vou discutir mais o CODA!!!}
+$p_i$ sobre essa opção a depender dos outros agentes. Esse $p_i$ quantifica a
+adesão a uma opinião. E é atualizado por meio de atualização bayesiana. O modelo
+é aplicado para regras de interação tanto voter ( $x_i $ versus $x_j$) quanto ao
+sznajd, e em ambos ocorre a emergência de ``clusters'' de extremismo. \todo{Eu
+  vou discutir mais o CODA!!!}
 
 \begin{figure}[H]
   \centering \includegraphics[scale = 0.7]{ims/andre.png}
@@ -229,7 +228,7 @@ binária, ou mais em geral discreta, sua opinião sobre qual a melhor
 não é necessariamente discreta: a pessoa pode \textbf{crer} que uma
 das alternativas é melhor com probabilidade p. Cada agente observa as
 escolhas de outros indivíduos, mas não observa a opinião interna
-deles, que é uma função de probabilidade contínua. Nos podemos pensar
+deles, que é uma função de probabilidade contínua. Nós podemos pensar
 que existem dois campos, o campo visível das ``ações'' e o campo por
 detrás das opiniões \cite{martins2008continuous}.
 
