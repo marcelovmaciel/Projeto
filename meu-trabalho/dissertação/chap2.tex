@@ -3,10 +3,11 @@
 Nesse capítulo fazemos uma revisão bibliográfica da área de Dinâmicas de
 Opinião\footnote{Doravante OD (\textit{Opinion Dynamics}).} Definimos a área, o
 que são modelos baseados em agente e quais os constituintes típicos de um modelo
-de OD. Depois apresentamos modelos que podem ser considerados canônicos na
-literatura  pelo fato de inspirarem uma gama de modificações e extensões. Os
-apresentamos no seu formato mais simples para que sirvam de ``baseline''.
-Concluímos o capítulo com uma discussão sobre nossa abordagem.
+de OD. Depois apresentamos modelos que podem ser considerados canônicos, em sua
+versão mais simples, pelo fato de inspirarem uma gama de modificações e
+extensões. Na seção seguinte discutimos algumas questões teóricas referentes à
+atualização da opinião dos agentes e concluímos o capítulo com uma discussão de
+nossa abordagem.
 
 
 \section{Definição da Área}
@@ -100,83 +101,70 @@ propriedades típicas:
   ``vizinhos''). Em OD as regras de interação definem qual a
   relação que o agente \(i\) tem com seus vizinhos: se interage com um vizinho
   por vez, uma interação em díade, ou com algum subconjunto de seus vizinhos,
-  uma interação em grupo. Por fim, a regra de atualização define como o agente
-  \textit{processa a informação}. Isto é, como ele muda de opinião.
+  uma interação em grupo. Por fim, a regra de atualização define sob qual regra
+  a opinião do agente \(i\) muda do tempo \(t\) para o tempo \(t+1\). 
 
   
 
   \section{Modelos Canônicos}
+
+  Adaptações do Modelo de Ising são os modelos mais fundamentais na área. O
+  modelo de Ising é um modelo paradigmático da Mecânica Estatística, usado para
+  representar o processo de magnetização de materiais\footnote{O modelo de Ising
+    é um modelo paradigmático de sistemas com muitas partes interagindo levando
+    à uma transição de fase, a uma mudança de comportamento qualitativo do
+    sistema. Sendo assim, é aplicado em vários contextos além da sua concepção
+    original, como mercados financeiros, sistemas ecológicos, e dinâmicas de
+    opinião \cite{sole2011phase}}. Neles, variáveis discretas, \textit{spins},
+  com valores $s = \pm 1$, estão localizadas num grafo, e têm uma tendência a
+  alinhar-se com seus vizinhos: se a maioria tem \(s = + 1 \) o spin muda seu
+  valor para \(+1\); se a maioria tem \(s = -1 \) o spin muda seu valor para
+  \(-1\); se houver empate o spin muda seu valor com probabilidade
+  \(\frac{1}{2}\) \cite{castellano2012social,sole2011phase}. A reinterpretação
+  para o contexto de OD é o seguinte: o spin é um agente; sua opinião pode ter
+  os valores \(+1\) ou \(-1\); um agente interage com todos seus vizinhos por
+  passo de tempo; ele assume a opinião da maioria deles.
+
+  Um modelo parecido com o anterior é o ``Voter'' \cite{holley1975ergodic}. Nele
+  cada agente tem uma opinião binária \(\pm\) 1 ; e a cada passo um agente é
+  selecionado aleatoriamente e assume a opinião de algum de seus vizinhos.
+  Difere do modelo anterior, portanto, na regra de interação, díade ao invés do
+  grupo inteiro, e de atualização, assume o valor do vizinho ao invés da maioria
+  deles.
+
+
+  Já no modelo da Regra de Maioria de Serge Galam a interação é : a cada
+  ``tick'' um grupo de tamanho \textit{r} é selecionado aleatoriamente e todos
+  os agentes mudam sua opinião para a opinião da maioria do grupo
+  \cite{galam1990social,galam2012sociophysics}. O tamanho \textit{r} pode ser
+  fixo ou ser tirado de alguma distribuição a cada passo. Se \textit{r} for par
+  podem ocorrer empates nos grupos, de forma que ou o grupo escolhe uma das
+  opiniões com probabilidade \(\frac{1}{2}\), ou introduz-se um viés, e toda vez
+  que houver empate o grupo muda para uma das opiniões
+  \cite{galam2012sociophysics, galam1986majority}.
+
+  Outro modelo bastante discutido na literatura é o Modelo Sznajd
+  \cite{sznajd2000opinion}. Nele cada agente têm exatamente dois vizinhos, é uma
+  grade unidimensional. A cada passo um par $ij$ de vizinhos é selecionado e se
+  sua opinião for igual os outros vizinhos de \(i\) e \(j\) mudam a opinião para
+  a opinião de convergência. Se eles discordarem, \(i\) adota a opinião do outro
+  vizinho, e \(j\) faz o mesmo.
+
   
-\subsection{Modelos Discretos}
-
-\quad \quad Modelos baseados no Modelo de Ising são os modelos mais fundamentais na
-área. Nele os agentes têm como opinião uma variável binária; interagem numa
-grade, com todos seus vizinhos; e tem por regra de atualização mudar de opinião
-caso a maioria dos vizinhos forem do tipo oposto - caso haja empate mudam de
-opinião com probabilidade $\frac{1}{2}$. \todo[inline, color = yellow]{{\Large
-    discutir melhor o que é o modelo de ising}}
-
-
-\begin{figure}[H]
-  \centering \includegraphics[scale = 0.5]{ims/ising.png}
-  \caption{Evolução do modelo de Ising em duas dimensões numa grade (rede quadrada)
-    512 x 512}
-  Fonte: \citeonline{castellano2012social}
-\end{figure}
-
-
-Outros modelos discretos importantes são o Modelo ``Voter'' , o Modelo da
-Maioria, o Modelo de Sznajd e o Modelo de Cultura de Axelrod.
-
-No Modelo ``Voter'' cada agente tem uma opinião binária, como o modelo de Ising
-; tem por topologia um grafo regular \footnote{Em um grafo regular todos os
-  agentes têm o mesmo número de conexões \cite{sayama2015introduction}} ; e a
-cada passo da simulação um agente é selecionado aleatoriamente e assume a
-opinião de algum de seus vizinhos (sendo assim a interação é entre pares).
-
-\begin{figure}[H]
-  \centering \includegraphics[scale = 0.5]{ims/voter.png}
-  \caption{Evolução do Modelo ``Voter'' em duas dimensões numa grade (rede quadrada)
-    512 x 512}
-  Fonte: \citeonline{castellano2012social}
-\end{figure}
-
-
-
-No Modelo da Maioria os agentes têm opinião binária e interagem com os outros
-agentes num grafo completo. \textcolor{red}{ta errado. apresentar de forma
-  independente do grafo como andre falou.} A forma de interação é : a cada
-``tick'' um grupo de tamanho ``r'' é selecionado aleatoriamente e todos os
-agentes mudam sua opinião para a opinião da maioria do grupo ( a interação é
-social ). O tamanho ``r'' pode ser fixo ou ser tirado de alguma distribuição a
-cada passo. Se ele for par podem podem ocorrer empates nos grupos, o que pode
-ser solucionado introduzindo um viés para uma opinião, ou por um lançamento de
-moeda.
-
-No Modelo de Sznajd os agentes também tem opinião binária, mudando a regra de
-interação. O modelo busca levar em conta que um grupo de indivíduos com a mesma
-opinião pode influenciar seus vizinhos mais do que um único indivíduo. A cada
-passo um par de vizinhos é selecionado e se sua opinião convergir os seus
-vizinhos mudam para opinião de convergência, sendo assim a interação é entre
-pares $ij$, mas a atualização é social tendo em vista a interação do par.
-
-
-Todos os modelos até agora foram unidimensionais. O modelo de Axelrod é um
-modelo em que a opinião é discreta, mas multidimensional. Como opinião é pensada
-de forma ampla, o modelo de Axelrod pode ser pensado como um modelo de opinião,
-embora se proponha a representar cultura. Baseia-se em dois princípios: a
-preferência dos indivíduos em interagir com pessoas similares (homofilia) e o
-aumento de similaridade após a interação (influência social). Cada agente tem
-por opinião um conjunto $F$ de variáveis $(\sigma_1 , \ldots, \sigma_f)$. Esses $\sigma_i$ podem
-tomar valores $q$ de 0 a $q-1$. As variáveis são chamadas de ``cultural
-features'' e seus possíveis valores de ``traits per feature''. O modelo
-considera interação entre pares de agentes, como o modelo voter, os quais só
-interagem se existerem ``traits'' iguais. Isso significa que a interação só é
-possível para indivíduos similares e acaba por torná-los mais similares. O
-sistema tem dois estados finais possíveis: hegemonia de uma cultura ou
-coexistência de regiões culturais. O que determina a convergência para essas
-configurações é número $q$ de traits.
-
+  Todos os modelos até agora representaram opiniões como uma variável que pode
+  tomar valores binários. Além disso, com exceção do modelo Sznajd, a regra de
+  atualização dos modelos pressupõe uma interação assimilativa: os agentes
+  agentes assumem a opinião dos outros \cite{flache2017}. O modelo de
+  \cite{axelrod1997dissemination} difere em ambos os aspectos. Baseia-se em dois
+  princípios: a preferência dos indivíduos em interagir com pessoas similares
+  (homofilia) e o aumento de similaridade após a interação (influência social).
+  Cada agente tem por opinião um conjunto $F$ de variáveis $(\sigma_1 , \ldots, \sigma_f)$.
+  Esses $\sigma_i$ podem tomar valores $q$ de 0 a $q-1$. As variáveis são chamadas de
+  ``cultural features'' e seus possíveis valores de ``traits per feature''. O
+  modelo considera interação entre pares de agentes, como o modelo voter, os
+  quais só interagem se existerem ``traits'' iguais. Isso significa que a
+  interação só é possível para indivíduos similares e acaba por torná-los mais
+  similares.
 
 
 \subsection{Modelos Contínuos}
@@ -197,13 +185,11 @@ Outro modelo importante com agentes que tem uma opinião contínua é o modelo d
 Hegselmann-Krause. Nesse modelo a regra de interação, e de atualização, difere
 do modelo de Deffuant por ser social: os agentes interagem com todos os vizinhos
 compatíveis,dado um parâmetro de confiança, ao mesmo tempo, e toma a média das
-opiniões dos agentes vizinhos. O sistema converge para uma opinião e é
-completamente determinado pelo parâmetro de confiança.
+opiniões dos agentes vizinhos.
 
 
+\section{Regra de Atualização e Processamento de Informação}
 
-
-\subsection{Modelos Mistos}
 
 \quad \quad Nós temos o CODA\cite{martins2008continuous}\footnote{\textit{Continuous
     opinions and discrete actions}.}.Uma contribuição do modelo é exatamente em
