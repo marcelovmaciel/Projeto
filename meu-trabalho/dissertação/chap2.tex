@@ -153,70 +153,127 @@ propriedades típicas:
   
   Todos os modelos até agora representaram opiniões como uma variável que pode
   tomar valores binários. Além disso, com exceção do modelo Sznajd, a regra de
-  atualização dos modelos pressupõe uma interação assimilativa: os agentes
-  agentes assumem a opinião dos outros \cite{flache2017}. O modelo de
-  \cite{axelrod1997dissemination} difere em ambos os aspectos. Baseia-se em dois
-  princípios: a preferência dos indivíduos em interagir com pessoas similares
-  (homofilia) e o aumento de similaridade após a interação (influência social).
-  Cada agente tem por opinião um conjunto $F$ de variáveis $(\sigma_1 , \ldots, \sigma_f)$.
-  Esses $\sigma_i$ podem tomar valores $q$ de 0 a $q-1$. As variáveis são chamadas de
-  ``cultural features'' e seus possíveis valores de ``traits per feature''. O
-  modelo considera interação entre pares de agentes, como o modelo voter, os
-  quais só interagem se existerem ``traits'' iguais. Isso significa que a
-  interação só é possível para indivíduos similares e acaba por torná-los mais
-  similares.
+  atualização dos modelos pressupõe uma interação assimilativa: indivíduos
+  conectados por meio de uma relação estrutural sempre influenciam uns aos
+  outros em direção à diminuição da diferença de suas opiniões
+  \cite{flache2017}. O modelo de \cite{axelrod1997dissemination} difere em ambos
+  os aspectos. Cada agente tem por opinião um vetor $F$ de componentes $(\sigma_1 ,
+  \ldots, \sigma_f)$ \cite{klemm2003role}. Esses $\sigma_i$ podem tomar valores inteiros de 0 a
+  9. Os componentes são as características culturais dos agentes e seus
+  possíveis valores são seus traços culturais \cite{gomes2014}. O modelo
+  considera interação entre pares de vizinhos, os quais interagem com uma
+  probabilidade proporcional ao número de traços que têm igual. Isso significa
+  que se \(i\) tem uma opinião igual a 82330 e seu vizinho \(j\) tem uma opinião
+  67730 eles têm \(40 \%\) de interagirem. Se eles interagirem, \(i\) troca um
+  dos traços em que difere \(por\) j um dos traços de
+  \(j\)\cite[p.208]{axelrod1997dissemination}. Nesse modelo
+  pessoas similares têm uma probabilidade maior de se interagirem do que pessoas
+  distintas, mas uma vez que a interação ocorre elas ficam mais parecidas. Sendo
+  assim, o modelo de Axelrod pode ser considerado um modelo de assimilação
+  enviesada: só indivíduos suficientemente similares podem influenciar uns aos
+  outros na redução de suas diferenças
 
 
-\subsection{Modelos Contínuos}
 
+\begin{tcolorbox}[{colback=yellow!10!white,
+colframe=yellow!75!black}]
+A partir daqui é V1
+\end{tcolorbox}
 
+Um outro modelo canônico de assimilação enviesada é o Modelo de
+Deffuant-Weisbuch \cite{deffuant2000mixing}. Nele cada agente \(i\) tem opinião
+inicial \( o_i \in [0,1]\). Dois agentes são escolhidos aleatoriamente, e \(i\) é
+influenciado por \(j\) se \(| o_i - o_j| < \epsilon\). Se isso ocorrer suas opiniões se
+aproximam de acordo com um parâmetro $0 < \mu< \leq 0.5$, de forma que: $o_{i,t+1} =
+o_{it} + \mu(o_{jt} - o_{it})$. Esse modelo é particularmente relevante para o
+presente trabalho, por duas razões: a opinião é contínua, assim como a
+representação das preferências dos agentes em Teoria Política Formal
+\footnote{Na verdade, ligar a literatura de OD com funções de utilidade em
+  economia e com a noção geométrica de política é a justificativa dada por
+  \citeonline{deffuant2000mixing} para considerar opiniões como contínuas.}; e
+\(\epsilon\) pode ser interpretado como parte da regra de atualização, o que faz modelo
+os agentes tenham viés de confirmação.
 
-\quad \quad Um dos modelos mais citados em OD é o modelo de
-\citeonline{deffuant2000mixing}..
-Nele a opinião é uma variável contínua que pode tomar valores de -1 a 1, $x_i \in
-[-1,1]$. Dois agentes são escolhidos aleatoriamente e interagem se suas opiniões
-forem próximas o bastante, onde próximo é um parâmetro de ``confiança'' ``d''.
-Se eles interagirem suas opiniões se aproximam de acordo com um parâmetro $\mu$ :
-$x_i = x_i + \mu(x_j - x_i)$. A população converge para um determinado ``cluster''
-dependendo do parâmetro $d$. O parâmetro $\mu$ e o tamanho da população determinam
-a velocidade de convergência e a largura da distribuição final de opiniões.
+Quando \(\epsilon\) é interpretado como parte da regra de interação temos o princípio
+da homofilia: padrões estruturais de interação social levam pessoas a ter maior
+probabilidade de interagirem com pessoas similares a elas
+\cite{mcpherson2001birds}. Quando \(\epsilon\) é interpretado como parte da regra de
+atualização temos o fenômeno do \textit{viés de confirmação}: a tendência das
+pessoas de dar maior peso a informações que confirmem suas crenças anteriores
+\cite{nickerson1998confirmation}.
 
-Outro modelo importante com agentes que tem uma opinião contínua é o modelo de
-Hegselmann-Krause. Nesse modelo a regra de interação, e de atualização, difere
-do modelo de Deffuant por ser social: os agentes interagem com todos os vizinhos
-compatíveis,dado um parâmetro de confiança, ao mesmo tempo, e toma a média das
-opiniões dos agentes vizinhos.
+\citeonline{huckfeldt2005patterns} argumenta que indivíduos escolhem redes de
+discussão com razões distintas às políticas (como interesses profissionais e
+hobbies) e acabam interagindo com indivíduos cujas filiações partidárias
+distintas. Desta forma, o papel da homofilia em política é atenuado. Já o
+\textit{vies partidário} dos cidadaõs, o viés de confirmação no tocante a
+questões políticas , é um resultado estabelecido na literatura em opinião
+pública e psicologia política, e incontornável para a modelagem generativa de
+opinião pública \cite{bartels2002beyond, flynn2017nature,
+  lodge2013rationalizing}.
 
 
 \section{Regra de Atualização e Processamento de Informação}
 
 
-\quad \quad Nós temos o CODA\cite{martins2008continuous}\footnote{\textit{Continuous
-    opinions and discrete actions}.}.Uma contribuição do modelo é exatamente em
-deixar claro o papel da regra de atualização em separado à da interação. Agentes
-observam opiniões discretas de outros agentes, e mudam sua opinião contínua
-$p_i$ sobre essa opção a depender dos outros agentes. Esse $p_i$ quantifica a
-adesão a uma opinião. E é atualizado por meio de atualização bayesiana. O modelo
-é aplicado para regras de interação tanto voter ( $x_i $ versus $x_j$) quanto ao
-sznajd, e em ambos ocorre a emergência de ``clusters'' de extremismo. \todo{Eu
-  vou discutir mais o CODA!!!}
+Como lembra Dirk Helbing, não existe uma única forma de se modelar agentes
+interagindo em sistemas sociais complexos \cite{helbing2010pluralistic}. Os
+modelos canônicos em OD têm uma abordagem que Helbing chama de
+\textit{fisicalista}: abstraem as interações sociais ao ponto delas poderem ser
+estudadas como um modelo de ``partículas''. Em OD essa abordagem é refletida na
+forma como se modela a regra de atualização: abstrai-se o processamento de
+informação, a cognição dos agentes. Isso, como frisa Helbing, não é
+necessariamente ruim. Paul Ormerod defende que o \textit{null model} em sistemas
+sociais complexos deveria ser o de um \textit{zero intelligence actor}, já
+complexidade de situações sociais complexas nos permitiriam modelar os agentes
+``como se fossem'' átomos \cite{ormerod2008can, bentley2012agents}.
+
+Não obstante, um conjunto de trabalhos em OD tem buscado abrir a ``caixa-preta''
+da cognição dos agentes e tratam a atualização de opinião como resultado de um
+processamento de informação explicitamente modelado \cite{flache2017,
+  jager2017}. O modelo Polias de \citeonline{brousmiche2016beliefs}, o modelo
+Innomind de \citeonline{schroder2017modeling} e o modelo Lodge-Taber
+\cite{kim2010computational,kim2011model} de processamento dual e raciocínio
+motivado são exemplos dessa tendência.
+
+Se pensarmos num espectro possível de abordagens para a cognição dos agentes,
+esses modelos estão posicionados no extremo oposto aos modelos fisicalistas.
+Enquanto os modelos fisicalistas abstraem totalmente o que se passa na cabeça
+dos agentes os modelos (neuro)cognitivos buscam representar a arquitetura
+cognitiva subjacente às atitudes e crenças deles\cite{kim2010computational}.
 
 \begin{figure}[H]
-  \centering \includegraphics[scale = 0.7]{ims/andre.png}
-  \caption{Evolução temporal do modelo CODA numa grade 50 x 50 com
-    interação entre pares $ij$ (voter)}
-  Fonte: \citeonline{martins2008continuous}
+  \centering
+  \includegraphics[width = \textwidth, height = 3cm]{ims/line.pdf}
+  \caption{Espectro de abordagens no tocante à cognição dos agentes}
+  \label{fig5}
 \end{figure}
 
+Modelos cognitivamente ``densos'' permitem que analisemos como processos de
+influência social estão micro-fundamentados em processos mentais subjacentes, e
+é um fronte dentre os trabalhos que buscam aumentar o realismo das simulações
+sociais \cite{jager2017,epstein2014agent_zero, conte2013minding}. Contudo, como
+argumenta Jonathan Bendor, na medida em que a Ciência Política busca modelar
+macrofenômenos ela ``deve ser mais implacável em relação à micropressupostos do
+que microcampos relacionados (como ciência cognitiva)''
+\cite[p.45]{bendor2010bounded}. Quanto mais complicados nossos modelos menor
+controle temos sobre qual o elemento responsável pelo seus resultados, e mais
+dados precisamos para a sua calibração e validação \cite{de2005computational}.
 
-Qual a razão intuitiva do CODA?  Quando alguém fica face uma escolha
-binária, ou mais em geral discreta, sua opinião sobre qual a melhor
-não é necessariamente discreta: a pessoa pode \textbf{crer} que uma
-das alternativas é melhor com probabilidade p. Cada agente observa as
-escolhas de outros indivíduos, mas não observa a opinião interna
-deles, que é uma função de probabilidade contínua. Nós podemos pensar
-que existem dois campos, o campo visível das ``ações'' e o campo por
-detrás das opiniões \cite{martins2008continuous}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  \citeonline{martins2012bayesian} oferece o seguinte passo a passo
 para a construção de um modelo de dinâmicas de opinião no qual a opinião dos
