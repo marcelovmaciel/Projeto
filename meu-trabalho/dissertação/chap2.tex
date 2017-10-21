@@ -1,5 +1,3 @@
-\section{Introdução}
-
 Nesse capítulo fazemos uma revisão bibliográfica da área de Dinâmicas de
 Opinião\footnote{Doravante OD (\textit{Opinion Dynamics}).} Definimos a área, o
 que são modelos baseados em agente e quais os constituintes típicos de um modelo
@@ -174,12 +172,6 @@ propriedades típicas:
   outros na redução de suas diferenças
 
 
-
-\begin{tcolorbox}[{colback=yellow!10!white,
-colframe=yellow!75!black}]
-A partir daqui é V1
-\end{tcolorbox}
-
 Um outro modelo canônico de assimilação enviesada é o Modelo de
 Deffuant-Weisbuch \cite{deffuant2000mixing}. Nele cada agente \(i\) tem opinião
 inicial \( o_i \in [0,1]\). Dois agentes são escolhidos aleatoriamente, e \(i\) é
@@ -208,7 +200,7 @@ hobbies) e acabam interagindo com indivíduos cujas filiações partidárias
 distintas. Desta forma, o papel da homofilia em política é atenuado. Já o
 \textit{vies partidário} dos cidadaõs, o viés de confirmação no tocante a
 questões políticas , é um resultado estabelecido na literatura em opinião
-pública e psicologia política, e incontornável para a modelagem generativa de
+pública e psicologia política,.e incontornável para a modelagem generativa de
 opinião pública \cite{bartels2002beyond, flynn2017nature,
   lodge2013rationalizing}.
 
@@ -216,7 +208,7 @@ opinião pública \cite{bartels2002beyond, flynn2017nature,
 \section{Regra de Atualização e Processamento de Informação}
 
 
-Como lembra Dirk Helbing, não existe uma única forma de se modelar agentes
+Como lembra Dirk Helbing, não existe uma única forma de modelar agentes
 interagindo em sistemas sociais complexos \cite{helbing2010pluralistic}. Os
 modelos canônicos em OD têm uma abordagem que Helbing chama de
 \textit{fisicalista}: abstraem as interações sociais ao ponto delas poderem ser
@@ -224,8 +216,8 @@ estudadas como um modelo de ``partículas''. Em OD essa abordagem é refletida n
 forma como se modela a regra de atualização: abstrai-se o processamento de
 informação, a cognição dos agentes. Isso, como frisa Helbing, não é
 necessariamente ruim. Paul Ormerod defende que o \textit{null model} em sistemas
-sociais complexos deveria ser o de um \textit{zero intelligence actor}, já
-complexidade de situações sociais complexas nos permitiriam modelar os agentes
+sociais complexos deveria ser o de um \textit{zero intelligence actor}, pois a
+complexidade de situações sociais complexas nos permitiria modelar os agentes
 ``como se fossem'' átomos \cite{ormerod2008can, bentley2012agents}.
 
 Não obstante, um conjunto de trabalhos em OD tem buscado abrir a ``caixa-preta''
@@ -240,7 +232,7 @@ Se pensarmos num espectro possível de abordagens para a cognição dos agentes,
 esses modelos estão posicionados no extremo oposto aos modelos fisicalistas.
 Enquanto os modelos fisicalistas abstraem totalmente o que se passa na cabeça
 dos agentes os modelos (neuro)cognitivos buscam representar a arquitetura
-cognitiva subjacente às atitudes e crenças deles\cite{kim2010computational}.
+cognitiva que alicerça as atitudes e crenças deles\cite{kim2010computational}.
 
 \begin{figure}[H]
   \centering
@@ -258,33 +250,42 @@ macrofenômenos ela ``deve ser mais implacável em relação à micropressuposto
 que microcampos relacionados (como ciência cognitiva)''
 \cite[p.45]{bendor2010bounded}. Quanto mais complicados nossos modelos menor
 controle temos sobre qual o elemento responsável pelo seus resultados, e mais
-dados precisamos para a sua calibração e validação \cite{de2005computational}.
+dados precisamos para a sua calibração e validação \cite{de2005computational}. ,
+Como canonicamente argumentado por \cite{zaller1992nature}, a estratégia
+metodológica para modelar a opinião pública, um fenômeno social de larga escala,
+envolve incorporar no modelo somente os aspectos do processamento de informação
+que tem relevância para a compreensão das dinâmicas do fenômeno, ao invés de
+buscar desenvolver modelos que aproximam o mais próximo o possível os detalhes
+da mente humana\footnote{No contexto da análise institucional um argumento
+  equivalente é feito por \citeonline{ostrom1990governing}.}. 
 
 
+\citeonline{martins2012bayesian} apresenta um \textit{framework} para modelar
+Dinâmicas de Opinião que é cognitivamente mais
+``denso''\footnote{\textcolor{red}{Eu não sei qual o termo usar aqui, agradeço
+    sugestões}. } que os modelos fisicalistas, mas sem buscar modelar as bases
+neurocognitivas de processamento de informação. O \textit{framework} está
+fundamentado no uso da inferência bayesiana como base da regra de atualização
+dos agentes. Embora seja bem documentado que as pessoas não seguem fielmente o
+princípio da racionalidade bayesiana, apresentado no primeiro capítulo, um
+conjunto de trabalhos em psicologia e ciência cognitiva vêm, nos últimos anos,
+defendendo a possibilidade de que sejamos ``bayesianos
+imperfeitos''\cite{griffiths2006optimal,fujikawa2007perfect,baker2017rational,
+  gintis2016individuality}. Usar um framework bayesiano é, desta forma, uma boa
+aproximação e permite a construção de modelos de dinâmicas de opinião de uma
+forma fundamentada num princípio comum, algo particularmente relevante numa área
+em que há a proliferação de modelos ad-hoc \cite{flache2017,jager2017}.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
- \citeonline{martins2012bayesian} oferece o seguinte passo a passo
-para a construção de um modelo de dinâmicas de opinião no qual a opinião dos
-agentes é uma função de probabilidade:
+ \citeonline[p.214]{martins2012bayesian} oferece o seguinte passo a passo
+para a construção de um modelo de dinâmicas de opinião com base num
+\textit{framework} bayesiano:
 
 \begin{enumerate}
 \item Identificar uma questão sob debate e chamá-la de $x$ . Uma
   escolha sobre diferentes ideais ou teorias é uma escolha discreta
   logo $x$ deve ser discreta. Se o debate for sobre uma variável
   contínua então $x$ é contínua.
-\item cada agente tem uma opinião subjetiva sobre $x$ essa opinião é
+\item cada agente \(i\) tem uma opinião subjetiva sobre $x$ essa opinião é
   representada pela distribuição de probabilidade $f_i(x)$ .
 \item Ocorre comunicação : a comunicação é a declaração de um valor
   $ A_j$ pelo agente $j$ de tal forma que $A_j[f]$ é um funcional de
@@ -295,3 +296,11 @@ agentes é uma função de probabilidade:
 \item Dado o prior $f_i(x)$ a opinião posterior $f_i(x|A_j)$ é dada
   por $A_i[f_i(x|A_j)]$ que é a nova opinião de $i$ .
 \end{enumerate}
+
+A aplicação desse \textit{framework} no caso de opiniões contínuas incorpora o
+mecanismo de viés de confirmação presente no modelo  Deffuant-Weisbuch,
+recupera seus resultados qualitativos, e ainda tem resultados adicionais
+\cite{martins2009bayesian}. Desta forma, ele vai ser a base do trabalho e 
+será discutido no Capítulo 3.
+
+\todo[inline,color = yellow]{Vou fechar melhor aqui. Amanha penso como...}
