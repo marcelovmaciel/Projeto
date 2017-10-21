@@ -10,17 +10,17 @@ nossa abordagem.
 
 \section{Definição da Área}
 
-OD é uma área que pode ser definida a partir de 3 elementos: primeiramente,
+OD é uma área que pode ser definida a partir de 3 elementos. Primeiramente,
 sistemas alvo em comum, delimitados pela pergunta central: quais elementos
 determinam se um grupo de agentes chega ao consenso sobre algo, ou ao invés
 disso persistem em discórdia? \cite{castellano2012social}\footnote{Essa pode ser
-  pensada como a pergunta \textit{fundacional} da área \cite{flache2017}.} ;
-segundo, um conjunto de modelos que partilham elementos constitutivos,
+  pensada como a pergunta \textit{fundacional} da área \cite{flache2017}.}.
+Segundo, um conjunto de modelos que partilham elementos constitutivos,
 particularmente fazendo uso da técnica da Modelagem Baseada em
 Agentes\footnote{De agora em diante vamos usar a abreviação ABM para modelagem
   (ou modelo(s)) baseada(os) em agentes.}, e em, alguma medida, de
-\textit{insights} e técnicas da Física Estatística \cite{galam1990social};
-terceiro, uma comunidade de pesquisadores que partilham do interesse no objeto,
+\textit{insights} e técnicas da Física Estatística \cite{galam1990social}.
+Terceiro, uma comunidade de pesquisadores que partilham do interesse no objeto,
 fazem uso de referenciais e técnicas compartilhadas e se reconhecem como membros
 dessa comunidade.
 
@@ -45,12 +45,12 @@ definidos algoritmicamente \cite{sayama2015introduction} \footnote{ ABMs
   computadores, como os modelos de Schelling e de Sakoda
   \cite{hegselmann2017thomas}.}. Num ABM existem três noções primitivas: os
 \textit{atributos}, os \textit{estados} e as \textit{configurações}
-\cite[p.7]{de2014agent}. Os atributos dos agentes são o conjunto de propriedades
+\cite{de2014agent}. Os atributos dos agentes são o conjunto de propriedades
 que cada cada agente \(i\) tem. Os estados dos agentes são os valores de seus
 atributos num determinado tempo \(t\). Já as configurações são as coleções de
 todos os estados dos agentes num modelo.
 
-ABMs é uma técnica flexível: podemos construir modelos ``metafóricos'' com
+ABM é uma técnica flexível: podemos construir modelos ``metafóricos'' com
 objetivo de auxiliar o desenvolvimento de intuição segundo a elucidação de
 princípios; ou de alta-fidelidade, com dezenas de atributos e um
 ambiente incluindo casas, escolas, sistemas de transporte, dentre outros, com o
@@ -82,7 +82,7 @@ propriedades típicas:
   dinâmicas de opinião da seguinte forma: agentes,conectados, possuem opiniões
   como variáveis e interagem segundo regras que explicam a mudança ou manutenção
   das opiniões individuais sob efeito da interação com outros agentes ou outras
-  fontes (como a mídia) \cite{sirbu2017opinion}. Os agentes num modelo em OD tem
+  fontes (como a mídia) \cite{sirbu2017opinion}. Os agentes num modelo em OD têm
   então : uma \textit{opinião}; uma \textit{estrutura de interação}; e uma
   \textit{regra de atualização} de sua opinião.
 
@@ -131,7 +131,7 @@ propriedades típicas:
   deles.
 
 
-  Já no modelo da Regra de Maioria de Serge Galam a interação é : a cada
+  Já no modelo da Regra de Maioria  a interação é : a cada
   ``tick'' um grupo de tamanho \textit{r} é selecionado aleatoriamente e todos
   os agentes mudam sua opinião para a opinião da maioria do grupo
   \cite{galam1990social,galam2012sociophysics}. O tamanho \textit{r} pode ser
@@ -141,35 +141,34 @@ propriedades típicas:
   que houver empate o grupo muda para uma das opiniões
   \cite{galam2012sociophysics, galam1986majority}.
 
-  Outro modelo bastante discutido na literatura é o Modelo Sznajd
-  \cite{sznajd2000opinion}. Nele cada agente têm exatamente dois vizinhos, é uma
-  grade unidimensional. A cada passo um par $ij$ de vizinhos é selecionado e se
-  sua opinião for igual os outros vizinhos de \(i\) e \(j\) mudam a opinião para
-  a opinião de convergência. Se eles discordarem, \(i\) adota a opinião do outro
-  vizinho, e \(j\) faz o mesmo.
+  O Modelo Sznajd também é bastante discutido na literatura
+  \cite{sznajd2000opinion, sirbu2017opinion,castellano2012social}. Nele cada
+  agente têm exatamente dois vizinhos, em uma grade unidimensional. A cada passo
+  um par $ij$ de vizinhos é selecionado e se sua opinião for igual os outros
+  vizinhos de \(i\) e \(j\) mudam a opinião para a opinião de convergência. Se
+  eles discordarem, \(i\) adota a opinião do outro vizinho, e \(j\) faz o mesmo.
 
-  
   Todos os modelos até agora representaram opiniões como uma variável que pode
-  tomar valores binários. Além disso, com exceção do modelo Sznajd, a regra de
-  atualização dos modelos pressupõe uma interação assimilativa: indivíduos
-  conectados por meio de uma relação estrutural sempre influenciam uns aos
-  outros em direção à diminuição da diferença de suas opiniões
-  \cite{flache2017}. O modelo de \cite{axelrod1997dissemination} difere em ambos
-  os aspectos. Cada agente tem por opinião um vetor $F$ de componentes $(\sigma_1 ,
-  \ldots, \sigma_f)$ \cite{klemm2003role}. Esses $\sigma_i$ podem tomar valores inteiros de 0 a
-  9. Os componentes são as características culturais dos agentes e seus
-  possíveis valores são seus traços culturais \cite{gomes2014}. O modelo
-  considera interação entre pares de vizinhos, os quais interagem com uma
-  probabilidade proporcional ao número de traços que têm igual. Isso significa
-  que se \(i\) tem uma opinião igual a 82330 e seu vizinho \(j\) tem uma opinião
-  67730 eles têm \(40 \%\) de interagirem. Se eles interagirem, \(i\) troca um
-  dos traços em que difere \(por\) j um dos traços de
-  \(j\)\cite[p.208]{axelrod1997dissemination}. Nesse modelo
-  pessoas similares têm uma probabilidade maior de se interagirem do que pessoas
-  distintas, mas uma vez que a interação ocorre elas ficam mais parecidas. Sendo
-  assim, o modelo de Axelrod pode ser considerado um modelo de assimilação
-  enviesada: só indivíduos suficientemente similares podem influenciar uns aos
-  outros na redução de suas diferenças
+  tomar valores binários. Além disso a regra de atualização dos modelos
+  pressupõe uma interação assimilativa: indivíduos conectados por meio de uma
+  relação estrutural influenciam uns aos outros em direção à diminuição da
+  diferença de suas opiniões \cite{flache2017}. O modelo de
+  \citeonline{axelrod1997dissemination} difere em ambos os aspectos. Cada agente
+  tem por opinião um vetor $F$ de componentes $(\sigma_1 , \ldots, \sigma_f)$
+  \cite{klemm2003role}. Esses $\sigma_i$ podem tomar valores inteiros de 0 a 9. Os
+  componentes são as características culturais dos agentes e seus possíveis
+  valores são seus traços culturais \cite{gomes2014}. O modelo considera
+  interação entre pares de vizinhos, os quais interagem com uma probabilidade
+  proporcional ao número de traços que têm igual. Isso significa que se \(i\)
+  tem uma opinião igual a 82330 e seu vizinho \(j\) tem uma opinião 67730 eles
+  têm \(40 \%\) de interagirem. Se eles interagirem, \(i\) troca um dos traços
+  em que difere \(por\) j um dos traços de
+  \(j\)\cite{axelrod1997dissemination}. Nesse modelo pessoas similares
+  têm uma probabilidade maior de se interagirem do que pessoas distintas, mas
+  uma vez que a interação ocorre elas ficam mais parecidas. Sendo assim, o
+  modelo de Axelrod pode ser considerado um modelo de assimilação enviesada: só
+  indivíduos suficientemente similares podem influenciar uns aos outros na
+  redução de suas diferenças \cite{flache2017}.
 
 
 Um outro modelo canônico de assimilação enviesada é o Modelo de
@@ -179,7 +178,7 @@ influenciado por \(j\) se \(| o_i - o_j| < \epsilon\). Se isso ocorrer suas opin
 aproximam de acordo com um parâmetro $0 < \mu< \leq 0.5$, de forma que: $o_{i,t+1} =
 o_{it} + \mu(o_{jt} - o_{it})$. Esse modelo é particularmente relevante para o
 presente trabalho, por duas razões: a opinião é contínua, assim como a
-representação das preferências dos agentes em Teoria Política Formal
+representação das ``utilidades'' dos agentes em Teoria Política Espacial
 \footnote{Na verdade, ligar a literatura de OD com funções de utilidade em
   economia e com a noção geométrica de política é a justificativa dada por
   \citeonline{deffuant2000mixing} para considerar opiniões como contínuas.}; e
@@ -198,9 +197,9 @@ pessoas de dar maior peso a informações que confirmem suas crenças anteriores
 discussão com razões distintas às políticas (como interesses profissionais e
 hobbies) e acabam interagindo com indivíduos cujas filiações partidárias
 distintas. Desta forma, o papel da homofilia em política é atenuado. Já o
-\textit{vies partidário} dos cidadaõs, o viés de confirmação no tocante a
+\textit{vies partidário} dos cidadãos, o viés de confirmação no tocante a
 questões políticas , é um resultado estabelecido na literatura em opinião
-pública e psicologia política,.e incontornável para a modelagem generativa de
+pública e psicologia política, e imprescindível para a modelagem generativa de
 opinião pública \cite{bartels2002beyond, flynn2017nature,
   lodge2013rationalizing}.
 
@@ -214,11 +213,11 @@ modelos canônicos em OD têm uma abordagem que Helbing chama de
 \textit{fisicalista}: abstraem as interações sociais ao ponto delas poderem ser
 estudadas como um modelo de ``partículas''. Em OD essa abordagem é refletida na
 forma como se modela a regra de atualização: abstrai-se o processamento de
-informação, a cognição dos agentes. Isso, como frisa Helbing, não é
-necessariamente ruim. Paul Ormerod defende que o \textit{null model} em sistemas
-sociais complexos deveria ser o de um \textit{zero intelligence actor}, pois a
-complexidade de situações sociais complexas nos permitiria modelar os agentes
-``como se fossem'' átomos \cite{ormerod2008can, bentley2012agents}.
+informação, a cognição dos agentes. Isso, como frisa Helbing, não é uma falha
+dos modelos. Paul Ormerod defende que o \textit{null model} em sistemas sociais
+complexos deveria ser o de um \textit{zero intelligence actor}, pois a
+complexidade dos sistemas nos permitiria modelar os agentes ``como se fossem''
+átomos \cite{ormerod2008can, bentley2012agents}.
 
 Não obstante, um conjunto de trabalhos em OD tem buscado abrir a ``caixa-preta''
 da cognição dos agentes e tratam a atualização de opinião como resultado de um
@@ -229,10 +228,14 @@ Innomind de \citeonline{schroder2017modeling} e o modelo Lodge-Taber
 motivado são exemplos dessa tendência.
 
 Se pensarmos num espectro possível de abordagens para a cognição dos agentes,
-esses modelos estão posicionados no extremo oposto aos modelos fisicalistas.
-Enquanto os modelos fisicalistas abstraem totalmente o que se passa na cabeça
-dos agentes os modelos (neuro)cognitivos buscam representar a arquitetura
-cognitiva que alicerça as atitudes e crenças deles\cite{kim2010computational}.
+ilustrado na Figura 5, esses modelos estão posicionados no extremo oposto aos
+modelos fisicalistas. Enquanto os modelos fisicalistas abstraem totalmente o que
+se passa na cabeça dos agentes os modelos (neuro)cognitivos buscam representar a
+arquitetura cognitiva que alicerça as atitudes e crenças
+deles\cite{kim2010computational}.
+
+\todo[inline,color = yellow]{Discutir melhor o que é uma
+  arquitetura cognitiva?}
 
 \begin{figure}[H]
   \centering
@@ -250,14 +253,14 @@ macrofenômenos ela ``deve ser mais implacável em relação à micropressuposto
 que microcampos relacionados (como ciência cognitiva)''
 \cite[p.45]{bendor2010bounded}. Quanto mais complicados nossos modelos menor
 controle temos sobre qual o elemento responsável pelo seus resultados, e mais
-dados precisamos para a sua calibração e validação \cite{de2005computational}. ,
-Como canonicamente argumentado por \cite{zaller1992nature}, a estratégia
+dados precisamos para a sua calibração e validação \cite{de2005computational}.
+Como canonicamente argumentado por \citeonline{zaller1992nature}, a estratégia
 metodológica para modelar a opinião pública, um fenômeno social de larga escala,
 envolve incorporar no modelo somente os aspectos do processamento de informação
-que tem relevância para a compreensão das dinâmicas do fenômeno, ao invés de
+que têm relevância para a compreensão das dinâmicas do fenômeno, ao invés de
 buscar desenvolver modelos que aproximam o mais próximo o possível os detalhes
 da mente humana\footnote{No contexto da análise institucional um argumento
-  equivalente é feito por \citeonline{ostrom1990governing}.}. 
+  equivalente é feito por \citeonline{ostrom1990governing}.}.
 
 
 \citeonline{martins2012bayesian} apresenta um \textit{framework} para modelar
@@ -271,7 +274,7 @@ princípio da racionalidade bayesiana, apresentado no primeiro capítulo, um
 conjunto de trabalhos em psicologia e ciência cognitiva vêm, nos últimos anos,
 defendendo a possibilidade de que sejamos ``bayesianos
 imperfeitos''\cite{griffiths2006optimal,fujikawa2007perfect,baker2017rational,
-  gintis2016individuality}. Usar um framework bayesiano é, desta forma, uma boa
+  gintis2016individuality}. Usar um framework bayesiano é, desta forma, uma
 aproximação e permite a construção de modelos de dinâmicas de opinião de uma
 forma fundamentada num princípio comum, algo particularmente relevante numa área
 em que há a proliferação de modelos ad-hoc \cite{flache2017,jager2017}.
@@ -281,11 +284,9 @@ para a construção de um modelo de dinâmicas de opinião com base num
 \textit{framework} bayesiano:
 
 \begin{enumerate}
-\item Identificar uma questão sob debate e chamá-la de $x$ . Uma
-  escolha sobre diferentes ideais ou teorias é uma escolha discreta
-  logo $x$ deve ser discreta. Se o debate for sobre uma variável
-  contínua então $x$ é contínua.
-\item cada agente \(i\) tem uma opinião subjetiva sobre $x$ essa opinião é
+\item Identificar uma questão sob debate e chamá-la de $x$. \(x\) pode ser
+  discreto ou contínuo.
+\item cada agente \(i\) tem uma opinião subjetiva sobre $x$ e essa opinião é
   representada pela distribuição de probabilidade $f_i(x)$ .
 \item Ocorre comunicação : a comunicação é a declaração de um valor
   $ A_j$ pelo agente $j$ de tal forma que $A_j[f]$ é um funcional de
@@ -297,10 +298,16 @@ para a construção de um modelo de dinâmicas de opinião com base num
   por $A_i[f_i(x|A_j)]$ que é a nova opinião de $i$ .
 \end{enumerate}
 
+
+\todo[inline,color = yellow]{Discutir o CODA aqui??}
+
+
 A aplicação desse \textit{framework} no caso de opiniões contínuas incorpora o
 mecanismo de viés de confirmação presente no modelo  Deffuant-Weisbuch,
 recupera seus resultados qualitativos, e ainda tem resultados adicionais
-\cite{martins2009bayesian}. Desta forma, ele vai ser a base do trabalho e 
-será discutido no Capítulo 3.
+\cite{martins2009bayesian}. Dado que o modelo representa a atualização de uma
+variável contínua, incorpora viés de confirmação e fundamenta a regra de
+atualização num framework bayesiano de processamento de informação será a base
+do nosso trabalho e será discutido no Capítulo 3.
 
-\todo[inline,color = yellow]{Vou fechar melhor aqui. Amanha penso como...}
+
