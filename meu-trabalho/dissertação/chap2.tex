@@ -384,9 +384,9 @@ multiplicação do likelihood e o prior normal de $i$:
   Equação 2.4. Nele, portanto, os agentes são ``imperfeitamente'' bayesianos.
   Com essa regra de atualização o modelo já recupera os resultados dos modelos
   de confiança limitada. Contudo, também é possível considerar o caso em que a
-  incerteza dos agentes também é atualizada:
+  incerteza dos agentes é atualizada:
 
-      \begin{align*}
+      \begin{align}
     \sigma_i^2(t+1)
     =
     \sigma_i^2(t)
@@ -395,5 +395,31 @@ multiplicação do likelihood e o prior normal de $i$:
     p^*
     (1-p^*)
     (\frac{x_i(t)-x_j(t)}{2})^2
-  \end{align*}
+      \end{align}
+
+      Como demonstra \citeonline{martins2009bayesian} essa equação faz com que o
+      passar do tempo os agentes fiquem mais certos de suas opiniões. Isso é
+      relevante do ponto de vista da modelagem generativa de opinião pública.
+      \citeonline{kuklinski2000misinformation} encontra que um grande
+      percentual, demonstrando na Figura 5, dos respondentes em um
+      \textit{survey} por telefone sobre questões factuais da agenda política
+      americana da época são confiantes em suas crenças. Ademais, encontram uma
+      correlação entre confiança e partidarismo. É interessante, portanto,
+      incorporar não só a dinâmica da opinião dos agentes, mas como também como
+      se tornam mais ou menos confiantes.
+
+
+              \begin{figure}[H]
+          \centering
+          \includegraphics[scale = 0.7]{ims/factualBeliefs.png}
+          \caption{Confiança dos cidadãos em relação às suas crenças}
+          Fonte: \citeonline{kuklinski2000misinformation}
+          \label{fig6}
+        \end{figure}
+
+
+        
+
+
+      
 
