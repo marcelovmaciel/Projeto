@@ -320,17 +320,17 @@ f_i(\theta) = \frac{1}{\sqrt{2 \pi} \sigma_i} e^{-
   \frac{(\theta - x_i )^2}{2 \sigma_i}}
   \end{align}
 
-onde \(x_i = E_i[\theta] \), de forma que \(E_i\) é o valor esperado que o agente
-associa a \(\theta\). Para incluir viés de confirmação na regra de atualização,
-\citeonline{martins2009bayesian} introduz uma probabilidade \(p\) que o outro
-agente saiba algo sobre $\theta$ isto é, que tenha uma opinião plausível e que vale a
-pena ser levada em conta ; e vai ter uma chance \(1 - p\) que o outro agente não
-tenha informação sobre $\theta$ de forma que o \textit{likelihood} de $j$ estar
-correto é dado por $ f(x_j|\theta) = p N(\theta,\sigma_j^2) + (1-p)U(0,1)$.
+  onde \(x_i = E_i[\theta] \), de forma que \(E_i\) é o valor esperado que o agente
+  associa a \(\theta\). Para incluir viés de confirmação na regra de atualização,
+  \citeonline{martins2009bayesian} introduz uma probabilidade \(p\) que o outro
+  agente saiba algo sobre $\theta$ isto é, que tenha uma opinião plausível e que vale
+  a pena ser levada em conta ; e vai ter uma chance \(1 - p\) que o outro agente
+  não tenha informação sobre $\theta$ de forma que a verossimilhança de $j$ estar
+  correto é dado por $ f(x_j|\theta) = p N(\theta,\sigma_j^2) + (1-p)U(0,1)$.
 
-Temos então que a distribuição da nova opinião é dada por uma mistura
-de duas normais com médias diferentes, que é resultante da
-multiplicação do likelihood e o prior normal de $i$:
+  Temos então que a distribuição da nova opinião é dada por uma mistura de duas
+  normais com médias diferentes, que é resultante da multiplicação da
+  verossimilhança e a distribuição a priori normal de $i$:
   
   \begin{align}
     f(\theta | x_j)
@@ -373,14 +373,15 @@ multiplicação do likelihood e o prior normal de $i$:
 
   Importante notar que embora o modelo use a Regra de Bayes para derivar como o
   agente atualiza sua opinião nele o agente não é perfeitamente racional. A
-  regra de bayes foi usada para criar uma regra de atualização plausível, mas o
-  \textit{likelihood} de um agente perfeitamente racional envolveria considerar
+  regra de bayes foi usada para criar uma regra de atualização plausível, mas a
+  verossimilhança de um agente perfeitamente racional envolveria considerar
+  toda a informação possivelmente relevante
   , por exemplo, se \(j\) tem um interesse estratégico em declarar um
   determinado \(x_j\) ou como \(x_j\) é resultado da interação de j com outros
   agentes. Ademais, suponha que \(i\) e \(j\) interagem num tempo \(t_a\) e
   depois num tempo \(t_b\). Um agente perfeitamente racional corrigiria pela
   repetição da interação \cite{acemoglu2011opinion}, já no modelo de
-  \citeonline{martins2009bayesian} o agente age segundo a heurística pela
+  \citeonline{martins2009bayesian} o agente age segundo a heurística dada pela
   Equação 2.4. Nele, portanto, os agentes são ``imperfeitamente'' bayesianos.
   Com essa regra de atualização o modelo já recupera os resultados dos modelos
   de confiança limitada. Contudo, também é possível considerar o caso em que a
@@ -405,7 +406,7 @@ multiplicação do likelihood e o prior normal de $i$:
       \textit{survey} por telefone sobre questões factuais da agenda política
       americana da época são confiantes em suas crenças. Ademais, encontram uma
       correlação entre confiança e partidarismo. É interessante, portanto,
-      incorporar não só a dinâmica da opinião dos agentes, mas como também como
+      incorporar não só a dinâmica da opinião dos agentes, mas também como
       se tornam mais ou menos confiantes.
 
 

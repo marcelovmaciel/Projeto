@@ -1,92 +1,48 @@
+O modelo proposto no trabalho está fundamentado no diálogo entre a Teoria
+Política Espacial, e a área de Dinâmicas de Opinião. A teoria geométrica de
+política modela as preferências dos agentes como relações em um espaço contínuo,
+as quais, em ambientes macro, são construídas por meio da agregação, ou sumário,
+das atitudes, crenças, posicionamentos, ou simplesmente opiniões dos agentes em
+diferentes questões (\textit{issues}). As preferências dos agentes numa dimensão
+são, assim, o sumário de um \textit{perfil ideológico} do agente sobre questões.
+Vamos assumir, portanto, que a preferência do agente é centrada num ponto ideal
+derivado das opiniões dele nessas questões.
+
+Assumimos,portanto, que as preferências dos agentes na dimensão são de
+pico-único, o pressuposto modal, desde \citeonline{black1958theory}, na
+literatura em modelos fortemente espaciais. Para gerar a distribuição de
+preferências, contudo, não precisamos especificar qual a função de utilidade
+centrada nesse ponto ideal, já que não é interesse do modelo incluir a tomada de
+decisão que o pressuporia, por exemplo a escolha de um candidato.
+
+Sendo assim, cada agente vai ter por atributo um perfil ideológico \(I\), onde
+\(I_i = (f_i(\theta_1), \ldots, f_i(\theta_n)) \). Os elementos de \(I\) são as crenças dos
+agentes em cada questão. Seguindo \citeonline{martins2012bayesian}, vamos pressupor
+que os agentes têm uma probabilidade subjetiva sobre cada questão \(\theta\), e uma
+opinião \( o_i = E_i[\theta]\) e incerteza \( \sigma_i^2 = E[\sigma^2] - E_ i[\theta]^2\)
+associados. O ponto ideal do agente vai ser dado pela média aritmética das
+opiniões dele em \(I\)\footnote{Em trabalhos futuros, é interessante pensar o
+  ponto ideal como a média ponderada. Adicionar peso a cada questão é uma forma
+  de modelar a \textit{saliência} da questão para os agentes. A saliência de uma
+  questão para um indivíduo é a importância que ele dá a ela
+  \cite{munger2015choosing}.} A regra de interação é em díades, os agentes
+interagem com um vizinho por vez. Quando os agentes interagem \(i\) atualiza sua
+opinião e incerteza em alguma\footnote{Qual questão vão ``debater'' vai ser por
+  meio de um sorteio sem viés. Em trabalhos futuros é interessante considerar um
+  viés, o que representaria saliência no sentido dado por
+  \citeonline{zaller1992simple}: qual questão os agentes estão dando atenção,
+  isto é, qual questão está mais acessível na memória deles.} questão segundo as
+equações 2.3 e 2.5.
+
+Vamos considerar também que os agentes reconsideram sua opinião e certeza sobre
+as questões segundo uma probabilidade \(\rho\). Do ponto de vista teórico, estamos
+considerando a possibilidade de fatores não relacionados à influência social
+levarem o agente a mudar seu posicionamento sobre questões \cite{flache2017,
+  lorenz2017modeling}. Do ponto de vista metodológico, \cite{macy2015signal}
+argumenta que adicionar ruído contribui para a robustez das conclusões tiradas
+por modelos teóricos.
 
 
-Tendo em vista a possibilidade de entrelaçamento entre opiniões e preferências,
-vamos seguir a estratégia de modelagem de \citeonline{lorenz2017modeling}: usar
-um modelo de dinâmicas de opinião para derivar os pontos ideais. Nisso vamos
-fazer uso da ligação entre preferências extrínsecas e crenças/opiniões e fazer
-um modelo que dinamiza as preferências dos agentes, nos retendo aso seus pontos ideais
-\footnote{Não vamos, assim, estabelecer uma forma funcional específica para a
-  função de utilidade dos eleitores. Pressupõem-se, porém, que sejam aproximadas
-  por alguma das funções de utilidade tradicionalmente usadas em política e
-  apresentadas no Capítulo 1. \citeonline{carroll2013structure} considera que,
-  no congresso americano, os legisladores têm uma função de utilidade melhor
-  aproximada por uma Normal do que por uma função quadrática.}, a partir da
-mudança em suas opiniões \footnote{As quais, como discutido mais a frente, vão
-  ser representadas por probabilidades subjetivas.}.
 
-\citeonline{lorenz2017modeling} pode ser, portanto, visto como uma primeira
-aproximação na criação de modelos em que os pontos ideais dos eleitores não são
-fixos. O modelo baseia-se no modelo de \citeonline{deffuant2000mixing}, o qual é
-um modelo canônico na área de Sociofísica \cite{galam1982sociophysics}. O modelo
-tornou-se canônico ao, de maneira simples, incorporar à modelagem de dinâmicas
-de opinião um elemento importante na interação dos agentes: o fato de agentes
-ideologicamente distantes muitas vezes se recusarem a trocar informação, em
-decorrência da distância ideológica. Nisso, o modelo foi mais um passo de
-aumento da fidelidade dos modelos de dinâmicas de opiniões, com o objetivo de
-aumentar sua capacidade  explicativa\footnote{Como lembra \citeonline{de2014agent}, a busca por
-  fidelidade só é justificada se tiver como consequência uma maior capacidade
-  explicativa, devendo ser de outra maneira evitada. Se um elemento vai
-  contribuir ou não em \textit{insights} é, contudo, ainda muito vago, e uma
-  lacuna metodológica a ser superada
-  \cite{ragan2010embarrassment}.}. 
 
-Uma preocupação da literatura em OD tem sido, assim, em ir além e garantir um
-maior realismo cognitivo dos agentes \cite{duggins2014psychologically,homer2013complex,abrica2017effects}. Nisso a
-área tem feito um empreendimento semelhante ao de
-\citeonline{epstein2014agent_zero} de dar uma melhor fundamentação
-(neuro)cognitiva aos modelos que usam a metodologia da Modelagem Baseada em
-Agentes, dado que ela nos permite incorporar esses elementos sem uma grande
-perda de tratabilidade. Contudo, um princípio básico da modelagem é a
-parcimônia, e é questionável em que medida estamos tendo uma alavancagem
-explicativa na área de dinâmicas de opinião ao complicarmos demais a cognição
-dos agentes \cite{lave1993introduction,sznajd2014person}.
-
-Essa preocupação em balancear plausibilidade, capacidade explicativa, parcimônia
-e tratabilidade também coloca em cheque o uso de modelos derivados da Teoria da
-Decisão, conhecidos como Bayesianos, e tipicamente usados na Economia
-\cite{acemoglu2011opinion}. \citeonline{acemoglu2011opinion} considera que
-modelos de OD com agentes Bayesianos pressupõem  muito tanto em relação a
-estrutura da opinião dos agentes, exigindo que tenham um ``modelo'' do mundo,
-quanto em relação à sua capacidade ``computacional'', ou de processamento de
-informação, isto é, de calcular o \textit{posterior} num ambiente com muita
-informação e em constante mudança. Seriam mais úteis, portanto, como
-contrafactuais extremos ou \textit{benchmark} para comparação com modelos com
-agentes mais plausíveis.
-
-Se nem agentes hiper-racionais, nem agentes com excesso de fundamentação
-(neuro)-cognitiva são a resposta às limitações dos modelo em OD, nos mantemos
-usando modelos  com agentes que mudam de opinião segundo alguma
-heurística, como imitação ou rateamento, típicos da literatura em Sociofísica,
-mas com pouca fundamentação empírica e comportamental
-\cite{acemoglu2011opinion}?
-
-Se temos por objetivo modelos explicativos/preditivos\footnote{Estamos aqui nos
-  retendo a modelos que propositalmente buscam fidelidade com sistemas
-  concretos, com objetivos explicativos/preditivos. Existe uma gama de outros
-  usos, positivos e normativos, para modelos teóricos. Para discussões sobre
-  usos de modelos teóricos, particularmente em Ciência Política, ver:
-  \citeonline{clarke2012model} e \citeonline{johnson2014models}.} é interessante
-que o uso de agentes que seguem heurísticas se coadune com a fundamentação
-empírica, mesmo que seja uma calibração informal \cite{flache2017}.\footnote{Não
-  necessariamente, contudo, o teste empírico. Como argumenta
-  \citeonline{clarke2012model}, não necessariamente modelos empíricos devem ser
-  apresentados com um modelo teórico acoplado e vice-versa. Porém, cremos que se
-  o propósito do modelo é explicativo  é relevante que tenha  ao menos uma calibração
-  informal \cite{flache2017}, e em algum momento seja confrontado, validado,
-  com os dados. Em particular, em comparação com outros modelos concorrentes
-  \cite{clarke2012model}. } Uma alternativa é o \textit{framework} proposto por
-\citeonline{martins2012bayesian} que é inspirado nos modelos Bayesianos, mas não
-pressupõe agentes totalmente racionais, modelando-os com uma capacidade de
-processamento de informação limitada\footnote{Diferentemente dos modelos
-  bayesianos em que os agentes usam toda a informação disponível para tomar sua
-  decisão \cite{jackman2009bayesian}}. Um conjunto de trabalhos em psicologia e
-ciência cognitiva vêm, nos últimos anos, defendendo a possibilidade de que o
-cérebro humano possa ser pensado como um mecanismo de teste de hipóteses
-imperfeito\footnote{Essa imperfeição, contudo, teria um fundamento evolucionário
-  \cite{price2016hierarchical,martins2005adaptive}.}
-\cite{hohwy2013predictive,sanborn2016bayesian}. Inspirar-se na Teoria da
-Decisão, a qual lida tradicionalmente com o problema da inferência, pode ser,
-portanto, uma boa estratégia na tentativa de modelar dinâmicas de opinião com
-agentes ``imperfeitamente bayesianos''
-\cite{griffiths2006optimal,fujikawa2007perfect,baker2017rational}.
 
