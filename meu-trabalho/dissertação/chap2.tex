@@ -246,9 +246,9 @@ deles\cite{kim2010computational}.
 
 Modelos cognitivamente ``densos'' permitem que analisemos como processos de
 influência social estão micro-fundamentados em processos mentais subjacentes, e
-é um fronte dentre os trabalhos que buscam aumentar o realismo das simulações
+são um fronte dentre os trabalhos que buscam aumentar o realismo das simulações
 sociais \cite{jager2017,epstein2014agent_zero, conte2013minding}. Contudo, como
-argumenta Jonathan Bendor, na medida em que a Ciência Política busca modelar
+ressalta Jonathan Bendor, na medida em que a Ciência Política busca modelar
 macrofenômenos ela ``deve ser mais implacável em relação à micropressupostos do
 que microcampos relacionados (como ciência cognitiva)''
 \cite[p.45]{bendor2010bounded}. Quanto mais complicados nossos modelos menor
@@ -308,6 +308,92 @@ recupera seus resultados qualitativos, e ainda tem resultados adicionais
 \cite{martins2009bayesian}. Dado que o modelo representa a atualização de uma
 variável contínua, incorpora viés de confirmação e fundamenta a regra de
 atualização num framework bayesiano de processamento de informação será a base
-do nosso trabalho e será discutido no Capítulo 3.
+do nosso trabalho. 
 
+Nele os agentes interagem num grafo completo e a regra de interação é uma díade
+interagindo a cada passo de tempo. A opinião inicial dos agentes é dada por uma
+probabilidade subjetiva:
+
+
+\begin{align}
+f_i(\theta) = \frac{1}{\sqrt{2 \pi} \sigma_i} e^{-
+  \frac{(\theta - x_i )^2}{2 \sigma_i}}
+  \end{align}
+
+onde \(x_i = E_i[\theta] \), de forma que \(E_i\) é o valor esperado que o agente
+associa a \(\theta\). Para incluir viés de confirmação na regra de atualização,
+\citeonline{martins2009bayesian} introduz uma probabilidade \(p\) que o outro
+agente saiba algo sobre $\theta$ isto é, que tenha uma opinião plausível e que vale a
+pena ser levada em conta ; e vai ter uma chance \(1 - p\) que o outro agente não
+tenha informação sobre $\theta$ de forma que o \textit{likelihood} de $j$ estar
+correto é dado por $ f(x_j|\theta) = p N(\theta,\sigma_j^2) + (1-p)U(0,1)$.
+
+Temos então que a distribuição da nova opinião é dada por uma mistura
+de duas normais com médias diferentes, que é resultante da
+multiplicação do likelihood e o prior normal de $i$:
+  
+  \begin{align}
+    f(\theta | x_j)
+    \propto 
+    p
+    e^
+    {-(\frac{1}{2\sigma_i^2})
+    [(\theta - x_i)^2
+    +
+    (x_j - \theta )^2
+    ]}x
+    +
+    (1-p)
+    e^{-\frac{(x_i - x_j)^2}{(2 \sigma_i^2)}}
+  \end{align}
+
+ Se calcularmos o $E_i(\theta)$ da expressão anterior temos a nova opinião:
+  \begin{align}
+    x_i(t+1)
+    =
+    p
+    \frac{x_i(t) + x_j(t)}{2}
+    +
+    (1-p^*)x_i(t)
+  \end{align}
+
+  Onde:
+  \begin{align}
+    p^*
+    =
+    \frac{
+      p \frac{1}{\sqrt{2 \pi} \sigma_i}
+      e^{(- \frac{x_i (t) - x_j (t))^2}{2 \sigma_i^2}}
+    }{
+      p
+      \frac{1}{\sqrt{2 \pi} \sigma_i}
+      e^{(- \frac{x_i (t) - x_j (t))^2}{2 \sigma_i^2}}
+    }
+  \end{align}
+
+  Importante notar que embora o modelo use a Regra de Bayes para derivar como o
+  agente atualiza sua opinião nele o agente não é perfeitamente racional. A
+  regra de bayes foi usada para criar uma regra de atualização plausível, mas o
+  \textit{likelihood} de um agente perfeitamente racional envolveria considerar
+  , por exemplo, se \(j\) tem um interesse estratégico em declarar um
+  determinado \(x_j\) ou como \(x_j\) é resultado da interação de j com outros
+  agentes. Ademais, suponha que \(i\) e \(j\) interagem num tempo \(t_a\) e
+  depois num tempo \(t_b\). Um agente perfeitamente racional corrigiria pela
+  repetição da interação \cite{acemoglu2011opinion}, já no modelo de
+  \citeonline{martins2009bayesian} o agente age segundo a heurística pela
+  Equação 2.4. Nele, portanto, os agentes são ``imperfeitamente'' bayesianos.
+  Com essa regra de atualização o modelo já recupera os resultados dos modelos
+  de confiança limitada. Contudo, também é possível considerar o caso em que a
+  incerteza dos agentes também é atualizada:
+
+      \begin{align*}
+    \sigma_i^2(t+1)
+    =
+    \sigma_i^2(t)
+    (1 - \frac{p^*}{2})
+    +
+    p^*
+    (1-p^*)
+    (\frac{x_i(t)-x_j(t)}{2})^2
+  \end{align*}
 
