@@ -1,46 +1,71 @@
-O modelo proposto no trabalho está fundamentado no diálogo entre a Teoria
-Política Espacial, e a área de Dinâmicas de Opinião. A teoria geométrica de
-política modela as preferências dos agentes como relações em um espaço contínuo,
-as quais, em ambientes macro, são construídas por meio da agregação, ou sumário,
-das atitudes, crenças, posicionamentos, ou simplesmente opiniões dos agentes em
-diferentes questões (\textit{issues}). As preferências dos agentes numa dimensão
-são, assim, o sumário de um \textit{perfil ideológico} do agente sobre questões.
-Vamos assumir, portanto, que a preferência do agente é centrada num ponto ideal
-derivado das opiniões dele nessas questões.
+O modelo do trabalho tem por propósito explorar a emergência de distribuições de
+preferências fundamentando-se no diálogo entre a Teoria Política Espacial, e a
+área de Dinâmicas de Opinião. Não temos por propósito um modelo que seja
+preditivo, mas que capture microfundamentos relevantes, como viés de confirmação
+e confiança nas crenças, e gere distribuições de
+preferência plausíveis, no sentido delimitado no Capítulo 1.
 
-Assumimos,portanto, que as preferências dos agentes na dimensão são de
-pico-único, o pressuposto modal, desde \citeonline{black1958theory}, na
-literatura em modelos fortemente espaciais. Para gerar a distribuição de
-preferências, contudo, não precisamos especificar qual a função de utilidade
-centrada nesse ponto ideal, já que não é interesse do modelo incluir a tomada de
-decisão que o pressuporia, por exemplo a escolha de um candidato.
+A teoria geométrica de política modela as preferências dos agentes como relações
+em um espaço contínuo, as quais, em ambientes macro, são construídas por meio da
+agregação das atitudes, crenças, posicionamentos, ou simplesmente opiniões dos
+agentes em diferentes questões (\textit{issues}). As preferências dos agentes
+numa dimensão são, assim, o sumário de um \textit{perfil ideológico} do agente
+sobre questões.
+
+Vamos assumir que a preferência do agente é centrada num ponto ideal derivado
+das opiniões dele nessas questões. Assumimos,portanto, que as preferências dos
+agentes na dimensão são de pico-único, o pressuposto modal, desde
+\citeonline{black1958theory}, na literatura em modelos fortemente espaciais, e
+em trabalhos empíricos em estimação de pontos ideais \cite{carroll2013structure,
+  armstrong2014analyzing}. Para gerar a distribuição de pontos ideais, contudo,
+não precisamos especificar qual a função de utilidade centrada nele, já que não
+é interesse do modelo incluir a tomada de decisão que o pressuporia, por exemplo
+a escolha de um candidato.
 
 Sendo assim, cada agente vai ter por atributo um perfil ideológico \(I\), onde
 \(I_i = (f_i(\theta_1), \ldots, f_i(\theta_n)) \). Os elementos de \(I\) são as crenças dos
 agentes em cada questão. Seguindo \citeonline{martins2012bayesian}, vamos pressupor
 que os agentes têm uma probabilidade subjetiva sobre cada questão \(\theta\), e uma
 opinião \( o_i = E_i[\theta]\) e incerteza \( \sigma_i^2 = E[\sigma^2] - E_ i[\theta]^2\)
-associados. O ponto ideal do agente vai ser dado pela média aritmética das
-opiniões dele em \(I\)\footnote{Em trabalhos futuros, é interessante pensar o
-  ponto ideal como a média ponderada. Adicionar peso a cada questão é uma forma
-  de modelar a \textit{saliência} da questão para os agentes. A saliência de uma
-  questão para um indivíduo é a importância que ele dá a ela
-  \cite{munger2015choosing}.} A regra de interação é em díades, os agentes
-interagem com um vizinho por vez. Quando os agentes interagem \(i\) atualiza sua
-opinião e incerteza em alguma\footnote{Qual questão vão ``debater'' vai ser por
-  meio de um sorteio sem viés. Em trabalhos futuros é interessante considerar um
-  viés, o que representaria saliência no sentido dado por
-  \citeonline{zaller1992simple}: qual questão os agentes estão dando atenção,
-  isto é, qual questão está mais acessível na memória deles.} questão segundo as
-equações 2.3 e 2.5.
+associados.
 
-Vamos considerar também que os agentes reconsideram sua opinião e certeza sobre
-as questões segundo uma probabilidade \(\rho\). Do ponto de vista teórico, estamos
-considerando a possibilidade de fatores não relacionados à influência social
-levarem o agente a mudar seu posicionamento sobre questões \cite{flache2017,
-  lorenz2017modeling}. Do ponto de vista metodológico, \cite{macy2015signal}
-argumenta que adicionar ruído contribui para a robustez das conclusões tiradas
-por modelos teóricos.
+O ponto ideal \(x\) do agente vai ser dado pela média aritmética das opiniões
+dele em \(I\)\footnote{Em trabalhos futuros, é interessante pensar o ponto ideal
+  como a média ponderada. Adicionar peso a cada questão é uma forma de modelar a
+  \textit{saliência} da questão para os agentes. A saliência de uma questão para
+  um indivíduo é a importância que ele dá a ela \cite{munger2015choosing}.} A
+regra de interação é em díades. A cada passo de tempo um dos agentes vai ser
+escolhido e vai interagir com um de seus vizinhos. A interação é assim
+assíncrona e sequencial \cite{wilensky2015introduction}. A dependência dos
+resultados em relação ao número de agentes e de questões que os agentes têm em
+mente vai ser explorada, assim como topologia de interação dos agentes, que a
+princípio vai ser um grafo completo.
+
+Quando os agentes interagem \(i\) atualiza sua opinião e incerteza em
+alguma\footnote{Qual questão vão ``debater'' vai ser por meio de um sorteio sem
+  viés. Em trabalhos futuros é interessante considerar um viés, o que
+  representaria saliência no sentido dado por \citeonline{zaller1992simple}:
+  qual questão os agentes estão dando atenção, isto é, qual questão está mais
+  acessível na memória deles. Zaller relaciona ``acessibilidade'' das questões
+  ao fluxo de informação vindo da mídia.} questão segundo as equações 2.3 e 2.5.
+Vamos considerar duas variantes do \(p\): Na primeira ele vai ser uma variável
+global \(0 < p < 1 \), a mesma para todos os agentes. Na segunda, vamos considerar
+possibilidade do agente levar em conta ou não a opinião do vizinho em uma
+questão em particular a partir do conhecimento do ponto ideal, na dimensão, do
+outro agente, de forma que: \(p_{ij}(t) = 1 - |x_i(t) - x_j(t)|\).
+
+Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
+segundo uma probabilidade \(\rho\). Do ponto de vista teórico, estamos considerando
+a possibilidade de fatores não relacionados à influência social levarem o agente
+a mudar seu posicionamento sobre questões \cite{flache2017, lorenz2017modeling}.
+Do ponto de vista metodológico, \citeonline{macy2015signal} argumenta que
+adicionar ruído contribui para a robustez dos resultados de modelos teóricos.
+
+
+
+
+
+
 
 
 
