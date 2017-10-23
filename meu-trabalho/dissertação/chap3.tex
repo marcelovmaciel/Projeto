@@ -35,9 +35,9 @@ associados.
 
 O ponto ideal \(x\) do agente vai ser a média aritmética das opiniões dele em
 \(I\)\footnote{Em trabalhos futuros, é interessante pensar o ponto ideal como a
-média ponderada. Adicionar peso a cada questão é uma forma de modelar a
-\textit{saliência} da questão para os agentes. A saliência de uma questão para
-um indivíduo é a importância que ele dá a ela \cite{munger2015choosing}.} A
+  média ponderada. Adicionar peso a cada questão é uma forma de modelar a
+  \textit{saliência} da questão para os agentes. A saliência de uma questão para
+  um indivíduo é a importância que ele dá a ela \cite{munger2015choosing}.}. A
 regra de interação é em díades. A cada passo de tempo um dos agentes vai ser
 escolhido e vai interagir com um de seus vizinhos. A interação é assim
 assíncrona e sequencial \cite{wilensky2015introduction}. A dependência dos
@@ -46,16 +46,17 @@ mente vai ser explorada, assim como topologia de interação dos agentes, que a
 princípio vai ser um grafo completo.
 
 Quando os agentes interagem \(i\) atualiza sua opinião e incerteza em
-alguma\footnote{Qual questão vão ``debater'' vai ser por meio de um sorteio sem
-viés. Em trabalhos subsequentes é interessante considerar um viés, o que
-representaria saliência no sentido dado por \citeonline{zaller1992simple}: qual
-questão os agentes estão dando atenção, isto é, qual questão está mais acessível
-na memória deles.} questão segundo as equações 2.3 e 2.5. Vamos considerar duas
-variantes do \(p\): Na primeira ele vai ser uma variável global \(0 < p < 1 \),
-a mesma para todos os agentes. Na segunda, vamos considerar possibilidade do
-agente levar em conta ou não a opinião do vizinho em uma questão em particular a
-partir do conhecimento do ponto ideal, na dimensão, do outro agente, de forma
-que: \(p_{ij}(t) = 1 - |x_i(t) - x_j(t)|\).
+alguma\footnote{Qual questão vão ``debater'' vai ser definido por meio de um
+  sorteio sem viés. Em trabalhos subsequentes é interessante considerar um viés,
+  o que representaria saliência no sentido dado por
+  \citeonline{zaller1992simple}: qual questão os agentes estão dando atenção,
+  isto é, qual questão está mais acessível na memória deles.} questão segundo as
+equações 2.3 e 2.5. Vamos considerar duas variantes do \(p\): Na primeira ele
+vai ser uma variável global \(0 < p < 1 \), a mesma para todos os agentes. Na
+segunda, vamos considerar possibilidade do agente levar em conta ou não a
+opinião do vizinho em uma questão em particular a partir do conhecimento do
+ponto ideal, na dimensão, do outro agente, de forma que: \(p_{ij}(t) = 1 -
+|x_i(t) - x_j(t)|\).
 
 Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
 segundo uma probabilidade \(\rho\). Do ponto de vista teórico, estamos considerando
@@ -64,17 +65,51 @@ a mudar seu posicionamento sobre questões \cite{flache2017, lorenz2017modeling}
 Do ponto de vista metodológico, \citeonline{macy2015signal} argumenta que
 adicionar ruído contribui para a robustez dos resultados de modelos teóricos.
 
-\section{Parâmetros Chave e Variantes}
+\section{Parâmetros-Chave}
 
-Os parâmetros chave para configuração do modelo são:
+Os parâmetros-chave para configuração do modelo são:
 \begin{itemize}
 \item A população de \(500 < N < 10000\) agentes;
 \item O número de questões \(1 \leq n \leq 10\); 
-\item As opiniões \(0.0< o_i< 1.0\) dos agentes;
-\item As incertezas \(0.01 \leq \sigma_i \leq 0.5\); 
-\item O parâmetro de confiança \(0.1 \leq p \leq 0.99\); 
+\item As opiniões \(0.0< o_i< 1.0\) dos agentes
+  \begin{itemize}
+  \item A opinião dos agentes no tempo \(t = 0\) é retirada de uma distribuição
+    uniforme;
+  \end{itemize}
+\item As incertezas \(0.01 \leq \sigma_i \leq 0.5\);
+  \begin{itemize}
+  \item A incerteza é, na condição inicial, a mesma para todos os agentes;
+  \item Vamos considerar versões em que os agentes atualizam as incertezas e que
+    não atualizam.
+  \end{itemize}
+
+\item O parâmetro de confiança \(0.1 \leq p \leq 0.99\);
+  \begin{itemize}
+  \item Vamos considerar variantes em que o \(p\) é global ou em que o \(p\) é
+    calculado para cada interação;
+  \end{itemize}
+  
 \item A probabilidade de reconsideração \(0.05 \leq \rho  \leq 0.5\);
+  \begin{itemize}
+  \item Vamos considerar casos com e sem ruído.
+  \end{itemize}
 \end{itemize}
+
+
+\section{Cronograma de Atividades}
+
+Pretendemos seguir o seguinte cronograma de atividades:
+\begin{itemize}
+\item \textbf{Novembro/Dezembro}: término da implementação\footnote{Sobre a
+    implementação ver Apêndice 2.} e revisão da literatura metodológica;
+\item \textbf{Janeiro/Fevereiro}: término da revisão da literatura metodológica
+  e análise da simulação;
+\item \textbf{Março}: validação da simulação;
+\end{itemize}
+
+
+
+
 
 
 
