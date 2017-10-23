@@ -317,44 +317,44 @@ probabilidade subjetiva:
 
 \begin{align}
 f_i(\theta) = \frac{1}{\sqrt{2 \pi} \sigma_i} e^{-
-  \frac{(\theta - x_i )^2}{2 \sigma_i}}
+  \frac{(\theta - o_i )^2}{2 \sigma_i}}
   \end{align}
 
-  onde \(x_i = E_i[\theta] \), de forma que \(E_i\) é o valor esperado que o agente
+  Onde \(o_i = E_i[\theta] \), de forma que \(E_i\) é o valor esperado que o agente
   associa a \(\theta\). Para incluir viés de confirmação na regra de atualização,
   \citeonline{martins2009bayesian} introduz uma probabilidade \(p\) que o outro
   agente saiba algo sobre $\theta$ isto é, que tenha uma opinião plausível e que vale
   a pena ser levada em conta ; e vai ter uma chance \(1 - p\) que o outro agente
   não tenha informação sobre $\theta$ de forma que a verossimilhança de $j$ estar
-  correto é dado por $ f(x_j|\theta) = p N(\theta,\sigma_j^2) + (1-p)U(0,1)$.
+  correto é dado por $ f(o_j|\theta) = p N(\theta,\sigma_j^2) + (1-p)U(0,1)$.
 
   Temos então que a distribuição da nova opinião é dada por uma mistura de duas
-  normais com médias diferentes, que é resultante da multiplicação da
+  normais com médias diferentes, que é proporcional à  multiplicação da
   verossimilhança e a distribuição a priori normal de $i$:
   
   \begin{align}
-    f(\theta | x_j)
+    f(\theta | o_j)
     \propto 
     p
     e^
     {-(\frac{1}{2\sigma_i^2})
-    [(\theta - x_i)^2
+    [(\theta - o_i)^2
     +
-    (x_j - \theta )^2
-    ]}x
+    (o_j - \theta )^2
+    ]}
     +
     (1-p)
-    e^{-\frac{(x_i - x_j)^2}{(2 \sigma_i^2)}}
+    e^{-\frac{(o_i - o_j)^2}{(2 \sigma_i^2)}}
   \end{align}
 
  Se calcularmos o $E_i(\theta)$ da expressão anterior temos a nova opinião:
   \begin{align}
-    x_i(t+1)
+    o_i(t+1)
     =
     p
-    \frac{x_i(t) + x_j(t)}{2}
+    \frac{o_i(t) + o_j(t)}{2}
     +
-    (1-p^*)x_i(t)
+    (1-p^*)o_i(t)
   \end{align}
 
   Onde:
@@ -363,11 +363,11 @@ f_i(\theta) = \frac{1}{\sqrt{2 \pi} \sigma_i} e^{-
     =
     \frac{
       p \frac{1}{\sqrt{2 \pi} \sigma_i}
-      e^{(- \frac{x_i (t) - x_j (t))^2}{2 \sigma_i^2}}
+      e^{(- \frac{o_i (t) - o_j (t))^2}{2 \sigma_i^2}}
     }{
       p
       \frac{1}{\sqrt{2 \pi} \sigma_i}
-      e^{(- \frac{x_i (t) - x_j (t))^2}{2 \sigma_i^2}}
+      e^{(- \frac{o_i (t) - o_j (t))^2}{2 \sigma_i^2}}
     }
   \end{align}
 
@@ -377,7 +377,7 @@ f_i(\theta) = \frac{1}{\sqrt{2 \pi} \sigma_i} e^{-
   verossimilhança de um agente perfeitamente racional envolveria considerar
   toda a informação possivelmente relevante
   , por exemplo, se \(j\) tem um interesse estratégico em declarar um
-  determinado \(x_j\) ou como \(x_j\) é resultado da interação de j com outros
+  determinado \(o_j\) ou como \(o_j\) é resultado da interação de j com outros
   agentes. Ademais, suponha que \(i\) e \(j\) interagem num tempo \(t_a\) e
   depois num tempo \(t_b\). Um agente perfeitamente racional corrigiria pela
   repetição da interação \cite{acemoglu2011opinion}, já no modelo de
@@ -395,7 +395,7 @@ f_i(\theta) = \frac{1}{\sqrt{2 \pi} \sigma_i} e^{-
     +
     p^*
     (1-p^*)
-    (\frac{x_i(t)-x_j(t)}{2})^2
+    (\frac{o_i(t)-o_j(t)}{2})^2
       \end{align}
 
       Como demonstra \citeonline{martins2009bayesian} essa equação faz com que o
