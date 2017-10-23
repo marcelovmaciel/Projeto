@@ -32,6 +32,7 @@ brazil % o último idioma é o principal do documento
 \usepackage{float}
 \usepackage{tcolorbox}
 \usetikzlibrary{patterns,arrows,decorations.pathreplacing}
+\usepackage{pdfpages}
 
 % ---
 
@@ -217,10 +218,24 @@ brazil % o último idioma é o principal do documento
 \input{end.tex}
   
     
+\begin{apendicesenv}
+  \partapendices
+\chapter{Dos dados}
 
-\chapter*[Apêndice 1]{Apêndice 1 - Dos dados}
 \input{appendix1.tex}
-	
+
+\chapter{Da implementação}
+
+\input{appendix2.tex}
+
+\end{apendicesenv}
+
+
+\begin{anexosenv}
+  \partanexos
+\end{anexosenv}
+
+
 \postextual
 	
 % Referências bibliográficas
