@@ -26,25 +26,23 @@ membros desse grupo'' \cite[p. I]{oppenheimer2012principles}\footnote{Essa
 
 Quanto a definição de teorias estamos seguindo perspectivas pós-positivistas de
 ciência, particularmente a Visão Semântico-Pragmática de
-\citeonline{clarke2012model} em que teorias são conjuntos de modelos, pensados
-como representações de sistemas concretos, e hipóteses teóricas - a delimitação
+\citeonline{clarke2012model} em que teorias são conjuntos de modelos, sistemas
+caracterizados por uma definição, e hipóteses teóricas - a delimitação
 da similaridade dos modelos com determinados sistemas alvo\footnote{Para uma
   discussão sobre as diferentes visões sobre o que são teorias e modelos ver
   \citeonline{sep-structure-scientific-theories}.}.
 
 Por fim, entendemos que os modelos são formais na medida em que construídos por
 meio de algum sistema formal \cite{wong2015formal}. Em Teoria Política Formal
-isso significa que tendem a ser construídos usando o intermédio da lógica formal,
-matemática ou computação \cite{morton1999methods}. Nosso foco na literatura em
-teoria política formal é justificado pelo fato dela ser um corpo teórico
-construído por meio de modelos \textit{explícitos} \cite{epstein2008model}, de
-forma que a seguinte relação fique clara:
-
-\begin{figure}[H]
-  \centering \includegraphics[scale = 0.5]{ims/ms.png}
-  \caption{Relação entre Modelos e Sistemas Alvo.}
-  Fonte: Adaptado de \citeonline{downey2012think}
-\end{figure}
+isso significa que tendem a ser construídos usando o intermédio da lógica
+formal, matemática ou computação \cite{morton1999methods}. Nosso foco na
+literatura em teoria política formal é justificado pelo fato dela ser um corpo
+teórico construído por meio de modelos
+\textit{explícitos}\cite{epstein2008model}. Embora não seja a única forma de
+construir modelos explícitos, o uso de um sistema formal é uma forma de forçar o
+pesquisador a delimitar claramente qual o modelo está sendo utilizado para
+representar um determinado sistema ou processo gerador de dados
+\cite{morton1999methods}.
 
 O estudo formal da ação e escolha coletiva teve como período de fundação moderno
 o período entre \citeonline{black1948rationale} (marco no estudo da escolha coletiva)
@@ -67,7 +65,7 @@ seguinte equação, a Equação de Plott \cite{munger2015choosing,
   \text{Preferences} \oplus \text{Beliefs}  \oplus  \text{Physical Possibilities} \oplus \text{Institutions} = \text{Outcomes}
 \end{align*}
 \end{figure}
-Esses modelos podem ser dividido em duas variantes: \textit{thin} ou
+Esses modelos podem ser divididos em duas variantes: \textit{thin} ou
 \textit{thick} \cite{hechter1997sociological, green1996pathologies}. Ambos os
 tipos de modelos são construídos com base nos pressupostos mínimos de um modelo
 de ator racional: preferências racionais e racionalidade bayesiana
@@ -89,16 +87,7 @@ preferências em relação às alternativas em \(X\) \cite[p.
 
 A preferência é uma relação de comparação de valor, onde dois conceitos são
 fundamentais: o de melhor (preferência estrita), denotado por \(\succ\),  e o de igual
-em valor (indiferença), denotado por \(\sim\). As seguintes propriedades definem a
-noção lógica de relação de preferência \cite{sep-preferences}:
-
-\begin{enumerate}
-\item \textit{Assimetria da preferência}: \( x \succ y \to \neg (y \succ x )\); 
-\item \textit{Simetria de indiferença}: \(x \sim y \to  y \sim x\); 
-\item \textit{Reflexividade da indiferença }: \(x \sim x\); 
-\item \textit{Incompatibilidade entre preferência e indiferença}: \(x \succ y \to \neg ( x
-  \sim y)\).
-\end{enumerate}
+em valor (indiferença), denotado por \(\sim\).
 
 A relação de preferência fraca \( \succeq \)pode ser definida da seguinte forma:
 
@@ -124,9 +113,9 @@ seguintes propriedades, para todo \(x,y,z\) $\in$ \(X\), e para todo conjunto
 
 Um pressuposto adicional é que existe um \(x \in X\) tal que para todo \(y \in X\),
 \(x \succeq y\), e que num ambiente sem restrição os atores escolhem essa alternativa
-\cite{gintis2009bounds}. Esses pressupostos constituem o primeiro princípio do
-modelo do ator racional: os agentes possuem \textit{preferências consistentes ou
-racionais}.
+\cite{gintis2016individuality}. Esses pressupostos constituem o
+primeiro princípio do modelo do ator racional: os agentes possuem
+\textit{preferências consistentes ou racionais}.
 
 Uma conveniência analítica é representar relações de preferência por meio de
 funções de utilidade, que são funções que atribuem um número real para cada
@@ -140,16 +129,11 @@ representada pela função \(u\): \(X \longrightarrow \mathbb{R}\) se e somente 
 \end{align*}
 
 Por meio dessa representação podemos dizer que os atores agem \textit{como se}
-estivessem maximizando sua função de utilidade tendo em vista o fato da alternativa
-preferida, ou ótima, para um ator $i \in N$ ser dada por \cite{binmore2008rational}:
-\[\max_{\substack{x \in  X}}
-  u_i(x)
-\]
-
-Importante notar que funções de utilidade são um dispositivo matemático. Modelar
-agentes por meio de funções de utilidade não implica que eles sejam egoístas,
-instrumentais, utilitários, hedonistas, ou que estejam ``tentando maximizar sua
-utilidade'' \cite{gaus2007philosophy}.
+estivessem maximizando sua função de utilidade. Importante notar que funções de
+utilidade são um dispositivo matemático. Modelar agentes por meio de funções de
+utilidade não implica que eles sejam egoístas, instrumentais, utilitários,
+hedonistas, ou que estejam ``tentando maximizar sua utilidade''
+\cite{gaus2007philosophy}.
 
 O segundo princípio dos modelos de ator racional é a \textit{racionalidade
   bayesiana} \cite{gintis2016individuality}. Quando as alternativas são
@@ -159,54 +143,17 @@ por meio de uma função de distribuição de probabilidade, a qual vai atribuir
 probabilidade \(p\) para cada evento em \(X\). O modelo da escolha racional
 então pressupõe que as crenças dos agentes são coerentes ou consistentes, o que
 equivale a dizer que estão em conformidade com os axiomas da probabilidade
-\cite{jackman2009bayesian}.
-
-O outro elemento do princípio da racionalidade bayesiana é a \textit{atualização
+\cite{jackman2009bayesian}. O outro elemento do princípio da racionalidade
+bayesiana é a \textit{atualização
   bayesiana}\cite[p.104]{gintis2016individuality}: os agentes atualizam suas
-crenças segundo a Regra de Bayes.Suponha que um agente quer atualizar sua crença
-sobre uma alternativa \(x \in X\), tendo em vista a observação de um dado \(m\).
-Se ele atualizar sua crença segundo o pressuposto de atualização bayesiana temos
-que:
-
-\begin{align*}
-  p(x|m) =
-  \frac{p(m|x)
-  p(x)}
-  {\int p(m|x)
-  p(x)
-  dx}
-\end{align*}
-
-Um corolário de agentes que têm preferências e crenças consistentes, é que vão
-agir segundo o \textit{princípio da utilidade esperada}
-\cite{sep-rationality-normative-utility}. Para tal pressupõe-se que agentes vão
-ter uma relação de preferência sobre \textit{apostas} \cite{jehle2001advanced},
-onde o conjunto de apostas \(\mathcal{G}\) em \(X = \{ x_1, \ldots, x_n \}\) é dado
-por:
-
-\begin{align*}
-  \mathcal{G} \equiv \big{\{}
-  (p_1 \circ x_1, \ldots, p_n \circ x_n  )
-  | p_i \geq 0,
-  \sum_{i = 1 }^n p_i
-  = 1  \big{\}}  
-\end{align*}
-
-Sendo assim, quando as alternativas são probabilísticas a utilidadde \(u:
-\mathcal{G} \to \mathbb{R} \) do agente é
-\cite{jehle2001advanced,sep-rationality-normative-utility}:
-
-\begin{align*}
-  u(\mathcal{G}) = \sum_{i =1}^n p_i u(x_i)
-\end{align*}
+crenças segundo o Teorema de Bayes.
 
 Sumarizando, os modelos de escolha racional na sua versão mais básica pressupõem
 agentes com preferências consistentes, o que implica que sejam transitivas,
 completas e independente de alternativas irrelevantes. Caso o contexto de
 decisão seja incerto também pressupõem que os agentes tem uma crença em
-conformidade com os axiomas da probabilidade, suas preferências podem ser
-representadas por meio de funções de utilidade esperada e atualizam suas crenças
-de acordo com o Teorema de Bayes.
+conformidade com os axiomas da probabilidade, suas preferências podem ser e
+atualizam suas crenças de acordo com o Teorema de Bayes.
 
 
 \section{Teoria Política Espacial}
@@ -241,27 +188,27 @@ pensam sobre política \cite{laver2014measuring}.
 Nos modelos fracamente espaciais o conjunto de alternativas \(X\) é pensado como
 um espaço, mais comumente como o subconjunto de um espaço Euclidiano de \(n\)
 dimensões \cite{austen1998social}. Assumem também que agentes tem preferências,
-consistentes, sobre esse espaço. Seguindo o primeiro princípio do ator racional,
-isso significa que a alternativa preferida para cada agente \(i \in N\) pode ser
-pensada como um ponto no espaço. Essa alternativa $x_i$ é o \textit{ponto ideal}
-do agente. Não assume-se, contudo, que os agentes percebem as utilidades das
-alternativas em termos das distâncias relativas no espaço subjacente. Os agentes
-têm funções de utilidade abstratas, não especificadas
-\cite[p.14]{humphreys2010spatial}.
+consistentes, sobre esse espaço. Não assume-se, contudo, que os agentes percebem
+as utilidades das alternativas em termos das distâncias relativas no espaço
+subjacente. Os agentes têm funções de utilidade abstratas, não especificadas
+\cite{humphreys2010spatial}\footnote{\citeonline{humphreys2010spatial} indica o
+  programa de pesquisa sobre o ``Caos'' em decisões coletivas multidimensionais
+  como exemplo de modelos fracamente espaciais.}.
 
 Modelos fortemente espaciais, por outro lado, pressupõem que os agentes tem uma
-cognição geométrica. Isso significa que localizam as alternativas no espaço, e
-ranqueiam as alternativas segundo uma medida de distância \(d_i\). A função de
-utilidade dos agentes é a composição da função de distância e uma função de
-perda de forma que \(u_i(y) = f_i(d_i(x_i,y)) \).
+cognição geométrica. Isso significa que localizam as alternativas e sua
+alternativa preferida \(x_i\), seu ponto ideal, num espaço cognitivo, e
+ranqueiam as alternativas segundo uma medida de distância \(d_i(.,.)\). A função
+de utilidade dos agentes é a composição da função de distância e uma função de
+perda de forma que \(u_i(y) = f_i(d_i(x_i,y)) \) \cite{humphreys2010spatial,
+  laver2014measuring}.
 
-O pressuposto modal  é que métrica é Euclidiana: os agentes
-medem a distância entre dois pontos no espaço de alternativas usando o Teorema
-de Pitágoras \cite{munger2015choosing}. Ademais, assume-se funções com um único
-pico ( o ponto ideal do agente) e simétricas. Funções de utilidade comumente
-usadas na ciência política são a linear, a quadrática e a gaussiana, ilustradas
-na  Figura 2: 
-
+O pressuposto modal é que métrica é Euclidiana: os agentes medem a distância
+entre dois pontos no espaço de alternativas usando o Teorema de Pitágoras
+\cite{munger2015choosing}. Ademais, assume-se, por conveniência analítica,
+funções com um único pico ( o ponto ideal do agente) e simétricas. Funções de
+utilidade usualmente utilizadas na ciência política são a linear, a quadrática e
+a gaussiana, ilustradas na Figura 1:
 
 \begin{figure}[H]
   \centering \includegraphics[scale = 0.6]{ims/utilities.pdf}
@@ -279,28 +226,20 @@ nosso problema.
 
 
 A diferença entre os dois contextos de ação é reconhecida desde as contribuições
-seminais de Black e Downs. Em votos em comitê o número de agentes é pequeno, os
-agentes são bem informados e  a decisão costuma ter alta implicação para eles.
-Já em eleições de massa existem muitos eleitores, a informação sobre as
-alternativas é ambígua e os efeitos da decisão são difusos.
+seminais de Black e Downs. Em geral, em votos em comitê o número de agentes é
+pequeno, os agentes são bem informados e a decisão costuma ter alta implicação
+para eles. Já em eleições de massa existem muitos eleitores, a informação sobre
+as alternativas é ambígua e os efeitos da decisão são difusos
+\cite{munger2015choosing}.
 
 Essa distinção tem por corolário uma maior conformidade do voto em comitês com
 os \textit{pressupostos de similaridade} entre um modelo de ator racional e uma
-situação de interesse alvo. A modelagem de sistemas sociais exige uma atenção
-quanto a plausibilidade da analogia entre modelo e sistema alvo
-\cite{de2005computational}, tanto no tocante ao contexto de escolha dos agentes
-quanto ao seu comportamento \cite{page2008uncertainty}. Disso segue que o modelo
-do ator racional, mesmo na sua versão mais \textit{thin}, não é universalmente
-aplicável. Isto é, não espera-se que em toda situação social os atores ajam de
-forma racional.
-
-
-O primeiro pressuposto de similaridade refere-se a propriedades dos agentes alvo:
-as crenças e preferências deles são independentes \cite{binmore2008rational}. Os
-outros três lidam com o contexto de ação alvo: a situação de ação é simples,
-tanto em estrutura, quanto informacionalmente; os agentes têm incentivo para
-agir e informar-se; e há tempo disponível para os agentes aprenderem
-\cite{binmore2007work, page2008uncertainty}.
+situação de interesse alvo. O primeiro pressuposto de similaridade refere-se a
+propriedades dos agentes alvo: as crenças e preferências deles são independentes
+\cite{binmore2008rational}. Os outros três lidam com o contexto de ação alvo: a
+situação de ação é simples, tanto em estrutura, quanto informacionalmente; os
+agentes têm incentivo para agir e informar-se; e há tempo disponível para os
+agentes aprenderem \cite{binmore2007work, page2008uncertainty}.
 
 A aplicação do modelo racional ao contexto do comportamento eleitoral é assim
 não trivial, por uma razão: a escala. Como argumenta \citeonline{binmore2008rational}
@@ -373,7 +312,13 @@ possivelmente mudam quando ocorrem mudanças no ambiente \cite{liu2010wright,
 Preferências extrínsecas violam o pressuposto de que as preferências e crenças
 dos agentes são independentes, o que complica a análise da situação de ação por
 meio do modelo do ator racional, dado que não podemos pressupor que elas são
-estáveis. Como as preferências no contexto eleitoral necessariamente são
+estáveis. No contexto da economia do bem-estar, por exemplo,
+Kenneth Binmore argumenta que os modelos do ator racional supõem
+preferências intrínsecas, na medida que ``não ajudaria muito ... introduzir uma
+reforma que todos aprovam se ela mudar o ambiente de uma forma que reverta as
+preferências de todos '' \cite[p.6]{binmore2008rational}.
+
+Como as preferências no contexto eleitoral necessariamente são
 construídas a partir de posicionamentos num conjunto de questões, por definição,
 elas são extrínsecas. Logo, são, potencialmente, sensíveis à mudanças no
 ambiente.Tendo em vista tanto a complexidade informacional do contexto, quanto
@@ -392,8 +337,8 @@ o posicionamento dos atores em cada questão específica, o objeto dos estudos e
 opinião pública que têm por objetivo analisar a instabilidade de resposta dos
 eleitores \cite{druckman2012public}. Do ponto de vista macro, é de se esperar,
 desta forma, que a distribuição de preferências dos eleitores seja consistente. A
-Figura 3, a qual mostra o auto-posicionamento político, numa escala de 0 a 10
-(esquerda-direita), de respondentes\footnote{A cada edição uma nova amostra é
+Figura 2, a qual mostra o auto-posicionamento político, numa escala de 0 a 10
+(esquerda-direita), de respondentes \footnote{A cada edição uma nova amostra é
   selecionada.} em seis edições do \textit{European Social Survey},
 condiz\footnote{Para questões metodológicas em relação a esses dados ver o
   Apêndice 1.} com essa expectativa:
@@ -404,8 +349,6 @@ condiz\footnote{Para questões metodológicas em relação a esses dados ver o
   \caption{Evidência de estabilidade ideológica}
   Fonte: Elaboração própria. Dados do \textit{European Social Survey}.
 \end{figure}
-
-
 
 A escala do fenômeno eleitoral também afeta uma segunda categoria de agentes: os
 partidos. Os partidos também estão posicionados no espaço de alternativas \(X\)e
@@ -426,11 +369,16 @@ dimensão $n>1$, demonstra \citeonline[14-27]{laver2011party}, agir de maneira
 segundo heurísticas e se movimentam no \textit{electoral landspace} de forma
 adaptativa \cite{kollman1998political, de1999adaptive}. Isso abre a
 possibilidade, teórica, de que os partidos fiquem presos em picos locais. Do
-ponto de vista empírico, a Figura 4 dá suporte à essa possibilidade:
+ponto de vista empírico, \citeonline{lorenz2017modeling} e
+\citeonline{flache2017} apontam os seguintes fatos estilizados sobre as
+distribuições de auto-posicionamento ideológico, ilustradas na Figura 3, no
+\textit{European Social Survey}: há um pico central dominante; há uma tendência
+para a existência de \textit{clusters} não centrais, mas não extremos; e há uma
+tendência a picos nos extremos.
 
 \begin{figure}[H]
-  \centering \includegraphics[width=\textwidth]{ims/ess_2002_plots.pdf}
-  \caption{Distribuição de Posicionamento Ideológico em 20 países}
+  \centering \includegraphics[width= \textwidth, height = 15cm]{ims/ess_2002_plots.pdf}
+  \caption{Distribuição de Posicionamento Ideológico de respondentes em 20 países}
   Fonte: Elaboração pŕopria. Dados do \textit{European Social Survey}.
 \end{figure}
 
