@@ -14,9 +14,11 @@ mutable struct Belief{T<:AbstractFloat}
 end
 
 mutable struct Agent <: PolAgent
-    id::AbstractFloat
+    id::Int
     ideo::Vector
+    idealpoint::AbstractFloat
 end
+
 
 # Constructors for Agents, Beliefs and Network --------------------
 function create_belief(σ,issue)
@@ -24,9 +26,19 @@ function create_belief(σ,issue)
     belief = Belief(o, σ, issue)
 end
 
+function create_idealpoint(ideology)
+    opinions = []
+    for i in ideology
+        push!(opinions,i.o)
+    end
+    ideal_point = mean(opinions)
+end
+
+
 function create_agent(n,id,σ)
     ideology = [create_belief(σ,i) for i in 1:n ]
-    agent = Agent(id,ideology)
+    idealpoint = create_idealpoint(ideology)
+    agent = Agent(id,ideology, idealpoint)
 end
 
 # network creation
@@ -62,7 +74,8 @@ end
 
 # helper for posterior opinion and uncertainty
 function calculate_pstar(i_belief, j_belief, p)
-    numerator = p * (1 / (sqrt(2 * π ) * i_belief.σ ) ) * exp(-((i_belief.o - j_belief.o)^2 / (2*i_belief.σ^2)))
+    numerator = p * (1 / (sqrt(2 * π ) * i_belief.σ ) )*
+    exp(-((i_belief.o - j_belief.o)^2 / (2*i_belief.σ^2)))
     denominator = numerator + (1 - p)
     pₚ = numerator / denominator
     return(pₚ)
