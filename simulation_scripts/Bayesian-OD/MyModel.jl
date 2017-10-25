@@ -1,4 +1,11 @@
+
+module MyModel
+
+export run_simulation_v1, run_simulation_v2
+
+
 using Distributions
+using DataFrames
 # Define the entities = agents and network ------------------------------
 
 #Structs for Agents and Beliefs --------------------
@@ -52,7 +59,7 @@ end
 
 
 # Define the processes\actions ----------------------------------------
-#helper function for the update rule/step. Create i,j with this then pass it to the other fns
+#Create i,j with this then pass it to the other fns
 function ij_comparison(nw)
     i,j = rand(nw), rand(nw)
     if i==j
@@ -62,7 +69,7 @@ function ij_comparison(nw)
 end
 
 
-#helper for picking issue and associated beliefs
+#Input = two agents; Output = a issue and associated beliefs
 function pick_issuebelief(i, j, n_issues)
     issue_belief = rand(1:n_issues)
     i_belief = i.ideo[issue_belief]
@@ -81,18 +88,89 @@ function calculate_pstar(i_belief, j_belief, p)
 end
 
 
-#helper for update_step
+# Helper for update step
+#Input = beliefs in an issue and confidence paramater; Output = i new opinion
 function cal_posterior_o(i_belief, j_belief, p)
     pₚ = calculate_pstar(i_belief, j_belief, p)
     posterior_opinion = pₚ * ((i_belief.o + j_belief.o) / 2) +
         (1 - pₚ) * i_belief.o
 end
 
-# update_step for the version with changing opinions but unchanging uncertainty
-function update_step1!(i, issue_belief, posterior_o)
-    i.ideo[issue_belief].o = posterior_o
-    newidealpoint = create_idealpoint(i.ideo)
-    i.idealpoint = newidealpoint;
+
+#helper for update_step
+function calc_pos_uncertainty(i_belief, j_belief, p)
+    pₚ = calculate_pstar(i_belief, j_belief, p)
+    posterior_uncertainty = sqrt(i_belief.σ^2 * ( 1 - pₚ/2) + pₚ * (1 - pₚ) *
+                                 ((i_belief.o - j_belief.o)/2)^2)
 end
 
 
+
+# update_step for changing opinion but not belief
+function update_step1!(i, issue_belief, posterior_o)
+    i.ideo[issue_belief].o = posterior_o
+    newidealpoint = create_idealpoint(i.ideo)
+    i.idealpoint = newidealpoint
+end
+
+
+# update_step for the version with changing opinions and changing uncertainty
+function update_step2!(i,issue_belief, posterior_o, posterior_σ)
+    i.ideo[issue_belief].o = posterior_o
+    i.ideo[issue_belief].σ = posterior_σ
+    newidealpoint = create_idealpoint(i.ideo)
+    i.idealpoint = newidealpoint
+end
+
+
+
+
+# Information Storing ----------------------------------------
+# going to think about the dataframe for v2. put mean and std uncertainty??
+# information storing for v1 --------------------
+function init_df(nw)
+    df = DataFrame(time = [], ideal_point = [], id  = [])
+    for agent in nw
+        time = 0 
+        push!(df,[time agent.idealpoint agent.id]) 
+    end
+    return df
+end
+
+function update_df!(nw,df,time)
+    for agent in nw
+        push!(df,[time agent.idealpoint agent.id])
+    end
+end
+
+# Running Commands ----------------------------------------
+function run_simulation_v1(; n_issues = n_issues,
+                           size_nw = size_nw, p = p, σ = σ, time = time)
+    nw = create_nw(σ, n_issues, size_nw)
+    df = init_df(nw)
+    for step in 1:time
+        i,j = ij_comparison(nw)
+        which_issue,i_belief,j_belief = pick_issuebelief(i, j, n_issues)
+        pos_o = cal_posterior_o(i_belief, j_belief, p)
+        update_step1!(i, which_issue, pos_o)
+        update_df!(nw,df,step)
+    end
+    return(df)
+end
+
+function run_simulation_v2(; n_issues = n_issues,
+                           size_nw = size_nw, p = p, σ = σ, time = time)
+    nw = create_nw(σ, n_issues, size_nw)
+    df = init_df(nw)
+    for step in 1:time
+        i,j = ij_comparison(nw)
+        which_issue, i_belief, j_belief = pick_issuebelief(i, j, n_issues)
+        pos_o = cal_posterior_o(i_belief, j_belief, p)
+        pos_σ = calc_pos_uncertainty(i_belief, j_belief, p)
+        update_step2!(i, which_issue, pos_o, pos_σ)
+        update_df!(nw,df,step)
+    end
+    return(df)
+end
+
+end
