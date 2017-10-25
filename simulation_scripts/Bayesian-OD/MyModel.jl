@@ -4,7 +4,6 @@ using Distributions
 #Structs for Agents and Beliefs --------------------
 
 abstract type  AbstractAgent end
-
 abstract  type PolAgent <: AbstractAgent end
 
 mutable struct Belief{T<:AbstractFloat}
@@ -28,15 +27,15 @@ end
 
 function create_idealpoint(ideology)
     opinions = []
-    for i in ideology
-        push!(opinions,i.o)
+    for issue in ideology
+        push!(opinions,issue.o)
     end
     ideal_point = mean(opinions)
 end
 
 
-function create_agent(n,id,σ)
-    ideology = [create_belief(σ,i) for i in 1:n ]
+function create_agent(n_issues,id,σ)
+    ideology = [create_belief(σ, issue) for issue in 1:n_issues ]
     idealpoint = create_idealpoint(ideology)
     agent = Agent(id,ideology, idealpoint)
 end
@@ -46,8 +45,8 @@ end
 graph + pairwise interaction i can create a list of Agents and pick two of them to
 interact!!"
 
-function create_nw(σ, n, size)
-    nw = [create_agent(n,i,σ) for i in 1:size]
+function create_nw(σ, n_issues, size)
+    nw = [create_agent(n_issues,i,σ) for i in 1:size]
 end
 
 
@@ -63,12 +62,12 @@ function ij_comparison(nw)
 end
 
 
-#helper for picking issue
-function pick_issuebelief(i,j,n)
-    issue_belief = rand(1:n)
+#helper for picking issue and associated beliefs
+function pick_issuebelief(i, j, n_issues)
+    issue_belief = rand(1:n_issues)
     i_belief = i.ideo[issue_belief]
     j_belief = j.ideo[issue_belief]
-    return(i_belief, j_belief)
+    return(issue_belief, i_belief, j_belief)
 end
 
 
@@ -77,17 +76,23 @@ function calculate_pstar(i_belief, j_belief, p)
     numerator = p * (1 / (sqrt(2 * π ) * i_belief.σ ) )*
     exp(-((i_belief.o - j_belief.o)^2 / (2*i_belief.σ^2)))
     denominator = numerator + (1 - p)
-    pₚ = numerator / denominator
+    pₚ  = numerator / denominator
     return(pₚ)
 end
 
 
 #helper for update_step
-#=function calculate_posterior(i_belief,j_belief,p)
-    σ = i_belief.σ
-    pₚ = calculate_pstar(i,j,σ,p)
-    posterior_opinion = pₚ * ((i.opinion + j.opinion) / 2) + (1 - pₚ) * i.opinion
+function cal_posterior_o(i_belief, j_belief, p)
+    pₚ = calculate_pstar(i_belief, j_belief, p)
+    posterior_opinion = pₚ * ((i_belief.o + j_belief.o) / 2) +
+        (1 - pₚ) * i_belief.o
 end
-=#
+
+# update_step for the version with changing opinions but unchanging uncertainty
+function update_step1!(i, issue_belief, posterior_o)
+    i.ideo[issue_belief].o = posterior_o
+    newidealpoint = create_idealpoint(i.ideo)
+    i.idealpoint = newidealpoint;
+end
 
 
