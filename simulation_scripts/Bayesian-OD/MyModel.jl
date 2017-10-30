@@ -1,4 +1,3 @@
-
 module MyModel
 
 export run_simulation_v1, run_simulation_v2
@@ -143,9 +142,9 @@ function update_df!(nw,df,time)
 end
 
 # Running Commands ----------------------------------------
-function run_simulation_v1(; n_issues::Integer = n_issues,
-                           size_nw::Integer = size_nw, p::Real = p,
-                           σ::Real = σ, time::Real = time)
+function run_simulation_v1(; n_issues::Integer = 1,
+                           size_nw::Integer = 2, p::Real = 0.5,
+                           σ::Real = 0.5, time::Real = 2)
     nw = create_nw(σ, n_issues, size_nw)
     df = init_df(nw)
     for step in 1:time
@@ -158,9 +157,9 @@ function run_simulation_v1(; n_issues::Integer = n_issues,
     return(df)
 end
 
-function run_simulation_v2(; n_issues::Integer = n_issues,
-                           size_nw::Integer = size_nw, p::Real = p,
-                           σ::Real = σ, time::Real = time)
+function run_simulation_v2(; n_issues::Integer = 1,
+                           size_nw::Integer = 2, p::Real = 0.5,
+                           σ::Real = 0.5, time::Real = 2)
 
     nw = create_nw(σ, n_issues, size_nw)
     df = init_df(nw)
@@ -174,6 +173,8 @@ function run_simulation_v2(; n_issues::Integer = n_issues,
     end
     return(df)
 end
+
+
 
 end
 
