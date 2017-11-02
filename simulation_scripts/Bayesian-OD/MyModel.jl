@@ -121,6 +121,19 @@ function update_step2!(i::Agent,issue_belief::Integer, posterior_o::Real,
 end
 
 
+function ρ_update!(i::Agent,  σ::Real, n_issues::Integer, ρ::Real = 0.1)
+    ξ = rand(Uniform())
+    which_issue = rand(1:n_issues)
+    if ξ < ρ
+        i.ideo[which_issue].o = rand(Uniform())
+        i.ideo[which_issue].σ = σ
+        newidealpoint = create_idealpoint(i.ideo)
+        i.idealpoint = newidealpoint
+    end
+end
+
+
+
 
 
 # Information Storing ----------------------------------------
