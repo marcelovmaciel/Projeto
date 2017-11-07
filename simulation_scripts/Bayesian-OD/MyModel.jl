@@ -122,6 +122,7 @@ end
 
 
 function ρ_update!(i::Agent,  σ::Real, n_issues::Integer, ρ::Real = 0.1)
+    ρ > 1 && throw(ArgumentError("ρ bigger than 1 doesn't make sense"))
     ξ = rand(Uniform())
     which_issue = rand(1:n_issues)
     if ξ < ρ
@@ -131,8 +132,6 @@ function ρ_update!(i::Agent,  σ::Real, n_issues::Integer, ρ::Real = 0.1)
         i.idealpoint = newidealpoint
     end
 end
-
-
 
 
 
@@ -157,7 +156,7 @@ end
 # Running Commands ----------------------------------------
 function run_simulation_v1(; n_issues::Integer = 1,
                            size_nw::Integer = 2, p::Real = 0.5,
-                           σ::Real = 0.5, time::Real = 2)
+                           σ::Real = 0.5, time::Real = 2, ρ::Real = 0.01)
     nw = create_nw(σ, n_issues, size_nw)
     df = init_df(nw)
     for step in 1:time
@@ -165,6 +164,7 @@ function run_simulation_v1(; n_issues::Integer = 1,
         which_issue,i_belief,j_belief = pick_issuebelief(i, j, n_issues)
         pos_o = calc_posterior_o(i_belief, j_belief, p)
         update_step1!(i, which_issue, pos_o)
+        ρ_update!.(nw, σ, n_issues, ρ)
         update_df!(nw,df,step)
     end
     return(df)
@@ -172,7 +172,7 @@ end
 
 function run_simulation_v2(; n_issues::Integer = 1,
                            size_nw::Integer = 2, p::Real = 0.5,
-                           σ::Real = 0.5, time::Real = 2)
+                           σ::Real = 0.5, time::Real = 2, ρ::Real = 0.01)
 
     nw = create_nw(σ, n_issues, size_nw)
     df = init_df(nw)
@@ -182,6 +182,7 @@ function run_simulation_v2(; n_issues::Integer = 1,
         pos_o = calc_posterior_o(i_belief, j_belief, p)
         pos_σ = calc_pos_uncertainty(i_belief, j_belief, p)
         update_step2!(i, which_issue, pos_o, pos_σ)
+        ρ_update!.(nw, σ, n_issues, ρ)
         update_df!(nw,df,step)
     end
     return(df)
