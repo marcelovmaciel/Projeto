@@ -1,0 +1,52 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{weisberg2012simulation}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=d49f7bc8f0cf4362165d2fae0e6a2d55}{%
+           family={Weisberg},
+           familyi={W\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{d49f7bc8f0cf4362165d2fae0e6a2d55}
+      \strng{fullhash}{d49f7bc8f0cf4362165d2fae0e6a2d55}
+      \strng{bibnamehash}{d49f7bc8f0cf4362165d2fae0e6a2d55}
+      \strng{authorbibnamehash}{d49f7bc8f0cf4362165d2fae0e6a2d55}
+      \strng{authornamehash}{d49f7bc8f0cf4362165d2fae0e6a2d55}
+      \strng{authorfullhash}{d49f7bc8f0cf4362165d2fae0e6a2d55}
+      \field{sortinit}{W}
+      \field{sortinithash}{6d25b3eefe5aa2147d1f339686808918}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Simulation and similarity: Using models to understand the world}
+      \field{year}{2012}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
