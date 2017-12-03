@@ -19,6 +19,212 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{de2005computational}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=f47f4688e25cb678479ffd827f54c7dc}{%
+           family={De\bibnamedelima Marchi},
+           familyi={D\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{f47f4688e25cb678479ffd827f54c7dc}
+      \strng{fullhash}{f47f4688e25cb678479ffd827f54c7dc}
+      \strng{bibnamehash}{f47f4688e25cb678479ffd827f54c7dc}
+      \strng{authorbibnamehash}{f47f4688e25cb678479ffd827f54c7dc}
+      \strng{authornamehash}{f47f4688e25cb678479ffd827f54c7dc}
+      \strng{authorfullhash}{f47f4688e25cb678479ffd827f54c7dc}
+      \field{sortinit}{D}
+      \field{sortinithash}{d10b5413de1f3d197b20897dd0d565bb}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Computational and mathematical modeling in the social sciences}
+      \field{year}{2005}
+    \endentry
+    \entry{druckman2012public}{article}{}
+      \name{author}{2}{}{%
+        {{uniquename=0,uniquepart=base,hash=c9465c6673a17400b67a8a398d9b6afe}{%
+           family={Druckman},
+           familyi={D\bibinitperiod},
+           given={James\bibnamedelima N},
+           giveni={J\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=890de5a2b1fbc09091bd30dc9465a7ad}{%
+           family={Leeper},
+           familyi={L\bibinitperiod},
+           given={Thomas\bibnamedelima J},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{59482a887cf44ac4cd69a650bf28d6c3}
+      \strng{fullhash}{59482a887cf44ac4cd69a650bf28d6c3}
+      \strng{bibnamehash}{59482a887cf44ac4cd69a650bf28d6c3}
+      \strng{authorbibnamehash}{59482a887cf44ac4cd69a650bf28d6c3}
+      \strng{authornamehash}{59482a887cf44ac4cd69a650bf28d6c3}
+      \strng{authorfullhash}{59482a887cf44ac4cd69a650bf28d6c3}
+      \field{sortinit}{D}
+      \field{sortinithash}{d10b5413de1f3d197b20897dd0d565bb}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Daedalus}
+      \field{number}{4}
+      \field{title}{Is Public Opinion Stable? Resolving the Micro/Macro Disconnect in Studies of Public Opinion}
+      \field{volume}{141}
+      \field{year}{2012}
+      \field{pages}{50\bibrangedash 68}
+      \range{pages}{19}
+    \endentry
+    \entry{flache2017}{article}{}
+      \name{author}{7}{}{%
+        {{uniquename=0,uniquepart=base,hash=20b231e6594fb90b80cc3127eac084d7}{%
+           family={Flache},
+           familyi={F\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=4e839d42ee28366c7e7dcdd07ec2363a}{%
+           family={Mäs},
+           familyi={M\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=cbc7446d89ad308e6cd9b2fb131598de}{%
+           family={Feliciani},
+           familyi={F\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=319aa06ad07206d3fa903247163f94c7}{%
+           family={Chattoe-Brown},
+           familyi={C\bibinithyphendelim B\bibinitperiod},
+           given={Edmund},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=d2fab89b3beda9cbddabaa3c50947ee6}{%
+           family={Deffuant},
+           familyi={D\bibinitperiod},
+           given={Guillaume},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=4256af01eb9e81b09e2ea9f55d63248c}{%
+           family={Huet},
+           familyi={H\bibinitperiod},
+           given={Sylvie},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{uniquename=0,uniquepart=base,hash=955098f9f3588518a8295a64a8a7c613}{%
+           family={Lorenz},
+           familyi={L\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{25c3f04d2f220ad539b79a5ff0d81e14}
+      \strng{fullhash}{53df936ab9ae3335d903b5e31c9b885c}
+      \strng{bibnamehash}{25c3f04d2f220ad539b79a5ff0d81e14}
+      \strng{authorbibnamehash}{25c3f04d2f220ad539b79a5ff0d81e14}
+      \strng{authornamehash}{25c3f04d2f220ad539b79a5ff0d81e14}
+      \strng{authorfullhash}{53df936ab9ae3335d903b5e31c9b885c}
+      \field{sortinit}{F}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In 1997, Robert Axelrod wondered in a highly influential paper "If people tend to become more alike in their beliefs, attitudes, and behavior when they interact, why do not all such differences eventually disappear?" Axelrod&rsquo;s question highlighted an ongoing quest for formal theoretical answers joined by researchers from a wide range of disciplines. Numerous models have been developed to understand why and under what conditions diversity in beliefs, attitudes and behavior can co-exist with the fact that very often in interactions, social influence reduces differences between people. Reviewing three prominent approaches, we discuss the theoretical ingredients that researchers added to classic models of social influence as well as their implications. Then, we propose two main frontiers for future research. First, there is urgent need for more theoretical work comparing, relating and integrating alternative models. Second, the field suffers from a strong imbalance between a proliferation of theoretical studies and a dearth of empirical work. More empirical work is needed testing and underpinning micro-level assumptions about social influence as well as macro-level predictions. In conclusion, we discuss major roadblocks that need to be overcome to achieve progress on each frontier. We also propose that a new generation of empirically-based computational social influence models can make unique contributions for understanding key societal challenges, like the possible effects of social media on societal polarization.}
+      \field{issn}{1460-7425}
+      \field{journaltitle}{Journal of Artificial Societies and Social Simulation}
+      \field{number}{4}
+      \field{title}{Models of Social Influence: Towards the Next Frontiers}
+      \field{volume}{20}
+      \field{year}{2017}
+      \field{pages}{2}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.18564/jasss.3521
+      \endverb
+      \verb{urlraw}
+      \verb http://jasss.soc.surrey.ac.uk/20/4/2.html
+      \endverb
+      \verb{url}
+      \verb http://jasss.soc.surrey.ac.uk/20/4/2.html
+      \endverb
+      \keyw{Social Influence,Opinion Dynamics,Polarization,Calibration and Validation,Micro-Macro Link}
+    \endentry
+    \entry{martins2012bayesian}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=54dc80e4023e28e489d247a14cba949c}{%
+           family={Martins},
+           familyi={M\bibinitperiod},
+           given={Andr{é}\bibnamedelima CR},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{organization}{1}{%
+        {AIP}%
+      }
+      \strng{namehash}{54dc80e4023e28e489d247a14cba949c}
+      \strng{fullhash}{54dc80e4023e28e489d247a14cba949c}
+      \strng{bibnamehash}{54dc80e4023e28e489d247a14cba949c}
+      \strng{authorbibnamehash}{54dc80e4023e28e489d247a14cba949c}
+      \strng{authornamehash}{54dc80e4023e28e489d247a14cba949c}
+      \strng{authorfullhash}{54dc80e4023e28e489d247a14cba949c}
+      \field{sortinit}{M}
+      \field{sortinithash}{c26a05ef03e4429073ed5c825140fac3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{AIP Conference Proceedings}
+      \field{number}{1}
+      \field{title}{Bayesian updating as basis for opinion dynamics models}
+      \field{volume}{1490}
+      \field{year}{2012}
+      \field{pages}{212\bibrangedash 221}
+      \range{pages}{10}
+    \endentry
+    \entry{martins2009bayesian}{article}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=54dc80e4023e28e489d247a14cba949c}{%
+           family={Martins},
+           familyi={M\bibinitperiod},
+           given={Andr{é}\bibnamedelima CR},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{namehash}{54dc80e4023e28e489d247a14cba949c}
+      \strng{fullhash}{54dc80e4023e28e489d247a14cba949c}
+      \strng{bibnamehash}{54dc80e4023e28e489d247a14cba949c}
+      \strng{authorbibnamehash}{54dc80e4023e28e489d247a14cba949c}
+      \strng{authornamehash}{54dc80e4023e28e489d247a14cba949c}
+      \strng{authorfullhash}{54dc80e4023e28e489d247a14cba949c}
+      \field{sortinit}{M}
+      \field{sortinithash}{c26a05ef03e4429073ed5c825140fac3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Statistical Mechanics: Theory and Experiment}
+      \field{number}{02}
+      \field{title}{Bayesian updating rules in continuous opinion dynamics models}
+      \field{volume}{2009}
+      \field{year}{2009}
+      \field{pages}{P02017}
+      \range{pages}{-1}
+    \endentry
     \entry{weisberg2012simulation}{book}{}
       \name{author}{1}{}{%
         {{uniquename=0,uniquepart=base,hash=d49f7bc8f0cf4362165d2fae0e6a2d55}{%

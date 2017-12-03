@@ -1,5 +1,5 @@
 (TeX-add-style-hook
- "sample"
+ "presentation"
  (lambda ()
    (setq TeX-command-extra-options
          "-shell-escape")
@@ -11,7 +11,14 @@
     "beamer10"
     "inputenc"
     "babel"
+    "soul"
+    "float"
+    "caption"
+    "subcaption"
     "biblatex")
+   (LaTeX-add-labels
+    "fig1"
+    "fig2")
    (LaTeX-add-bibliographies
     "refs"))
  :latex)

@@ -2005,6 +2005,20 @@
   </bcf:bibdata>
   <bcf:section number="0">
     <bcf:citekey order="1">weisberg2012simulation</bcf:citekey>
+    <bcf:citekey order="2">druckman2012public</bcf:citekey>
+    <bcf:citekey order="3">druckman2012public</bcf:citekey>
+    <bcf:citekey order="4">flache2017</bcf:citekey>
+    <bcf:citekey order="5">flache2017</bcf:citekey>
+    <bcf:citekey order="6">flache2017</bcf:citekey>
+    <bcf:citekey order="7">de2005computational</bcf:citekey>
+    <bcf:citekey order="8">martins2012bayesian</bcf:citekey>
+    <bcf:citekey order="9">martins2012bayesian</bcf:citekey>
+    <bcf:citekey order="10">martins2009bayesian</bcf:citekey>
+    <bcf:citekey order="11">martins2009bayesian</bcf:citekey>
+    <bcf:citekey order="12">martins2012bayesian</bcf:citekey>
+    <bcf:citekey order="13">martins2012bayesian</bcf:citekey>
+    <bcf:citekey order="14">martins2009bayesian</bcf:citekey>
+    <bcf:citekey order="15">martins2009bayesian</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

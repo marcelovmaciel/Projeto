@@ -1,11 +1,11 @@
 \documentclass{beamer}
 \usetheme{metropolis}           % Use metropolis theme
 \usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
 \usepackage{soul}
 \usepackage{float}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage[brazil]{babel} % Idioma do documento
 \usepackage[style = abnt, backend = biber]{biblatex}
 \addbibresource{refs.bib}
 \title{Emergência de Distribuições de Preferência no caso Unidimensional: uma
@@ -267,6 +267,7 @@ Os parâmetros-chave para configuração do modelo são:
 
 Implementei a simulação:
 \begin{itemize}
+  \item N = 500;
 \item em um grafo completo;
 \item  com 1,5 ou 10 questões;
 \item com \textit{todos} os agentes atualizando suas opiniões (somente, não a incerteza);
@@ -277,14 +278,123 @@ Implementei a simulação:
 \end{frame}
 
 \begin{frame}{Resultados Parciais - Sobre \(\rho\)}
-  \begin{itemize}
-  \item \(\rho = 0.01 \) e \(0.1 \) dominam o comportamento do modelo, em especial
-    quando \(n = 1\); \textcolor{red}{Mostrar figuras}
-  \item Quando \(n = 5 \text{ ou } 10\) ainda domina, mas num espaço menor.
-    Quanto maior o \(\sigma\) menor o espaço. \textcolor{red}{Mostrar figuras}
-  \end{itemize}
-  
+   \(\rho = 0.01 \) e \(0.1 \) dominam o comportamento do modelo, em especial
+   quando \(n = 1\).
+   
 \end{frame}
+
+
+
+
+\begin{frame}{Resultados Parciais - Sobre \(\rho\)}
+  
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{ims/rho01.pdf}
+    \caption{\(\rho = 0.1\)}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}{Resultados Parciais - Sobre \(\rho\)}
+  
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{ims/rho001.pdf}
+    \caption{\(\rho = 0.01\)}
+  \end{figure}
+\end{frame}
+
+
+
+\begin{frame}{Resultados Parciais - Sobre \(\rho\)}
+Quando \(n = 5 \text{ ou } 10\) ainda domina, mas num espaço menor.
+Quanto maior  \(\sigma\) e \(p\) menor o espaço.  
+
+\end{frame}
+
+
+\begin{frame}{Resultados Parciais - Sobre \(\rho\), com \(n = 10 \)}
+  
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{ims/p01sigma03rho01.pdf}
+    \caption{\(\rho = 0.1\)  ; \(p = 0.1\); \(\sigma = 0.3\) }
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}{Resultados Parciais - Sobre \(\rho\), com \(n = 10 \)}
+  
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{ims/p09sigma03rho01.pdf}
+    \caption{\(\rho = 0.1\)  ; \(p = 0.9\); \(\sigma = 0.3\) }
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Resultados Parciais - Sobre \(\rho\), com \(n = 10 \)}
+  
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{ims/p01sigma03rho001.pdf}
+    \caption{\(\rho = 0.01\)  ; \(p = 0.1\); \(\sigma = 0.3\) }
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}{Resultados Parciais - Sobre \(\rho\), com \(n = 10 \)}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{ims/p09sigma03rho001.pdf}
+    \caption{\(\rho = 0.01\)  ; \(p = 0.9\); \(\sigma = 0.3\) }
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}{Resultados Parciais - Sobre \(n\), com \(\rho = 0 \) ou 0.0001}
+  Aumentar o \(n\) faz aumentar o número de clusters, e os torna mais robustos
+  ao ruído.
+\end{frame}
+
+\begin{frame}{Resultados Parciais - Sobre \(n\), com \(\rho = 0 \) ou 0.0001}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{ims/p(01)sigma(01)rho(00).pdf}
+    \caption{\(n = 1\) ; \(\rho = 0.0\)  ; \(p = 0.1\); \(\sigma = 0.1\) }
+  \end{figure}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Resultados Parciais - Sobre \(n\), com \(\rho = 0 \) ou 0.0001}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{ims/p(01)sigma(01)rho(00001).pdf}
+    \caption{ \(n = 1 \); \(\rho = 0.0001\)  ; \(p = 0.1\); \(\sigma = 0.1\) }
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Resultados Parciais - Sobre \(n\), com \(\rho = 0 \) ou 0.0001}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{ims/n10p(01)sigma(01)rho(00).pdf}
+    \caption{\(n = 10\) ; \(\rho = 0.0\)  ; \(p = 0.1\); \(\sigma = 0.1\) }
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Resultados Parciais - Sobre \(n\), com \(\rho = 0 \) ou 0.0001}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{ims/n10p(01)sigma(01)rho(00001).pdf}
+    \caption{ \(n = 10 \); \(\rho = 0.0001\)  ; \(p = 0.1\); \(\sigma = 0.1\) }
+  \end{figure}
+\end{frame}
+
+
+
 
 \section*{Referências}
 \begin{frame}[allowframebreaks]{Referências}
