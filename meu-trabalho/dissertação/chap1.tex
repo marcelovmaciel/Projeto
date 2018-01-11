@@ -9,8 +9,11 @@ definida e discutida em seguida.
 
 Vamos definir Teoria Política Formal como: conjunto de modelos e hipóteses
 teóricas explicitamente definidos que buscam representar atividades e
-comportamentos relacionados à ação e escolha coletiva.
+comportamentos relacionados à ação e escolha coletiva
+\cite{oppenheimer2012principles,clarke2012model}.
 
+
+\begin{comment}
 Com essa definição estamos conjugando três definições: a de Teoria, a de
 Política e a de Formal. O conceito de política, e em certa medida o de teoria,
 pode ser considerado como ``essencialmente contestado'', isto é, é um conceito
@@ -35,7 +38,10 @@ da similaridade dos modelos com determinados sistemas alvo\footnote{Para uma
 Por fim, entendemos que os modelos são formais na medida em que construídos por
 meio de algum sistema formal \cite{wong2015formal}. Em Teoria Política Formal
 isso significa que tendem a ser construídos usando o intermédio da lógica
-formal, matemática ou computação \cite{morton1999methods}. Nosso foco na
+formal, matemática ou computação \cite{morton1999methods}.
+\end{comment}
+
+Nosso foco na
 literatura em teoria política formal é justificado pelo fato dela ser um corpo
 teórico construído por meio de modelos
 \textit{explícitos}\cite{epstein2008model}. Embora não seja a única forma de
@@ -45,12 +51,13 @@ representar um determinado sistema ou processo gerador de dados
 \cite{morton1999methods, smaldino2017models}.
 
 O estudo formal da ação e escolha coletiva teve como período de fundação moderno
-o período entre \citeonline{black1948rationale} (marco no estudo da escolha coletiva)
-e \citeonline{olson1965logic} (marco para os estudos da ação coletiva), embora
-\textit{insights} típicos da literatura, como paradoxos da agregação ou o
-problema do caroneiro, tenham sido discutidos anteriormente por pensadores como
-Plínio, o Jovem (64-114 d.C.); Ramon Lull (1232-1315); David Hume; e John Stuart
-Mill \cite{mclean2015strange, sep-free-rider, ordeshook1990emerging}. 
+o período entre \citeonline{black1948rationale} (marco no estudo da escolha
+coletiva) e \citeonline{olson1965logic} (marco para os estudos da ação
+coletiva). Contudo, \textit{insights} típicos da literatura, como paradoxos da
+agregação ou o problema do caroneiro, foram discutidos anteriormente por
+pensadores como Plínio, o Jovem (64-114 d.C.); Ramon Lull (1232-1315); David
+Hume; e John Stuart Mill \cite{mclean2015strange, sep-free-rider,
+  ordeshook1990emerging}.
 
 
 Embora não seja a única forma de se modelar formalmente fenômenos políticos,
@@ -69,7 +76,7 @@ Esses modelos podem ser divididos em duas variantes: \textit{thin} ou
 \textit{thick} \cite{hechter1997sociological, green1996pathologies}. Ambos os
 tipos de modelos são construídos com base nos pressupostos mínimos de um modelo
 de ator racional: preferências racionais e racionalidade bayesiana
-\cite{gintis2016individuality}. A diferença entre eles é que os modelos
+\cite{gintis2016individuality}. A diferença entre os dois é que os modelos
 \textit{thin} não fazem pressupostos substantivos sobre os valores e objetivos
 dos agentes. Neles os teóricos buscam modelar a combinação entre agentes e
 instituições da maneira mais geral possível. Já modelos \textit{thick} adicionam
@@ -92,7 +99,7 @@ em valor (indiferença), denotado por \(\sim\).
 A relação de preferência fraca \( \succeq \)pode ser definida da seguinte forma:
 
 \begin{align*}
-  \text{x} \succeq y \leftrightarrow x \succ y \lor x \sim y
+  \text{x} \succeq y \leftrightarrow x \succ y \text{ou} x \sim y
 \end{align*}
 
 A aplicação dessa definição de preferência no modelo do ator racional pressupõe
@@ -151,7 +158,7 @@ crenças segundo o Teorema de Bayes.
 Sumarizando, os modelos de escolha racional na sua versão mais básica pressupõem
 agentes com preferências consistentes, o que implica que sejam transitivas,
 completas e independente de alternativas irrelevantes. Caso o contexto de
-decisão seja incerto também pressupõem que os agentes tem uma crença em
+decisão seja incerto também pressupõem que os agentes têm uma crença em
 conformidade com os axiomas da probabilidade  e as atualizam de acordo com o
 Teorema de Bayes.
 
@@ -168,13 +175,13 @@ Geométrica\footnote{Vamos usar o termo geométrico de maneira intercambiável c
 A Teoria Espacial de Política tem suas origens nos trabalhos canônicos de Duncan
 Black e Anthony Downs, e as bases matemáticas da teoria foram desenvolvidas por
 Otto Davis, Melvin Hinich e Peter Ordeshook \cite{black1958theory,
-  downs1957economic, poole2005spatial, miller2015spatial}. Ela está fundamentada
-na idéia essencial que as alternativas, posicionamento e preferências dos
-agentes políticos podem ser representadas por meio de espaços geométricos. Ela
-captura a metáfora e noção da linguagem política diária de que as alternativas
-políticas tem uma relação de proximidade/distância, tal qual a noção de que
-partidos, pessoas, ou propostas são de ``extrema-esquerda'', ``centristas'' ou
-``de direita'' \cite{munger2015choosing}.
+  downs1957economic, poole2005spatial, miller2015spatial}. Tal teoria está
+fundamentada na idéia essencial que as alternativas, posicionamento e
+preferências dos agentes políticos podem ser representadas por meio de espaços
+geométricos. Captura a metáfora e noção da linguagem política diária de que
+as alternativas políticas tem uma relação de proximidade/distância, tal qual a
+noção de que partidos, pessoas, ou propostas são de ``extrema-esquerda'',
+``centristas'' ou ``de direita'' \cite{munger2015choosing}.
 
 
 Seguindo \citeonline{humphreys2010spatial}, podemos dividir os modelos
@@ -192,7 +199,7 @@ consistentes, sobre esse espaço. Não assume-se, contudo, que os agentes perceb
 as utilidades das alternativas em termos das distâncias relativas no espaço
 subjacente. Os agentes têm funções de utilidade abstratas, não especificadas
 \cite{humphreys2010spatial}\footnote{\citeonline{humphreys2010spatial} indica o
-  programa de pesquisa sobre o ``Caos'' em decisões coletivas multidimensionais
+  programa de pesquisa sobre o caos em decisões coletivas multidimensionais
   como exemplo de modelos fracamente espaciais.}.
 
 Modelos fortemente espaciais, por outro lado, pressupõem que os agentes tem uma
@@ -203,12 +210,12 @@ de utilidade dos agentes é a composição da função de distância e uma funç
 perda de forma que \(u_i(y) = f_i(d_i(x_i,y)) \) \cite{humphreys2010spatial,
   laver2014measuring}.
 
-O pressuposto modal é que métrica é Euclidiana: os agentes medem a distância
-entre dois pontos no espaço de alternativas usando o Teorema de Pitágoras
-\cite{munger2015choosing}. Ademais, assume-se, por conveniência analítica,
-funções com um único pico ( o ponto ideal do agente) e simétricas. Funções de
-utilidade usualmente utilizadas na ciência política são a linear, a quadrática e
-a gaussiana, ilustradas na Figura 1:
+O pressuposto modal é que a métrica seja Euclidiana: os agentes medem a
+distância entre dois pontos no espaço de alternativas usando o Teorema de
+Pitágoras \cite{munger2015choosing}. Ademais, assume-se, por conveniência
+analítica, funções com um único pico ( o ponto ideal do agente) e simétricas.
+Funções de utilidade usualmente utilizadas na ciência política são a linear, a
+quadrática e a gaussiana, ilustradas na Figura 1:
 
 \begin{figure}[H]
   \centering \includegraphics[scale = 0.6]{ims/utilities.pdf}
@@ -226,7 +233,7 @@ nosso problema.
 
 
 A diferença entre os dois contextos de ação é reconhecida desde as contribuições
-seminais de Black e Downs. Em geral, em votos em comitê o número de agentes é
+de Black e Downs. Em geral, em votos em comitê o número de agentes é
 pequeno, os agentes são bem informados e a decisão costuma ter alta implicação
 para eles. Já em eleições de massa existem muitos eleitores, a informação sobre
 as alternativas é ambígua e os efeitos da decisão são difusos
@@ -258,8 +265,9 @@ Em relação à tomada de decisão do eleitor há uma tensão entre a literatura
 teoria formal e a literatura em psicologia política: a primeira costuma
 pressupor que agentes têm ideologias bem definidas e são bem informados, ou tem
 alguma noção probabilística, sobre as alternativas partidárias, algo contestado
-veementemente pela segunda \cite[p.5]{bendor2011behavioral}. A falta de
-conhecimento sobre temas/questões e a instabilidade de resposta a
+veementemente pela segunda\todo{falar mais do que diz a psicologia politica}
+\cite[p.5]{bendor2011behavioral}. A falta de conhecimento sobre temas/questões e
+a instabilidade de resposta\todo[color=yellow!10]{explicar instabilidade} a
 \textit{surveys} é um dos resultados recorrentes na literatura em opinião
 pública desde sua fundação \cite{berelson1952democratic, converse2006nature,
   zaller1992simple, kuklinski2000misinformation}.
@@ -284,15 +292,15 @@ Bartels levanta um ponto incontornável: o pressuposto de preferências racionai
 não é inócuo, em especial no contexto eleitoral.
 
 O pressuposto de que agentes têm preferências racionais sobre todas questões
-políticas é exigente do ponto de vista cognitivo. Contudo, não é necessário.
-Para aplicar o modelo geométrico de política em um contexto macro não é
-necessário supor que cada questão (\textit{issue}) vá definir uma dimensão no
-espaço de alternativas. O que é necessário é que os agentes tenham
+políticas é exigente do ponto de vista cognitivo. Contudo, isto não é
+necessário. Para aplicar o modelo geométrico de política em um contexto macro
+não é necessário supor que cada questão (\textit{issue}) vá definir uma dimensão
+no espaço de alternativas. O que é necessário é que os agentes tenham
 \textit{algum} posicionamento nas questões, e que exista uma interrelação entre
 a resposta do eleitor entre posicionamentos, de forma que possamos descrever as
 atitudes dos agentes em todas as questões segundo a correlação com alguma
 dimensão latente \cite{poole2005spatial,laver2014measuring}.
-\citeonline{poole1985ideology} encontra que $80\%$ dos votos no Congresso
+\citeonline{poole1985ideology} demonstram que $80\%$ dos votos no Congresso
 americano podem ser explicados por uma única dimensão latente
 (liberal-conservador). Já \citeonline{benoit2006party} encontra que no máximo
 três dimensões são necessárias para capturar a informação relevante sobre os
@@ -314,7 +322,7 @@ dos agentes são independentes, o que complica a análise da situação de açã
 meio do modelo do ator racional, dado que não podemos pressupor que elas são
 estáveis. No contexto da economia do bem-estar, por exemplo,
 Kenneth Binmore argumenta que os modelos do ator racional supõem
-preferências intrínsecas, na medida que ``não ajudaria muito ... introduzir uma
+preferências intrínsecas, na medida que ``não ajudaria muito [...] introduzir uma
 reforma que todos aprovam se ela mudar o ambiente de uma forma que reverta as
 preferências de todos '' \cite[p.6]{binmore2008rational}.
 
@@ -325,12 +333,13 @@ ambiente.Tendo em vista tanto a complexidade informacional do contexto, quanto
 os baixos incentivos à busca de informação, isso vai significar que os agentes
 serão \textit{incertos} quanto às suas preferências. Essa incerteza em relação
 às preferências, e o baixo custo, percebido, da mudança permitem que modelos de
-dinâmicas de opinião\footnote{Área a ser discutida no Capítulo 2.} possam ser
+dinâmicas de opinião\footnote{Assunto  a ser discutido no Capítulo 2.} possam ser
 usados para representar seu processo de formação e cristalização.
 
+\todo[inline,colour=yellow!10]{Rever o próximo paragrafo}
 
-As preferências dos cidadãos, portanto, não vão ser estáticas.Isso não
-significa, contudo, que elas necessariamente serão altamente instáveis. Como
+As preferências dos cidadãos, portanto, não são estáticas. Isso não
+significa, contudo, que estas necessariamente serão altamente instáveis. Como
 as preferências são construídas a partir de um conjunto de posicionamentos e
 crenças em várias questões, é de se esperar que elas sejam mais estáveis do que
 o posicionamento dos atores em cada questão específica, o objeto dos estudos em
@@ -343,6 +352,7 @@ Figura 2, a qual mostra o auto-posicionamento político, numa escala de 0 a 10
 condiz\footnote{Para questões metodológicas em relação a esses dados ver o
   Apêndice 1.} com essa expectativa:
 
+\todo[inline,color=yellow!10]{Explicar as escalas da figura}
 
 \begin{figure}[H]
   \centering \includegraphics[width = \textwidth]{ims/ess_Pol_plots.pdf}
@@ -364,17 +374,16 @@ Como argumenta \citeonline[p.144]{page2008uncertainty} essa é a estratégia
 \textit{one-theta-fits-all} , que consiste em ignorar a dificuldade da tomada de
 decisão e a complexidade do ambiente em que os agentes estão situados, e
 modelá-los como otimizadores sob incerteza. Para a competição espacial com
-dimensão $n>1$, demonstra \citeonline[14-27]{laver2011party}, agir de maneira
-ótima, é, contudo, impossível. Os partidos, desta forma, necessariamente agem
+dimensão $n>1$, demonstram \citeonline[14-27]{laver2011party}, agir de maneira
+ótima é, contudo, impossível. Os partidos, desta forma, necessariamente agem
 segundo heurísticas e se movimentam no \textit{electoral landspace} de forma
 adaptativa \cite{kollman1998political, de1999adaptive}. Isso abre a
 possibilidade, teórica, de que os partidos fiquem presos em picos locais. Do
 ponto de vista empírico, \citeonline{lorenz2017modeling} e
 \citeonline{flache2017} apontam os seguintes fatos estilizados sobre as
-distribuições de auto-posicionamento ideológico, ilustradas na Figura 3, no
-\textit{European Social Survey}: há um pico central dominante; há uma tendência
-para a existência de \textit{clusters} não centrais, mas não extremos; e há uma
-tendência a picos nos extremos.
+distribuições de auto-posicionamento ideológico, ilustradas na Figura 3: há um
+pico central dominante; há uma tendência para a existência de \textit{clusters}
+não centrais, mas não extremos; e há uma tendência a picos nos extremos.
 
 \begin{figure}[H]
   \centering \includegraphics[width= \textwidth, height = 15cm]{ims/ess_2002_plots.pdf}
@@ -383,16 +392,17 @@ tendência a picos nos extremos.
 \end{figure}
 
 Dado que as eleições são o principal mecanismo de conexão entre cidadãos e
-governo nas poliarquias \cite{dahl1989democracy} e dado que a sobrevivência dos
-partidos na competição eleitoral depende da sua capacidade de captar o voto dos
-eleitores, podemos concluir que o \textit{formato} da distribuição das
+governo nas poliarquias \cite{dahl1989democracy} e uma vez que a sobrevivência
+dos partidos na competição eleitoral depende da sua capacidade de captar o voto
+dos eleitores, podemos concluir que o \textit{formato} da distribuição das
 preferências dos eleitores é central para o estudo do nexo democrático.
 
 Temos, desta forma, duas diretrizes para o estudo. Do ponto de vista micro,
 podemos modelar os pontos ideais dos agentes segundo um modelo de dinâmicas de
 opinião. Esse é o nosso ponto de partida. Do ponto de vista macro, aspiramos que
 nossos modelos consigam gerar distribuições que sejam plausíveis do ponto de
-vista empírico, dado que o formato delas importa. Esse é o nosso \textit{benchmark}.
+vista empírico, dado que o formato delas importa. Esse é o nosso
+\textit{benchmark}.\todo[color=yellow!10]{Explicar isso de benchmark}
 
 
 

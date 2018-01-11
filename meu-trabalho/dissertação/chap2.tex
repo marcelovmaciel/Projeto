@@ -1,8 +1,7 @@
 Nesse capítulo fazemos uma revisão bibliográfica da área de Dinâmicas de
 Opinião\footnote{Doravante OD (\textit{Opinion Dynamics}).} Definimos a área, o
 que são modelos baseados em agente e quais os constituintes típicos de um modelo
-de OD. Depois apresentamos modelos que podem ser considerados canônicos, em sua
-versão mais simples, pelo fato de inspirarem uma gama de modificações e
+de OD. Depois apresentamos modelos que inspiraram uma gama de modificações e
 extensões. Na seção seguinte discutimos algumas questões teóricas referentes à
 atualização da opinião dos agentes e concluímos o capítulo com uma discussão de
 nossa abordagem.
@@ -76,7 +75,10 @@ propriedades típicas:
   capacidade de incluir redes e espaço; seu potencial de ligar múltiplos
   domínios e de incluir uma maior heterogeneidade de agentes; além de seu foco
   na robustez de resultados \cite{de2014agent,wilensky2015introduction}. Não por
-  acaso, ABMs são amplamente usados em OD  \cite{castellano2012social,flache2017}.
+  acaso, ABMs são amplamente usados em OD
+  \cite{castellano2012social,flache2017}. \todo[inline,color =
+  yellow!10]{Explicar melhor isso, pegar a referencia dada por carlos; falar em
+    abordagem bottom-up.}
 
   Que elementos constituem os modelos de OD ? Podemos delimitar um modelo de
   dinâmicas de opinião da seguinte forma: agentes,conectados, possuem opiniões
@@ -251,7 +253,7 @@ que microcampos relacionados (como ciência cognitiva)''
 \cite[p.45]{bendor2010bounded}. Quanto mais complicados nossos modelos menor
 controle temos sobre qual o elemento responsável pelo seus resultados, e mais
 dados precisamos para a sua calibração e validação \cite{de2005computational}.
-Como canonicamente argumentado por \citeonline{zaller1992nature}, a estratégia
+Como  argumentado por \citeonline{zaller1992nature}, a estratégia
 metodológica para modelar a opinião pública, um fenômeno social de larga escala,
 envolve incorporar no modelo somente os aspectos do processamento de informação
 que têm relevância para a compreensão das dinâmicas do fenômeno, ao invés de
@@ -359,11 +361,13 @@ f_i(\theta) = \frac{1}{\sqrt{2 \pi} \sigma_i} e^{-
     =
     \frac{
       p \frac{1}{\sqrt{2 \pi} \sigma_i}
-      e^{(- \frac{o_i (t) - o_j (t))^2}{2 \sigma_i^2}}
+      e^{(- \frac{o_i (t) - o_j (t))^2}{2 \sigma_i^2})}
     }{
       p
       \frac{1}{\sqrt{2 \pi} \sigma_i}
-      e^{(- \frac{o_i (t) - o_j (t))^2}{2 \sigma_i^2}}
+    e^{(- \frac{o_i (t) - o_j (t))^2}{2 \sigma_i^2})}
+    +
+    (1 - p)
     }
   \end{align}
 
@@ -394,16 +398,16 @@ f_i(\theta) = \frac{1}{\sqrt{2 \pi} \sigma_i} e^{-
     (\frac{o_i(t)-o_j(t)}{2})^2
       \end{align}
 
-      Como demonstra \citeonline{martins2009bayesian} essa equação faz com que o
-      passar do tempo os agentes fiquem mais certos de suas opiniões. Isso é
-      relevante do ponto de vista da modelagem generativa de opinião pública.
+      Como demonstra \citeonline{martins2009bayesian} essa equação faz com que
+      com o passar do tempo os agentes fiquem mais certos de suas opiniões. Isso
+      é relevante do ponto de vista da modelagem generativa de opinião pública.
       \citeonline{kuklinski2000misinformation} encontra que um grande
       percentual, demonstrando na Figura \ref{fig5}, dos respondentes em um
       \textit{survey} por telefone sobre questões factuais da agenda política
       americana da época são confiantes em suas crenças. Ademais, encontram uma
       correlação entre confiança e partidarismo. É interessante, portanto,
-      incorporar não só a dinâmica da opinião dos agentes, mas também como
-      se tornam mais ou menos confiantes.
+      incorporar não só a dinâmica da opinião dos agentes, mas também como se
+      tornam mais ou menos confiantes.
 
 
               \begin{figure}[H]
