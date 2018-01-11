@@ -1,5 +1,5 @@
 Nesse capítulo fazemos uma revisão bibliográfica da área de Dinâmicas de
-Opinião\footnote{Doravante OD (\textit{Opinion Dynamics}).} Definimos a área, o
+Opinião (OD). Definimos a área, o
 que são modelos baseados em agente e quais os constituintes típicos de um modelo
 de OD. Depois apresentamos modelos que inspiraram uma gama de modificações e
 extensões. Na seção seguinte discutimos algumas questões teóricas referentes à
@@ -10,14 +10,13 @@ nossa abordagem.
 \section{Definição da Área}
 
 OD é uma área que pode ser definida a partir de 3 elementos. Primeiramente,
-sistemas alvo em comum, delimitados pela pergunta central: quais elementos
-determinam se um grupo de agentes chega ao consenso sobre algo, ou ao invés
-disso persistem em discórdia? \cite{castellano2012social}\footnote{Essa pode ser
-  pensada como a pergunta \textit{fundacional} da área \cite{flache2017}.}.
-Segundo, um conjunto de modelos que partilham elementos constitutivos,
-particularmente fazendo uso da técnica da Modelagem Baseada em
-Agentes\footnote{De agora em diante vamos usar a abreviação ABM para modelagem
-  (ou modelo(s)) baseada(os) em agentes.}, e em, alguma medida, de
+sistemas alvo, fenômenos de interesse, em comum, delimitados pela pergunta
+central: quais elementos determinam se um grupo de agentes chega ao consenso
+sobre algo, ou ao invés disso persistem em discórdia?
+\cite{castellano2012social}\footnote{Essa pode ser pensada como a pergunta
+  \textit{fundacional} da área \cite{flache2017}.}. Segundo, um conjunto de
+modelos que partilham elementos constitutivos, particularmente fazendo uso da
+técnica da Modelagem Baseada em Agentes (ABM), e em, alguma medida, de
 \textit{insights} e técnicas da Física Estatística \cite{galam1990social}.
 Terceiro, uma comunidade de pesquisadores que partilham do interesse no objeto,
 fazem uso de referenciais e técnicas compartilhadas e se reconhecem como membros
@@ -25,13 +24,15 @@ dessa comunidade.
 
 Na área há a aceitação de um significado amplo e abstrato de opinião como uma
 característica de um agente que pode ser mudada com pouco custo
-\cite[p.312]{castellano2012social}. Isso permite com que ela vise sistemas alvos
-tais como voto, ciência, cultura, difusão de tarifas, dentre outros
+\cite[p.312]{castellano2012social}. Isso permite com que os pesquisadores visem
+sistemas alvos tais como voto, ciência, cultura, difusão de tarifas, dentre
+outros
 \cite{kowalska2013going,martins2015thou,axelrod1997dissemination,galam1990social}.
-Essa gama de aplicações está relacionada com a base disciplinar dos pesquisadores,
-envolvendo pessoas de áreas como Física, Sociologia, Ciência Política, Economia,
-Psicologia Social, dentre outras, o que nos permite considerar a área como um
-subgrupo da Sociofísica \cite{galam1982sociophysics,galam2012sociophysics}.
+Essa gama de aplicações está relacionada com a base disciplinar dos
+pesquisadores, envolvendo pessoas de áreas como Física, Sociologia, Ciência
+Política, Economia, Psicologia Social, dentre outras, o que nos permite
+considerar a área como um subgrupo da Sociofísica
+\cite{galam1982sociophysics,galam2012sociophysics}.
 
 
 \section{Modelagem Baseada em Agentes e Dinâmicas de Opinião}
@@ -49,7 +50,7 @@ que cada cada agente \(i\) tem. Os estados dos agentes são os valores de seus
 atributos num determinado tempo \(t\). Já as configurações são as coleções de
 todos os estados dos agentes num modelo.
 
-ABM é uma técnica flexível: podemos construir modelos ``metafóricos'' com
+ABM é uma técnica flexível: podemos construir modelos metafóricos com
 objetivo de auxiliar o desenvolvimento de intuição segundo a elucidação de
 princípios; ou de alta-fidelidade, com dezenas de atributos e um
 ambiente incluindo casas, escolas, sistemas de transporte, dentre outros, com o
@@ -78,14 +79,14 @@ propriedades típicas:
   acaso, ABMs são amplamente usados em OD
   \cite{castellano2012social,flache2017}. \todo[inline,color =
   yellow!10]{Explicar melhor isso, pegar a referencia dada por carlos; falar em
-    abordagem bottom-up.}
+    abordagem bottom-up. \textit{managing business complexity a referencia}}
 
   Que elementos constituem os modelos de OD ? Podemos delimitar um modelo de
-  dinâmicas de opinião da seguinte forma: agentes,conectados, possuem opiniões
+  dinâmicas de opinião da seguinte forma: agentes conectados possuem opiniões
   como variáveis e interagem segundo regras que explicam a mudança ou manutenção
   das opiniões individuais sob efeito da interação com outros agentes ou outras
   fontes (como a mídia) \cite{sirbu2017opinion}. Os agentes num modelo em OD têm
-  então : uma \textit{opinião}; uma \textit{estrutura de interação}; e uma
+  então: uma \textit{opinião}; uma \textit{estrutura de interação}; e uma
   \textit{regra de atualização} de sua opinião.
 
 
@@ -115,8 +116,8 @@ propriedades típicas:
     à uma transição de fase, a uma mudança de comportamento qualitativo do
     sistema. Sendo assim, é aplicado em vários contextos além da sua concepção
     original, como mercados financeiros, sistemas ecológicos, e dinâmicas de
-    opinião \cite{sole2011phase}}. Neles, variáveis discretas, \textit{spins},
-  com valores $s = \pm 1$, estão localizadas num grafo, e têm uma tendência a
+    opinião \cite{sole2011phase}}. Nestes, variáveis discretas, \textit{spins},
+  com valores $s = \pm 1$, estão localizadas num grafo e têm uma tendência a
   alinhar-se com seus vizinhos: se a maioria tem \(s = + 1 \) o spin muda seu
   valor para \(+1\); se a maioria tem \(s = -1 \) o spin muda seu valor para
   \(-1\); se houver empate o spin muda seu valor com probabilidade
@@ -125,17 +126,18 @@ propriedades típicas:
   os valores \(+1\) ou \(-1\); um agente interage com todos seus vizinhos por
   passo de tempo; ele assume a opinião da maioria deles.
 
-  Um modelo parecido com o anterior é o ``Voter'' \cite{holley1975ergodic}. Nele
+  Um modelo parecido com o anterior é o ``Voter'' \cite{holley1975ergodic}. Neste
   cada agente tem uma opinião binária \(\pm\) 1 ; e a cada passo um agente é
   selecionado aleatoriamente e assume a opinião de algum de seus vizinhos.
-  Difere do modelo anterior, portanto, na regra de interação, díade ao invés do
-  grupo inteiro, e de atualização, assume o valor do vizinho ao invés da maioria
-  deles.
+  Difere do modelo anterior, portanto, na regra de interação (díade ao invés do
+  grupo inteiro) e de atualização (assume o valor do vizinho ao invés da maioria
+  deles).
 
 
-  Já no modelo da Regra de Maioria  a interação é : a cada
-  ``tick'' um grupo de tamanho \textit{r} é selecionado aleatoriamente e todos
-  os agentes mudam sua opinião para a opinião da maioria do grupo
+  Já no modelo da Regra de Maioria a interação é : a cada
+  ``tick''\todo[color=yellow!10]{Explicar o que é isso.Ver referencias} um grupo
+  de tamanho \textit{r} é selecionado aleatoriamente e todos os agentes mudam
+  sua opinião para a opinião da maioria do grupo
   \cite{galam1990social,galam2012sociophysics}. O tamanho \textit{r} pode ser
   fixo ou ser tirado de alguma distribuição a cada passo. Se \textit{r} for par
   podem ocorrer empates nos grupos, de forma que ou o grupo escolhe uma das
@@ -144,7 +146,7 @@ propriedades típicas:
   \cite{galam2012sociophysics, galam1986majority}.
 
   O Modelo Sznajd também é bastante discutido na literatura
-  \cite{sznajd2000opinion, sirbu2017opinion,castellano2012social}. Nele cada
+  \cite{sznajd2000opinion, sirbu2017opinion,castellano2012social}. Neste cada
   agente têm exatamente dois vizinhos, em uma grade unidimensional. A cada passo
   um par $ij$ de vizinhos é selecionado e se sua opinião for igual os outros
   vizinhos de \(i\) e \(j\) mudam a opinião para a opinião de convergência. Se
@@ -173,19 +175,19 @@ propriedades típicas:
   redução de suas diferenças \cite{flache2017}.
 
 
-Um outro modelo canônico de assimilação enviesada é o Modelo de
-Deffuant-Weisbuch \cite{deffuant2000mixing}. Nele cada agente \(i\) tem opinião
-inicial \( o_i \in [0,1]\). Dois agentes são escolhidos aleatoriamente, e \(i\) é
-influenciado por \(j\) se \(| o_i - o_j| < \epsilon\). Se isso ocorrer suas opiniões se
-aproximam de acordo com um parâmetro $0 < \mu< \leq 0.5$, de forma que: $o_{i,t+1} =
-o_{it} + \mu(o_{jt} - o_{it})$. Esse modelo é particularmente relevante para o
-presente trabalho, por duas razões: a opinião é contínua, assim como a
-representação das ``utilidades'' dos agentes em Teoria Política Espacial
-\footnote{Na verdade, ligar a literatura de OD com funções de utilidade em
-  economia e com a noção geométrica de política é a justificativa dada por
-  \citeonline{deffuant2000mixing} para considerar opiniões como contínuas.}; e
-\(\epsilon\) pode ser interpretado como parte da regra de atualização, o que faz modelo
-os agentes tenham viés de confirmação.
+  Um outro modelo de assimilação enviesada é o Modelo de Deffuant-Weisbuch
+  \cite{deffuant2000mixing}. Nele cada agente \(i\) tem opinião inicial \( o_i \in
+  [0,1]\). Dois agentes são escolhidos aleatoriamente, e \(i\) é influenciado
+  por \(j\) se \(| o_i - o_j| < \epsilon\). Se isso ocorrer suas opiniões se aproximam
+  de acordo com um parâmetro $0 < \mu< \leq 0.5$, de forma que: $o_{i,t+1} = o_{it} +
+  \mu(o_{jt} - o_{it})$. Esse modelo é particularmente relevante para o presente
+  trabalho, por duas razões: a opinião é contínua, assim como a representação
+  das ``utilidades'' dos agentes em Teoria Política Espacial \footnote{Na
+    verdade, ligar a literatura de OD com funções de utilidade em economia e com
+    a noção geométrica de política é a justificativa dada por
+    \citeonline{deffuant2000mixing} para considerar opiniões como contínuas.}; e
+  \(\epsilon\) pode ser interpretado como parte da regra de atualização, o que faz
+  modelo os agentes tenham viés de confirmação.
 
 Quando \(\epsilon\) é interpretado como parte da regra de interação temos o princípio
 da homofilia: padrões estruturais de interação social levam pessoas a ter maior
@@ -211,7 +213,7 @@ opinião pública \cite{bartels2002beyond, flynn2017nature,
 
 Como lembra Dirk Helbing, não existe uma única forma de modelar agentes
 interagindo em sistemas sociais complexos \cite{helbing2010pluralistic}. Os
-modelos canônicos em OD têm uma abordagem que Helbing chama de
+modelos clássicos em OD têm uma abordagem que Helbing chama de
 \textit{fisicalista}: abstraem as interações sociais ao ponto delas poderem ser
 estudadas como um modelo de ``partículas''. Em OD essa abordagem é refletida na
 forma como se modela a regra de atualização: abstrai-se o processamento de
@@ -234,7 +236,7 @@ ilustrado na Figura \ref{fig4} , esses modelos estão posicionados no extremo op
 modelos fisicalistas. Enquanto os modelos fisicalistas abstraem totalmente o que
 se passa na cabeça dos agentes os modelos (neuro)cognitivos buscam representar a
 arquitetura cognitiva que alicerça as atitudes e crenças
-deles\cite{kim2010computational}.
+deles \cite{kim2010computational}.
 
 \begin{figure}[H]
   \centering
@@ -248,18 +250,18 @@ influência social estão micro-fundamentados em processos mentais subjacentes, 
 são um fronte dentre os trabalhos que buscam aumentar o realismo das simulações
 sociais \cite{jager2017,epstein2014agent_zero, conte2013minding}. Contudo, como
 ressalta Jonathan Bendor, na medida em que a Ciência Política busca modelar
-macrofenômenos ela ``deve ser mais implacável em relação à micropressupostos do
-que microcampos relacionados (como ciência cognitiva)''
+macrofenômenos ela ``deve ser mais implacável em relação aos micropressupostos
+do que microcampos relacionados (como ciência cognitiva)''
 \cite[p.45]{bendor2010bounded}. Quanto mais complicados nossos modelos menor
 controle temos sobre qual o elemento responsável pelo seus resultados, e mais
 dados precisamos para a sua calibração e validação \cite{de2005computational}.
-Como  argumentado por \citeonline{zaller1992nature}, a estratégia
-metodológica para modelar a opinião pública, um fenômeno social de larga escala,
-envolve incorporar no modelo somente os aspectos do processamento de informação
-que têm relevância para a compreensão das dinâmicas do fenômeno, ao invés de
-buscar desenvolver modelos que aproximam o mais próximo o possível os detalhes
-da mente humana\footnote{No contexto da análise institucional um argumento
-  equivalente é feito por \citeonline{ostrom1990governing}.}.
+Como argumentado por \citeonline{zaller1992nature}, a estratégia metodológica
+para modelar a opinião pública, um fenômeno social de larga escala, envolve
+incorporar no modelo somente os aspectos do processamento de informação que têm
+relevância para a compreensão das dinâmicas do fenômeno, ao invés de buscar
+desenvolver modelos que aproximam o mais próximo o possível os detalhes da mente
+humana\footnote{No contexto da análise institucional um argumento equivalente é
+  feito por \citeonline{ostrom1990governing}.}.
 
 
 \citeonline{martins2012bayesian} apresenta um \textit{framework} para modelar
@@ -399,9 +401,9 @@ f_i(\theta) = \frac{1}{\sqrt{2 \pi} \sigma_i} e^{-
       \end{align}
 
       Como demonstra \citeonline{martins2009bayesian} essa equação faz com que
-      com o passar do tempo os agentes fiquem mais certos de suas opiniões. Isso
-      é relevante do ponto de vista da modelagem generativa de opinião pública.
-      \citeonline{kuklinski2000misinformation} encontra que um grande
+      os agentes fiquem mais certos de suas opiniões. Isso é relevante do ponto
+      de vista da modelagem generativa de opinião pública.
+      \citeonline{kuklinski2000misinformation} encontram que um grande
       percentual, demonstrando na Figura \ref{fig5}, dos respondentes em um
       \textit{survey} por telefone sobre questões factuais da agenda política
       americana da época são confiantes em suas crenças. Ademais, encontram uma
