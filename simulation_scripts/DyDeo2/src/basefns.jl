@@ -21,6 +21,8 @@ var. =#
 
 #Structs for Agents and Beliefs --------------------
 
+
+
 abstract type  AbstractAgent end
 abstract type AbstractBelief end 
 
@@ -86,21 +88,10 @@ function add_neighbors!(population, nw)
     end
 end
 
-function creategraphfrompop(population)
+function creategraphfrompop(population, graphcreator)
     graphsize = length(population)
-    nw = CompleteGraph(graphsize)
+    nw = graphcreator(graphsize)
     return(nw)
-end
-
-
-function setmgproperties!(mg::MetaGraph, population)
-    popcopy = deepcopy(population)
-    for i in popcopy
-        set_props!(mg, i.id, Dict(:id => i.id, 
-                :ideology => i.ideo,
-                :idealpoint => i.idealpoint, 
-                :neighbors => i.neighbors))
-    end
 end
 
 
@@ -110,17 +101,16 @@ end
 
 # Taking the information from mg -------------------------------------- 
 
-function getjtointeract(i::AbstractAgent, metagraph, population)
-    whichj = rand(props(metagraph, i.id)[:neighbors])
+function getjtointeract(i::AbstractAgent,  population)
+    whichj = rand(i.neighbors)
     j = population[whichj]
 end
 
 #Input = two agents; Output = a issue and associated beliefs
-function pick_issuebelief(i::AbstractAgent, j::AbstractAgent, 
-        n_issues::Integer, mg::MetaGraph)
-    whichissue= rand(1:n_issues)
-    i_belief = props(mg,i.id)[:ideology][whichissue]
-    j_belief = props(mg,j.id)[:ideology][whichissue]
+function pick_issuebelief(i::AbstractAgent, j::AbstractAgent)
+    whichissue= rand(1:length(i.ideo))
+    i_belief = i.ideo[whichissue]
+    j_belief = i.ideo[whichissue]
     return(whichissue, i_belief, j_belief)
 end
 
