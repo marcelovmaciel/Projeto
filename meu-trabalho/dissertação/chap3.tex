@@ -25,49 +25,80 @@ pontos ideais, contudo, não precisamos especificar qual a função de utilidade
 centrada nele, já que não é interesse do trabalho modelar a tomada de decisão
 que o pressuporia, por exemplo a escolha de um candidato.
 
+Pensar os agentes como tendo ideais derivados de posicionamentos em outras
+questões tem por base dois fundamentos. Um fundamento realista: esse elemento a
+mais, em comparativo aos modelos de \citeonline{deffuant2000mixing} e de
+\citeonline{martins2012bayesian}, nos permite ser mais condizentes com a
+literatura discutida no Capítulo 1 em contraposição à equiparação do ponto ideal
+a uma opinião. Isto é, os pontos ideais dos agentes vão mudar ao longo da
+simulação, mas isso ocorre devido à mudança nas suas crenças em questões. É uma
+mudança assim indireta e condizente com a noção de que a ideologia do agente é
+um atributo extrínseco. Ademais temos um fundamento instrumentalista: essa
+modificação tem por implicação a capacidade de adicionar outros elementos à
+dinâmica do modelo \footnote{Para a distinção entre instrumentalismo e realismo
+  ver \citeonline{caldwell1980critique}.}.
+
+
+\todo[inline, color = yellow!10]{ O que eu não estou conseguindo explicar é que
+  a ideologia é um sumário em posições e seguindo o que discuti no chap1 as
+  pessoas mudam de opinião a partir de discussoes sobre temas particulares,
+  aborto, armas, segurança, economia,  E NÃO uma discussao digamos esquerda x
+  direita, liberal x conservador. É nesse sentido que o  modelo é mais
+  realista... Ninguem vira mais de esquerda pq teve um debate continuo se ser
+  mais ou menos de esquerda é o correto, mas a partir do debate nas questões
+  particulares que depois de agregadas dizem se a pessoa é mais de esquerda ou
+  mais de direita.... }
+
+
 Sendo assim, cada agente vai ter por atributo um perfil ideológico \(I\), onde
 \(I_i = (f_i(\theta_1), \ldots, f_i(\theta_n)) \). Os elementos de \(I\) são as crenças dos
 agentes em cada questão. Seguindo \citeonline{martins2012bayesian}, vamos pressupor
 que os agentes têm uma probabilidade subjetiva sobre cada questão \(\theta\), e uma
 opinião \( o_i = E_i[\theta]\) e incerteza \( \sigma_i^2 = E[\sigma^2] - E_ i[\theta]^2\)
-associados.
-
-O ponto ideal \(x\) do agente vai ser a média aritmética das opiniões dele em
+associados.O ponto ideal \(x\) do agente vai ser a média aritmética das opiniões dele em
 \(I\)\footnote{Em trabalhos futuros, é interessante pensar o ponto ideal como a
   média ponderada. Adicionar peso a cada questão é uma forma de modelar a
-  \textit{saliência} da questão para os agentes. A saliência de uma questão para
-  um indivíduo é a importância que ele dá a ela \cite{munger2015choosing}.}. A
-regra de interação é em díades. A cada passo no tempo um dos agentes vai ser
-escolhido e vai interagir com um de seus vizinhos. A interação é assim
-assíncrona e sequencial
-\cite{wilensky2015introduction}\todo[color=yellow!10]{Ver melhor isso.}. A
-dependência dos resultados em relação ao número de agentes e de questões que os
-agentes têm em mente vai ser explorada, assim como topologia de interação dos
-agentes, que a princípio vai ser um grafo completo.
+ importância que o indivíduo dá a ela. Essa é uma implicação possível ao
+ pensarmos o agente em termos de perfil ideológico ao invés de uma única opinião.}.
+
+A regra de interação é em díades. A cada passo no tempo um dos agentes vai ser
+escolhido e vai interagir com um de seus vizinhos, a princípio num grafo
+completo. A interação é assim assíncrona (os agentes atualizam seus atributos em
+momentos distintos) e sequencial (um agente atualiza por vez)
+\cite{wilensky2015introduction}. A dependência dos resultados em relação ao
+número de agentes e de questões que os agentes têm em mente vai ser explorada.
 
 Quando os agentes interagem \(i\) atualiza sua opinião e incerteza em
 alguma\footnote{Qual questão vão ``debater'' vai ser definido por meio de um
-  sorteio sem viés. Em trabalhos subsequentes é interessante considerar um viés,
-  o que representaria saliência no sentido dado por
-  \citeonline{zaller1992simple}: qual questão os agentes estão dando atenção,
-  isto é, qual questão está mais acessível na memória deles.} questão segundo as
-equações 2.3 e 2.5. Vamos considerar duas variantes de \(p\): na primeira ele
-vai ser uma variável global \(0 < p < 1 \), a mesma para todos os agentes. Na
-segunda, vamos considerar possibilidade do agente levar em conta ou não a
-opinião do vizinho em uma questão em particular a partir do conhecimento do
-ponto ideal, na dimensão, do outro agente, de forma que: \(p_{ij}(t) = 1 -
-|x_i(t) - x_j(t)|\).
+  sorteio sem viés. Uma outra implicação possível, a ser adicionada em trabalhos
+  futuros, é considerar um viés nessa seleção, o que representaria saliência no
+  sentido dado por \citeonline{zaller1992simple}: qual questão os agentes estão
+  dando atenção, isto é, qual questão está mais acessível na memória deles.}
+questão segundo as equações 2.3 e 2.5. Vamos considerar duas variantes de \(p\):
+na primeira ele vai ser uma variável global \(0 < p < 1 \), a mesma para todos
+os agentes, assim como em \citeonline{martins2009bayesian}; na segunda,
+consideramos a possibilidade de que os agentes levem em conta ou não a opinião
+do vizinho em uma questão em particular a partir do conhecimento do ponto ideal
+do outro agente, de forma que: \(p_{ij}(t) = 1 - |x_i(t) - x_j(t)|\). Isto é,
+nesse \(p\) alternativo o agente \(i\) vai considerar a verossimilhança de um
+valor declarado pelo seu vizinho \(j\) segundo um \(p\) derivado da média do
+posicionamento ideológico de \(j\). Por exemplo, suponha que o agente \(j\) é um
+eleitor conservador. O agente \(i\) vai levar
+em conta essa informação geral sobre \(j\) para considerar a probabilidade do
+agente \(j\) estar falando algo correto em questões particulares.
 
 Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
 segundo uma probabilidade \(\rho\). Do ponto de vista teórico, estamos considerando
 a possibilidade de fatores não relacionados à influência social levarem o agente
 a mudar seu posicionamento sobre questões \cite{flache2017, lorenz2017modeling}.
 Do ponto de vista metodológico, \citeonline{macy2015signal} argumenta que
-adicionar ruído contribui para a robustez dos resultados de modelos teóricos. 
+adicionar ruído contribui para a robustez dos resultados de modelos
+teóricos.\todo{discutir mais isso do ruido} 
 
 \section{Parâmetros-Chave}
-\todo[inline,color = yellow!10]{Justificar essa escolha de parêmetros.}
-Os parâmetros-chave para configuração do modelo são:
+
+Os parâmetros-chave para configuração do modelo, cujos valores seguem
+\citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e \citeonline{lorenz2017modeling},  são:
 \begin{itemize}
 \item A população de \(500 < N < 10000\) agentes;
 \item O número de questões \(1 \leq n \leq 10\); 
