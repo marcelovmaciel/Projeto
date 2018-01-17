@@ -12,9 +12,6 @@ This includes:
 # Types needed for the simulation
 
 
-
-
-
 @with_kw struct DyDeoParam{R<:Real}
     n_issues::Int = 1
     size_nw::Int = 2
@@ -23,80 +20,60 @@ This includes:
     time::Int = 2
     ρ::R = 0.01
     agent_type::String = "mutating o"
+    graphcreator = CompleteGraph
     
 end
 
 ## Information Storing Fns
 #I'm going to initialize a dataframe and update it at each time step.
 
-# going to think about the dataframe for v2. put mean and std uncertainty??
-function init_df(nw)
-    copypop = deepcopy(nw)
+
+function init_df(pop)
     df = DataFrame(time = Integer[], id  = Integer[], ideology = Array[], ideal_point = Real[], neighbors = Array[])
-    for agent in copypop
+    for agent in pop
         time = 0 
         push!(df,[time agent.id  [agent.ideo] agent.idealpoint [agent.neighbors]]) 
     end
     return df
 end
 
-function update_df!(nw,df,time)
-    copypop = deepcopy(nw)
-    for agent in copypop
+function update_df!(pop,df,time)
+    for agent in pop
         push!(df,[time  agent.id  [agent.ideo] agent.idealpoint [agent.neighbors]])
     end
     return(df)
 end
 
 #= Running Functions
-
-This includes the following functions:
-* Fn to update all the agents in population' ; 
-* Fns to run the simulation:
- * Initialize the population and the metagrah;
- * Initialize the dataframe;
- * Update population';
- * Then update mg;
- * Then update the dataframe.
- 
-The output is a dataframe with all the data I need to analyze the simulation afterwards. =#
+=#
 
 
-function pop_update!(population,metagraph,n_issues,p, σ, ρ)
-    for agent in population
-        updateibelief!(agent,population,metagraph,n_issues,p)
-        ρ_update!(agent, σ, n_issues, ρ)
-    end
+function agents_update!(population,p, σ, ρ)
+    updateibelief!(rand(population),population,p)
+    ρ_update!(rand(population), σ,ρ)
     return(population)
 end
 
-
-
-function create_initdf(agent_type, σ, n_issues, size_nw)
+function create_initdf(agent_type, σ, n_issues, size_nw,graphcreator)
     pop = listofagents(agent_type, σ, n_issues, size_nw)
-    g = creategraphfrompop(pop)
+    g = creategraphfrompop(pop,graphcreator)
     add_neighbors!(pop,g)
-    mg = MetaGraph(g)
-    setmgproperties!(mg,pop)
     df = init_df(pop)
-    return(df,mg,pop)
+    return(df,pop)
 end
 
-function runsim!(pop,df,mg,n_issues,p,σ,ρ,time)
+function runsim!(pop,df,p,σ,ρ,time)
     @showprogress 1 "Computing..." for step in 1:time
-        pop_update!(pop, mg, n_issues, p, σ, ρ)
-        setmgproperties!(mg,pop)
+        agents_update!(pop,p, σ, ρ)
         update_df!(pop,df,step)
     end 
     return(df)
 end
 
-
-
 function one_run(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type = pa
-    df,mg,pop = create_initdf(agent_type, σ, n_issues, size_nw)
-    df = runsim!(pop,df,mg,n_issues,p,σ,ρ,time)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = pa
+    df,pop = create_initdf(agent_type, σ, n_issues, size_nw,graphcreator)
+    df = runsim!(pop,df,p,σ,ρ,time)
     return(df)
 end
     

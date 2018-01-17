@@ -157,35 +157,33 @@ function update_oσ!(i::AbstractAgent,issue_belief::Integer,
 end
 
 ##--- This is the main update fn !!!! 
-function updateibelief!(i::Agent_o, population, metagraph::MetaGraph,
-        n_issues::Integer, p::AbstractFloat )
+function updateibelief!(i::Agent_o, population, p::AbstractFloat )
     
-    j = getjtointeract(i,metagraph, population)
-    whichissue,ibelief,jbelief = pick_issuebelief(i,j, 
-        n_issues, metagraph)
+    j = getjtointeract(i,population)
+    whichissue,ibelief,jbelief = pick_issuebelief(i,j)
     pos_o = calc_posterior_o(ibelief,jbelief, p)
     update_o!(i,whichissue,pos_o)      
 end
 
-function updateibelief!(i::Agent_oσ, population, metagraph::MetaGraph,
-        n_issues::Integer, p::AbstractFloat )
+
+function updateibelief!(i::Agent_oσ, population,p::AbstractFloat )
     
-    j = getjtointeract(i,metagraph, population)
-    whichissue,ibelief,jbelief = pick_issuebelief(i,j, 
-        n_issues, metagraph)
+    j = getjtointeract(i, population)
+    whichissue,ibelief,jbelief = pick_issuebelief(i,j)
     pos_o = calc_posterior_o(ibelief,jbelief, p)
     pos_σ = calc_pos_uncertainty(ibelief, jbelief, p)
     update_oσ!(i,whichissue,pos_o, pos_σ)      
 end
+/
 
-function ρ_update!(i::AbstractAgent,  σ::AbstractFloat, 
-        n_issues::Integer, ρ::AbstractFloat)
-    # ρ > 1 && throw(DomainError("ρ bigger than 1 doesn't make sense"))
+
+function ρ_update!(i::AbstractAgent,  σ::AbstractFloat, ρ::AbstractFloat)
+
     ξ = rand(Uniform())
-    which_issue = rand(1:n_issues)
+    whichissue = rand(1:length(i.ideo))
     if ξ < ρ
-        i.ideo[which_issue].o = rand(Uniform())
-        i.ideo[which_issue].σ = σ
+        i.ideo[whichissue].o = rand(Uniform())
+        i.ideo[whichissue].σ = σ
         newidealpoint = create_idealpoint(i.ideo)
         i.idealpoint = newidealpoint
     end
