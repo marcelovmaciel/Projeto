@@ -99,8 +99,6 @@ end
 =#
 
 
-# Taking the information from mg -------------------------------------- 
-
 function getjtointeract(i::AbstractAgent,  population)
     whichj = rand(i.neighbors)
     j = population[whichj]
@@ -110,7 +108,7 @@ end
 function pick_issuebelief(i::AbstractAgent, j::AbstractAgent)
     whichissue= rand(1:length(i.ideo))
     i_belief = i.ideo[whichissue]
-    j_belief = i.ideo[whichissue]
+    j_belief = j.ideo[whichissue]
     return(whichissue, i_belief, j_belief)
 end
 

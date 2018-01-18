@@ -1,9 +1,13 @@
-include("../simulation_scripts/DyDeo2/src/DyDeo.jl")
+include("../simulation_scripts/DyDeo2/src/DyDeo2.jl")
 
 using DyDeo2
+const dd = DyDeo2
 
 inspectdr(legend = false)
-mkimdir()
+dd.mkdirs("image")
+dd.mkdirs("data")
+
+
 #=
 topology = Complete Graph
 agent_type = "mutating o"  or "mutating o and σ"
@@ -27,10 +31,10 @@ df = one_run(para);
 =#
 
 param = DyDeoParam(agent_type = "mutating o",
-                   time = 5000, size_nw = 500,
-                   n_issues = 10, p = 0.9, σ = 0.3, ρ = 0.0)
+                   time = 20000, size_nw = 500,
+                   n_issues = 1, p = 0.9, σ = 0.5, ρ = 0.0)
 
-df = one_run(param)
+df = one_run(param);
     
 time_plot(df, param.n_issues, 
           param.size_nw, param.p,
@@ -39,3 +43,18 @@ println(" \n done")
 
 
 
+function multi_run()
+    for ρ in [0.0001, 0.001]
+        param = DyDeoParam(agent_type = "mutating o",
+                   time = 20000, size_nw = 500,
+                           n_issues = 1, p = 0.9, σ = 0.5, ρ = ρ)
+        df = one_run(param);
+    
+        time_plot(df, param.n_issues, 
+                  param.size_nw, param.p,
+                  param.σ, param.ρ, param.agent_type)
+        println(" \n done")
+    end
+end
+
+multi_run()

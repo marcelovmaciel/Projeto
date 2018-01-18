@@ -1,0 +1,49 @@
+% While LaTeX prints out all nice and pretty, most of the time we stare at the PDF on our computer screen
+% Therefore, we should have a color scheme and fonts that are easy on the eye on a screen.
+% So I took an idea from my programming IDE's and here is Solarized Dark LaTeX
+
+% Created by Christina Lee, christina.lee@gmail.com
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+% This allows us to add our colors
+\usepackage{xcolor}
+
+%just input either solarized light or dark to change between the colors
+%\input{solarizeddark.tex}
+\input{solarizeddark.tex}
+
+\input{styling.tex}
+
+
+\title{\textcolor{red}{A fazer da dissertação}}
+\author{Marcelo Veloso Maciel}
+\date{}
+
+\begin{document}
+
+% Global Page color base03
+\pagecolor{base03}
+% Global Text color base1
+\color{base1}
+
+\maketitle
+
+
+\section*{A fazer geral}
+\begin{itemize}
+\item Modularizar a geração dos dados e a geração de gráficos;
+\item Ler sobre analise de ABMs (ver focus modelling1)
+\end{itemize}
+
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
