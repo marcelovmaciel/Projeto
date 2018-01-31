@@ -1,4 +1,3 @@
-
 \section{Entidades e Processos}
 
 O trabalho tem por propósito explorar a emergência de distribuições de
@@ -6,7 +5,9 @@ preferências fundamentando-se no diálogo entre a Teoria Política Espacial e a
 área de Dinâmicas de Opinião. Não temos por propósito um modelo que seja
 preditivo, mas que capture microfundamentos relevantes, como viés de confirmação
 e confiança nas crenças, e gere distribuições de preferência plausíveis, no
-sentido delimitado no Capítulo 1.
+sentido delimitado no Capítulo 1. O trabalho propõe, portanto, um modelo que
+abra a caixa-preta do processo de socialização que leva a cristalização de
+direcionamentos, ou posicionamentos, ideológicos.
 
 A Teoria Geométrica de política modela as preferências dos agentes como relações
 em um espaço contínuo, as quais, em ambientes macro, são construídas por meio da
@@ -15,39 +16,37 @@ agentes em diferentes questões (\textit{issues}). As preferências dos agentes
 numa dimensão são, assim, o sumário de um \textit{perfil ideológico} do agente
 sobre questões.
 
-Vamos assumir que a preferência do agente é centrada num ponto ideal derivado
-das opiniões dele nessas questões. Assumimos, portanto, que as preferências dos
-agentes na dimensão são de pico-único, o pressuposto modal, desde
-\citeonline{black1958theory}, na literatura em modelos fortemente espaciais, e
-em trabalhos empíricos em estimação de pontos ideais \cite{carroll2013structure,
-  armstrong2014analyzing, schofield1998nash}. Para gerar a distribuição de
-pontos ideais, contudo, não precisamos especificar qual a função de utilidade
-centrada nele, já que não é interesse do trabalho modelar a tomada de decisão
-que o pressuporia, por exemplo a escolha de um candidato.
+Para gerar a distribuição de pontos ideais, contudo, não precisamos especificar
+qual a função de utilidade centrada nele, já que não é interesse do trabalho
+modelar a tomada de decisão que o pressuporia, por exemplo a escolha de um
+candidato. Como discutido no Capítulo 1, é possível atribuir diferentes funções
+de utilidade aos agentes, mas o pressuposto modal é que a função vai ter um
+máximo e será simétrica \cite{eguia2013spatial, carroll2013structure}. Vamos
+fazer uso desse pressuposto e modelar somente a emergência do ponto preferido a
+partir da interação com outros agentes em várias questões. Como não é um modelo
+de tomada de decisão, mas sim um modelo de surgimento de posicionamentos
+ideológicos, não é necessário adicionar mais um elemento, funções de utilidade,
+que simplesmente alargaria o espaço de parâmetros e não seria utilizado na
+simulação. Contudo, modelos futuros que busquem ligar, por exemplo, a
+distribuição de preferências com a escolha de candidatos/partidos poderiam fazer
+essa atribuição.
+
+%Assumimos, portanto, que as preferências dos
+%agentes na dimensão são de pico-único, o pressuposto modal, desde
+%\citeonline{black1958theory}, na literatura em modelos fortemente espaciais, e
+%em trabalhos empíricos em estimação de pontos ideais \cite{carroll2013structure,
+% armstrong2014analyzing, schofield1998nash}.
 
 Pensar os agentes como tendo ideais derivados de posicionamentos em outras
-questões tem por base dois fundamentos. Um fundamento realista: esse elemento a
-mais, em comparativo aos modelos de \citeonline{deffuant2000mixing} e de
+questões tem por base dois fundamentos. O primeiro é que esse elemento a mais, em
+comparativo aos modelos de \citeonline{deffuant2000mixing} e de
 \citeonline{martins2012bayesian}, nos permite ser mais condizentes com a
 literatura discutida no Capítulo 1 em contraposição à equiparação do ponto ideal
 a uma opinião. Isto é, os pontos ideais dos agentes vão mudar ao longo da
-simulação, mas isso ocorre devido à mudança nas suas crenças em questões. É uma
+simulação, mas isso ocorre devido à mudança nas suas crenças. É uma
 mudança assim indireta e condizente com a noção de que a ideologia do agente é
-um atributo extrínseco. Ademais temos um fundamento instrumentalista: essa
-modificação tem por implicação a capacidade de adicionar outros elementos à
-dinâmica do modelo \footnote{Para a distinção entre instrumentalismo e realismo
-  ver \citeonline{caldwell1980critique}.}.
-
-
-\todo[inline, color = yellow!10]{ O que eu não estou conseguindo explicar é que
-  a ideologia é um sumário em posições e seguindo o que discuti no chap1 as
-  pessoas mudam de opinião a partir de discussoes sobre temas particulares,
-  aborto, armas, segurança, economia,  E NÃO uma discussao digamos esquerda x
-  direita, liberal x conservador. É nesse sentido que o  modelo é mais
-  realista... Ninguem vira mais de esquerda pq teve um debate continuo se ser
-  mais ou menos de esquerda é o correto, mas a partir do debate nas questões
-  particulares que depois de agregadas dizem se a pessoa é mais de esquerda ou
-  mais de direita.... }
+um atributo extrínseco. O segundo fundamento é que essa modificação tem por
+implicação a capacidade de adicionar outros elementos à dinâmica do modelo.
 
 
 Sendo assim, cada agente vai ter por atributo um perfil ideológico \(I\), onde
@@ -55,18 +54,22 @@ Sendo assim, cada agente vai ter por atributo um perfil ideológico \(I\), onde
 agentes em cada questão. Seguindo \citeonline{martins2012bayesian}, vamos pressupor
 que os agentes têm uma probabilidade subjetiva sobre cada questão \(\theta\), e uma
 opinião \( o_i = E_i[\theta]\) e incerteza \( \sigma_i^2 = E[\sigma^2] - E_ i[\theta]^2\)
-associados.O ponto ideal \(x\) do agente vai ser a média aritmética das opiniões dele em
+associados. O ponto ideal \(x\) do agente vai ser a média aritmética das opiniões dele em
 \(I\)\footnote{Em trabalhos futuros, é interessante pensar o ponto ideal como a
   média ponderada. Adicionar peso a cada questão é uma forma de modelar a
  importância que o indivíduo dá a ela. Essa é uma implicação possível ao
- pensarmos o agente em termos de perfil ideológico ao invés de uma única opinião.}.
+ pensarmos o agente em termos de perfil ideológico ao invés de uma única
+ opinião.}. Do ponto de vista da implementação esse atributo é reduzido a um
+conjunto de pares \(I_i = ((o_1,\sigma_1^2), \ldots, (o_n, \sigma_n^2) )\), retirados de
+distribuições uniformes independentes, e o posicionamento ideológico do agente é
+dado por \(x_i = \sum_{k=1}^{n} o_k\).
 
 A regra de interação é em díades. A cada passo no tempo um dos agentes vai ser
 escolhido e vai interagir com um de seus vizinhos, a princípio num grafo
 completo. A interação é assim assíncrona (os agentes atualizam seus atributos em
 momentos distintos) e sequencial (um agente atualiza por vez)
 \cite{wilensky2015introduction}. A dependência dos resultados em relação ao
-número de agentes e de questões que os agentes têm em mente vai ser explorada.
+número de agentes e de crenças vai ser explorada.
 
 Quando os agentes interagem \(i\) atualiza sua opinião e incerteza em
 alguma\footnote{Qual questão vão ``debater'' vai ser definido por meio de um
@@ -127,6 +130,7 @@ Os parâmetros-chave para configuração do modelo, cujos valores seguem
 \end{itemize}
 
 
+\section{Metodologia de Análise}
 
 
 
@@ -149,3 +153,9 @@ Os parâmetros-chave para configuração do modelo, cujos valores seguem
 
 
 
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End:
