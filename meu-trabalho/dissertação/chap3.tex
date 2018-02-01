@@ -48,28 +48,36 @@ mudança assim indireta e condizente com a noção de que a ideologia do agente 
 um atributo extrínseco. O segundo fundamento é que essa modificação tem por
 implicação a capacidade de adicionar outros elementos à dinâmica do modelo.
 
+Sendo assim, cada agente na nossa população vai ter por atributo um perfil
+ideológico\footnote{Nisso o modelo aproxima-se do modelo de
+  \citeonline{axelrod1997dissemination}, no qual os agentes tem por atributo um
+  conjunto de traços.} \(I\), onde \(I_i = (f_i(\theta_1), \ldots, f_i(\theta_n)) \). Os
+elementos de \(I\) são as crenças dos agentes em cada questão. Seguindo
+\citeonline{martins2012bayesian}, vamos pressupor que os agentes têm uma
+probabilidade subjetiva sobre cada questão \(\theta\), e uma opinião \( o_i =
+E_i[\theta]\) e incerteza \( \sigma_i^2 = E[\sigma^2] - E_ i[\theta]^2\) associados. O ponto ideal
+\(x\) do agente vai ser a média aritmética\footnote{Em trabalhos futuros, é
+  interessante pensar o ponto ideal como a média ponderada. Adicionar peso a
+  cada questão é uma forma de modelar a importância que o indivíduo dá a ela.
+  Essa é uma implicação possível ao pensarmos o agente em termos de perfil
+  ideológico ao invés de uma única opinião.} das opiniões dele em \(I\). Do
+ponto de vista da implementação o atributo \(I\) é reduzido a um conjunto de
+pares \(I_i = ((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n}, \sigma_{i,n}^2) )\), sendo \(\sigma^2\)
+global e \(o\) retirado de uma distribuição uniforme, e o posicionamento
+ideológico do agente é dado por \(x_i = \frac{1}{n}\sum_{k=1}^{n} o_k\).
 
-Sendo assim, cada agente vai ter por atributo um perfil ideológico \(I\), onde
-\(I_i = (f_i(\theta_1), \ldots, f_i(\theta_n)) \). Os elementos de \(I\) são as crenças dos
-agentes em cada questão. Seguindo \citeonline{martins2012bayesian}, vamos pressupor
-que os agentes têm uma probabilidade subjetiva sobre cada questão \(\theta\), e uma
-opinião \( o_i = E_i[\theta]\) e incerteza \( \sigma_i^2 = E[\sigma^2] - E_ i[\theta]^2\)
-associados. O ponto ideal \(x\) do agente vai ser a média aritmética das opiniões dele em
-\(I\)\footnote{Em trabalhos futuros, é interessante pensar o ponto ideal como a
-  média ponderada. Adicionar peso a cada questão é uma forma de modelar a
- importância que o indivíduo dá a ela. Essa é uma implicação possível ao
- pensarmos o agente em termos de perfil ideológico ao invés de uma única
- opinião.}. Do ponto de vista da implementação esse atributo é reduzido a um
-conjunto de pares \(I_i = ((o_1,\sigma_1^2), \ldots, (o_n, \sigma_n^2) )\), retirados de
-distribuições uniformes independentes, e o posicionamento ideológico do agente é
-dado por \(x_i = \sum_{k=1}^{n} o_k\).
 
-A regra de interação é em díades. A cada passo no tempo um dos agentes vai ser
-escolhido e vai interagir com um de seus vizinhos, a princípio num grafo
-completo. A interação é assim assíncrona (os agentes atualizam seus atributos em
-momentos distintos) e sequencial (um agente atualiza por vez)
-\cite{wilensky2015introduction}. A dependência dos resultados em relação ao
-número de agentes e de crenças vai ser explorada.
+O tempo é discreto e estamos interessados nas alterações ao longo prazo da
+configuração dos \(x\) sob diferentes combinações de parâmetros, tendo em vista
+as interações dos agentes \cite{acemoglu2011opinion} \footnote{Como vamos
+  definir longo prazo e analisar o modelo é tema da seção metodológica.}. Para
+tal, a regra de interação é em díades. A cada iteração da simulação um dos
+agentes vai ser escolhido e vai interagir com um de seus vizinhos, a princípio
+num grafo completo imposto exogenamente (estabeleço na condição
+  inicial quais os vizinhos). A interação é assim assíncrona (os agentes
+atualizam seus atributos em momentos distintos) e sequencial (um agente atualiza
+por vez) \cite{wilensky2015introduction}. A dependência dos resultados em
+relação ao número de agentes e de crenças vai ser explorada.
 
 Quando os agentes interagem \(i\) atualiza sua opinião e incerteza em
 alguma\footnote{Qual questão vão ``debater'' vai ser definido por meio de um
@@ -77,18 +85,24 @@ alguma\footnote{Qual questão vão ``debater'' vai ser definido por meio de um
   futuros, é considerar um viés nessa seleção, o que representaria saliência no
   sentido dado por \citeonline{zaller1992simple}: qual questão os agentes estão
   dando atenção, isto é, qual questão está mais acessível na memória deles.}
-questão segundo as equações 2.3 e 2.5. Vamos considerar duas variantes de \(p\):
-na primeira ele vai ser uma variável global \(0 < p < 1 \), a mesma para todos
-os agentes, assim como em \citeonline{martins2009bayesian}; na segunda,
-consideramos a possibilidade de que os agentes levem em conta ou não a opinião
-do vizinho em uma questão em particular a partir do conhecimento do ponto ideal
-do outro agente, de forma que: \(p_{ij}(t) = 1 - |x_i(t) - x_j(t)|\). Isto é,
-nesse \(p\) alternativo o agente \(i\) vai considerar a verossimilhança de um
-valor declarado pelo seu vizinho \(j\) segundo um \(p\) derivado da média do
-posicionamento ideológico de \(j\). Por exemplo, suponha que o agente \(j\) é um
-eleitor conservador. O agente \(i\) vai levar
-em conta essa informação geral sobre \(j\) para considerar a probabilidade do
-agente \(j\) estar falando algo correto em questões particulares.
+questão segundo as equações 2.3 e 2.5. Isso significa que existem dois tipos
+possíveis de agente: atualizam somente \(o\) ou atualizam também \(\sigma^2\). Esse é
+um atributo global para cada repetição da simulação\footnote{Onde repetição
+  significa rodar a simulação sob uma semente aleatória \cite{laver2011party}.}.
+
+
+Vamos considerar duas variantes de \(p\): na primeira ele vai ser uma variável
+global \(0 < p < 1 \), a mesma para todos os agentes, assim como em
+\citeonline{martins2009bayesian}; na segunda, consideramos a possibilidade de
+que os agentes levem em conta ou não a opinião do vizinho em uma questão em
+particular a partir do conhecimento do ponto ideal do outro agente, de forma
+que: \(p_{ij}(t) = 1 - |x_i(t) - x_j(t)|\). Isto é, nesse \(p\) alternativo o
+agente \(i\) vai considerar a verossimilhança de um valor declarado pelo seu
+vizinho \(j\) segundo um \(p\) derivado da média do posicionamento ideológico de
+\(j\). Por exemplo, suponha que o agente \(j\) é um eleitor conservador. O
+agente \(i\) vai levar em conta essa informação geral sobre \(j\) para
+considerar a probabilidade do agente \(j\) estar falando algo correto em
+questões particulares.
 
 Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
 segundo uma probabilidade \(\rho\). Do ponto de vista teórico, estamos considerando
@@ -96,20 +110,22 @@ a possibilidade de fatores não relacionados à influência social levarem o age
 a mudar seu posicionamento sobre questões \cite{flache2017, lorenz2017modeling}.
 Do ponto de vista metodológico, \citeonline{macy2015signal} argumenta que
 adicionar ruído contribui para a robustez dos resultados de modelos
-teóricos.\todo{discutir mais isso do ruido} 
+teóricos.\todo[inline,color = yellow]{Vou discutir mais isso do ruido}
+
+
+
 
 \section{Parâmetros-Chave}
 
-Os parâmetros-chave para configuração do modelo, cujos valores seguem
-\citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e \citeonline{lorenz2017modeling},  são:
+Os parâmetros-chave para configuração e inicialização do modelo no tempo \(t =
+0\), cujos valores seguem \citeonline{martins2008continuous},
+\citeonline{deffuant2000mixing} e \citeonline{lorenz2017modeling}, são:
 \begin{itemize}
 \item A população de \(500 < N < 10000\) agentes;
 \item O número de questões \(1 \leq n \leq 10\); 
-\item As opiniões \(0.0< o_i< 1.0\) dos agentes
-  \begin{itemize}
-  \item A opinião dos agentes no tempo \(t = 0\) é retirada de uma distribuição
-    uniforme;
-  \end{itemize}
+
+\item A topologia de interação, a princípio um grafo completo;  
+
 \item As incertezas \(0.01 \leq \sigma_i \leq 0.5\);
   \begin{itemize}
   \item A incerteza é, na condição inicial, a mesma para todos os agentes;
@@ -118,16 +134,60 @@ Os parâmetros-chave para configuração do modelo, cujos valores seguem
   \end{itemize}
 
 \item O parâmetro de confiança \(0.1 \leq p \leq 0.99\);
+  
   \begin{itemize}
   \item Vamos considerar variantes em que o \(p\) é global ou em que o \(p\) é
     calculado para cada interação;
   \end{itemize}
-  
+
+
+\item O tipo dos agentes:
+  \begin{itemize}
+  \item Se eles atualizam somente \(o\) ou se atualizam também \(\sigma^2\);
+  \end{itemize}
+
+
 \item A probabilidade de reconsideração \(0.05 \leq \rho  \leq 0.5\);
+
   \begin{itemize}
   \item Vamos considerar casos com e sem ruído.
   \end{itemize}
+  
 \end{itemize}
+
+\section{Inicialização e Iteração}
+
+A inicialização da simulação depende dos parâmetros-chave apresentados. Na
+condição inicial temos uma população de \(N\) agentes, que tem por atributos: um
+conjunto de pares \(I_i = ((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n},\sigma_{i,1}^2))\), onde
+o número de questões, \(n\), é uma variável global, cada \(o\) é retirado de uma
+distribuição uniforme \(U([0,1])\) e \(\sigma^2\) é uma variável global; um posicionamento
+ideológico, ou ponto ideal, \(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um
+conjunto de vizinhos, o qual depende de qual a rede os agentes estão, a
+princípio um grafo completo.
+
+ Uma iteração da simulação, a
+passagem de digamos \(t=2\) para \(t=3\), é dada pela aplicação de dois
+procedimentos: a atualização via influência social e a atualização aleatória.
+Uma repetição da simulação é a aplicação iterativa desses dois procedimentos ao
+longo de um tempo \(t \).
+
+O procedimento de influência social é o seguinte: escolhemos um agente \(i\)
+da população. Então escolhemos um de seus vizinhos, \(j\). Sorteamos uma das
+questões \(k \in (1,\ldots,n)\), e logo em seguida selecionamos os \((o_{i,k},o_{j,k})\) e
+\((\sigma_{i,k}^2,\sigma_{j,k}^2)\) correspondentes à questão. A partir daqui temos duas
+opções, \(i\) atualiza somente \(o_{i,k}\) ou também atualiza \(\sigma_{i,k}^2\),
+segundo as equações 2.3 e 2.5. Essa regra é um parâmetro global da simulação,
+o que significa que a cada repetição todos os agentes atualizam suas crenças
+segundo a mesma regra.
+
+Ademais, temos o ruído. Novamente escolhemos um agente \(i\) da população.
+Sorteamos uma questão e selecionamos \(o\) e \(\sigma^2\) correspondentes. Sorteamos
+um \(\xi\) retirado de uma distribuição uniforme \(U([0,1])\) e se \(\xi < \rho\) \(i\)
+muda \(o\) para um valor retirado também de uma uniforme e \(\sigma^2\) volta ao
+valor global.Os \(x_i\), o objeto de interesse de análise, são atualizados
+sempre que ocorrerem mudanças nas crenças dos agentes.
+
 
 
 \section{Metodologia de Análise}
