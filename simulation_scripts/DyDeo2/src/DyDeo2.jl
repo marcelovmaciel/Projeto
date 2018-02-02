@@ -1,6 +1,6 @@
 module DyDeo2
 using LightGraphs, MetaGraphs, Distributions, DataFrames
-using Parameters, StatPlots, ProgressMeter
+using Parameters, StatPlots, ProgressMeter, JLD2
 
 # package code goes here
 include("basefns.jl")

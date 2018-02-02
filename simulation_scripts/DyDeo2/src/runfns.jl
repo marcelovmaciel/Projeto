@@ -45,6 +45,13 @@ function update_df!(pop,df,time)
     return(df)
 end
 
+"fn to save the parameters"
+function save_params(params)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = params
+    striped_agenttype = filter(x -> !isspace(x),agent_type)
+    @save "data/atype($(striped_agenttype))_n($(size_nw))_nissues($(n_issues))_p($(p))_sigma($(σ))_rho($(ρ))_graphis($(graphcreator)).jld2" params
+end
+
 #= Running Functions
 =#
 
@@ -92,18 +99,19 @@ I'm gonna create an output csv, and those plot functions will plot data from it.
 
 
 "Should be refactored; "
-function time_plot(which_df, n_issues, nagents, p, σ, ρ, agent_type)
-
+function time_plot(which_df, params)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = params
     
     xlab = string("Time")
     ylab = string("Ideal Point") 
+    striped_agenttype = filter(x -> !isspace(x),agent_type)
 
     @df which_df plot(:time,[:ideal_point],
                       group = :id,
                       dpi = 120, color = :black,
                       xlabel = xlab, ylabel = ylab,
                       α = 0.3)
-    savefig("image/atype($(agent_type))_n($(nagents))_nissues($(n_issues))_p($(p))_sigma($(σ))_rho($(ρ))_tseries.png")
+    savefig("image/atype($(striped_agenttype))_n($(size_nw))_nissues($(n_issues))_p($(p))_sigma($(σ))_rho($(ρ))_graphis($(graphcreator))_tseries.png")
 end
 
 
