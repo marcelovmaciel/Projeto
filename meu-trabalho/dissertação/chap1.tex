@@ -99,7 +99,7 @@ em valor (indiferença), denotado por \(\sim\).
 A relação de preferência fraca \( \succeq \)pode ser definida da seguinte forma:
 
 \begin{align*}
-  \text{x} \succeq y \leftrightarrow x \succ y \text{ou} x \sim y
+  \text{x} \succeq y \leftrightarrow x \succ y \text{ ou } x \sim y
 \end{align*}
 
 A aplicação dessa definição de preferência no modelo do ator racional pressupõe
@@ -265,12 +265,11 @@ Em relação à tomada de decisão do eleitor há uma tensão entre a literatura
 teoria formal e a literatura em psicologia política: a primeira costuma
 pressupor que agentes têm ideologias bem definidas e são bem informados, ou tem
 alguma noção probabilística, sobre as alternativas partidárias, algo contestado
-veementemente pela segunda\todo{falar mais do que diz a psicologia politica}
-\cite[p.5]{bendor2011behavioral}. A falta de conhecimento sobre temas/questões e
-a instabilidade de resposta\todo[color=yellow!10]{explicar instabilidade} a
-\textit{surveys} é um dos resultados recorrentes na literatura em opinião
-pública desde sua fundação \cite{berelson1952democratic, converse2006nature,
-  zaller1992simple, kuklinski2000misinformation}.
+veementemente pela segunda \cite[p.5]{bendor2011behavioral}. A falta de
+conhecimento sobre temas/questões e a instabilidade dos posicionamentos dos
+respondentes nos \textit{surveys} é um dos resultados recorrentes na literatura
+em opinião pública  desde sua fundação \cite{berelson1952democratic,
+  converse2006nature, zaller1992simple, kuklinski2000misinformation}.
 
 A instabilidade nas respostas e a suscetibilidade dos cidadãos a \textit{framing
   effects}\footnote{\textit{Framing effects} são ``situações nas quais formas
@@ -326,7 +325,7 @@ preferências intrínsecas, na medida que ``não ajudaria muito [...] introduzir
 reforma que todos aprovam se ela mudar o ambiente de uma forma que reverta as
 preferências de todos '' \cite[p.6]{binmore2008rational}.
 
-Como as preferências no contexto eleitoral necessariamente são construídas a
+Como as preferências no contexto macro necessariamente são construídas a
 partir de posicionamentos num conjunto de questões, por definição, elas são
 extrínsecas. Logo, são, potencialmente, sensíveis à mudanças no ambiente.Tendo
 em vista tanto a complexidade informacional do contexto, quanto os baixos
@@ -334,36 +333,34 @@ incentivos à busca de informação, isso vai significar que os agentes serão
 \textit{incertos} quanto às suas preferências. Essa incerteza em relação às
 preferências, e o baixo custo, percebido, da mudança permitem que modelos de
 dinâmicas de opinião possam ser usados para representar seu processo de formação
-e cristalização. Convergimos assim para um argumento análogo ao de
-\citeonline{converse2006nature}: o direcionamento político, ou ideologia, do
-agente é resultado, ou construído, a partir de um ``campo de atitudes'', que no
-Capítulo 3 chamaremos de perfil ideológico, o qual por sua vez é explicável por
-meio da socialização do agente, a interação de suas atitudes com as atitudes dos
-pares. No Capítulo 2 discutimos a literatura em dinâmicas de opinião que nós dá
-o arcabouço para modelar esse processo.
-
-\todo[inline,color=yellow!10]{Rever o próximo paragrafo}
+e cristalização. Convergimos assim para um argumento análogo ao da escola de
+Michigan de opinião pública : o direcionamento político, ou ideologia, do agente
+é resultado, ou construído, a partir de um ``campo de atitudes'' ou sistema de
+crenças, que no Capítulo 3 chamaremos de perfil ideológico, o qual por sua vez é
+explicável por meio da socialização do agente, a interação de suas atitudes com
+as atitudes dos pares \cite{figueiredo2008decisao}. No Capítulo 2 discutimos a
+literatura em dinâmicas de opinião que nós dá o arcabouço para modelar esse
+processo.
 
 As preferências ideológicas dos cidadãos, portanto, não são estáticas. Isso não
-significa, contudo, que estas necessariamente serão altamente instáveis. Como
-as preferências são construídas a partir de um conjunto de posicionamentos e
+significa, contudo, que estas necessariamente serão altamente instáveis. Como as
+preferências são construídas a partir de um conjunto de posicionamentos e
 crenças em várias questões, é de se esperar que elas sejam mais estáveis do que
-o posicionamento dos atores em cada questão específica, o objeto dos estudos em
-opinião pública que têm por objetivo analisar a instabilidade de resposta dos
-eleitores \cite{druckman2012public}. Do ponto de vista macro, é de se esperar,
-desta forma, que a distribuição de preferências dos eleitores seja consistente. A
+o posicionamento dos atores em cada questão específica
+\cite{druckman2012public}. Do ponto de vista macro, é de se esperar, desta
+forma, que a distribuição de preferências dos eleitores seja consistente. A
 Figura 2, a qual mostra o auto-posicionamento político, numa escala de 0 a 10
-(esquerda-direita), de respondentes \footnote{A cada edição uma nova amostra é
-  selecionada.} em seis edições do \textit{European Social Survey},
-condiz\footnote{Para questões metodológicas em relação a esses dados ver o
-  Apêndice 1.} com essa expectativa:
-
-\todo[inline,color=yellow!10]{Explicar as escalas da figura}
+(esquerda-direita), de respondentes, cuja frequência de resposta é dada no eixo
+vertical, \footnote{A cada edição uma nova amostra é selecionada.} em seis
+edições do \textit{European Social Survey}\footnote{Cuja página oficial é :
+  \url{http://www.europeansocialsurvey.org/}}, condiz\footnote{Para questões
+  metodológicas em relação a esses dados ver o Apêndice 1.} com essa
+expectativa:
 
 \begin{figure}[H]
   \centering \includegraphics[width = \textwidth]{ims/ess_Pol_plots.pdf}
   \caption{Evidência de estabilidade ideológica}
-  Fonte: Elaboração própria. Dados do \textit{European Social Survey}.
+  Fonte: Elaboração própria. Dados do \textit{European Social Survey} .
 \end{figure}
 
 A escala do fenômeno eleitoral também afeta uma segunda categoria de agentes: os
@@ -407,8 +404,14 @@ Temos, desta forma, duas diretrizes para o estudo. Do ponto de vista micro,
 podemos modelar os pontos ideais dos agentes segundo um modelo de dinâmicas de
 opinião. Esse é o nosso ponto de partida. Do ponto de vista macro, aspiramos que
 nossos modelos consigam gerar distribuições que sejam plausíveis do ponto de
-vista empírico, dado que o formato delas importa. Esse é o nosso
-\textit{benchmark}.\todo[color=yellow!10]{Explicar isso de benchmark}
+vista empírico, dado que o formato delas importa. Esse é o nosso ponto de
+referência.
 
 
 
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "master"
+%%% End:
