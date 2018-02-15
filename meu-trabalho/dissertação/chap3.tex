@@ -109,17 +109,22 @@ segundo uma probabilidade \(\rho\). Do ponto de vista teórico, estamos consider
 a possibilidade de fatores não relacionados à influência social levarem o agente
 a mudar seu posicionamento sobre questões \cite{flache2017, lorenz2017modeling}.
 Do ponto de vista metodológico, \citeonline{macy2015signal} argumenta que
-adicionar ruído contribui para a robustez dos resultados de modelos
-teóricos.\todo[inline,color = yellow]{Vou discutir mais isso do ruido}
-
-
+pequenas perturbações no comportamento local dos agentes pode levar a mudanças
+drásticas nas propriedades sistêmicas. Particularmente, consideram que adicionar
+ruído pode: eliminar equilíbrios frágeis, o que reduz o conjunto de resultados e
+tornando-os mais previsíveis; e embora aumente a heterogeneidade local isso pode
+acabar facilitando interações sociais que reduzem a diversidade global
+\cite[p.323]{macy2015signal}. Vamos fazer o pressuposto mais simples que os
+desvios aleatórios são independentes na população e sem viés quanto à opinião do
+agente, de forma que pressupomos um ruído uniformemente distribuído
+\cite{Pineda-2009, lorenz2017modeling}.
 
 
 \section{Parâmetros-Chave}
 
-Os parâmetros-chave para configuração e inicialização do modelo no tempo \(t =
-0\), cujos valores seguem \citeonline{martins2008continuous},
-\citeonline{deffuant2000mixing} e \citeonline{lorenz2017modeling}, são:
+Os parâmetros-chave para configuração e inicialização do modelo, cujos valores
+seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
+\citeonline{lorenz2017modeling}, são:
 \begin{itemize}
 \item A população de \(500 < N < 10000\) agentes;
 \item O número de questões \(1 \leq n \leq 10\); 
@@ -147,12 +152,8 @@ Os parâmetros-chave para configuração e inicialização do modelo no tempo \(
   \end{itemize}
 
 
-\item A probabilidade de reconsideração \(0.05 \leq \rho  \leq 0.5\);
+\item A probabilidade de reconsideração \(0.0 \leq \rho  \leq 0.1\);
 
-  \begin{itemize}
-  \item Vamos considerar casos com e sem ruído.
-  \end{itemize}
-  
 \end{itemize}
 
 \section{Inicialização e Iteração}
