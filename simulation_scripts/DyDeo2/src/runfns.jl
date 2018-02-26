@@ -29,10 +29,10 @@ end
 
 "fn to initialize the df; it should store all the info I may need later"
 function init_df(pop)
-    df = DataFrame(time = Integer[], id  = Integer[], ideology = Array[], ideal_point = Real[], neighbors = Array[])
+    df = DataFrame(time = Integer[], id  = Integer[],  ideal_point = Real[])
     for agent in pop
         time = 0 
-        push!(df,[time agent.id  [agent.ideo] agent.idealpoint [agent.neighbors]]) 
+        push!(df,[time agent.id  agent.idealpoint ]) 
     end
     return df
 end
@@ -40,10 +40,19 @@ end
 "fn to update the df with relevant information"
 function update_df!(pop,df,time)
     for agent in pop
-        push!(df,[time  agent.id  [agent.ideo] agent.idealpoint [agent.neighbors]])
+        push!(df,[time  agent.id   agent.idealpoint ])
     end
     return(df)
 end
+
+function final_idealpoints(pop)
+    endpoints = Float64[]
+    for agent in pop
+        push!(endpoints,agent.idealpoint)
+    end
+    return(endpoints)
+end
+
 
 "fn to save the parameters"
 function save_params(params)
@@ -71,16 +80,31 @@ function create_initdf(agent_type, σ, n_issues, size_nw,graphcreator)
     return(df,pop)
 end
 
-"this fn runs the main procedure iteratively while updating the df; subject to change after the methodological review"
+"""
+this fn runs the main procedure iteratively while updating the df;
+
+it may also only return the final vec of agents 
+
+"""
+
 function runsim!(pop,df,p,σ,ρ,time)
-    @showprogress 1 "Computing..." for step in 1:time
+   for step in 1:time
         agents_update!(pop,p, σ, ρ)
         update_df!(pop,df,step)
     end 
     return(df)
 end
 
-"repetition of the sim for some parameters ; should research more about the role of random seeds here"
+
+function runsim!(pop,p,σ,ρ,time)
+    for step in 1:time
+        agents_update!(pop, p, σ, ρ)
+    end
+    return(pop)
+end
+
+
+"repetition of the sim for some parameters ;"
 function one_run(pa::DyDeoParam)
     @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = pa
     df,pop = create_initdf(agent_type, σ, n_issues, size_nw,graphcreator)
@@ -88,6 +112,21 @@ function one_run(pa::DyDeoParam)
     return(df)
 end
     
+
+function simple_run(pa::DyDeoParam)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = pa
+    pop = createpop(agent_type, σ, n_issues, size_nw)
+    g = creategraphfrompop(pop,graphcreator)
+    add_neighbors!(pop,g)
+    endpop = runsim!(pop,p,σ,ρ,time)
+    endpoints = final_idealpoints(endpop)
+    return(endpoints)
+
+end
+
+
+
+
 
 #= Plotting Functions
 

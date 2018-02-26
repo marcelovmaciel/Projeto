@@ -10,9 +10,8 @@ include("runfns.jl")
 export DyDeoParam,
        one_run,
        time_plot,
-       mkimdir,
-       inspectdr,
-       @unpack
+    inspectdr,
+    mkdirs
 end # module
 
 
