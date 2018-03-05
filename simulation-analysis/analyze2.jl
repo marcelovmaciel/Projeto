@@ -15,17 +15,19 @@ problem  = Dict("num_vars" => 5,
                           [0.01, 0.5],
                           [0.0, 0.1]])
 
-param_values_saltelli1000 = saltelli.sample(problem,1000)
+param_values_saltelli5000_mutatingsigma = saltelli.sample(problem,5000)
 
 
-@save  "data/saltellisample1000.jld2" param_values_saltelli1000
+@save  "data/saltellisample5000mutatingsigma.jld2" param_values_saltelli5000_mutatingsigma
 
 
-Ysaltelli1000 = sweep_sample(param_values_saltelli1000)
+Ysaltelli5000mutatingsigma = sweep_sample(param_values_saltelli5000_mutatingsigma,
+                             time = 1_000_000,
+                             agent_type = "mutating o and sigma")
 
 println("done")
 
-@save "data/saltellioutput1000.jld2" Ysaltelli1000
+@save "data/saltellioutput5000mutatingsigma.jld2" Ysaltelli5000mutatingsigma
 
 
 

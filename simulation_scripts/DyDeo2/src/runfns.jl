@@ -45,7 +45,7 @@ function update_df!(pop,df,time)
     return(df)
 end
 
-function final_idealpoints(pop)
+function pullidealpoints(pop)
     endpoints = Float64[]
     for agent in pop
         push!(endpoints,agent.idealpoint)
@@ -60,6 +60,12 @@ function save_params(params)
     striped_agenttype = filter(x -> !isspace(x),agent_type)
     @save "data/atype($(striped_agenttype))_n($(size_nw))_nissues($(n_issues))_p($(p))_sigma($(σ))_rho($(ρ))_graphis($(graphcreator)).jld2" params
 end
+
+
+function savetodisc(object,name)
+    @save name object
+end
+
 
 #= Running Functions
 =#
@@ -119,12 +125,38 @@ function simple_run(pa::DyDeoParam)
     g = creategraphfrompop(pop,graphcreator)
     add_neighbors!(pop,g)
     endpop = runsim!(pop,p,σ,ρ,time)
-    endpoints = final_idealpoints(endpop)
+    endpoints = pullidealpoints(endpop)
     return(endpoints)
-
 end
 
 
+
+discretize(parameter) = convert(Int,round(parameter))
+
+
+function outputfromsim(endpoints::Array)
+    stdpoints = std(endpoints)
+    num_points = endpoints |> countmap |> length
+    return(stdpoints,num_points)
+end
+
+
+
+function sweep_sample(param_values; time = 250_000, agent_type = "mutating o")
+    Y = []
+@showprogress 1 "Computing..." for i in 1:size(param_values)[1]
+        paramfromsaltelli = DyDeoParam(size_nw = discretize(param_values[i,1]),
+                               n_issues = discretize(param_values[i,2]),
+                               p = param_values[i,3],
+                               σ = param_values[i,4],
+                                       ρ = param_values[i,5],
+                                       time = time,
+                                       agent_type = agent_type)
+        out  =  simple_run(paramfromsaltelli) |> outputfromsim
+        push!(Y,out)
+    end
+    return(Y)
+end
 
 
 
