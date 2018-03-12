@@ -13,7 +13,9 @@ a4paper,			% tamanho do papel.
 english, % idioma adicional para hifenização
 french, % idioma adicional para hifenização
 spanish, % idioma adicional para hifenização
-brazil % o último idioma é o principal do documento
+brazil, %o último idioma é o principal do documento
+table,
+xcdraw
 ]{abntex2}
 
 % --- Pacotes básicos ---
@@ -25,6 +27,7 @@ brazil % o último idioma é o principal do documento
 \usepackage{color} % Controle das cores
 \usepackage{graphicx} % Inclusão de gráficos
 \usepackage{microtype} % para melhorias de justifiusar os dados docação
+\usepackage{subcaption}
 \usepackage{pgf,tikz}
 \usepackage{mathrsfs}
 \usepackage{amsmath}
@@ -34,6 +37,7 @@ brazil % o último idioma é o principal do documento
 \usetikzlibrary{patterns,arrows,decorations.pathreplacing}
 \usepackage{pdfpages}
 \usepackage{verbatim}
+
 % ---
 
 % --- Pacotes adicionais, usados apenas no âmbito do Modelo Canônico
@@ -206,7 +210,7 @@ brazil % o último idioma é o principal do documento
  \input{chap2.tex}
 
 
- \chapter{Proposta de Modelo}
+ \chapter{Modelo}
 
  
 \input{chap3}
@@ -230,6 +234,11 @@ brazil % o último idioma é o principal do documento
 \chapter{Da implementação}
 
 \input{appendix2.tex}
+
+
+\chapter{Gráficos Complementares}
+\input{appendix3.tex}
+
 
 \end{apendicesenv}
 

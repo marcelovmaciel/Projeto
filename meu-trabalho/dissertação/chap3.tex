@@ -125,11 +125,10 @@ agente, de forma que pressupomos um ruído uniformemente distribuído
 Os parâmetros-chave para configuração e inicialização do modelo, cujos valores
 seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
 \citeonline{lorenz2017modeling}, são:
-\begin{itemize}
-\item A população de \(500 < N < 10000\) agentes;
-\item O número de questões \(1 \leq n \leq 10\); 
 
-\item A topologia de interação, a princípio um grafo completo;  
+\begin{itemize}
+\item A população de \(500 < N < 5000\) agentes;
+\item O número de questões \(1 \leq \text{n\_issues} \leq 10\); 
 
 \item As incertezas \(0.01 \leq \sigma_i \leq 0.5\);
   \begin{itemize}
@@ -145,22 +144,20 @@ seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
     calculado para cada interação;
   \end{itemize}
 
-
 \item O tipo dos agentes:
   \begin{itemize}
   \item Se eles atualizam somente \(o\) ou se atualizam também \(\sigma^2\);
   \end{itemize}
 
-
 \item A probabilidade de reconsideração \(0.0 \leq \rho  \leq 0.1\);
-
+  
 \end{itemize}
 
 \section{Inicialização e Iteração}
 
 A inicialização da simulação depende dos parâmetros-chave apresentados. Na
 condição inicial temos uma população de \(N\) agentes, que tem por atributos: um
-conjunto de pares \(I_i = ((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n},\sigma_{i,1}^2))\), onde
+conjunto de pares \(I_i = ((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n},\sigma_{i,n}^2))\), onde
 o número de questões, \(n\), é uma variável global, cada \(o\) é retirado de uma
 distribuição uniforme \(U([0,1])\) e \(\sigma^2\) é uma variável global; um posicionamento
 ideológico, ou ponto ideal, \(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um
@@ -193,6 +190,130 @@ sempre que ocorrerem mudanças nas crenças dos agentes.
 
 \section{Metodologia de Análise}
 
+Dentre as diversas formas de analisar um ABM a análise de sensibilidade global
+se destaca como uma forma de ter uma compreensão ampla, geral, do comportamento
+do modelo \cite{north2007managing}. Contudo, o  alto custo computacional de varrer
+o espaço de parâmetros faz com que só seja possível, na maioria dos casos, se
+seguirmos métodos formais da literatura de análise de sensibilidade
+\cite{railsback2012agent}. Esses métodos trazem o benefício de determinar como
+selecionar subconjuntos de todas as combinações de parâmetros, reduzindo o
+número de realizações necessárias da simulação e de trazerem formas sistemáticas
+de interpretar os resultados \cite{railsback2012agent}.
+
+Quanto à amostragem uma estratégia comum são as parametrizações de Monte Carlo:
+sortear valores de parâmetros usados para as realizações das simulações a partir
+de distribuições uniformes nos intervalos de valores dos parâmetros
+\cite{laver2011party}. O problema dessa estratégia é que o espaço de parâmetros
+não é coberto igualmente, havendo a possibilidade de pontos de acumulação ou
+espaços vazios \cite{pereda2017brief}.
+
+\citeonline{saltelli2008global} argumenta que para manter uma dispersão equitativa
+dos pontos no espaço de parâmetros é necessário um algoritmo que enviese a
+seleção de novos pontos para mantê-los afastados dos pontos já presentes. Desta
+forma vamos usar o método de Saltelli de amostragem, dado que garante a partição
+equitativa do espaço de parâmetros \cite{herman2017salib}. Especificamos então
+um \(n\) base a partir do qual o ``sampler'' gera n * (2d + 2), onde \(d\) é o
+número de parâmetros. No nosso caso \(d = 5\), pois vamos ter como parâmetros :
+N (população), número de questões (codificado como n\_issues ), \(p\), \(\sigma\) e
+\(\rho\). Vamos tratar se os agentes atualizam \(o\) ou se atualizam também \(\sigma\)
+como dois casos. Para garantir um coeficiente de erro baixo no cálculo
+subsequente dos índices de sensibilidade especificamos um \(n\) base de
+\(5000\), de forma que para cada caso rodamos \(60.000\) parametrizações.
+
+Uma vez especificado o método de amostragem especificamos uma medida do sistema
+para que possamos analisá-lo \cite{railsback2012agent}. Escolhemos o desvio
+padrão dos pontos ideais após \(1.000.000\) iterações como output para
+análise\footnote{Testamos diversas parametrizações com n\_issues \(= 1\) e
+  observamos que a partir de \(50.000\) iterações a implementação replica os
+  resultados de \citeonline{martins2009bayesian}.}, dado que nos diz o quão
+concentradas ou dispersos são os pontos ideais da população. Para a análise,
+seguimos \cite{ten2016sensitivity} e combinamos gráficos de dispersão com
+índices de sensibilidade. 
+
+Os índices de sensibilidade utilizados são os índices de Sobol\footnote{Tanto a
+  amostragem quanto a análise de sensibilidade são feitas usando o pacote de
+  Python SALib \cite{herman2017salib}.}, particularmente índices de Sobol de
+primeira ordem e totais \cite{saltelli2008global}. Os índices de Sobol decompõe
+o impacto dos parâmetros na variância do \textit{output} de interesse. Os
+índices de primeira ordem incluem contribuições lineares e não-lineares dos
+parâmetros, mas não efeitos interativos \cite{ten2016sensitivity}. Já índices
+totais incluem todos os efeitos de ordem maior decorrentes das interações entre
+os parâmetros \cite{saltelli2008global}.
+
+
+
+\section{Resultados}
+
+Rodamos então \(60.000\) parametrizações por \(1.000.000\) de iterações tendo
+por \(Y\), o \textit{output} de interesse, a variância do ponto ideal da
+população (\(\text{Ystd}\)) após as iterações. São \(5\) os parâmetros de input
+: o número de agentes (\(N\)), o número de questões (\(\text{n\_issues}\)), o
+parâmetro de confiança (\(p\)), a incerteza (\(\sigma\)), e o ruído \(\rho\), nos
+limiares apresentados na seção Parâmetros-Chave. Os gráficos de dispersão para a
+simulação do Caso 1 são apresentados na Figura \ref{fig:scatter1}:
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingon_issues.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingoN.png}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingop.png}
+      \end{subfigure}
+          \begin{subfigure}[b]{0.49\textwidth}
+            \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingorho.png}
+      \end{subfigure}
+
+                \begin{subfigure}[b]{0.49\textwidth}
+            \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingosigma.png}
+    \end{subfigure}
+    \caption{Gráfico de dispersão para 60.000 parametrizações no Caso 1.
+      Elaboração própria.}\label{fig:scatter1}
+\end{figure}
+
+\textcolor{red}{Aqui falo dos resultados}
+\footnote{Os gráficos de dispersão para o Caso 2 são semelhantes. Estão no apêndice.}
+
+
+Análise de sensibilidade :
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{|l|r|r|r|r|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+Parâmetros & S1        & S1\_conf & ST       & ST\_conf \\ \hline
+N          & -0.000105 & 0.003153 & 0.002526 & 0.000578 \\ \hline
+n\_issues  & 0.289362  & 0.026289 & 0.366176 & 0.022603 \\ \hline
+p          & 0.070374  & 0.015140 & 0.103448 & 0.008719 \\ \hline
+\(\sigma\) & 0.421365  & 0.030780 & 0.512525 & 0.030992 \\ \hline
+\(\rho\)   & 0.103914  & 0.016065 & 0.144819 & 0.012853 \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{ims/barplotmuto5k.png}
+  \caption{Índices de Sobol de sensibilidade}
+  \label{fig:sobol1}
+\end{figure}
 
 
 
@@ -213,10 +334,7 @@ sempre que ocorrerem mudanças nas crenças dos agentes.
 
 
 
-
-
-
-%%% Local Variables:
+%%% Local  Variables:
 %%% mode: latex
 %%% TeX-master: "master"
 %%% End:
