@@ -45,31 +45,26 @@ function update_df!(pop,df,time)
     return(df)
 end
 
+"self-describing... it takes the population and return an array of ideal points"
 function pullidealpoints(pop)
-    endpoints = Float64[]
+    idealpoints = Float64[]
     for agent in pop
-        push!(endpoints,agent.idealpoint)
+        push!(idealpoints,agent.idealpoint)
     end
-    return(endpoints)
+    return(idealpoints)
 end
 
-
-"fn to save the parameters"
-function save_params(params)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = params
-    striped_agenttype = filter(x -> !isspace(x),agent_type)
-    @save "data/atype($(striped_agenttype))_n($(size_nw))_nissues($(n_issues))_p($(p))_sigma($(σ))_rho($(ρ))_graphis($(graphcreator)).jld2" params
-end
-
-
-function savetodisc(object,name)
-    @save name object
+"fn to turn extracted information into system measures; pressuposes an array with some system state (set of agents attributes)"
+function outputfromsim(endpoints::Array)
+    stdpoints = std(endpoints)
+    num_points = endpoints |> countmap |> length
+    return(stdpoints,num_points)
 end
 
 
 #= Running Functions
 =#
-
+
 "this executes the main procedure of the model: one pair of agents interact and another updates randomly (noise)"
 function agents_update!(population,p, σ, ρ)
     updateibelief!(rand(population),population,p)
@@ -92,7 +87,6 @@ this fn runs the main procedure iteratively while updating the df;
 it may also only return the final vec of agents 
 
 """
-
 function runsim!(pop,df,p,σ,ρ,time)
    for step in 1:time
         agents_update!(pop,p, σ, ρ)
@@ -110,7 +104,7 @@ function runsim!(pop,p,σ,ρ,time)
 end
 
 
-"repetition of the sim for some parameters ;"
+"repetition of the sim for some parameters;"
 function one_run(pa::DyDeoParam)
     @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = pa
     df,pop = create_initdf(agent_type, σ, n_issues, size_nw,graphcreator)
@@ -119,6 +113,10 @@ function one_run(pa::DyDeoParam)
 end
     
 
+"""this runs the simulation without using any df;
+this speeds up a lot the sim, but i can't keep track of the system state evolution;
+that is, i only save the end state
+"""
 function simple_run(pa::DyDeoParam)
     @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = pa
     pop = createpop(agent_type, σ, n_issues, size_nw)
@@ -131,22 +129,15 @@ end
 
 
 
-discretize(parameter) = convert(Int,round(parameter))
-
-
-function outputfromsim(endpoints::Array)
-    stdpoints = std(endpoints)
-    num_points = endpoints |> countmap |> length
-    return(stdpoints,num_points)
-end
-
-
-
+"""
+this fn pressuposes an array of param_values where each column is a param and each row is a parametization;
+Then it runs the sim for each parametization and pushs system measures to another array (the output array)
+"""
 function sweep_sample(param_values; time = 250_000, agent_type = "mutating o")
     Y = []
 @showprogress 1 "Computing..." for i in 1:size(param_values)[1]
-        paramfromsaltelli = DyDeoParam(size_nw = discretize(param_values[i,1]),
-                               n_issues = discretize(param_values[i,2]),
+        paramfromsaltelli = DyDeoParam(size_nw = round(Int,param_values[i,1]),
+                               n_issues = round(Int,param_values[i,2]),
                                p = param_values[i,3],
                                σ = param_values[i,4],
                                        ρ = param_values[i,5],
@@ -157,7 +148,6 @@ function sweep_sample(param_values; time = 250_000, agent_type = "mutating o")
     end
     return(Y)
 end
-
 
 
 #= Plotting Functions
