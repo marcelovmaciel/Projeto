@@ -1,6 +1,6 @@
-Esqueleto da minha dissertação de mestrado em Modelagem de Sistemas Complexos.
+Dissertação de mestrado em modelagem de sistemas complexos 
 
-Bem ruinzim por enquanto. 
+Bem ruinzim.
 
 
 :persevere:
