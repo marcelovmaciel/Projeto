@@ -251,10 +251,26 @@ por \(Y\), o \textit{output} de interesse, a variância do ponto ideal da
 população (\(\text{Ystd}\)) após as iterações. São \(5\) os parâmetros de input
 : o número de agentes (\(N\)), o número de questões (\(\text{n\_issues}\)), o
 parâmetro de confiança (\(p\)), a incerteza (\(\sigma\)), e o ruído \(\rho\), nos
-limiares apresentados na seção Parâmetros-Chave. Os gráficos de dispersão para a
-simulação do Caso I são apresentados na Figura \ref{fig:scatter1}:
+limiares apresentados na seção Parâmetros-Chave.
 
+
+A Figura \ref{fig:Yshist} apresenta a dispersão dos pontos ideais nos dois casos:
 \begin{figure}[H]
+  \centering
+  \includegraphics{ims/distYs.png}
+  \caption{Output (desvio padrão dos pontos ideais) }
+  \label{fig:Yshist}
+\end{figure}
+
+A Figura \ref{fig:Yshist}  nos leva a interpretar  que a aplicação iterativa do
+procedimento do modelo, em geral, deixa a distribuição de opiniões menos
+dispersa, com uma maior concentração das parametrizações em outputs de baixa
+dispersão (entre 0.0 e 0.1). Contudo, isso não nos informa qual parâmetro é
+responsável por isso, ou quais os valores de concentração (centrais ou extremos).
+
+
+
+\begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
         \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingon_issues.png}
@@ -273,30 +289,32 @@ simulação do Caso I são apresentados na Figura \ref{fig:scatter1}:
                 \begin{subfigure}[b]{0.49\textwidth}
             \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingosigma.png}
     \end{subfigure}
-    \caption{Gráfico de dispersão para 60.000 parametrizações no Caso I.
-      Elaboração própria.}\label{fig:scatter1}
+    \caption{Gráfico de dispersão para 60.000 parametrizações no Caso I.}
+    \label{fig:scatter1}
+    Fonte:Elaboração própria.
 \end{figure}
 
+A primeira pergunta pode começar a ser respondida por meio de gráficos de
+dispersão. A partir da Figura\footnote{Os gráficos de dispersão para o Caso II
+  são semelhantes. Estão no apêndice.} \ref{fig:scatter1} podemos inferir que há
+uma relação negativa entre os parâmetros \(\text{n\_issues}, p, \sigma \) e a
+dispersão dos pontos ideais (\( \text{Ystd}) \). A relação entre \(p\) e \(\sigma\)
+são explicadas pelo fato de agentes que são mais incertos e ``confiam'' mais na
+opinião dos outros agentes vão convergir mais rápido para a mesma opinião.
+\todo[inline,color = yellow!10]{puxar de martins 2009 aqui a discussão das
+  equações}
 
-A partir da Figura \ref{fig:scatter1}\footnote{Os gráficos de dispersão para o
-  Caso II são semelhantes. Estão no apêndice.} podemos inferir que há uma relação
-negativa entre os parâmetros \(\text{n\_issues}, p, \sigma \) e a dispersão dos
-pontos ideais (\( \text{Ystd}) \). A relação entre \(p\) e \(\sigma\) seguem o
-comportamento do modelo original de \citeonline{martins2009bayesian}, dado que
-agentes incertos, e que ``confiam'' mais na opinião dos outros agentes vão
-convergir mais rápido para a mesma opinião. Já a relação entre número de
-questões e menor dispersão se dá pelo fato que quanto mais questões mais
-centrado vai ser o ponto ideal, uma vez que é a média aritmética das opiniões.
-Como estamos retirando as opiniões em cada questão de uma U[0,1] quanto mais
-vezes fazemos esse sorteio, pela Lei dos Grandes Números, mais centrada a média
-aritmética vai ser do valor esperado da distribuição (0.5). O parâmetro \(\rho\), o
-ruído, por sua vez, tem uma relação positiva com a dispersão do sistema, e
-condizente com seu papel. Interessante notar, contudo, que o tamanho da
-população parece não ter relação com o desvio padrão dos pontos ideais da
-população.
+Já a relação entre número de questões e menor dispersão se dá pelo fato que
+quanto mais questões mais centrado vai ser o ponto ideal, uma vez que é a média
+aritmética das opiniões. Como estamos retirando as opiniões em cada questão de
+uma U[0,1] quanto mais vezes fazemos esse sorteio, pela Lei dos Grandes Números,
+mais centrada a média aritmética vai ser do valor esperado da distribuição
+(0.5). O parâmetro \(\rho\), o ruído, por sua vez, tem uma relação positiva com a
+dispersão do sistema. Interessante notar, contudo, que o tamanho da população
+parece não ter relação com o desvio padrão dos pontos ideais da população.
 
-O impacto dos parâmetros na variância da medida do sistema (Ystd) fica mais
-claro na Figura \ref{fig:sobol1}: 
+A intensidade dos parâmetros na variância da medida do sistema (Ystd) fica mais
+claro na Figura \ref{fig:sobol1}:
 
 \begin{figure}[H]
   \centering
@@ -313,7 +331,10 @@ dispersão dos pontos ideais pode ser explicada pelos parâmetros \(\sigma\) e
 ordem e os índices totais, o que implica que há poucos efeitos interativos entre
 os parâmetros. Por fim os coeficientes de erro são pequenos, como mostra a
 Tabela 1, tendo em vista que a análise foi feita a partir de 60.000
-parametrizações selecionadas por meio do método de Saltelli.
+parametrizações selecionadas por meio do método de Saltelli. O Caso II exibe o
+mesmo comportamento, com a diferença que nele o parâmetro \(\sigma\) tem maior
+impacto do que no Caso I (mas mantêm-se a direção e a importância qualitativa dos
+parâmetros).
 
 
 \begin{table}[H]
@@ -336,16 +357,7 @@ p          & 0.070374  & 0.015140 & 0.103448 & 0.008719 \\ \hline
 Dado que os parâmetros \(\sigma\) e \(\text{n\_issues}\) são os que mais explicam a
 variância da dispersão dos pontos ideais eles são o foco de análise subsequente.
 Estabelecemos \(N = 500\). Passamos a usar então o número de opiniões finais
-como medida do sistema. 
-
-
-
-
-
-
-
-
-
+como medida do sistema.
 
 
 
