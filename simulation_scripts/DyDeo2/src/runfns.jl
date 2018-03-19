@@ -123,8 +123,17 @@ function simple_run(pa::DyDeoParam)
     g = creategraphfrompop(pop,graphcreator)
     add_neighbors!(pop,g)
     endpop = runsim!(pop,p,σ,ρ,time)
-    endpoints = pullidealpoints(endpop)
     return(endpoints)
+end
+
+
+
+"i'll play with preallocation before writing this procedure"
+function keepstatearray(pa::DyDeoParam)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = pa
+    pop = createpop(agent_type, σ, n_issues, size_nw)
+    g = creategraphfrompop(pop,graphcreator)
+    add_neighbors!(pop,g)
 end
 
 
@@ -163,7 +172,7 @@ I'm gonna create an output csv, and those plot functions will plot data from it.
 function time_plot(which_df, params)
     @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = params
     
-    xlab = string("Time")
+    xlab = string("Iteration")
     ylab = string("Ideal Point") 
     striped_agenttype = filter(x -> !isspace(x),agent_type)
 
