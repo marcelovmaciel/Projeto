@@ -7,6 +7,8 @@ This includes:
 * Functions to update the agents' beliefs;
 =#
 
+
+
 #= Type declarations
 
 The code primary elements are the the Belief and Agent types. A belief is a pair
@@ -19,9 +21,8 @@ var. =#
 
 
 
+
 #Structs for Agents and Beliefs --------------------
-
-
 
 abstract type  AbstractAgent end
 abstract type AbstractBelief end 
@@ -39,6 +40,7 @@ mutable struct Agent_o{T1 <: Integer, T2 <: Vector, T3 <: Real, T4 <: Vector} <:
     ideo::T2
     idealpoint::T3
     neighbors::T4
+    certainissues::T4
 end
 
 "Concrete type for an Agent which changes both opinion and uncertainty"
@@ -47,6 +49,7 @@ mutable struct Agent_oσ{T1 <: Integer,T2 <: Vector,T3 <: Real, T4 <: Vector} <:
     ideo::T2
     idealpoint::T3
     neighbors::T4
+    certainissues::T4
 end
 
 #= "Constructors" for Beliefs, Agents and Graphs
@@ -78,25 +81,46 @@ function create_idealpoint(ideology)
     ideal_point = mean(opinions)
 end
 
-"Instantiates  agents; note that there are two kinds of them"
+"Instantiates  agents; something missing in terms of design"
 function create_agent(agent_type,n_issues::Integer, id::Integer, σ::Real, paramtuple::Tuple)
+
     ideology = [create_belief(σ, issue, paramtuple) for issue in 1:n_issues ]
     idealpoint = create_idealpoint(ideology)
+
     if agent_type == "mutating o"
-        agent = Agent_o(id,ideology, idealpoint,[0])
+        agent = Agent_o(id,ideology, idealpoint,[0], [0])
     elseif agent_type == "mutating o and sigma"
-        agent = Agent_oσ(id,ideology, idealpoint,[0])
+        agent = Agent_oσ(id,ideology, idealpoint,[0],[0])
     else
         println("specify agent type: mutating o or mutating o and sigma")
     end
     return(agent)
 end
 
+
+#=
+    elseif agent_type == "is certain of some o, does not mutate sigma"
+        certain_issues = []
+        for i in 1:n_certain
+            push!(certain_issues, rand(n_issues))
+        end
+        agent = SomeCertainAgent_o(id,ideology,idealpoint,[0],certain_issues)
+; n_certain = 2
+=#
+
+
 "Creates an array of agents"
 function createpop(agent_type, σ::Real,  n_issues::Integer, size::Integer)
     betaparams = createbetaparams(size)
     population = [create_agent(agent_type, n_issues,i,σ, betaparams[i]) for i in 1:size]
 end
+
+
+#=
+n_issues = 1:10
+ncertain_issues = 2
+whichcertain_issues = rand(n_issues, ncertain_issues)
+=#
 
 
 "Creates a graph; helper for add_neighbors!"
@@ -209,3 +233,5 @@ function ρ_update!(i::AbstractAgent,  σ::AbstractFloat, ρ::AbstractFloat)
         i.idealpoint = newidealpoint
     end
 end
+
+
