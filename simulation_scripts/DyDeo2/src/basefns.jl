@@ -95,7 +95,7 @@ end
 "Creates an array of agents"
 function createpop(agent_type, σ::Real,  n_issues::Integer, size::Integer)
     betaparams = createbetaparams(size)
-    population = [create_agent(agent_type, n_issues,i,σ, rand(betaparams)) for i in 1:size]
+    population = [create_agent(agent_type, n_issues,i,σ, betaparams[i]) for i in 1:size]
 end
 
 
