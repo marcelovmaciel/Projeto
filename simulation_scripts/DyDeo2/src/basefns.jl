@@ -50,14 +50,25 @@ mutable struct Agent_oσ{T1 <: Integer,T2 <: Vector,T3 <: Real, T4 <: Vector} <:
 end
 
 #= "Constructors" for Beliefs, Agents and Graphs
+- All I need for the initial condition
 =#
 
 
-"Instantiates beliefs; note o is taken from an Uniform while σ is global and an input"
-function create_belief(σ::Real, issue::Integer)
-    o = rand(Uniform())
+"Creates a list of parameters for posterior instantiation of Belief" 
+function createbetaparams(popsize::Integer)
+    αs = linspace(1.5, 5, popsize) |> shuffle
+    βs = linspace(1.5, 5, popsize) |> shuffle
+    betaparams = collect(zip(αs,βs))
+    return(betaparams)
+end
+
+
+"Instantiates beliefs; note o is taken from a Beta while σ is global and an input"
+function create_belief(σ::Real, issue::Integer, paramtuple::Tuple)
+    o = rand(Beta(paramtuple[1],paramtuple[2]))
     belief = Belief(o, σ, issue)
 end
+
 
 function create_idealpoint(ideology)
     opinions = []
@@ -68,8 +79,8 @@ function create_idealpoint(ideology)
 end
 
 "Instantiates  agents; note that there are two kinds of them"
-function create_agent(agent_type,n_issues::Integer, id::Integer, σ::Real)
-    ideology = [create_belief(σ, issue) for issue in 1:n_issues ]
+function create_agent(agent_type,n_issues::Integer, id::Integer, σ::Real, paramtuple::Tuple)
+    ideology = [create_belief(σ, issue, paramtuple) for issue in 1:n_issues ]
     idealpoint = create_idealpoint(ideology)
     if agent_type == "mutating o"
         agent = Agent_o(id,ideology, idealpoint,[0])
@@ -83,8 +94,10 @@ end
 
 "Creates an array of agents"
 function createpop(agent_type, σ::Real,  n_issues::Integer, size::Integer)
-    population = [create_agent(agent_type, n_issues,i,σ) for i in 1:size]
+    betaparams = createbetaparams(size)
+    population = [create_agent(agent_type, n_issues,i,σ, rand(betaparams)) for i in 1:size]
 end
+
 
 "Creates a graph; helper for add_neighbors!"
 function creategraphfrompop(population, graphcreator)
