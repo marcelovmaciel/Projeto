@@ -7,20 +7,17 @@ This includes:
 * Functions to update the agents' beliefs;
 =#
 
-
-
 #= Type declarations
 
 The code primary elements are the the Belief and Agent types. A belief is a pair
-σ, μ  of uncertainty and expected value of a distribution about a
-issue. So the type Belief has 3 fields. An Agent will have an id, a set of
-beliefs, an ideal point (which will be the mean of its opinions μ = o   and
-a set of neighbors. The opinion will be generated from an Uniform(0,1)
-distribution, while the uncertainty is going to be, in this version, a global
-var. =#
+σ, μ of uncertainty and expected value of a distribution about a issue. So the
+type Belief has 3 fields. An Agent will have an id, a set of beliefs, an ideal
+point (which will be the mean of its opinions μ = o, a set of neighbors, and
+which issues it's certain. The opinion will be generated from a Beta, an each
+agent will have a Beta with α, β in [1.5,5] distribution, while the uncertainty
+is going to be, in this version, a global var. In some runs, though, some agents
+are going to be extremists =#
 
-
-
 
 #Structs for Agents and Beliefs --------------------
 
@@ -103,7 +100,9 @@ function createpop(agent_type, σ::Real,  n_issues::Integer, size::Integer)
     population = [create_agent(agent_type, n_issues,i,σ, betaparams[i]) for i in 1:size]
 end
 
-"turn some agents into extremists"
+"""
+turn some agents into extremists; that is, given a number or proportion of extremists and issues it makes the σ of some issues and some agents into ≈ 0 (1e-7)
+"""
 function createextremists!(pop, nextremists::Int, ncertainissues::Int )
     n_issues = length(pop[1].ideo)
     whichextremists = sample(1:length(pop),nextremists,
@@ -131,7 +130,6 @@ function add_neighbors!(population, nw)
         i.neighbors = neighbors(nw,i.id)
     end
 end
-
 
 #= Interaction functions
 =#
@@ -228,5 +226,3 @@ function ρ_update!(i::AbstractAgent,  σ::AbstractFloat, ρ::AbstractFloat)
         i.idealpoint = newidealpoint
     end
 end
-
-
