@@ -97,31 +97,26 @@ function create_agent(agent_type,n_issues::Integer, id::Integer, σ::Real, param
     return(agent)
 end
 
-
-#=
-    elseif agent_type == "is certain of some o, does not mutate sigma"
-        certain_issues = []
-        for i in 1:n_certain
-            push!(certain_issues, rand(n_issues))
-        end
-        agent = SomeCertainAgent_o(id,ideology,idealpoint,[0],certain_issues)
-; n_certain = 2
-=#
-
-
 "Creates an array of agents"
 function createpop(agent_type, σ::Real,  n_issues::Integer, size::Integer)
     betaparams = createbetaparams(size)
     population = [create_agent(agent_type, n_issues,i,σ, betaparams[i]) for i in 1:size]
 end
 
-
-#=
-n_issues = 1:10
-ncertain_issues = 2
-whichcertain_issues = rand(n_issues, ncertain_issues)
-=#
-
+"turn some agents into extremists"
+function createextremists!(pop, nextremists::Int, ncertainissues::Int )
+    n_issues = length(pop[1].ideo)
+    whichextremists = sample(1:length(pop),nextremists,
+                             replace = false)
+    for i in whichextremists
+        whichissues = sample(1:n_issues,ncertainissues,
+                             replace = false)
+        pop[i].certainissues = whichissues
+        for issue in whichissues
+            pop[i].ideo[issue].σ = 1e-7
+        end
+    end
+end
 
 "Creates a graph; helper for add_neighbors!"
 function creategraphfrompop(population, graphcreator)
