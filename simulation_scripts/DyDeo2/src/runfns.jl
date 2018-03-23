@@ -8,7 +8,6 @@ This includes:
 =#
 
 
-
 # Types needed for the simulation
 
 "Parameters for the simulation; makes the code cleaner"
@@ -21,7 +20,7 @@ This includes:
     ρ::R = 0.01
     agent_type::String = "mutating o"
     graphcreator = CompleteGraph
-    
+    certaintyparams::Tuple = (5,1)
 end
 
 ## Information Storing Fns
@@ -73,10 +72,12 @@ function agents_update!(population,p, σ, ρ)
 end
 
 "this fn creates the population |> update it with the neighbors |> initialize the df"
-function create_initdf(agent_type, σ, n_issues, size_nw,graphcreator)
+function create_initdf(agent_type, σ, n_issues, size_nw,graphcreator,
+                certaintyparams)
     pop = createpop(agent_type, σ, n_issues, size_nw)
     g = creategraphfrompop(pop,graphcreator)
     add_neighbors!(pop,g)
+    createextremists!(pop,certaintyparams[1],certaintyparams[2])
     df = init_df(pop)
     return(df,pop)
 end
@@ -106,7 +107,7 @@ end
 
 "repetition of the sim for some parameters;"
 function one_run(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = pa
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, certainparams = pa
     df,pop = create_initdf(agent_type, σ, n_issues, size_nw,graphcreator)
     df = runsim!(pop,df,p,σ,ρ,time)
     return(df)
@@ -118,8 +119,9 @@ this speeds up a lot the sim, but i can't keep track of the system state evoluti
 that is, i only save the end state
 """
 function simple_run(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = pa
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, certainparams = pa
     pop = createpop(agent_type, σ, n_issues, size_nw)
+    createextremists!(pop,certainparams[1],certainparams[2])
     g = creategraphfrompop(pop,graphcreator)
     add_neighbors!(pop,g)
     endpop = runsim!(pop,p,σ,ρ,time)
@@ -130,13 +132,12 @@ end
 
 "i'll play with preallocation before writing this procedure"
 function keepstatearray(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = pa
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, certainparams = pa
     pop = createpop(agent_type, σ, n_issues, size_nw)
+    createextremists!(pop,certainparams[1],certainparams[2])
     g = creategraphfrompop(pop,graphcreator)
     add_neighbors!(pop,g)
 end
-
-
 
 """
 this fn pressuposes an array of param_values where each column is a param and each row is a parametization;
@@ -170,7 +171,7 @@ I'm gonna create an output csv, and those plot functions will plot data from it.
 
 "Should be refactored; "
 function time_plot(which_df, params)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator = params
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, certainparams = params
     
     xlab = string("Iteration")
     ylab = string("Ideal Point") 
