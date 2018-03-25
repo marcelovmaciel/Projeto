@@ -21,15 +21,13 @@ qual a função de utilidade centrada nele, já que não é interesse do trabalh
 modelar a tomada de decisão que o pressuporia, por exemplo a escolha de um
 candidato. Como discutido no Capítulo 1, é possível atribuir diferentes funções
 de utilidade aos agentes, mas o pressuposto modal é que a função vai ter um
-máximo e será simétrica \cite{eguia2013spatial, carroll2013structure}. Vamos
-fazer uso desse pressuposto e modelar somente a emergência do ponto preferido a
-partir da interação com outros agentes em várias questões. Como não é um modelo
-de tomada de decisão, mas sim um modelo de surgimento de posicionamentos
-ideológicos, não é necessário adicionar mais um elemento, funções de utilidade,
-que simplesmente alargaria o espaço de parâmetros e não seria utilizado na
-simulação. Contudo, modelos futuros que busquem ligar, por exemplo, a
-distribuição de preferências com a escolha de candidatos/partidos poderiam fazer
-essa atribuição.
+máximo e será simétrica \cite{eguia2013spatial, carroll2013structure}. Como não
+é um modelo de tomada de decisão, mas sim um modelo de surgimento de
+posicionamentos ideológicos, não é necessário adicionar mais um elemento,
+funções de utilidade, que simplesmente alargaria o espaço de parâmetros e não
+seria utilizado na simulação. Contudo, modelos futuros que busquem ligar, por
+exemplo, a distribuição de preferências com a escolha de candidatos/partidos
+poderiam fazer essa atribuição.
 
 %Assumimos, portanto, que as preferências dos
 %agentes na dimensão são de pico-único, o pressuposto modal, desde
@@ -63,21 +61,36 @@ E_i[\theta]\) e incerteza \( \sigma_i^2 = E[\sigma^2] - E_ i[\theta]^2\) associa
   ideológico ao invés de uma única opinião.} das opiniões dele em \(I\). Do
 ponto de vista da implementação o atributo \(I\) é reduzido a um conjunto de
 pares \(I_i = ((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n}, \sigma_{i,n}^2) )\), sendo \(\sigma^2\)
-global e \(o\) retirado de uma distribuição uniforme, e o posicionamento
-ideológico do agente é dado por \(x_i = \frac{1}{n}\sum_{k=1}^{n} o_k\).
+global. Se \(o\) for retirado de uma distribuição uniforme (U[0,1]), como em
+\citeonline{deffuant2000mixing}, quanto mais vezes fazemos esse sorteio (quanto
+maior o número de questões), pela Lei dos Grandes Números, mais centrada a média
+aritmética ( \(x_i = \frac{1}{n}\sum_{k=1}^{n} o_k\)) vai ser do valor esperado da
+distribuição (0.5). Isso significa que já na condição inicial os agentes seriam
+de centro. Para que isso não ocorra associamos para cada agente uma distribuição
+Beta, com \(\alpha\)s e \(\beta\)s entre 1.1 e 20. Destas distribuições sorteamos os
+valores de \(o_i\) para cada questão, de forma que as opiniões são
+correlacionadas e centradas em distribuições que percorrem o espaço, como
+ilustrado na Figura \ref{fig:betas30}:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{ims/beta.png}
+  \caption{Distribuições Beta para 30 agentes}
+  \label{fig:betas30}
+\end{figure}
 
 
-O tempo é discreto e estamos interessados nas alterações ao longo prazo da
-configuração dos \(x\) sob diferentes combinações de parâmetros, tendo em vista
-as interações dos agentes \cite{acemoglu2011opinion} \footnote{Como vamos
-  definir longo prazo e analisar o modelo é tema da seção metodológica.}. Para
-tal, a regra de interação é em díades. A cada iteração da simulação um dos
-agentes vai ser escolhido e vai interagir com um de seus vizinhos, a princípio
-num grafo completo imposto exogenamente (estabeleço na condição
-  inicial quais os vizinhos). A interação é assim assíncrona (os agentes
-atualizam seus atributos em momentos distintos) e sequencial (um agente atualiza
-por vez) \cite{wilensky2015introduction}. A dependência dos resultados em
-relação ao número de agentes e de crenças vai ser explorada.
+A cada iteração da simulação um dos agentes vai ser escolhido e vai interagir
+com um de seus vizinhos, a princípio num grafo completo imposto exogenamente
+(estabeleço na condição inicial quais os vizinhos). A interação é assim em
+díades, assíncrona (os agentes atualizam seus atributos em momentos distintos) e
+sequencial (um agente atualiza por vez) \cite{wilensky2015introduction}. A
+dependência dos resultados em relação ao número de agentes e de crenças vai ser
+explorada. Estamos interessados nas alterações ao longo prazo (em termos de
+iterações) da configuração dos \(x\) sob diferentes combinações de parâmetros,
+tendo em vista as interações dos agentes \cite{acemoglu2011opinion}
+\footnote{Como vamos definir longo prazo e analisar o modelo é tema da seção
+  metodológica.}.
 
 Quando os agentes interagem \(i\) atualiza sua opinião e incerteza em
 alguma\footnote{Qual questão vão ``debater'' vai ser definido por meio de um
@@ -85,24 +98,24 @@ alguma\footnote{Qual questão vão ``debater'' vai ser definido por meio de um
   futuros, é considerar um viés nessa seleção, o que representaria saliência no
   sentido dado por \citeonline{zaller1992simple}: qual questão os agentes estão
   dando atenção, isto é, qual questão está mais acessível na memória deles.}
-questão segundo as equações 2.3 e 2.5. Isso significa que existem dois tipos
-possíveis de agente: atualizam somente \(o\) ou atualizam também \(\sigma^2\). Esse é
-um atributo global para cada repetição da simulação\footnote{Onde repetição
-  significa rodar a simulação sob uma semente aleatória \cite{laver2011party}.}.
+questão segundo as equações 2.3, 2.4 e 2.5. Isso significa que existem dois
+tipos possíveis de agente: atualizam somente \(o\) ou atualizam também \(\sigma^2\).
+Esse é um atributo global para cada repetição da simulação\footnote{Onde
+  repetição significa rodar a simulação sob uma semente aleatória
+  \cite{laver2011party}.}. \todo[inline,color=yellow!10]{Aqui fica a dúvida , à
+  espera da resposta de Andre..., se vou ter dois casos mesmo, ou um único em
+  que os agentes só atualizam sob 2.3 e 2.4, mas não 2.5, e NA CONDIÇÃO INICIAL
+  eu estabeleço uma proporção de agentes confiantes. Estaria trocando um Caso
+  por um parâmetro a mais, o que acho razoável (do ponto de vista operacional).}
 
-
-Vamos considerar duas variantes de \(p\): na primeira ele vai ser uma variável
-global \(0 < p < 1 \), a mesma para todos os agentes, assim como em
-\citeonline{martins2009bayesian}; na segunda, consideramos a possibilidade de
-que os agentes levem em conta ou não a opinião do vizinho em uma questão em
-particular a partir do conhecimento do ponto ideal do outro agente, de forma
-que: \(p_{ij}(t) = 1 - |x_i(t) - x_j(t)|\). Isto é, nesse \(p\) alternativo o
-agente \(i\) vai considerar a verossimilhança de um valor declarado pelo seu
-vizinho \(j\) segundo um \(p\) derivado da média do posicionamento ideológico de
-\(j\). Por exemplo, suponha que o agente \(j\) é um eleitor conservador. O
-agente \(i\) vai levar em conta essa informação geral sobre \(j\) para
-considerar a probabilidade do agente \(j\) estar falando algo correto em
-questões particulares.
+Temos dois outros parâmetros que são a proporção de agentes confiantes, e a
+proporção de questões em que são confiantes. Dado que os agentes agora tem um
+conjunto de opiniões é plausível considerar que um conjunto de agentes tenham
+determinadas opiniões em que eles tenham maior certeza, identificação, ou
+centralidade para o seu perfil ideológico. Sendo assim na condição inicial
+alguma proporção de agentes tem questões no seu perfil \(I\) cujos \(\sigma\)
+associados são aproximadamente zero. Com isso buscamos analisar o papel de
+agentes ``inflexíveis'' na dinâmica populacional. 
 
 Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
 segundo uma probabilidade \(\rho\). Do ponto de vista teórico, estamos considerando
@@ -134,7 +147,7 @@ seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
   \begin{itemize}
   \item A incerteza é, na condição inicial, a mesma para todos os agentes;
   \item Vamos considerar versões em que os agentes atualizam as incertezas e que
-    não atualizam.
+    não atualizam. \textcolor{red}{Bora ver se isso vai ficar assim mesmo.}
   \end{itemize}
 
 \item O parâmetro de confiança \(0.1 \leq p \leq 0.99\);
@@ -147,8 +160,14 @@ seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
 \item O tipo dos agentes:
   \begin{itemize}
   \item Se eles atualizam somente \(o\) ou se atualizam também \(\sigma^2\);
-    \item Se eles atualizam somente \(o\) será chamado de Caso I, se atualizam
-      também \(\sigma^2\) por sua vez é o Caso II;
+  %  \item Se eles atualizam somente \(o\) será chamado de Caso I, se atualizam
+   %   também \(\sigma^2\) por sua vez é o Caso II;
+  \end{itemize}
+
+\item os parâmetros de inflexibilidade:
+  \begin{itemize}
+  \item a proporção de agentes inflexíveis \(0.0 \leq (\text{p\_inf}) \leq 0.5\);
+  \item a proporção de questões em que são inflexíveis;
   \end{itemize}
 
 \item A probabilidade de reconsideração \(0.0 \leq \rho  \leq 0.1\);
@@ -157,14 +176,21 @@ seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
 
 \section{Inicialização e Iteração}
 
+
 A inicialização da simulação depende dos parâmetros-chave apresentados. Na
 condição inicial temos uma população de \(N\) agentes, que tem por atributos: um
 conjunto de pares \(I_i = ((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n},\sigma_{i,n}^2))\), onde
 o número de questões, \(n\), é uma variável global, cada \(o\) é retirado de uma
-distribuição uniforme \(U([0,1])\) e \(\sigma^2\) é uma variável global; um posicionamento
-ideológico, ou ponto ideal, \(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um
-conjunto de vizinhos, o qual depende de qual a rede os agentes estão, a
-princípio um grafo completo.
+distribuição Beta(\(\alpha,\beta\)), onde cada agente tem um \(\alpha\) e um \(\beta\) próprio,
+com valores\footnote{Paramêtros com valores \(\leq\) 1 ou geram distribuições de
+  formato uniforme, quando \(\alpha = \beta = 1.0\), ou com formato de U. Quanto ao
+  limiar superior, não vimos diferença entre digamos 20 ou 30.} entre 1.1 e 20;
+o \(\sigma^2\) é uma variável global; um posicionamento ideológico, ou ponto ideal,
+\(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um conjunto de vizinhos, o qual
+depende de qual a rede os agentes estão. Uma determinada proporção de agentes,
+contudo, vai ter alguns \(\sigma_i  = (1e-7)  \approx 0.0  \). As questões em que são sorteados
+são sorteadas, sem reposição, de seu \(I\). Quantos agentes e quantas
+questões são inflexíveis também são parâmetros globais.
 
  Uma iteração da simulação, a
 passagem de digamos \(t=2\) para \(t=3\), é dada pela aplicação de dois
@@ -194,8 +220,12 @@ sempre que ocorrerem mudanças nas crenças dos agentes.
 
 Dentre as diversas formas de analisar um ABM a análise de sensibilidade global
 se destaca como uma forma de ter uma compreensão ampla, geral, do comportamento
-do modelo \cite{north2007managing}. Contudo, o  alto custo computacional de varrer
-o espaço de parâmetros faz com que só seja possível, na maioria dos casos, se
+do modelo \cite{north2007managing}. O primeiro passo da análise envolva, então,
+a ter uma compreensão geral do comportamento do modelo, para então passarmos
+para regiões particulares do espaço de parâmetros.
+
+Contudo, o alto custo computacional de varrer esse espaço de parâmetros faz com
+que só seja possível realizarmos uma análise global, na maioria dos casos, se
 seguirmos métodos formais da literatura de análise de sensibilidade
 \cite{railsback2012agent}. Esses métodos trazem o benefício de determinar como
 selecionar subconjuntos de todas as combinações de parâmetros, reduzindo o
@@ -229,8 +259,8 @@ análise\footnote{Testamos diversas parametrizações com n\_issues \(= 1\) e
   observamos que a partir de \(50.000\) iterações a implementação replica os
   resultados de \citeonline{martins2009bayesian}.}, dado que nos diz o quão
 concentradas ou dispersos são os pontos ideais da população. Para a análise,
-seguimos \cite{ten2016sensitivity} e combinamos gráficos de dispersão com
-índices de sensibilidade. 
+seguimos \citeonline{ten2016sensitivity} e combinamos histogramas da medida do
+sistema, gráficos de dispersão e índices de sensibilidade.
 
 Os índices de sensibilidade utilizados são os índices de Sobol\footnote{Tanto a
   amostragem quanto a análise de sensibilidade são feitas usando o pacote de
@@ -242,9 +272,10 @@ parâmetros, mas não efeitos interativos \cite{ten2016sensitivity}. Já índice
 totais incluem todos os efeitos de ordem maior decorrentes das interações entre
 os parâmetros \cite{saltelli2008global}.
 
-
-
 \section{Resultados}
+
+\todo[inline,color = yellow!10]{A partir daqui vai ser reescrito por causa das
+  modificações no modelo.}
 
 Rodamos então \(60.000\) parametrizações por \(1.000.000\) de iterações tendo
 por \(Y\), o \textit{output} de interesse, a variância do ponto ideal da
@@ -301,17 +332,14 @@ uma relação negativa entre os parâmetros \(\text{n\_issues}, p, \sigma \) e a
 dispersão dos pontos ideais (\( \text{Ystd}) \). A relação entre \(p\) e \(\sigma\)
 são explicadas pelo fato de agentes que são mais incertos e ``confiam'' mais na
 opinião dos outros agentes vão convergir mais rápido para a mesma opinião.
-\todo[inline,color = yellow!10]{puxar de martins 2009 aqui a discussão das
-  equações}
+
 
 Já a relação entre número de questões e menor dispersão se dá pelo fato que
 quanto mais questões mais centrado vai ser o ponto ideal, uma vez que é a média
-aritmética das opiniões. Como estamos retirando as opiniões em cada questão de
-uma U[0,1] quanto mais vezes fazemos esse sorteio, pela Lei dos Grandes Números,
-mais centrada a média aritmética vai ser do valor esperado da distribuição
-(0.5). O parâmetro \(\rho\), o ruído, por sua vez, tem uma relação positiva com a
-dispersão do sistema. Interessante notar, contudo, que o tamanho da população
-parece não ter relação com o desvio padrão dos pontos ideais da população.
+aritmética das opiniões. O parâmetro \(\rho\), o ruído, por sua vez, tem uma
+relação positiva com a dispersão do sistema. Interessante notar, contudo, que o
+tamanho da população parece não ter relação com o desvio padrão dos pontos
+ideais da população.
 
 A intensidade dos parâmetros na variância da medida do sistema (Ystd) fica mais
 claro na Figura \ref{fig:sobol1}:
