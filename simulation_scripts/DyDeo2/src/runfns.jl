@@ -25,9 +25,18 @@ end
 
 ## Information Storing Fns
 #I'm going to initialize a dataframe and update it at each time step.
+"this fn is a helper for all other fns used in the simulation"
+function create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator,
+                certaintyparams)
+    pop = createpop(agent_type, σ, n_issues, size_nw)
+    g = creategraphfrompop(pop,graphcreator)
+    add_neighbors!(pop,g)
+    createextremists!(pop,certaintyparams[1],certaintyparams[2])
+    return(pop)
+end
 
 "fn to initialize the df; it should store all the info I may need later"
-function init_df(pop)
+function create_initdf(pop)
     df = DataFrame(time = Integer[], id  = Integer[],  ideal_point = Real[])
     for agent in pop
         time = 0 
@@ -71,16 +80,8 @@ function agents_update!(population,p, σ, ρ)
     return(population)
 end
 
-"this fn creates the population |> update it with the neighbors |> initialize the df"
-function create_initdf(agent_type, σ, n_issues, size_nw,graphcreator,
-                certaintyparams)
-    pop = createpop(agent_type, σ, n_issues, size_nw)
-    g = creategraphfrompop(pop,graphcreator)
-    add_neighbors!(pop,g)
-    createextremists!(pop,certaintyparams[1],certaintyparams[2])
-    df = init_df(pop)
-    return(df,pop)
-end
+
+
 
 """
 this fn runs the main procedure iteratively while updating the df;
@@ -88,7 +89,7 @@ this fn runs the main procedure iteratively while updating the df;
 it may also only return the final vec of agents 
 
 """
-function runsim!(pop,df,p,σ,ρ,time)
+function runsim!(pop,df::DataFrame,p,σ,ρ,time)
    for step in 1:time
         agents_update!(pop,p, σ, ρ)
         update_df!(pop,df,step)
@@ -107,8 +108,9 @@ end
 
 "repetition of the sim for some parameters;"
 function one_run(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, certainparams = pa
-    df,pop = create_initdf(agent_type, σ, n_issues, size_nw,graphcreator)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, certaintyparams = pa
+    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, certaintyparams)
+    initdf = create_initdf(pop)
     df = runsim!(pop,df,p,σ,ρ,time)
     return(df)
 end
@@ -119,26 +121,34 @@ this speeds up a lot the sim, but i can't keep track of the system state evoluti
 that is, i only save the end state
 """
 function simple_run(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, certainparams = pa
-    pop = createpop(agent_type, σ, n_issues, size_nw)
-    createextremists!(pop,certainparams[1],certainparams[2])
-    g = creategraphfrompop(pop,graphcreator)
-    add_neighbors!(pop,g)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, certaintyparams = pa
+    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, certaintyparams)
     endpop = runsim!(pop,p,σ,ρ,time)
-    return(endpoints)
+    return(endpop)
 end
-
 
 
 "i'll play with preallocation before writing this procedure"
-function keepstatearray(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, certainparams = pa
-    pop = createpop(agent_type, σ, n_issues, size_nw)
-    createextremists!(pop,certainparams[1],certainparams[2])
-    g = creategraphfrompop(pop,graphcreator)
-    add_neighbors!(pop,g)
+function simstatesvec(pa::DyDeoParam)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, certaintyparams = pa
+    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, certaintyparams)
+    statearray = createstatearray(pop)
+
+    for step in 1:time
+        pop = agents_update!(pop,p, σ, ρ)
+        push!(statearray, pop |> pullidealpoints)
+       end
+    return(statearray)
 end
 
+function statesmatrix(statearray, time, size_nw)
+    a = Array{Float64}(time+1,size_nw)
+    for (step,popstate) in enumerate(statearray)
+        for (agent_indx,agentstate) in enumerate(popstate)
+            a[step,agent_indx] = agentstate
+        end
+    end
+end
 """
 this fn pressuposes an array of param_values where each column is a param and each row is a parametization;
 Then it runs the sim for each parametization and pushs system measures to another array (the output array)
@@ -171,7 +181,7 @@ I'm gonna create an output csv, and those plot functions will plot data from it.
 
 "Should be refactored; "
 function time_plot(which_df, params)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, certainparams = params
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, certaintyparams = params
     
     xlab = string("Iteration")
     ylab = string("Ideal Point") 
