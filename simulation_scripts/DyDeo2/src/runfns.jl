@@ -35,6 +35,13 @@ function create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator,
     return(pop)
 end
 
+function createstatearray(pop)
+    statearray = Array{Array{Float64}}(0)
+    push!(statearray,pullidealpoints(pop))
+end
+
+
+
 "fn to initialize the df; it should store all the info I may need later"
 function create_initdf(pop)
     df = DataFrame(time = Integer[], id  = Integer[],  ideal_point = Real[])
