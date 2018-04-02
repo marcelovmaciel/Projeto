@@ -62,7 +62,6 @@ function createbetaparams(popsize::Integer)
     return(betaparams)
 end
 
-
 "Instantiates beliefs; note o is taken from a Beta while σ is global and an input"
 function create_belief(σ::Real, issue::Integer, paramtuple::Tuple)
     o = rand(Beta(paramtuple[1],paramtuple[2]))
@@ -101,18 +100,19 @@ function createpop(agent_type, σ::Real,  n_issues::Integer, size::Integer)
 end
 
 """
-turn some agents into extremists; that is, given a number or proportion of extremists and issues it makes the σ of some issues and some agents into ≈ 0 (1e-7)
+turn some agents into extremists; that is, given a number or proportion of extremists and issues it makes the σ of some issues and some agents into ≈ 0 (1e-20)
 """
-function createextremists!(pop, nextremists::Int, ncertainissues::Int )
+function createintransigents!(pop,propextremists::AbstractFloat)
     n_issues = length(pop[1].ideo)
+    nextremists = round(Int, length(pop) * propextremists)
     whichextremists = sample(1:length(pop),nextremists,
                              replace = false)
     for i in whichextremists
-        whichissues = sample(1:n_issues,ncertainissues,
+        whichissues = sample(1:n_issues, 1,
                              replace = false)
         pop[i].certainissues = whichissues
         for issue in whichissues
-            pop[i].ideo[issue].σ = 1e-7
+            pop[i].ideo[issue].σ = 1e-20
         end
     end
 end
@@ -142,7 +142,7 @@ end
 
 
 """Takes two agents and returns a tuple with:
- - wich issue they discuss
+ - which issue they discuss
  - i and j beliefs
 """
 function pick_issuebelief(i::AbstractAgent, j::AbstractAgent)
@@ -151,8 +151,6 @@ function pick_issuebelief(i::AbstractAgent, j::AbstractAgent)
     j_belief = j.ideo[whichissue]
     return(whichissue, i_belief, j_belief)
 end
-
-# Using the information from mg to update population' -----------------------------
 
 "helper for posterior opinion and uncertainty"
 function calculate_pstar(i_belief::Belief, j_belief::Belief, p::AbstractFloat)
@@ -163,8 +161,9 @@ function calculate_pstar(i_belief::Belief, j_belief::Belief, p::AbstractFloat)
     return(pₚ)
 end
 
-# Helper for update step
-"Input = beliefs in an issue and confidence paramater; Output = i new opinion"
+"""
+Helper for update_step
+Input = beliefs in an issue and confidence paramater; Output = i new opinion"""
 function calc_posterior_o(i_belief::Belief, j_belief::Belief, p::AbstractFloat)
     pₚ = calculate_pstar(i_belief, j_belief, p)
     posterior_opinion = pₚ * ((i_belief.o + j_belief.o) / 2) +
