@@ -54,29 +54,25 @@ elementos de \(I\) são as crenças dos agentes em cada questão. Seguindo
 \citeonline{martins2012bayesian}, vamos pressupor que os agentes têm uma
 probabilidade subjetiva sobre cada questão \(\theta\), e uma opinião \( o_i =
 E_i[\theta]\) e incerteza \( \sigma_i^2 = E[\sigma^2] - E_ i[\theta]^2\) associados. O ponto ideal
-\(x\) do agente vai ser a média aritmética\footnote{Em trabalhos futuros, é
-  interessante pensar o ponto ideal como a média ponderada. Adicionar peso a
-  cada questão é uma forma de modelar a importância que o indivíduo dá a ela.
-  Essa é uma implicação possível ao pensarmos o agente em termos de perfil
-  ideológico ao invés de uma única opinião.} das opiniões dele em \(I\). Do
-ponto de vista da implementação o atributo \(I\) é reduzido a um conjunto de
-pares \(I_i = ((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n}, \sigma_{i,n}^2) )\), sendo \(\sigma^2\)
-global. Se \(o\) for retirado de uma distribuição uniforme (U[0,1]), como em
+\(x\) do agente vai ser a média aritmética das opiniões dele em \(I\). Do ponto
+de vista da implementação o atributo \(I\) é reduzido a um conjunto de pares
+\(I_i = ((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n}, \sigma_{i,n}^2) )\), sendo \(\sigma^2\) global.
+Se \(o\) for retirado de uma distribuição uniforme (U[0,1]), como em
 \citeonline{deffuant2000mixing}, quanto mais vezes fazemos esse sorteio (quanto
 maior o número de questões), pela Lei dos Grandes Números, mais centrada a média
 aritmética ( \(x_i = \frac{1}{n}\sum_{k=1}^{n} o_k\)) vai ser do valor esperado da
 distribuição (0.5). Isso significa que já na condição inicial os agentes seriam
 de centro. Para que isso não ocorra associamos para cada agente uma distribuição
-Beta, com \(\alpha\)s e \(\beta\)s entre 1.1 e 20. Destas distribuições sorteamos os
+Beta, com \(\alpha\)s e \(\beta\)s entre 1.1 e 100. Destas distribuições sorteamos os
 valores de \(o_i\) para cada questão, de forma que as opiniões são
-correlacionadas e centradas em distribuições que percorrem o espaço, como
-ilustrado na Figura \ref{fig:betas30}:
+correlacionadas e as distribuições são centradas em diferentes pontos do espaço,
+como ilustrado na Figura \ref{fig:betas100}:
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{ims/beta.png}
-  \caption{Distribuições Beta para 30 agentes}
-  \label{fig:betas30}
+  \includegraphics[width=\textwidth]{ims/beta100.png}
+  \caption{Distribuições Beta para 50 agentes}
+  \label{fig:betas100}
 \end{figure}
 
 
@@ -98,24 +94,14 @@ alguma\footnote{Qual questão vão ``debater'' vai ser definido por meio de um
   futuros, é considerar um viés nessa seleção, o que representaria saliência no
   sentido dado por \citeonline{zaller1992simple}: qual questão os agentes estão
   dando atenção, isto é, qual questão está mais acessível na memória deles.}
-questão segundo as equações 2.3, 2.4 e 2.5. Isso significa que existem dois
-tipos possíveis de agente: atualizam somente \(o\) ou atualizam também \(\sigma^2\).
-Esse é um atributo global para cada repetição da simulação\footnote{Onde
-  repetição significa rodar a simulação sob uma semente aleatória
-  \cite{laver2011party}.}. \todo[inline,color=yellow!10]{Aqui fica a dúvida , à
-  espera da resposta de Andre..., se vou ter dois casos mesmo, ou um único em
-  que os agentes só atualizam sob 2.3 e 2.4, mas não 2.5, e NA CONDIÇÃO INICIAL
-  eu estabeleço uma proporção de agentes confiantes. Estaria trocando um Caso
-  por um parâmetro a mais, o que acho razoável (do ponto de vista operacional).}
-
-Temos dois outros parâmetros que são a proporção de agentes confiantes, e a
-proporção de questões em que são confiantes. Dado que os agentes agora tem um
+questão segundo as equações 2.3 e 2.4. Dado que os agentes agora tem um
 conjunto de opiniões é plausível considerar que um conjunto de agentes tenham
 determinadas opiniões em que eles tenham maior certeza, identificação, ou
 centralidade para o seu perfil ideológico. Sendo assim na condição inicial
-alguma proporção de agentes tem questões no seu perfil \(I\) cujos \(\sigma\)
+alguma proporção de agentes tem uma questão no seu perfil \(I\) cujos \(\sigma\)
 associados são aproximadamente zero. Com isso buscamos analisar o papel de
-agentes ``inflexíveis'' na dinâmica populacional. 
+agentes ``inflexíveis'' na dinâmica populacional. A proporção de agentes
+intransigentes ou inflexíveis é assim um parâmetro da simulação.
 
 Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
 segundo uma probabilidade \(\rho\). Do ponto de vista teórico, estamos considerando
@@ -145,37 +131,19 @@ seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
 
 \item As incertezas \(0.01 \leq \sigma_i \leq 0.5\);
   \begin{itemize}
-  \item A incerteza é, na condição inicial, a mesma para todos os agentes;
-  \item Vamos considerar versões em que os agentes atualizam as incertezas e que
-    não atualizam. \textcolor{red}{Bora ver se isso vai ficar assim mesmo.}
+  \item Agentes intransigentes vão ter uma de suas opiniões com incerteza
+    próxima a zero ((1e-15\));
   \end{itemize}
 
 \item O parâmetro de confiança \(0.1 \leq p \leq 0.99\);
   
-  \begin{itemize}
-  \item Vamos considerar variantes em que o \(p\) é global ou em que o \(p\) é
-    calculado para cada interação;
-  \end{itemize}
-
-\item O tipo dos agentes:
-  \begin{itemize}
-  \item Se eles atualizam somente \(o\) ou se atualizam também \(\sigma^2\);
-  %  \item Se eles atualizam somente \(o\) será chamado de Caso I, se atualizam
-   %   também \(\sigma^2\) por sua vez é o Caso II;
-  \end{itemize}
-
-\item os parâmetros de inflexibilidade:
-  \begin{itemize}
-  \item a proporção de agentes inflexíveis \(0.0 \leq (\text{p\_inf}) \leq 0.5\);
-  \item a proporção de questões em que são inflexíveis;
-  \end{itemize}
+\item A proporção de agentes intransigentes \(0.0 \leq (\text{p\_intran}) \leq 0.5\);
 
 \item A probabilidade de reconsideração \(0.0 \leq \rho  \leq 0.1\);
   
 \end{itemize}
 
 \section{Inicialização e Iteração}
-
 
 A inicialização da simulação depende dos parâmetros-chave apresentados. Na
 condição inicial temos uma população de \(N\) agentes, que tem por atributos: um
@@ -184,13 +152,14 @@ o número de questões, \(n\), é uma variável global, cada \(o\) é retirado d
 distribuição Beta(\(\alpha,\beta\)), onde cada agente tem um \(\alpha\) e um \(\beta\) próprio,
 com valores\footnote{Paramêtros com valores \(\leq\) 1 ou geram distribuições de
   formato uniforme, quando \(\alpha = \beta = 1.0\), ou com formato de U. Quanto ao
-  limiar superior, não vimos diferença entre digamos 20 ou 30.} entre 1.1 e 20;
-o \(\sigma^2\) é uma variável global; um posicionamento ideológico, ou ponto ideal,
-\(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um conjunto de vizinhos, o qual
-depende de qual a rede os agentes estão. Uma determinada proporção de agentes,
-contudo, vai ter alguns \(\sigma_i  = (1e-7)  \approx 0.0  \). As questões em que são sorteados
-são sorteadas, sem reposição, de seu \(I\). Quantos agentes e quantas
-questões são inflexíveis também são parâmetros globais.
+  limiar superior, o valor de 100 permite que tenhamos agentes com distribuições
+  centralizadas em ambos os extremos, dado que a média \(\mu\) é dada por
+  \(\frac{\alpha}{\alpha + \beta}\), de forma que a média mínima é 0.011.} entre 1.1 e 30; o
+\(\sigma^2\) é uma variável global ; um posicionamento ideológico, ou ponto ideal,
+\(x_i = \frac{1}{n} \sum_{k = 1} n o_{i,k} \); e um conjunto de vizinhos, o qual
+depende de qual a rede os agent s estão. Uma determinada proporção de agentes,
+contudo, vai ter um \(\sigma_i = (1e-15 ) \approx 0.0 \). Qual em particular é sorteado de
+seu \(I\). Quantos agentes são intransigentes é dado por \(\text{p\_intran}\).
 
  Uma iteração da simulação, a
 passagem de digamos \(t=2\) para \(t=3\), é dada pela aplicação de dois
@@ -198,14 +167,13 @@ procedimentos: a atualização via influência social e a atualização aleatór
 Uma repetição da simulação é a aplicação iterativa desses dois procedimentos ao
 longo de um tempo \(t \).
 
-O procedimento de influência social é o seguinte: escolhemos um agente \(i\)
-da população. Então escolhemos um de seus vizinhos, \(j\). Sorteamos uma das
-questões \(k \in (1,\ldots,n)\), e logo em seguida selecionamos os \((o_{i,k},o_{j,k})\) e
-\((\sigma_{i,k}^2,\sigma_{j,k}^2)\) correspondentes à questão. A partir daqui temos duas
-opções, \(i\) atualiza somente \(o_{i,k}\) ou também atualiza \(\sigma_{i,k}^2\),
-segundo as equações 2.3 e 2.5. Essa regra é um parâmetro global da simulação,
-o que significa que a cada repetição todos os agentes atualizam suas crenças
-segundo a mesma regra.
+O procedimento de influência social é o seguinte: escolhemos um agente \(i\) da
+população. Então escolhemos um de seus vizinhos, \(j\). Sorteamos uma das
+questões \(k \in (1,\ldots,n)\), e logo em seguida selecionamos os
+\((o_{i,k},o_{j,k})\) e \((\sigma_{i,k}^2,\sigma_{j,k}^2)\) correspondentes à questão. A
+partir daqui temos duas opções, \(i\) atualiza \(o_{i,k}\) segundo as equações
+2.3 e 2.4. Essa regra é um parâmetro global da simulação, o que significa que a
+cada repetição todos os agentes atualizam suas crenças segundo a mesma regra.
 
 Ademais, temos o ruído. Novamente escolhemos um agente \(i\) da população.
 Sorteamos uma questão e selecionamos \(o\) e \(\sigma^2\) correspondentes. Sorteamos
@@ -220,8 +188,8 @@ sempre que ocorrerem mudanças nas crenças dos agentes.
 
 Dentre as diversas formas de analisar um ABM a análise de sensibilidade global
 se destaca como uma forma de ter uma compreensão ampla, geral, do comportamento
-do modelo \cite{north2007managing}. O primeiro passo da análise envolva, então,
-a ter uma compreensão geral do comportamento do modelo, para então passarmos
+do modelo \cite{north2007managing}. O primeiro passo da análise envolve, então,
+ ter uma compreensão geral do comportamento do modelo para então passarmos
 para regiões particulares do espaço de parâmetros.
 
 Contudo, o alto custo computacional de varrer esse espaço de parâmetros faz com
