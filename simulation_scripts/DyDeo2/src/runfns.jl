@@ -18,21 +18,32 @@ This includes:
     ρ::R = 0.01
     agent_type::String = "mutating o"
     graphcreator = CompleteGraph
-    propextremists::R = 0.1
+    propintransigents::R = 0.1
 end
 
 ## Information Storing Fns
 #I'm going to initialize a dataframe and update it at each time step.
-"this fn is a helper for all other fns used in the simulation"
+"""
+    create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator,
+                propintransigents)
+
+this fn is a helper for all other fns used in the simulation
+"""
 function create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator,
-                propextremists)
+                propintransigents)
     pop = createpop(agent_type, σ, n_issues, size_nw)
     g = creategraphfrompop(pop,graphcreator)
     add_neighbors!(pop,g)
-    createintransigents!(pop,propextremists)
+    createintransigents!(pop,propintransigents)
     return(pop)
 end
 
+"""
+    function createstatearray(pop,time)
+
+Creates an array with the agents' ideal points; it's an alternative to saving everything in a df
+
+"""
 function createstatearray(pop,time)
     statearray = Array{Array{Float64}}(time+1)'
     statearray[1] = pullidealpoints(pop)
@@ -41,7 +52,11 @@ end
 
 
 
-"fn to initialize the df; it should store all the info I may need later"
+"""
+    create_initdf(pop)
+
+fn to initialize the df; it should store all the info I may need later.
+"""
 function create_initdf(pop)
     df = DataFrame(time = Integer[], id  = Integer[],  ideal_point = Real[])
     for agent in pop
@@ -51,7 +66,11 @@ function create_initdf(pop)
     return df
 end
 
-"fn to update the df with relevant information"
+"""
+    update_df!(pop,df,time)
+
+fn to update the df with relevant information.
+"""
 function update_df!(pop,df,time)
     for agent in pop
         push!(df,[time  agent.id   agent.idealpoint ])
@@ -68,7 +87,10 @@ function pullidealpoints(pop)
     return(idealpoints)
 end
 
-"fn to turn extracted information into system measures; pressuposes an array with some system state (set of agents attributes)"
+"""
+    outputfromsim(endpoints::Array)
+fn to turn extracted information into system measures; pressuposes an array with some system state (set of agents attributes)
+"""
 function outputfromsim(endpoints::Array)
     stdpoints = std(endpoints)
     num_points = endpoints |> countmap |> length
@@ -79,7 +101,11 @@ end
 #= Running Functions
 =#
 
-"this executes the main procedure of the model: one pair of agents interact and another updates randomly (noise)"
+"""
+    agents_update!(population,p, σ, ρ)
+
+this executes the main procedure of the model: one pair of agents interact and another updates randomly (noise).
+"""
 function agents_update!(population,p, σ, ρ)
     updateibelief!(rand(population),population,p)
     ρ_update!(rand(population), σ,ρ)
@@ -88,9 +114,8 @@ end
 
 
 """
+    runsim!(pop,df::DataFrame,p,σ,ρ,time)
 this fn runs the main procedure iteratively while updating the df;
-
-it may also only return the final vec of agents 
 
 """
 function runsim!(pop,df::DataFrame,p,σ,ρ,time)
@@ -101,7 +126,12 @@ function runsim!(pop,df::DataFrame,p,σ,ρ,time)
     return(df)
 end
 
+"""
+    runsim!(pop,p,σ,ρ,time)
 
+runs the main procedure iteratively then returns the final population
+
+"""
 function runsim!(pop,p,σ,ρ,time)
     for step in 1:time
         agents_update!(pop, p, σ, ρ)
@@ -112,8 +142,8 @@ end
 
 "repetition of the sim for some parameters;"
 function one_run(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propextremists = pa
-    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propextremists)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents = pa
+    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propintransigents)
     initdf = create_initdf(pop)
     df = runsim!(pop,df,p,σ,ρ,time)
     return(df)
@@ -125,8 +155,8 @@ this speeds up a lot the sim, but i can't keep track of the system state evoluti
 that is, i only save the end state
 """
 function simple_run(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propextremists = pa
-    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propextremists)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents = pa
+    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propintransigents)
     endpop = runsim!(pop,p,σ,ρ,time)
     return(endpop)
 end
@@ -134,8 +164,8 @@ end
 
 "i'll play with preallocation before writing this procedure"
 function simstatesvec(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propextremists = pa
-    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propextremists)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents = pa
+    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propintransigents)
     statearray = createstatearray(pop, pa.time)
 
     for step in 1:time
@@ -145,9 +175,15 @@ function simstatesvec(pa::DyDeoParam)
     return(statearray)
 end
 
+
+"""
+    statesmatrix(statearray, time, size_nw)
+fn to turn the system configurations (its state) into a matrix. I need to plot the agents' time series.
+Takes a lot of time (10 min for 1.000.000 iterations and 1000 agents)
+"""
 function statesmatrix(statearray, time, size_nw)
     a = Array{Float64}(time+1,size_nw)
-   for (step,popstate) in enumerate(statearray)
+   @showprogress 1 "Computing..." for (step,popstate) in enumerate(statearray)
         for (agent_indx,agentstate) in enumerate(popstate)
             a[step,agent_indx] = agentstate
         end
@@ -157,6 +193,8 @@ end
 
 
 """
+    sweep_sample(param_values; time = 250_000, agent_type = "mutating o")
+
 this fn pressuposes an array of param_values where each column is a param and each row is a parametization;
 Then it runs the sim for each parametization and pushs system measures to another array (the output array)
 """
@@ -188,7 +226,7 @@ I'm gonna create an output csv, and those plot functions will plot data from it.
 
 "Should be refactored; "
 function time_plot(which_df, params)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propextremists = params
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents = params
     
     xlab = string("Iteration")
     ylab = string("Ideal Point") 
