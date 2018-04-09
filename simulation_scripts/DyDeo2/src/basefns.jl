@@ -56,8 +56,8 @@ end
 
 "Creates a list of parameters for posterior instantiation of Belief" 
 function createbetaparams(popsize::Integer)
-    αs = linspace(1.5, 5, popsize) |> shuffle
-    βs = linspace(1.5, 5, popsize) |> shuffle
+    αs = linspace(1.1, 100, popsize) |> shuffle
+    βs = linspace(1.1, 100, popsize) |> shuffle
     betaparams = collect(zip(αs,βs))
     return(betaparams)
 end
@@ -92,6 +92,7 @@ function create_agent(agent_type,n_issues::Integer, id::Integer, σ::Real, param
     end
     return(agent)
 end
+
 
 "Creates an array of agents"
 function createpop(agent_type, σ::Real,  n_issues::Integer, size::Integer)
