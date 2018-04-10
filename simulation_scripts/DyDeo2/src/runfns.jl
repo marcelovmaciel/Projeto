@@ -206,9 +206,10 @@ function sweep_sample(param_values; time = 250_000, agent_type = "mutating o")
                                p = param_values[i,3],
                                σ = param_values[i,4],
                                        ρ = param_values[i,5],
+                                       propintransigents = param_values[i,6],
                                        time = time,
                                        agent_type = agent_type)
-        out  =  simple_run(paramfromsaltelli) |> outputfromsim
+        out  =  simple_run(paramfromsaltelli) |> pullidealpoints |> outputfromsim
         push!(Y,out)
     end
     return(Y)

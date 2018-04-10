@@ -24,6 +24,7 @@ are going to be extremists =#
 abstract type  AbstractAgent end
 abstract type AbstractBelief end 
 
+
 "Concrete type for Agents' beliefs; comprised of opinion, uncertainty and an id (whichissue)"
 mutable struct Belief{T1 <: Real, T2 <: Integer}
     o::T1
@@ -31,23 +32,44 @@ mutable struct Belief{T1 <: Real, T2 <: Integer}
     whichissue::T2
 end
 
-"Concrete type for an Agent which only change its opinion"
-mutable struct Agent_o{T1 <: Integer, T2 <: Vector, T3 <: Real, T4 <: Vector} <: AbstractAgent
+
+"""
+    mutable struct Agent_o{T1 <: Integer, T2 <: Vector, T3 <: Real,
+                       T4 <: Vector, T5 <: Tuple} <: AbstractAgent
+
+Concrete type for an Agent which only change its opinion.
+
+Fields:
+ - id::Integer
+ - ideo:: Vector
+ - idealpoint::Real
+ - neighbors::Vector
+ - certainissues::Vector
+ - certainparams::Tuple
+
+"""
+mutable struct Agent_o{T1 <: Integer, T2 <: Vector, T3 <: Real,
+                       T4 <: Vector, T5 <: Tuple} <: AbstractAgent
     id::T1
     ideo::T2
     idealpoint::T3
     neighbors::T4
     certainissues::T4
+    certainparams::T5
 end
 
+
 "Concrete type for an Agent which changes both opinion and uncertainty"
-mutable struct Agent_oσ{T1 <: Integer,T2 <: Vector,T3 <: Real, T4 <: Vector} <: AbstractAgent
+mutable struct Agent_oσ{T1 <: Integer,T2 <: Vector,T3 <: Real,
+                        T4 <: Vector, T5 <: Tuple} <: AbstractAgent
     id::T1
     ideo::T2
     idealpoint::T3
     neighbors::T4
     certainissues::T4
+    certainparams::T5
 end
+
 
 #= "Constructors" for Beliefs, Agents and Graphs
 - All I need for the initial condition
@@ -96,9 +118,9 @@ function create_agent(agent_type,n_issues::Integer, id::Integer, σ::Real, param
     idealpoint = create_idealpoint(ideology)
 
     if agent_type == "mutating o"
-        agent = Agent_o(id,ideology, idealpoint,[0], [0])
+        agent = Agent_o(id,ideology, idealpoint,[0], [0], paramtuple)
     elseif agent_type == "mutating o and sigma"
-        agent = Agent_oσ(id,ideology, idealpoint,[0],[0])
+        agent = Agent_oσ(id,ideology, idealpoint,[0],[0], paramtuple)
     else
         println("specify agent type: mutating o or mutating o and sigma")
     end
@@ -261,6 +283,7 @@ function updateibelief!(i::Agent_o, population, p::AbstractFloat )
 end
 
 
+
 function updateibelief!(i::Agent_oσ, population,p::AbstractFloat )
     
     j = getjtointeract(i, population)
@@ -281,8 +304,7 @@ function ρ_update!(i::AbstractAgent,  σ::AbstractFloat, ρ::AbstractFloat)
     ξ = rand(Uniform())
     whichissue = rand(1:length(i.ideo))
     if ξ < ρ
-        i.ideo[whichissue].o = rand(Uniform())
-        i.ideo[whichissue].σ = σ
+        i.ideo[whichissue].o = rand(Beta(i.certainparams...))
         newidealpoint = create_idealpoint(i.ideo)
         i.idealpoint = newidealpoint
     end
