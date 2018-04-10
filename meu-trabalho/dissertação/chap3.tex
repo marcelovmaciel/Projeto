@@ -88,20 +88,20 @@ tendo em vista as interações dos agentes \cite{acemoglu2011opinion}
 \footnote{Como vamos definir longo prazo e analisar o modelo é tema da seção
   metodológica.}.
 
-Quando os agentes interagem \(i\) atualiza sua opinião e incerteza em
-alguma\footnote{Qual questão vão ``debater'' vai ser definido por meio de um
-  sorteio sem viés. Uma outra implicação possível, a ser adicionada em trabalhos
-  futuros, é considerar um viés nessa seleção, o que representaria saliência no
-  sentido dado por \citeonline{zaller1992simple}: qual questão os agentes estão
-  dando atenção, isto é, qual questão está mais acessível na memória deles.}
-questão segundo as equações 2.3 e 2.4. Dado que os agentes agora tem um
-conjunto de opiniões é plausível considerar que um conjunto de agentes tenham
-determinadas opiniões em que eles tenham maior certeza, identificação, ou
-centralidade para o seu perfil ideológico. Sendo assim na condição inicial
-alguma proporção de agentes tem uma questão no seu perfil \(I\) cujos \(\sigma\)
-associados são aproximadamente zero. Com isso buscamos analisar o papel de
-agentes ``inflexíveis'' na dinâmica populacional. A proporção de agentes
-intransigentes ou inflexíveis é assim um parâmetro da simulação.
+Quando os agentes interagem \(i\) atualiza sua opinião em alguma\footnote{Qual
+  questão vão ``debater'' vai ser definido por meio de um sorteio sem viés. Uma
+  outra implicação possível, a ser adicionada em trabalhos futuros, é considerar
+  um viés nessa seleção, o que representaria saliência no sentido dado por
+  \citeonline{zaller1992simple}: qual questão os agentes estão dando atenção,
+  isto é, qual questão está mais acessível na memória deles.} questão segundo as
+equações 2.3 e 2.4. Dado que os agentes agora tem um conjunto de opiniões é
+plausível considerar que um conjunto de agentes tenham determinadas opiniões em
+que eles tenham maior certeza, identificação, ou centralidade para o seu perfil
+ideológico. Sendo assim na condição inicial alguma proporção de agentes tem uma
+questão no seu perfil \(I\) cujos \(\sigma\) associados são aproximadamente zero. Com
+isso buscamos analisar o papel de agentes ``inflexíveis'' na dinâmica
+populacional. A proporção de agentes intransigentes ou inflexíveis é assim um
+parâmetro da simulação.
 
 Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
 segundo uma probabilidade \(\rho\). Do ponto de vista teórico, estamos considerando
@@ -113,10 +113,9 @@ drásticas nas propriedades sistêmicas. Particularmente, consideram que adicion
 ruído pode: eliminar equilíbrios frágeis, o que reduz o conjunto de resultados e
 tornando-os mais previsíveis; e embora aumente a heterogeneidade local isso pode
 acabar facilitando interações sociais que reduzem a diversidade global
-\cite[p.323]{macy2015signal}. Vamos fazer o pressuposto mais simples que os
-desvios aleatórios são independentes na população e sem viés quanto à opinião do
-agente, de forma que pressupomos um ruído uniformemente distribuído
-\cite{Pineda-2009, lorenz2017modeling}.
+\cite[p.323]{macy2015signal}. A nova opinão é sorteada independentemente da
+opinião anterior do agente. Contudo, no caso em que o agente seja intransigente
+na questão ele não será sujeito ao efeito do ruído.
 
 
 \section{Parâmetros-Chave}
@@ -132,7 +131,7 @@ seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
 \item As incertezas \(0.01 \leq \sigma_i \leq 0.5\);
   \begin{itemize}
   \item Agentes intransigentes vão ter uma de suas opiniões com incerteza
-    próxima a zero ((1e-15\));
+    próxima a zero (\(1e-15\));
   \end{itemize}
 
 \item O parâmetro de confiança \(0.1 \leq p \leq 0.99\);
@@ -176,13 +175,12 @@ partir daqui temos duas opções, \(i\) atualiza \(o_{i,k}\) segundo as equaçõ
 cada repetição todos os agentes atualizam suas crenças segundo a mesma regra.
 
 Ademais, temos o ruído. Novamente escolhemos um agente \(i\) da população.
-Sorteamos uma questão e selecionamos \(o\) e \(\sigma^2\) correspondentes. Sorteamos
+Sorteamos uma questão e selecionamos \(o\) e \(\sigma^2\) correspondentes. Se o
+agente é intransigente naquela questão então ele não muda de opinião. Sorteamos
 um \(\xi\) retirado de uma distribuição uniforme \(U([0,1])\) e se \(\xi < \rho\) \(i\)
-muda \(o\) para um valor retirado também de uma uniforme e \(\sigma^2\) volta ao
-valor global.Os \(x_i\), o objeto de interesse de análise, são atualizados
-sempre que ocorrerem mudanças nas crenças dos agentes.
-
-
+muda \(o\) para um valor retirado de outra distribuição uniforme (U[0,1]). Os
+\(x_i\), o objeto de interesse de análise, são atualizados sempre que ocorrerem
+mudanças nas crenças dos agentes.
 
 \section{Metodologia de Análise}
 
@@ -213,12 +211,12 @@ seleção de novos pontos para mantê-los afastados dos pontos já presentes. De
 forma vamos usar o método de Saltelli de amostragem, dado que garante a partição
 equitativa do espaço de parâmetros \cite{herman2017salib}. Especificamos então
 um \(n\) base a partir do qual o ``sampler'' gera n * (2d + 2), onde \(d\) é o
-número de parâmetros. No nosso caso \(d = 5\), pois vamos ter como parâmetros :
-N (população), número de questões (codificado como n\_issues ), \(p\), \(\sigma\) e
-\(\rho\). Vamos tratar se os agentes atualizam \(o\) ou se atualizam também \(\sigma\)
-como dois casos. Para garantir um coeficiente de erro baixo no cálculo
+número de parâmetros. No nosso caso \(d = 6\), pois vamos ter como parâmetros :
+N (população), número de questões (codificado como n\_issues ), \(p\), \(\sigma\), a
+proporção de agentes intransigentes (codificado como p\_intran)
+\(\rho\). Para garantir um coeficiente de erro baixo no cálculo
 subsequente dos índices de sensibilidade especificamos um \(n\) base de
-\(5000\), de forma que para cada caso rodamos \(60.000\) parametrizações.
+\(5000\), de forma que para cada caso rodamos \(70.000\) parametrizações.
 
 Uma vez especificado o método de amostragem especificamos uma medida do sistema
 para que possamos analisá-lo \cite{railsback2012agent}. Escolhemos o desvio

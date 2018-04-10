@@ -108,7 +108,7 @@ this executes the main procedure of the model: one pair of agents interact and a
 """
 function agents_update!(population,p, σ, ρ)
     updateibelief!(rand(population),population,p)
-    ρ_update!(rand(population), σ,ρ)
+    ρ_update!(rand(population), ρ)
     return(population)
 end
 
@@ -214,7 +214,6 @@ function sweep_sample(param_values; time = 250_000, agent_type = "mutating o")
     end
     return(Y)
 end
-
 
 #= Plotting Functions
 

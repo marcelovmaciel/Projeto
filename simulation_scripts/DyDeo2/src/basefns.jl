@@ -299,13 +299,14 @@ end
 
 fn for noise updating; note it returns a randomly taken o but the new σ is the initial one
 """
-function ρ_update!(i::AbstractAgent,  σ::AbstractFloat, ρ::AbstractFloat)
+function ρ_update!(i::AbstractAgent, ρ::AbstractFloat)
 
     ξ = rand(Uniform())
     whichissue = rand(1:length(i.ideo))
-    if ξ < ρ
-        i.ideo[whichissue].o = rand(Beta(i.certainparams...))
+    if (ξ < ρ) && (i.ideo[whichissue].σ != 1e-20)
+        i.ideo[whichissue].o = rand(Uniform())
         newidealpoint = create_idealpoint(i.ideo)
         i.idealpoint = newidealpoint
     end
 end
+
