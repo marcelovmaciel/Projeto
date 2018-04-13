@@ -15,7 +15,7 @@ problem  = Dict("num_vars" => 6,
                           [0.1, 0.99],
                           [0.01, 0.5],
                           [0.0, 0.1],
-                          [0.0, 0.5]])
+                          [0.0, 0.1]])
 
 param_values_saltelli5000 = saltelli.sample(problem, 5000)
 

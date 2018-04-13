@@ -11,14 +11,14 @@ const dd = DyDeo2
 
 @load "data/saltellioutput5000.jld2" #Ysaltelli1000
 
-problem  = Dict("num_vars" => 5,
-             "names" => ["size_nw", "n_issues", "p", "σ", "ρ"],
+problem  = Dict("num_vars" => 6,
+             "names" => ["size_nw", "n_issues", "p", "σ", "ρ", "p_intran"],
              "bounds" => [[500, 5_000],
                           [1, 10],
                           [0.1, 0.99],
                           [0.01, 0.5],
+                          [0.0, 0.1],
                           [0.0, 0.1]])
-
 
 function extractys(Ypairs)
     Ystd = Float64[]
@@ -30,15 +30,17 @@ function extractys(Ypairs)
     return(Ystd,Ynips)
 end
 
+discretize(x) = round(Int,x)
 
 # Create df for regression plot
 
 
-totaldf = DataFrame( N = map(dd.discretize, param_values_saltelli5000[:,1]),
-                     n_issues = map(dd.discretize, param_values_saltelli5000[:,2]),
+totaldf = DataFrame( N = map(discretize, param_values_saltelli5000[:,1]),
+                     n_issues = map(discretize, param_values_saltelli5000[:,2]),
                      ρ = param_values_saltelli5000[:,3],
                      σ = param_values_saltelli5000[:,4],
-                     ρ = param_values_saltelli5000[:,5])
+                     ρ = param_values_saltelli5000[:,5],
+                     p_intran = param_values_saltelli5000[:,6])
 
 Ystd5000,Ynips5000 = extractys(Ysaltelli5000)
 
