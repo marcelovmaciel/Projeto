@@ -136,7 +136,7 @@ seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
 
 \item O parâmetro de confiança \(0.1 \leq p \leq 0.99\);
   
-\item A proporção de agentes intransigentes \(0.0 \leq (\text{p\_intran}) \leq 0.5\);
+\item A proporção de agentes intransigentes \(0.0 \leq (\text{p\_intran}) \leq 0.1\);
 
 \item A probabilidade de reconsideração \(0.0 \leq \rho  \leq 0.1\);
   
@@ -155,8 +155,8 @@ com valores\footnote{Paramêtros com valores \(\leq\) 1 ou geram distribuições
   centralizadas em ambos os extremos, dado que a média \(\mu\) é dada por
   \(\frac{\alpha}{\alpha + \beta}\), de forma que a média mínima é 0.011.} entre 1.1 e 30; o
 \(\sigma^2\) é uma variável global ; um posicionamento ideológico, ou ponto ideal,
-\(x_i = \frac{1}{n} \sum_{k = 1} n o_{i,k} \); e um conjunto de vizinhos, o qual
-depende de qual a rede os agent s estão. Uma determinada proporção de agentes,
+\(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um conjunto de vizinhos, o qual
+depende de qual a rede os agentes estão. Uma determinada proporção de agentes,
 contudo, vai ter um \(\sigma_i = (1e-15 ) \approx 0.0 \). Qual em particular é sorteado de
 seu \(I\). Quantos agentes são intransigentes é dado por \(\text{p\_intran}\).
 
@@ -218,56 +218,96 @@ proporção de agentes intransigentes (codificado como p\_intran)
 subsequente dos índices de sensibilidade especificamos um \(n\) base de
 \(5000\), de forma que para cada caso rodamos \(70.000\) parametrizações.
 
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/timeseries1.png}
+      \caption{\( \sigma = 0.1\) }
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/timeseries2.png}
+       \caption{\(\sigma = 0.02\) }
+      \end{subfigure}
+      \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
+        Parametrização: \(  N = 500, p = 0.9, \rho = 0.0, n\_issues = 1 , p\_intra
+        n= 0.0 \)}
+      \label{fig:tseries1}
+    \end{figure}
+    
 Uma vez especificado o método de amostragem especificamos uma medida do sistema
 para que possamos analisá-lo \cite{railsback2012agent}. Escolhemos o desvio
 padrão dos pontos ideais após \(1.000.000\) iterações como output para
 análise\footnote{Testamos diversas parametrizações com n\_issues \(= 1\) e
   observamos que a partir de \(50.000\) iterações a implementação replica os
   resultados de \citeonline{martins2009bayesian}.}, dado que nos diz o quão
-concentradas ou dispersos são os pontos ideais da população. Para a análise,
-seguimos \citeonline{ten2016sensitivity} e combinamos histogramas da medida do
-sistema, gráficos de dispersão e índices de sensibilidade.
+concentradas ou dispersos são os pontos ideais da população. Uma outra opção de
+medida do sistema seria o número de opiniões finais após as iterações. Contudo,
+teríamos que estabelecer um \(N\) base, pois de outra forma esse parâmetro
+explica quase que totalmente o valor do output a ser analisado. No primeiro
+gráfico da figura \ref{fig:tseries1} temos um desvio padrão próximo zero, e um
+único posicionamento ideológico final. Já no segundo gráfico precisáriamos
+arredondar os pontos ideais finais, para digamos 5 casas decimais, para
+chegarmos a conclusão que existem ``clusters''. Se não arrendondarmos o
+resultado final teriamos uma medida próxima de 500 pontos ideais. O desvio
+padrão, contudo, nos indica a dispersao dos pontos ideais, pois tem valor de
+aproximadamente 0.24, próximo ao da condição inicial. A figura \ref{fig:tseries1}
+deixa claro, portanto, que as medidas são complementares, mas como estamos
+interessados no papel do \(N\) vamos começar com a análise com o desvio padrão
+dos pontos ideais como medida do sistema.
 
-Os índices de sensibilidade utilizados são os índices de Sobol\footnote{Tanto a
-  amostragem quanto a análise de sensibilidade são feitas usando o pacote de
-  Python SALib \cite{herman2017salib}.}, particularmente índices de Sobol de
-primeira ordem e totais \cite{saltelli2008global}. Os índices de Sobol decompõe
-o impacto dos parâmetros na variância do \textit{output} de interesse. Os
-índices de primeira ordem incluem contribuições lineares e não-lineares dos
-parâmetros, mas não efeitos interativos \cite{ten2016sensitivity}. Já índices
-totais incluem todos os efeitos de ordem maior decorrentes das interações entre
-os parâmetros \cite{saltelli2008global}.
+
+Para a análise, seguimos \citeonline{ten2016sensitivity} e combinamos
+histogramas da medida do sistema, gráficos de dispersão e índices de
+sensibilidade.Os índices de sensibilidade utilizados são os índices de
+Sobol\footnote{Tanto a amostragem quanto a análise de sensibilidade são feitas
+  usando o pacote de Python SALib \cite{herman2017salib}.}, particularmente
+índices de Sobol de primeira ordem e totais \cite{saltelli2008global}. Os
+índices de Sobol decompõe o impacto dos parâmetros na variância do
+\textit{output} de interesse. Os índices de primeira ordem incluem contribuições
+lineares e não-lineares dos parâmetros, mas não efeitos interativos
+\cite{ten2016sensitivity}. Já índices totais incluem todos os efeitos de ordem
+maior decorrentes das interações entre os parâmetros \cite{saltelli2008global}.
 
 \section{Resultados}
 
 \todo[inline,color = yellow!10]{A partir daqui vai ser reescrito por causa das
   modificações no modelo.}
 
-Rodamos então \(60.000\) parametrizações por \(1.000.000\) de iterações tendo
-por \(Y\), o \textit{output} de interesse, a variância do ponto ideal da
-população (\(\text{Ystd}\)) após as iterações. São \(5\) os parâmetros de input
+Rodamos então \(70.000\) parametrizações por \(1.000.000\) de iterações tendo
+por \(Y\), o \textit{output} de interesse, o desvio padrão  dos pontos ideais da
+população (\(\text{Ystd}\)) após as iterações. São \(6\) os parâmetros de input
 : o número de agentes (\(N\)), o número de questões (\(\text{n\_issues}\)), o
-parâmetro de confiança (\(p\)), a incerteza (\(\sigma\)), e o ruído \(\rho\), nos
+parâmetro de confiança (\(p\)), a incerteza (\(\sigma\)),  o ruído \(\rho\), e a
+proporção de agentes intransigentes (\(p\_intran\)) nos
 limiares apresentados na seção Parâmetros-Chave.
 
+\textcolor{red}{Aqui comparar a dispersao dos pontos ideais na condição inicial
+  e ao fim ; pra isso tenho que gerar mais um vetor}
+%
+%A Figura \ref{fig:Yshist} apresenta a dispersão dos pontos ideais nos dois casos:
+%\begin{figure}[H]
+%  \centering
+%  \includegraphics{ims/distYs.png}
+%  \caption{Output (desvio padrão dos pontos ideais) }
+%  \label{fig:Yshist}
+%\end{figure}
 
-A Figura \ref{fig:Yshist} apresenta a dispersão dos pontos ideais nos dois casos:
+%A Figura \ref{fig:Yshist}  nos leva a interpretar  que a aplicação iterativa do
+%procedimento do modelo, em geral, deixa a distribuição de opiniões menos
+%dispersa, com uma maior concentração das parametrizações em outputs de baixa
+%dispersão (entre 0.0 e 0.1). Contudo, isso não nos informa qual parâmetro é
+%responsável por isso, ou quais os valores de concentração (centrais ou extremos).
+
+A primeira pergunta pode começar a ser respondida por meio de gráficos de
+dispersão. A partir da Figura\footnote{Os gráficos de dispersão para o Caso II
+  são semelhantes. Estão no apêndice.} \ref{fig:scatter1} podemos inferir que há
+uma relação negativa entre os parâmetros \(\text{n\_issues}, p, \sigma \) e a
+dispersão dos pontos ideais (\( \text{Ystd}) \). A relação entre \(p\) e \(\sigma\)
+são explicadas pelo fato de agentes que são mais incertos e ``confiam'' mais na
+opinião dos outros agentes vão convergir mais rápido para a mesma opinião.
+
 \begin{figure}[H]
-  \centering
-  \includegraphics{ims/distYs.png}
-  \caption{Output (desvio padrão dos pontos ideais) }
-  \label{fig:Yshist}
-\end{figure}
-
-A Figura \ref{fig:Yshist}  nos leva a interpretar  que a aplicação iterativa do
-procedimento do modelo, em geral, deixa a distribuição de opiniões menos
-dispersa, com uma maior concentração das parametrizações em outputs de baixa
-dispersão (entre 0.0 e 0.1). Contudo, isso não nos informa qual parâmetro é
-responsável por isso, ou quais os valores de concentração (centrais ou extremos).
-
-
-
-\begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
         \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingon_issues.png}
@@ -285,20 +325,14 @@ responsável por isso, ou quais os valores de concentração (centrais ou extrem
 
                 \begin{subfigure}[b]{0.49\textwidth}
             \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingosigma.png}
+          \end{subfigure}
+                \begin{subfigure}[b]{0.49\textwidth}
+            \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingop_intran.png}
     \end{subfigure}
-    \caption{Gráfico de dispersão para 60.000 parametrizações no Caso I.}
+    \caption{Gráfico de dispersão para 70.000 parametrizações no Caso I.}
     \label{fig:scatter1}
     Fonte:Elaboração própria.
 \end{figure}
-
-A primeira pergunta pode começar a ser respondida por meio de gráficos de
-dispersão. A partir da Figura\footnote{Os gráficos de dispersão para o Caso II
-  são semelhantes. Estão no apêndice.} \ref{fig:scatter1} podemos inferir que há
-uma relação negativa entre os parâmetros \(\text{n\_issues}, p, \sigma \) e a
-dispersão dos pontos ideais (\( \text{Ystd}) \). A relação entre \(p\) e \(\sigma\)
-são explicadas pelo fato de agentes que são mais incertos e ``confiam'' mais na
-opinião dos outros agentes vão convergir mais rápido para a mesma opinião.
-
 
 Já a relação entre número de questões e menor dispersão se dá pelo fato que
 quanto mais questões mais centrado vai ser o ponto ideal, uma vez que é a média
@@ -323,36 +357,28 @@ análise subsequentes. A figura mostra que a maior parte da variância na
 dispersão dos pontos ideais pode ser explicada pelos parâmetros \(\sigma\) e
 \(\text{n\_issues}\). Além disso há pouca diferença entre os índices de primeira
 ordem e os índices totais, o que implica que há poucos efeitos interativos entre
-os parâmetros. Por fim os coeficientes de erro são pequenos, como mostra a
-Tabela 1, tendo em vista que a análise foi feita a partir de 60.000
-parametrizações selecionadas por meio do método de Saltelli. O Caso II exibe o
-mesmo comportamento, com a diferença que nele o parâmetro \(\sigma\) tem maior
-impacto do que no Caso I (mas mantêm-se a direção e a importância qualitativa dos
-parâmetros).
+os parâmetros. Além disso os coeficientes de erro são pequenos, como mostra a
+Tabela \textcolor{red}{gerar a tabela}, tendo em vista que a análise foi feita a partir de 70.000
+parametrizações selecionadas por meio do método de Saltelli.
 
+Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetro
+\(p\_intran\). A comparação entre as figuras \ref{fig:tseries1} e
+\ref{fig:tseries2} sugere que esse resultado seja um artefato da medida Ystd.
+Enquanto que na figura \ref{fig:tseries1} (a) o sistema converge para um único
+valor, na figura \ref{fig:tseries2} a população oscila no espaço onde há mais
+intransigentes. O parâmetro tem assim um impacto sobre a dinâmica.
+Testamos então novamente o impacto dos parâmetros, mas agora mantendo \(N =
+500\) e tendo por medida o número de pontos ideais (Ynips), arredondando os
+pontos ideais em 5-6 casas decimais.
 
-\begin{table}[H]
-\centering
-\caption{Índices de Sobol e coeficientes de erro respectivos}
-\label{my-label}
-\begin{tabular}{|l|r|r|r|r|}
-\hline
-\rowcolor[HTML]{C0C0C0} 
-Parâmetros & S1        & S1\_conf & ST       & ST\_conf \\ \hline
-N          & -0.000105 & 0.003153 & 0.002526 & 0.000578 \\ \hline
-n\_issues  & 0.289362  & 0.026289 & 0.366176 & 0.022603 \\ \hline
-p          & 0.070374  & 0.015140 & 0.103448 & 0.008719 \\ \hline
-\(\sigma\) & 0.421365  & 0.030780 & 0.512525 & 0.030992 \\ \hline
-\(\rho\)   & 0.103914  & 0.016065 & 0.144819 & 0.012853 \\ \hline
-\end{tabular}
-\end{table}
-
-
-Dado que os parâmetros \(\sigma\) e \(\text{n\_issues}\) são os que mais explicam a
-variância da dispersão dos pontos ideais eles são o foco de análise subsequente.
-Estabelecemos \(N = 500\). Passamos a usar então o número de opiniões finais
-como medida do sistema.
-
+\begin{figure}[H]
+  \centering
+  \includegraphics{ims/timeseries3.png}
+  \caption{Evolução dos pontos ideais dos agentes ao longo de uma realização.
+        Parametrização: \(  N = 500, p = 0.9, \rho = 0.0, n\_issues = 1 , p\_intra
+        n= 0.15 \)}
+  \label{fig:tseries2}
+\end{figure}
 
 
 
