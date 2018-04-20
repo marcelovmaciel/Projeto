@@ -371,15 +371,21 @@ Testamos então novamente o impacto dos parâmetros, mas agora mantendo \(N =
 500\) e tendo por medida o número de pontos ideais (Ynips), arredondando os
 pontos ideais em 5-6 casas decimais.
 
-\begin{figure}[H]
-  \centering
-  \includegraphics{ims/timeseries3.png}
-  \caption{Evolução dos pontos ideais dos agentes ao longo de uma realização.
-        Parametrização: \(  N = 500, p = 0.9, \rho = 0.0, n\_issues = 1 , p\_intra
-        n= 0.15 \)}
-  \label{fig:tseries2}
-\end{figure}
-
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/timeseries3.png}
+      \caption{\( \sigma = 0.1\) }
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/timeseries4.png}
+       \caption{\(\sigma = 0.02\) }
+      \end{subfigure}
+      \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
+        Parametrização: \(p\_intran = 0.15 N = 500, p = 0.9, \rho = 0.0, n\_issues = 1 \)}
+      \label{fig:tseries2}
+    \end{figure}
+    
 
 
 
