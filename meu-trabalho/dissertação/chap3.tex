@@ -235,28 +235,43 @@ subsequente dos índices de sensibilidade especificamos um \(n\) base de
       \label{fig:tseries1}
     \end{figure}
     
-Uma vez especificado o método de amostragem especificamos uma medida do sistema
-para que possamos analisá-lo \cite{railsback2012agent}. Escolhemos o desvio
-padrão dos pontos ideais após \(1.000.000\) iterações como output para
-análise\footnote{Testamos diversas parametrizações com n\_issues \(= 1\) e
-  observamos que a partir de \(50.000\) iterações a implementação replica os
-  resultados de \citeonline{martins2009bayesian}.}, dado que nos diz o quão
-concentradas ou dispersos são os pontos ideais da população. Uma outra opção de
-medida do sistema seria o número de opiniões finais após as iterações. Contudo,
-teríamos que estabelecer um \(N\) base, pois de outra forma esse parâmetro
-explica quase que totalmente o valor do output a ser analisado. No primeiro
-gráfico da figura \ref{fig:tseries1} temos um desvio padrão próximo zero, e um
-único posicionamento ideológico final. Já no segundo gráfico precisáriamos
-arredondar os pontos ideais finais, entre 1 e 6 casas decimais, para
-chegarmos a conclusão que existem cerca de 6 pontos de convergência. Se não arrendondarmos o
-resultado final teriamos uma medida próxima de 500 pontos ideais. O desvio
-padrão, contudo, nos indica a dispersao dos pontos ideais, pois tem valor de
-aproximadamente 0.24, próximo ao da condição inicial. A figura \ref{fig:tseries1}
-deixa claro, portanto, que as medidas são complementares, mas como estamos
-interessados no papel do \(N\) vamos começar com a análise com o desvio padrão
-dos pontos ideais como medida do sistema.
+    Uma vez especificado o método de amostragem especificamos uma medida do
+    sistema para que possamos analisá-lo \cite{railsback2012agent}. Escolhemos o
+    desvio padrão dos pontos ideais após \(1.000.000\) iterações como output
+    para análise\footnote{Testamos diversas parametrizações com n\_issues \(=
+      1\) e observamos que a partir de \(50.000\) iterações a implementação
+      replica os resultados de \citeonline{martins2009bayesian}.}, dado que nos
+    diz o quão concentradas ou dispersos são os pontos ideais da população. Uma
+    outra opção de medida do sistema seria o número de opiniões finais após as
+    iterações. Contudo, teríamos que estabelecer um \(N\) base, pois de outra
+    forma esse parâmetro explica quase que totalmente o valor do output a ser
+    analisado. No primeiro gráfico da figura \ref{fig:tseries1} temos um desvio
+    padrão próximo zero, e um único posicionamento ideológico final. Já no
+    segundo gráfico precisaríamos arredondar os pontos ideais finais, entre 1 e
+    6 casas decimais, para chegarmos a conclusão que existem cerca de 6 pontos
+    de convergência. Se não arredondarmos o resultado final teríamos uma medida
+    próxima de 500 pontos ideais. O desvio padrão, contudo, nos indica a
+    dispersao dos pontos ideais, pois tem valor de aproximadamente 0.24, próximo
+    ao da condição inicial. Um outro problema do uso do número final de pontos
+    ideais ao fim de uma realização é que a medida não é robusta a ruídos ou
+    proporções de agentes intransigentes diferentes de 0. Quando há ruído ou
+    agentes intransigentes o número final de pontos ideais não informa muito
+    sobre a dinâmica do sistema. Na Figura \ref{fig:nonnullrho} temos um comportamento
+    qualitativamente similar ao da Figura \ref{fig:tseries1} (b), mas o número de opiniões finais é
+    próximo de 500 \footnote{Isso envolve inclusive se medirmos o número de
+      pontos ideais finais com valores arredondados. Arredondar demais faz com
+      que perdamos a comparabilidade com a condição inicial, que passa a não ter
+      mais 500 pontos ideais.}.
+    
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width =10cm]{ims/ts5.png}
+    \caption{Parametrização equivalente a Figura \ref{fig:tseries1} (b), mas com \(\rho =
+      0.001\).}
+    \label{fig:nonnullrho}
+  \end{figure}
 
-
+  
 Para a análise, seguimos \citeonline{ten2016sensitivity} e combinamos
 histogramas da medida do sistema, gráficos de dispersão e índices de
 sensibilidade.Os índices de sensibilidade utilizados são os índices de
