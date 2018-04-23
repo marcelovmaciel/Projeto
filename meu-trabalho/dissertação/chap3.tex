@@ -247,8 +247,8 @@ teríamos que estabelecer um \(N\) base, pois de outra forma esse parâmetro
 explica quase que totalmente o valor do output a ser analisado. No primeiro
 gráfico da figura \ref{fig:tseries1} temos um desvio padrão próximo zero, e um
 único posicionamento ideológico final. Já no segundo gráfico precisáriamos
-arredondar os pontos ideais finais, para digamos 5 casas decimais, para
-chegarmos a conclusão que existem ``clusters''. Se não arrendondarmos o
+arredondar os pontos ideais finais, entre 1 e 6 casas decimais, para
+chegarmos a conclusão que existem cerca de 6 pontos de convergência. Se não arrendondarmos o
 resultado final teriamos uma medida próxima de 500 pontos ideais. O desvio
 padrão, contudo, nos indica a dispersao dos pontos ideais, pois tem valor de
 aproximadamente 0.24, próximo ao da condição inicial. A figura \ref{fig:tseries1}
@@ -282,10 +282,27 @@ parâmetro de confiança (\(p\)), a incerteza (\(\sigma\)),  o ruído \(\rho\), 
 proporção de agentes intransigentes (\(p\_intran\)) nos
 limiares apresentados na seção Parâmetros-Chave.
 
-\textcolor{red}{Aqui comparar a dispersao dos pontos ideais na condição inicial
-  e ao fim ; pra isso tenho que gerar mais um vetor}
+Como uma primeira aproximação do comportamento geral do modelo, a Figura
+\ref{fig:hists1} apresenta a dispersão dos pontos ideais na condição inicial e
+ao fim das simulações para cada parametrização.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/diststdinit.png}
+      \caption{Condição inicial}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/distY.png}
+       \caption{Após 1.000.000 iterações}
+      \end{subfigure}
+      \caption{Desvio padrão dos pontos ideais das populações para cada parametrização}
+      \label{fig:hists1}
+    \end{figure}
+    
+
 %
-%A Figura \ref{fig:Yshist} apresenta a dispersão dos pontos ideais nos dois casos:
+%
 %\begin{figure}[H]
 %  \centering
 %  \includegraphics{ims/distYs.png}
@@ -293,19 +310,24 @@ limiares apresentados na seção Parâmetros-Chave.
 %  \label{fig:Yshist}
 %\end{figure}
 
-%A Figura \ref{fig:Yshist}  nos leva a interpretar  que a aplicação iterativa do
-%procedimento do modelo, em geral, deixa a distribuição de opiniões menos
-%dispersa, com uma maior concentração das parametrizações em outputs de baixa
-%dispersão (entre 0.0 e 0.1). Contudo, isso não nos informa qual parâmetro é
-%responsável por isso, ou quais os valores de concentração (centrais ou extremos).
+    A Figura \ref{fig:hists1} nos leva a interpretar que a aplicação iterativa
+    do procedimento do modelo, deixa a distribuição de opiniões menos dispersa,
+    com uma maior concentração das parametrizações em outputs de baixa dispersão
+    (entre 0.0 e 0.1). Isso condiz com as regras de atualização (assimilativa,
+    mas na qual agentes distantes tem pouco impacto na opinião um dos outros) e
+    com o fato dos agentes terem por vizinhos todos os outros agentes. Isto é,
+    os agentes ao interagirem ou ficam mais parecidos ou não são influenciados.
+    O modelo tem assim uma forte tendência assimilativa, ao menos num grafo completo.
+    Contudo, a figura não nos informa qual parâmetro é responsável por isso, ou
+    quais os valores de concentração (centrais ou extremos).
 
-A primeira pergunta pode começar a ser respondida por meio de gráficos de
-dispersão. A partir da Figura\footnote{Os gráficos de dispersão para o Caso II
-  são semelhantes. Estão no apêndice.} \ref{fig:scatter1} podemos inferir que há
-uma relação negativa entre os parâmetros \(\text{n\_issues}, p, \sigma \) e a
-dispersão dos pontos ideais (\( \text{Ystd}) \). A relação entre \(p\) e \(\sigma\)
-são explicadas pelo fato de agentes que são mais incertos e ``confiam'' mais na
-opinião dos outros agentes vão convergir mais rápido para a mesma opinião.
+    A primeira pergunta pode começar a ser respondida por meio de gráficos de
+    dispersão. A partir da Figura \ref{fig:scatter1} podemos inferir que há uma
+    relação negativa entre os parâmetros \(\text{n\_issues}, p, \sigma \) e a
+    dispersão dos pontos ideais (\( \text{Ystd}) \). A relação entre \(p\) e
+    \(\sigma\) são explicadas pelo fato de agentes que ``confiam'' mais na opinião
+    dos outros agentes e são mais incertos vão convergir mais rápido para a
+    mesma opinião.
 
 \begin{figure}[H]
     \centering
@@ -334,12 +356,12 @@ opinião dos outros agentes vão convergir mais rápido para a mesma opinião.
     Fonte:Elaboração própria.
 \end{figure}
 
-Já a relação entre número de questões e menor dispersão se dá pelo fato que
-quanto mais questões mais centrado vai ser o ponto ideal, uma vez que é a média
-aritmética das opiniões. O parâmetro \(\rho\), o ruído, por sua vez, tem uma
-relação positiva com a dispersão do sistema. Interessante notar, contudo, que o
-tamanho da população parece não ter relação com o desvio padrão dos pontos
-ideais da população.
+\todo[inline,color = yellow!10]{Tou devendo de explicar a relação negativa entre
+numero de questões e dispersão.}
+
+O parâmetro \(\rho\), o ruído, por sua vez, tem uma relação positiva com a
+dispersão do sistema. Interessante notar, contudo, que o tamanho da população
+parece não ter relação com o desvio padrão dos pontos ideais da população.
 
 A intensidade dos parâmetros na variância da medida do sistema (Ystd) fica mais
 claro na Figura \ref{fig:sobol1}:
@@ -357,9 +379,9 @@ análise subsequentes. A figura mostra que a maior parte da variância na
 dispersão dos pontos ideais pode ser explicada pelos parâmetros \(\sigma\) e
 \(\text{n\_issues}\). Além disso há pouca diferença entre os índices de primeira
 ordem e os índices totais, o que implica que há poucos efeitos interativos entre
-os parâmetros. Além disso os coeficientes de erro são pequenos, como mostra a
-Tabela \textcolor{red}{gerar a tabela}, tendo em vista que a análise foi feita a partir de 70.000
-parametrizações selecionadas por meio do método de Saltelli.
+os parâmetros. Ademais, os coeficientes de erro são pequenos
+\todo[color=yellow!10]{gerar tabela} tendo em vista que a análise foi feita a
+partir de 70.000 parametrizações selecionadas por meio do método de Saltelli.
 
 Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetro
 \(p\_intran\). A comparação entre as figuras \ref{fig:tseries1} e
@@ -367,9 +389,6 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
 Enquanto que na figura \ref{fig:tseries1} (a) o sistema converge para um único
 valor, na figura \ref{fig:tseries2} a população oscila no espaço onde há mais
 intransigentes. O parâmetro tem assim um impacto sobre a dinâmica.
-Testamos então novamente o impacto dos parâmetros, mas agora mantendo \(N =
-500\) e tendo por medida o número de pontos ideais (Ynips), arredondando os
-pontos ideais em 5-6 casas decimais.
 
 \begin{figure}[h]
     \centering
