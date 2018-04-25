@@ -216,7 +216,7 @@ N (população), número de questões (codificado como n\_issues ), \(p\), \(\si
 proporção de agentes intransigentes (codificado como p\_intran)
 \(\rho\). Para garantir um coeficiente de erro baixo no cálculo
 subsequente dos índices de sensibilidade especificamos um \(n\) base de
-\(5000\), de forma que para cada caso rodamos \(70.000\) parametrizações.
+\(5000\), de forma que rodamos \(70.000\) parametrizações.
 
 
 \begin{figure}[h]
@@ -278,16 +278,13 @@ sensibilidade.Os índices de sensibilidade utilizados são os índices de
 Sobol\footnote{Tanto a amostragem quanto a análise de sensibilidade são feitas
   usando o pacote de Python SALib \cite{herman2017salib}.}, particularmente
 índices de Sobol de primeira ordem e totais \cite{saltelli2008global}. Os
-índices de Sobol decompõe o impacto dos parâmetros na variância do
+índices de Sobol decompõem o impacto dos parâmetros na variância do
 \textit{output} de interesse. Os índices de primeira ordem incluem contribuições
 lineares e não-lineares dos parâmetros, mas não efeitos interativos
 \cite{ten2016sensitivity}. Já índices totais incluem todos os efeitos de ordem
 maior decorrentes das interações entre os parâmetros \cite{saltelli2008global}.
 
 \section{Resultados}
-
-\todo[inline,color = yellow!10]{A partir daqui vai ser reescrito por causa das
-  modificações no modelo.}
 
 Rodamos então \(70.000\) parametrizações por \(1.000.000\) de iterações tendo
 por \(Y\), o \textit{output} de interesse, o desvio padrão  dos pontos ideais da
@@ -366,7 +363,7 @@ ao fim das simulações para cada parametrização.
                 \begin{subfigure}[b]{0.49\textwidth}
             \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingop_intran.png}
     \end{subfigure}
-    \caption{Gráfico de dispersão para 70.000 parametrizações no Caso I.}
+    \caption{Gráfico de dispersão para 70.000 parametrizações.}
     \label{fig:scatter1}
     Fonte:Elaboração própria.
 \end{figure}
@@ -401,11 +398,8 @@ partir de 70.000 parametrizações selecionadas por meio do método de Saltelli.
 Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetro
 \(p\_intran\). A comparação entre as figuras \ref{fig:tseries1} e
 \ref{fig:tseries2} sugere que esse resultado seja um artefato da medida Ystd.
-Enquanto que na figura \ref{fig:tseries1} (a) o sistema converge para um único
-valor, na figura \ref{fig:tseries2} a população oscila no espaço onde há mais
-intransigentes. O parâmetro tem assim um impacto sobre a dinâmica.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
       \includegraphics[width=\textwidth]{ims/timeseries3.png}
@@ -416,10 +410,21 @@ intransigentes. O parâmetro tem assim um impacto sobre a dinâmica.
        \caption{\(\sigma = 0.02\) }
       \end{subfigure}
       \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
-        Parametrização: \(p\_intran = 0.15 N = 500, p = 0.9, \rho = 0.0, n\_issues = 1 \)}
+        Parametrização: \(p\_intran = 0.15, \text{ } N = 500,  \text{ }   p =
+        0.9,  \text{ }  \rho = 0.0,  \text{ }  n\_issues = 1 \)}
       \label{fig:tseries2}
     \end{figure}
     
+
+    Enquanto que na figura \ref{fig:tseries1} (a) o sistema converge para um
+    único valor, na figura \ref{fig:tseries2} a população oscila no espaço onde
+    há mais intransigentes. O parâmetro parece assim um impacto sobre a
+    dinâmica. Como nem o desvio padrão nem o número de pontos ideais finais,
+    como discutido anteriormente, nos dão medidas quantitativas desse impacto
+    passamos a uma análise gráfica de certas combinações de parâmetros típicas.
+    Os gráficos de dispersão nos indicam\footnote{Regressões polinomiais de
+      terceira ordem foram usadas para auxiliar essa análise. Estão no
+      apêndice.} possíveis restrições aos limiares dos parâmetros.
 
 
 
