@@ -417,14 +417,30 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
     
 
     Enquanto que na figura \ref{fig:tseries1} (a) o sistema converge para um
-    único valor, na figura \ref{fig:tseries2} a população oscila no espaço onde
-    há mais intransigentes. O parâmetro parece assim um impacto sobre a
-    dinâmica. Como nem o desvio padrão nem o número de pontos ideais finais,
+    único valor, na figura \ref{fig:tseries2} a população oscila no espaço ao
+    redor desse valor. As figuras \ref{fig:tseries1} e \ref{fig:tseries2} (b)
+    exibem uma diferença equivalente de comportamento. O parâmetro parece assim um impacto sobre a
+    dinâmica. Quais agentes são intransigentes é aleatório, mas como eles não
+    mudam de opinião em um determinado tema é de se esperar que acabem por
+    atrair os outros agentes para sua posição. 
+
+
+
+    Como nem o desvio padrão nem o número de pontos ideais finais,
     como discutido anteriormente, nos dão medidas quantitativas desse impacto
     passamos a uma análise gráfica de certas combinações de parâmetros típicas.
     Os gráficos de dispersão nos indicam\footnote{Regressões polinomiais de
       terceira ordem foram usadas para auxiliar essa análise. Estão no
       apêndice.} possíveis restrições aos limiares dos parâmetros.
+
+    Dado o pequeno impacto de \(N\) e \(p\) vamos os manter constantes, com
+    valores de 500 e 0.9 respectivamente.
+
+    \begin{itemize}
+    \item \(n\_issues = (1, 10)\);
+    \item \(\rho  = 0, 0.01, 0.1\);
+    \item \(\sigma = (0.02, 0.05, 0.1)\)
+    \end{itemize}
 
 
 
