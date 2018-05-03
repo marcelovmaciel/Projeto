@@ -251,6 +251,46 @@ function getsample_initcond(param_values; time = 250_000, agent_type = "mutating
 end
 
 
+
+function extractys(Ypairs)
+    Ystd = Float64[]
+    Ynips =  Int64[]
+    for i in Ypairs
+        push!(Ystd,i[1])
+        push!(Ynips,i[2])
+    end
+    return(Ystd,Ynips)
+end
+
+
+
+"""
+function multiruns(sigmanissues::Tuple; repetitions = 50)
+
+    helper function to plot the box plots
+"""
+function multiruns(sigmanissues::Tuple; repetitions = 100)
+ 
+    pa = DyDeoParam(n_issues = sigmanissues[1],
+                       σ = sigmanissues[2],
+                       size_nw = 500,
+                       time = 1_000_000,
+                       p = 0.7,
+                       ρ = 0.0,
+                       propintransigents = 0.0,
+                       intranpositions = "center")
+
+    repetitionsout = []
+
+@showprogress 1 "Multiruns"    for run in 1:repetitions
+        singleout = simple_run(pa) |> pullidealpoints |> x->round.(x,5)  |> outputfromsim
+        push!(repetitionsout,singleout)
+    end
+    return(repetitionsout)
+end
+
+
+
 #= Plotting Functions
 
 I'm gonna create an output csv, and those plot functions will plot data from it.
