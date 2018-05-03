@@ -4,7 +4,8 @@ const dd = DyDeo2
 using Plots
 using StatsBase
 inspectdr(legend = false)
- 
+
+
 
 # pre-plots
 
@@ -13,9 +14,13 @@ inspectdr(legend = false)
 fig = plot(show = false, xlabel = "iterações", ylabel = "valores dos pontos ideais")
 
 
-pa = dd.DyDeoParam(n_issues = 1, σ = 0.02, size_nw = 500,
-                                  time = 500_000, p = 0.7,
-                                  ρ = 0.0, propintransigents = 0.0)
+pa = dd.DyDeoParam(n_issues = 1, σ = 0.1,
+                   size_nw = 500,
+                   time = 500_000,
+                   p = 0.7,
+                   ρ = 0.0,
+                   propintransigents = 0.1,
+                   intranpositions = "extremes")
 
 pa_to_states = dd.statesmatrix(pa)
 
@@ -24,7 +29,7 @@ dd.@showprogress 1 "Plotting " for i in 1:pa.size_nw
     plot!(fig, pa_to_states[:,i])
 end
 
-png("image/test1kk")
+png("image/test500k")
 println("done")
 
 #runs arrays

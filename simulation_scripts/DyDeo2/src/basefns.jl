@@ -142,12 +142,30 @@ end
 
 turn some agents into extremists; that is, given a number or proportion of extremists and issues it makes the σ of some issues and some agents into ≈ 0 (1e-20)
 """
-function createintransigents!(pop,propextremists::AbstractFloat)
+function createintransigents!(pop,propintransigents::AbstractFloat; position = "random")
     n_issues = length(pop[1].ideo)
-    nextremists = round(Int, length(pop) * propextremists)
-    whichextremists = sample(1:length(pop),nextremists,
-                             replace = false)
-    for i in whichextremists
+    nintransigents = round(Int, length(pop) * propintransigents)
+    
+    if position == "random"
+        whichintransigents = sample(1:length(pop),nintransigents,
+                                replace = false)
+    elseif position == "extremes"
+        extremistsid = map( x-> x.id,
+                            filter(x-> ( x.idealpoint < 0.2) || (x.idealpoint > 0.8),
+                                   pop))
+        whichintransigents  = sample(extremistsid,nintransigents,
+                                    replace = false)
+    elseif position == "center"
+        centristsid = map( x-> x.id,
+                            filter(x-> ( x.idealpoint > 0.25) || (x.idealpoint < 0.75),
+                                   pop))
+        whichintransigents = sample(centristsid,nintransigents,
+                                    replace = false)
+    else
+        error("wrong position argument; correct: random,extremes,center")
+    end
+
+    for i in whichintransigents
         whichissues = sample(1:n_issues, 1,
                              replace = false)
         pop[i].certainissues = whichissues
@@ -156,6 +174,9 @@ function createintransigents!(pop,propextremists::AbstractFloat)
         end
     end
 end
+
+
+
 
 """
     creategraphfrompop(population, graphcreator)

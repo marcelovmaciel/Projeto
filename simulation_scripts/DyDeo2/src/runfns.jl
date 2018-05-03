@@ -19,22 +19,23 @@ This includes:
     agent_type::String = "mutating o"
     graphcreator = CompleteGraph
     propintransigents::R = 0.1
+    intranpositions::String = "random"
 end
 
 ## Information Storing Fns
 #I'm going to initialize a dataframe and update it at each time step.
 """
     create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator,
-                propintransigents)
+                propintransigents; intranpositions = "random")
 
 this fn is a helper for all other fns used in the simulation
 """
 function create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator,
-                propintransigents)
+                propintransigents; intranpositions = "random")
     pop = createpop(agent_type, σ, n_issues, size_nw)
     g = creategraphfrompop(pop,graphcreator)
     add_neighbors!(pop,g)
-    createintransigents!(pop,propintransigents)
+    createintransigents!(pop, propintransigents, position = intranpositions)
     return(pop)
 end
 
@@ -142,8 +143,8 @@ end
 
 "repetition of the sim for some parameters;"
 function one_run(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents = pa
-    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propintransigents)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents, intranpositions = pa
+    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propintransigents, intranpositions = intranpositions)
     initdf = create_initdf(pop)
     df = runsim!(pop,df,p,σ,ρ,time)
     return(df)
@@ -152,20 +153,24 @@ end
 
 """this runs the simulation without using any df;
 this speeds up a lot the sim, but i can't keep track of the system state evolution;
-that is, i only save the end state
+that is, I only save the end state
 """
 function simple_run(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents = pa
-    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propintransigents)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents, intranpositions = pa
+    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propintransigents, intranpositions = intranpositions)
     endpop = runsim!(pop,p,σ,ρ,time)
     return(endpop)
 end
 
 
-"i'll play with preallocation before writing this procedure"
+"""
+    simstatesvec(pa::DyDeoParam)
+runs the simulation and keeps each iteration configuration (ideal points)
+
+"""
 function simstatesvec(pa::DyDeoParam)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents = pa
-    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propintransigents)
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents, intranpositions = pa
+    pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propintransigents, intranpositions = intranpositions)
     statearray = createstatearray(pop, pa.time)
 
     for step in 1:time
@@ -181,9 +186,11 @@ end
 fn to turn the system configurations (its state) into a matrix. I need to plot the agents' time series.
 Takes a lot of time (10 min for 1.000.000 iterations and 1000 agents)
 """
-function statesmatrix(statearray, time, size_nw)
+function statesmatrix(pa; time = pa.time , size_nw = pa.size_nw)
     a = Array{Float64}(time+1,size_nw)
-   @showprogress 1 "Computing..." for (step,popstate) in enumerate(statearray)
+    statesvec = simstatesvec(pa)
+
+   @showprogress 1 "Computing..." for (step,popstate) in enumerate(statesvec)
         for (agent_indx,agentstate) in enumerate(popstate)
             a[step,agent_indx] = agentstate
         end
@@ -198,15 +205,15 @@ end
 this fn pressuposes an array of param_values where each column is a param and each row is a parametization;
 Then it runs the sim for each parametization and pushs system measures to another array (the output array)
 """
-function sweep_sample(param_values; time = 250_000, agent_type = "mutating o")
+function sweep_sample(param_values; size_nw = 500, time = 250_000, agent_type = "mutating o")
     Y = []
 @showprogress 1 "Computing..." for i in 1:size(param_values)[1]
-        paramfromsaltelli = DyDeoParam(size_nw = round(Int,param_values[i,1]),
-                               n_issues = round(Int,param_values[i,2]),
-                               p = param_values[i,3],
-                               σ = param_values[i,4],
-                                       ρ = param_values[i,5],
-                                       propintransigents = param_values[i,6],
+        paramfromsaltelli = DyDeoParam(n_issues = round(Int,param_values[i,1]),
+                                       p = param_values[i,2],
+                                       σ = param_values[i,3],
+                                       ρ = param_values[i,4],
+                                       propintransigents = param_values[i,5],
+                                       size_nw = size_nw,
                                        time = time,
                                        agent_type = agent_type)
         out  =  simple_run(paramfromsaltelli) |> pullidealpoints |> outputfromsim
@@ -214,6 +221,35 @@ function sweep_sample(param_values; time = 250_000, agent_type = "mutating o")
     end
     return(Y)
 end
+
+"""
+    function getsample_initcond(param_values; time = 250_000, agent_type = "mutating o")
+returns Initstd and Initnips (outputfromsim from initialcond)
+
+"""
+function getsample_initcond(param_values; time = 250_000, agent_type = "mutating o")
+
+    param_values[:,1] = round.(Int,param_values[:,1])
+    param_values[:,2] = round.(Int,param_values[:,2])
+    Y = Tuple{Float64,Int64}[]
+
+    @showprogress 1 "Computing..." for i in 1:size(param_values)[1]
+        paramfromsaltelli = DyDeoParam(size_nw = convert(Int,param_values[i,1]),
+                                       n_issues = convert(Int,param_values[i,2]),
+                                       p = param_values[i,3],
+                                       σ = param_values[i,4],
+                                       ρ = param_values[i,5],
+                                       propintransigents = param_values[i,6],
+                                       time = time,
+                                       agent_type = agent_type)
+        @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents, intranpositions = paramfromsaltelli
+        pop = create_initialcond(agent_type, σ, n_issues, size_nw,graphcreator, propintransigents, intranpositions = intranpositions)
+        out = pop |> pullidealpoints |> outputfromsim
+        push!(Y,out)
+    end
+    return(Y)
+end
+
 
 #= Plotting Functions
 
