@@ -264,6 +264,16 @@ end
 
 
 
+function extractynips(Ypairs)
+    Ynips =  Int64[]
+    for i in Ypairs
+        push!(Ynips,i[2])
+    end
+    return(Ynips)
+end
+
+
+
 """
 function multiruns(sigmanissues::Tuple; repetitions = 50)
 
@@ -275,7 +285,7 @@ function multiruns(sigmanissues::Tuple; repetitions = 100)
                        σ = sigmanissues[2],
                        size_nw = 500,
                        time = 1_000_000,
-                       p = 0.7,
+                       p = 0.9,
                        ρ = 0.0,
                        propintransigents = 0.0,
                        intranpositions = "center")

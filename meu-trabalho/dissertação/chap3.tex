@@ -266,8 +266,8 @@ subsequente dos índices de sensibilidade especificamos um \(n\) base de
   \begin{figure}[H]
     \centering
     \includegraphics[width =10cm]{ims/ts5.png}
-    \caption{Parametrização equivalente a Figura \ref{fig:tseries1} (b), mas com \(\rho =
-      0.001\).}
+    \caption{Parametrização equivalente a Figura \ref{fig:tseries1} (b),
+      mas com \(\rho = 0.001\).}
     \label{fig:nonnullrho}
   \end{figure}
 
@@ -368,9 +368,6 @@ ao fim das simulações para cada parametrização.
     Fonte:Elaboração própria.
 \end{figure}
 
-\todo[inline,color = yellow!10]{Tou devendo de explicar a relação negativa entre
-numero de questões e dispersão.}
-
 O parâmetro \(\rho\), o ruído, por sua vez, tem uma relação positiva com a
 dispersão do sistema. Interessante notar, contudo, que o tamanho da população
 parece não ter relação com o desvio padrão dos pontos ideais da população.
@@ -391,8 +388,8 @@ análise subsequentes. A figura mostra que a maior parte da variância na
 dispersão dos pontos ideais pode ser explicada pelos parâmetros \(\sigma\) e
 \(\text{n\_issues}\). Além disso há pouca diferença entre os índices de primeira
 ordem e os índices totais, o que implica que há poucos efeitos interativos entre
-os parâmetros. Ademais, os coeficientes de erro são pequenos
-\todo[color=yellow!10]{gerar tabela} tendo em vista que a análise foi feita a
+os parâmetros. Ademais, os coeficientes de erro são pequenos\footnote{Para os
+  valores precisos ver o Apêndice.} tendo em vista que a análise foi feita a
 partir de 70.000 parametrizações selecionadas por meio do método de Saltelli.
 
 Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetro
@@ -419,11 +416,27 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
     Enquanto que na figura \ref{fig:tseries1} (a) o sistema converge para um
     único valor, na figura \ref{fig:tseries2} a população oscila no espaço ao
     redor desse valor. As figuras \ref{fig:tseries1} e \ref{fig:tseries2} (b)
-    exibem uma diferença equivalente de comportamento. O parâmetro parece assim um impacto sobre a
-    dinâmica. Quais agentes são intransigentes é aleatório, mas como eles não
-    mudam de opinião em um determinado tema é de se esperar que acabem por
-    atrair os outros agentes para sua posição. 
+    exibem uma diferença equivalente de comportamento. O parâmetro parece assim
+    um impacto sobre a dinâmica. Quais agentes são intransigentes é aleatório,
+    mas como eles não mudam de opinião em um determinado tema é de se esperar
+    que acabem por atrair os outros agentes para sua posição. Para testar a
+    intuição de que os agentes intransigentes enviesam a dinâmica para a posição
+    deles testamos a mesma parametrização que a figura \ref{fig:tseries2} (a),
+    mas com os \(15\%\) intransigentes localizados entre os valores maiores que
+    0.8 ou menores que 0.2 no espectro ideológico. A figura \ref{fig:tseries3}
+    demonstra que a atração para onde existem mais agentes intransigentes
+    realmente ocorre.
 
+      \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{ims/sigma01extremes.png}
+    \caption{ Evolução dos pontos ideais dos agentes sob efeito de
+      intransigentes nos extremos. Parametrização: \(p\_intran = 0.15, \text{ }
+      N = 500, \text{ } p = 0.9, \text{ } \rho = 0.0, \text{ } n\_issues = 1 \)}
+    \label{fig:tseries3}
+  \end{figure}
+  
+    
 
 
     Como nem o desvio padrão nem o número de pontos ideais finais,
@@ -434,14 +447,29 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
       apêndice.} possíveis restrições aos limiares dos parâmetros.
 
     Dado o pequeno impacto de \(N\) e \(p\) vamos os manter constantes, com
-    valores de 500 e 0.9 respectivamente.
+    valores de 500 e 0.9 respectivamente. Uma conjunto de parametrizações não
+    abarcado pela análise de sensibilidade global é quando \(p\_intran = \rho  =
+    0.0\). Nesse caso, se tivermos como base \(N = 500\), é possível usar o
+    número de pontos ideais finais como medida do sistema, de forma que podemos
+    analisar o papel tanto de \(\sigma\) quanto de \(n\_issues\) num sistema sem
+    ruído e sem intransigentes. Testamos 100 realizações para cada
+    parametrização e representamos o resultado, o número de pontos ideais finais
+    após 1.000.000 de iterações, por meio de diagramas de caixa.
+    
+  \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{ims/boxes4.png}
+    \caption{Parametrização: \(\rho = p\_intran = 0.0, p = 0.9, N =500\)}
+    \label{fig:box4}
+  \end{figure}
+  
+Como mostra a figura \ref{fig:box4} quanto maior o valor de \(\sigma\) menos dispersão
+configuração final. Contudo um resultado que aparentar ser contrário ao da análise anterior é que
+quanto maior o número de questões \textit{maior} a dispersão final. Isso só é
+verdade, contudo, pelo fato dos parâmetros \(\rho\) e \(p\_intran\) serem nulos.
 
-    \begin{itemize}
-    \item \(n\_issues = (1, 10)\);
-    \item \(\rho  = 0, 0.01, 0.1\);
-    \item \(\sigma = (0.02, 0.05, 0.1)\)
-    \end{itemize}
-
+\todo[inline,color = yellow!10]{Daqui faço os plots com n> 1 os sigmas ja usados
+e \(\rho\)e p\_intran diferentes de zero.}
 
 
 %%% Local  Variables:

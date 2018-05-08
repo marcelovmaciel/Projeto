@@ -157,7 +157,7 @@ function createintransigents!(pop,propintransigents::AbstractFloat; position = "
                                     replace = false)
     elseif position == "center"
         centristsid = map( x-> x.id,
-                            filter(x-> ( x.idealpoint > 0.25) || (x.idealpoint < 0.75),
+                            filter(x-> ( x.idealpoint > 0.25) && (x.idealpoint < 0.75),
                                    pop))
         whichintransigents = sample(centristsid,nintransigents,
                                     replace = false)
