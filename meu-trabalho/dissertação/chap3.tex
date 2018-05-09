@@ -463,13 +463,57 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
     \label{fig:box4}
   \end{figure}
   
-Como mostra a figura \ref{fig:box4} quanto maior o valor de \(\sigma\) menos dispersão
-configuração final. Contudo um resultado que aparentar ser contrário ao da análise anterior é que
-quanto maior o número de questões \textit{maior} a dispersão final. Isso só é
-verdade, contudo, pelo fato dos parâmetros \(\rho\) e \(p\_intran\) serem nulos.
+  Como mostra a figura \ref{fig:box4} quanto maior o valor de \(\sigma\) menos
+  dispersa a configuração final. Contudo um resultado que aparenta ser contrário
+  ao da análise anterior é que quanto maior o número de questões \textit{maior}
+  a dispersão final. Isso só é verdade, contudo, pelo fato dos parâmetros \(\rho\)
+  e \(p\_intran\) serem nulos. Nesse caso aumentar o número de questões faz com
+  que sejam necessárias mais interações entre os agentes para que eles se
+  aproximem ideologicamente, já que pelo procedimento da simulação eles só
+  atualizam uma opinião por vez. Isso faz com que aumentar o número de questões
+  contribua para uma maior dispersão de posicionamento ideológicos.
 
-\todo[inline,color = yellow!10]{Daqui faço os plots com n> 1 os sigmas ja usados
-e \(\rho\)e p\_intran diferentes de zero.}
+  
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/n1-sigma01.png}
+      \caption{\( n\_issues = 1,  \sigma = 0.1\) }
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/n1-sigma002.png}
+       \caption{\(n\_issues = 1, \sigma = 0.02\) }
+     \end{subfigure}
+
+     \begin{subfigure}[b]{0.49\textwidth}
+       \includegraphics[width=\textwidth]{ims/n7-sigma01.png}
+       \caption{\(n\_issues = 7, \sigma = 0.1\)}
+     \end{subfigure}
+     \begin{subfigure}[b]{0.49\textwidth}
+       \includegraphics[width=\textwidth]{ims/n7-sigma002.png}
+       \caption{\(n\_issues = 7, \sigma = 0.02\)}
+     \end{subfigure}
+      \caption{Evolução dos pontos ideais quando há ruído e agentes intransigentes.
+        Parametrização: \(p\_intran = 0.15, \text{ } N = 500,  \text{ }   p =
+        0.9,  \text{ }  \rho = 0.05\)}
+      \label{fig:tseries4}
+    \end{figure}
+    
+ Contudo, a partir do momento que a proporção de agentes intransigentes e o
+ruído são não-nulos o número de questões passa a ter o efeito contrário. Como
+demonstrado na figura \ref{fig:tseries4}, quando \(n\_issues = 1\) o sistema
+passa a ter sua configuração facilmente controlada por aqueles parâmetros. Como
+só há uma única questão os agentes quando sofrem o efeito do ruído passeiam pelo
+espectro todo. Já quando interagem com agentes intransigentes tem seu ponto
+ideal atraído bem mais em direção a opinião deles, em contraposição ao caso em
+que seu ponto ideal é derivado de várias opiniões, pois mesmo que o agente mude
+aleatoriamente, ou sob o efeito da interação com um agente intransigentes,
+\textit{uma} de suas opiniões o ponto ideal é estabilizado pelo posicionamento
+dele em outras questões. O número de questões serve então para controlar o
+efeito dos agentes intransigentes e no ruído, e reestabelecer o efeito de
+concentração ou dispersão ditado por \(\sigma\), o parâmetro de maior impacto.
+
+
 
 
 %%% Local  Variables:
