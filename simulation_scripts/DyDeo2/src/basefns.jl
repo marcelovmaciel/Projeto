@@ -150,17 +150,27 @@ function createintransigents!(pop,propintransigents::AbstractFloat; position = "
         whichintransigents = sample(1:length(pop),nintransigents,
                                 replace = false)
     elseif position == "extremes"
+        # gives an error if nintransigents > len(extremistsid)
         extremistsid = map( x-> x.id,
                             filter(x-> ( x.idealpoint < 0.2) || (x.idealpoint > 0.8),
                                    pop))
-        whichintransigents  = sample(extremistsid,nintransigents,
-                                    replace = false)
+        if nintransigents > length(extremistsid)
+            error("there aren't enough agents on the extremes; try a lower prop_intran")
+            else
+            whichintransigents  = sample(extremistsid,nintransigents,
+                                         replace = false)
+        end
+
     elseif position == "center"
         centristsid = map( x-> x.id,
                             filter(x-> ( x.idealpoint > 0.25) && (x.idealpoint < 0.75),
                                    pop))
-        whichintransigents = sample(centristsid,nintransigents,
-                                    replace = false)
+        if nintransigents > length(centristsid)
+            error("there aren't enough agents on the center; try a lower prop_intran")
+        else
+            whichintransigents = sample(centristsid,nintransigents,
+                                        replace = false)
+        end
     else
         error("wrong position argument; correct: random,extremes,center")
     end
