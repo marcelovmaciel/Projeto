@@ -3,7 +3,7 @@ import DyDeo2
 const dd = DyDeo2
 using Plots
 using StatsBase
-inspectdr(legend = false)
+gr(legend = false)
 
 
 
@@ -13,17 +13,9 @@ inspectdr(legend = false)
 
 fig = plot(show = false, xlabel = "iterações",
            ylabel = "valores dos pontos ideais",
-           title = "n = 1 ; sigma = 0.1")
+           title = "n = 7 ; sigma = 0.14")
 
 #testar σ 0.02 0.04 0.06  e 0.1
-
-pa = dd.DyDeoParam(n_issues = 1, σ = 0.02,
-                   size_nw = 500,
-                   time = 500_000,
-                   p = 0.9,
-                   ρ = 0.05,
-                   propintransigents = 0.15,
-                   intranpositions = "random")
 
 pa_to_states = dd.statesmatrix(pa)
 
@@ -34,7 +26,7 @@ dd.@showprogress 1 "Plotting " for i in 1:pa.size_nw
     plot!(fig, pa_to_states[:,i])
 end
 
-png("image/testn1-002")
+png("image/n7-rho005andintran")
 println("done")
 
 #runs arrays
