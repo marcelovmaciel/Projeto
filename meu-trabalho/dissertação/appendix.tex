@@ -1,0 +1,62 @@
+O Capítulo 1 suscita algumas definições formais apresentadas a seguir.
+
+\section*{Propriedades Lógicas da Preferência e Otimização de Utilidade}
+
+ As seguintes propriedades definem a
+noção lógica de relação de preferência \cite{sep-preferences}:
+
+\begin{enumerate}
+\item \textit{Assimetria da preferência}: \( x \succ y \to \neg (y \succ x )\); 
+\item \textit{Simetria de indiferença}: \(x \sim y \to  y \sim x\); 
+\item \textit{Reflexividade da indiferença }: \(x \sim x\); 
+\item \textit{Incompatibilidade entre preferência e indiferença}: \(x \succ y \to \neg ( x
+  \sim y)\).
+\end{enumerate}
+
+
+No modelo do ator racional o agente age ``como se '' estivesse maximizando sua
+função de utilidade  pelo fato da alternativa
+preferida, ou ótima, por ele ser dada por \cite{binmore2008rational}:
+\[\max_{\substack{x \in  X}}
+  u_i(x)
+\]
+
+\section*{Regra de Bayes e Utilidade Esperada}
+
+Suponha que um agente quer atualizar sua crença
+sobre uma alternativa \(x \in X\), tendo em vista a observação de um dado \(m\).
+Se ele atualizar sua crença segundo o Teorema de Bayes temos
+que:
+
+\begin{align*}
+  p(x|m) =
+  \frac{p(m|x)
+  p(x)}
+  {\int p(m|x)
+  p(x)
+  dx}
+\end{align*}
+
+
+Um corolário de agentes que têm preferências e crenças consistentes é que vão
+agir segundo o \textit{princípio da utilidade esperada}
+\cite{sep-rationality-normative-utility}. Para tal pressupõe-se que agentes vão
+ter uma relação de preferência sobre \textit{apostas} \cite{jehle2001advanced},
+onde o conjunto de apostas \(\mathcal{G}\) em \(X = \{ x_1, \ldots, x_n \}\) é dado
+por:
+
+\begin{align*}
+  \mathcal{G} \equiv \big{\{}
+  (p_1 \circ x_1, \ldots, p_n \circ x_n  )
+  | p_i \geq 0,
+  \sum_{i = 1 }^n p_i
+  = 1  \big{\}}  
+\end{align*}
+
+Sendo assim, quando as alternativas são probabilísticas a utilidadde \(u:
+\mathcal{G} \to \mathbb{R} \) do agente é
+\cite{jehle2001advanced,sep-rationality-normative-utility}:
+
+\begin{align*}
+  u(\mathcal{G}) = \sum_{i =1}^n p_i u(x_i)
+\end{align*}
