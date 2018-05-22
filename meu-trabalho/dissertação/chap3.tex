@@ -241,27 +241,37 @@ subsequente dos índices de sensibilidade especificamos um \(n\) base de
     para análise\footnote{Testamos diversas parametrizações com n\_issues \(=
       1\) e observamos que a partir de \(50.000\) iterações a implementação
       replica os resultados de \citeonline{martins2009bayesian}.}, dado que nos
-    diz o quão concentradas ou dispersos são os pontos ideais da população. Uma
-    outra opção de medida do sistema seria o número de opiniões finais após as
-    iterações. Contudo, teríamos que estabelecer um \(N\) base, pois de outra
-    forma esse parâmetro explica quase que totalmente o valor do output a ser
-    analisado. No primeiro gráfico da figura \ref{fig:tseries1} temos um desvio
-    padrão próximo zero, e um único posicionamento ideológico final. Já no
-    segundo gráfico precisaríamos arredondar os pontos ideais finais, entre 1 e
-    6 casas decimais, para chegarmos a conclusão que existem cerca de 6 pontos
-    de convergência. Se não arredondarmos o resultado final teríamos uma medida
-    próxima de 500 pontos ideais. Já o desvio padrão nos indica a dispersão dos
-    pontos ideais, pois tem valor de aproximadamente 0.24, próximo ao da
-    condição inicial. Um outro problema do uso do número final de pontos ideais
-    ao fim de uma realização é que a medida não é robusta a ruídos ou proporções
-    de agentes intransigentes diferentes de 0. Quando há ruído ou agentes
+    diz o quão concentrados/dispersos são os pontos ideais da população. Uma
+    outra opção de medida do sistema seria o número de opiniões finais distintas
+    após as iterações, o que nos daria uma medida de ``cobertura'' do sistema:
+    uma maior cobertura implicaria num número maior de posicionamentos distintos
+    \cite{bramson2016disambiguation}. Contudo, teríamos que estabelecer um \(N\)
+    base, pois de outra forma esse parâmetro explica quase que totalmente o
+    valor do output a ser analisado pela análise de sensitividade.
+
+    No primeiro gráfico da figura \ref{fig:tseries1} temos um desvio padrão
+    próximo zero, e um único posicionamento ideológico final. Já no segundo
+    gráfico precisaríamos arredondar os pontos ideais finais, para entre 1 e 6
+    casas decimais, para chegarmos a conclusão que existem cerca de 6 pontos de
+    convergência. Se não arredondarmos o resultado final teríamos uma medida
+    próxima de 500 pontos ideais, e que não nos informaria a respeito da
+    cobertura do sistema. Já o desvio padrão nos indica a dispersão dos pontos
+    ideais, pois tem valor de aproximadamente 0.24, próximo ao da condição
+    inicial. Um outro problema do uso do número final de pontos ideais ao fim de
+    uma realização é que a medida não é robusta a ruídos ou proporções de
+    agentes intransigentes diferentes de 0. Quando há ruído ou agentes
     intransigentes o número final de pontos ideais não informa muito sobre a
     dinâmica do sistema. Na Figura \ref{fig:nonnullrho} temos um comportamento
     qualitativamente similar ao da Figura \ref{fig:tseries1} (b), mas o número
     de opiniões finais é próximo de 500 \footnote{Isso envolve inclusive se
       medirmos o número de pontos ideais finais com valores arredondados.
       Arredondar demais faz com que perdamos a comparabilidade com a condição
-      inicial, que passa a não ter mais 500 pontos ideais.}.
+      inicial, que passa a não ter mais 500 pontos ideais. No caso da figura
+      \ref{fig:nonnullrho} usar o número de pontos ideais distintos como medida
+      nos informa que há grande cobertura no sistema, mas passaria dispercebido
+      o fato de que ao fim o comportamento é bastante similar ao caso com ruído
+      nulo. A dispersão não nos informa sobre a existência dos ``clusters'', mas
+      ao menos mantêm a consistência nos casos com e sem ruído.}.
     
   \begin{figure}[H]
     \centering
@@ -329,9 +339,9 @@ ao fim das simulações para cada parametrização.
     mas na qual agentes distantes tem pouco impacto na opinião um dos outros) e
     com o fato dos agentes terem por vizinhos todos os outros agentes. Isto é,
     os agentes ao interagirem ou ficam mais parecidos ou não são influenciados.
-    O modelo tem assim uma forte tendência assimilativa, ao menos num grafo completo.
-    Contudo, a figura não nos informa qual parâmetro é responsável por isso, ou
-    quais os valores de concentração (centrais ou extremos).
+    O modelo tem assim uma forte tendência assimilativa, ao menos num grafo
+    completo. Contudo, a figura não nos informa qual parâmetro é responsável por
+    isso, ou quais os valores de concentração (centrais ou extremos).
 
     A primeira pergunta pode começar a ser respondida por meio de gráficos de
     dispersão. A partir da Figura \ref{fig:scatter1} podemos inferir que há uma
@@ -412,22 +422,21 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
       \label{fig:tseries2}
     \end{figure}
     
-
     Enquanto que na figura \ref{fig:tseries1} (a) o sistema converge para um
     único valor, na figura \ref{fig:tseries2} a população oscila no espaço ao
     redor desse valor. As figuras \ref{fig:tseries1} e \ref{fig:tseries2} (b)
     exibem uma diferença equivalente de comportamento. O parâmetro parece assim
-    um impacto sobre a dinâmica. Quais agentes são intransigentes é aleatório,
-    mas como eles não mudam de opinião em um determinado tema é de se esperar
-    que acabem por atrair os outros agentes para sua posição. Para testar a
-    intuição de que os agentes intransigentes enviesam a dinâmica para a posição
-    deles testamos a mesma parametrização que a figura \ref{fig:tseries2} (a),
-    mas com os \(15\%\) intransigentes localizados entre os valores maiores que
-    0.8 ou menores que 0.2 no espectro ideológico. A figura \ref{fig:tseries3}
-    demonstra que a atração para onde existem mais agentes intransigentes
-    realmente ocorre.
-
-    \todo[inline,color = yellow!10]{Aqui mencionar deffuant 2002 num rodapé}
+    ter impacto sobre a dinâmica, particularmente sobre a cobertura. Quais
+    agentes são intransigentes é aleatório, mas como eles não mudam de opinião
+    em um determinado tema é de se esperar que acabem por atrair os outros
+    agentes para sua posição. Para testar a intuição de que os agentes
+    intransigentes enviesam a dinâmica para a posição deles testamos a mesma
+    parametrização que a figura \ref{fig:tseries2} (a), mas com os \(15\%\)
+    intransigentes localizados entre os valores maiores que 0.8 ou menores que
+    0.2 no espectro ideológico. A figura \ref{fig:tseries3} demonstra que a
+    atração para onde existem mais agentes intransigentes realmente
+    ocorre\footnote{Com a figura \ref{fig:tseries3} replicamos o comportamento
+      do modelo de \citeonline{deffuant2002can}.}.
 
       \begin{figure}[H]
     \centering
@@ -438,8 +447,6 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
     \label{fig:tseries3}
   \end{figure}
   
-    
-
 
     Como nem o desvio padrão nem o número de pontos ideais finais,
     como discutido anteriormente, nos dão medidas quantitativas desse impacto
@@ -465,15 +472,17 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
     \label{fig:box4}
   \end{figure}
   
-  Como mostra a figura \ref{fig:box4} quanto maior o valor de \(\sigma\) menos
-  dispersa a configuração final. Contudo um resultado que aparenta ser contrário
-  ao da análise anterior é que quanto maior o número de questões \textit{maior}
-  a dispersão final. Isso só é verdade, contudo, pelo fato dos parâmetros \(\rho\)
-  e \(p\_intran\) serem nulos. Nesse caso aumentar o número de questões faz com
-  que sejam necessárias mais interações entre os agentes para que eles se
-  aproximem ideologicamente, já que pelo procedimento da simulação eles só
-  atualizam uma opinião por vez. Isso faz com que aumentar o número de questões
-  contribua para uma maior dispersão de posicionamento ideológicos.
+  Como mostra a figura \ref{fig:box4} quanto maior o valor de \(\sigma\) menor a
+  cobertura da configuração final. Contudo um resultado que aparenta ser
+  contrário ao da análise anterior é que quanto maior o número de questões
+  \textit{maior} a cobertura final, enquanto que a análise anterior demonstrou
+  uma relação negativa entre número de questões e dispersão. Isso só é verdade,
+  contudo, pelo fato dos parâmetros \(\rho\) e \(p\_intran\) serem nulos. Nesse
+  caso aumentar o número de questões faz com que sejam necessárias mais
+  interações entre os agentes para que eles se aproximem ideologicamente, já que
+  pelo procedimento da simulação eles só atualizam uma opinião por vez. Isso faz
+  com que aumentar o número de questões contribua para uma maior dispersão e
+  cobertura de posicionamento ideológicos.
 
   
 \begin{figure}[H]
@@ -501,19 +510,20 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
       \label{fig:tseries4}
     \end{figure}
     
- Contudo, a partir do momento que a proporção de agentes intransigentes e o
-ruído são não-nulos o número de questões passa a ter o efeito contrário. Como
-demonstrado na figura \ref{fig:tseries4} quando \(n\_issues = 1\) o sistema
-passa a ter sua configuração facilmente controlada por aqueles parâmetros. Como
-só há uma única questão os agentes quando sofrem o efeito do ruído passeiam pelo
-espectro todo. Já quando interagem com agentes intransigentes tem seu ponto
-ideal atraído bem mais em direção a opinião deles, em contraposição ao caso em
-que seu ponto ideal é derivado de várias opiniões, pois mesmo que o agente mude
-aleatoriamente, ou sob o efeito da interação com um agente intransigentes,
-\textit{uma} de suas opiniões o ponto ideal é estabilizado pelo posicionamento
-dele em outras questões. O número de questões serve então para controlar o
-efeito dos agentes intransigentes e no ruído, e reestabelecer o efeito de
-concentração ou dispersão ditado por \(\sigma\), o parâmetro de maior impacto.
+    Contudo, a partir do momento que a proporção de agentes intransigentes e o
+    ruído são não-nulos o número de questões passa a ter o efeito contrário.
+    Como demonstrado na figura \ref{fig:tseries4} quando \(n\_issues = 1\) o
+    sistema passa a ter sua configuração facilmente controlada por aqueles
+    parâmetros. Como só há uma única questão os agentes quando sofrem o efeito
+    do ruído passeiam pelo espectro todo. Já quando interagem com agentes
+    intransigentes tem seu ponto ideal atraído bem mais em direção a opinião
+    deles, em contraposição ao caso em que seu ponto ideal é derivado de várias
+    opiniões, pois mesmo que o agente mude, aleatoriamente ou sob o efeito da
+    interação com um agente intransigentes, \textit{uma} de suas opiniões o
+    ponto ideal é estabilizado pelo posicionamento dele em outras questões. O
+    número de questões serve então para controlar o efeito dos agentes
+    intransigentes e do ruído, e tornar mais robusto o efeito de concentração
+    ditado por \(\sigma\), o parâmetro de maior impacto.
 
 
 

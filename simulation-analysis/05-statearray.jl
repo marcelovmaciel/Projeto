@@ -12,10 +12,17 @@ gr(legend = false)
 #finalplot = plot(figs[1], figs[2])
 
 fig = plot(show = false, xlabel = "iterações",
-           ylabel = "valores dos pontos ideais",
-           title = "n = 7 ; sigma = 0.14")
+           ylabel = "valores dos pontos ideais")
 
 #testar σ 0.02 0.04 0.06  e 0.1
+
+pa = dd.DyDeoParam(n_issues = 1, σ = 0.01,
+                   size_nw = 500,
+                   time = 500_000,
+                   p = 0.9,
+                   ρ = 0.00,
+                   propintransigents = 0.0,
+                   intranpositions = "extremes")
 
 pa_to_states = dd.statesmatrix(pa)
 
