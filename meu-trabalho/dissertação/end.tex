@@ -1,13 +1,57 @@
-O trabalho têm as seguintes limitações:
-\begin{itemize}
-\item Não vamos considerar saliência;
-\item Não vamos gerar pontos ideais em mais de uma dimensão;
-\item Só há uma classe de agentes;
-\item A topologia e opiniões iniciais não vão ser calibradas.
-\end{itemize}
+O trabalho teve por objetivo estudar a geração de distribuições de
+posicionamento ideológicos em uma sociedade artificial, por meio da técnica da
+modelagem baseada em agentes. Com isso buscou conectar o \textit{background}
+conceitual usual da Ciência Política no tocante à modelagem formal de política
+com a literatura em Dinâmicas de Opinião. Esse exercício ilustrou a importância
+de pensar o posicionamento político como resultante de acomodações em diversas
+questões. Particularmente, pensar o posicionamento político como composto de
+opiniões em várias questões apontou para o papel do número de questões para
+tornar mais robusto o efeito de interações assimilativas, enviesadas, ao impacto
+do ruído e de agentes intransigentes.
 
+Contudo, o trabalho pode ser pensado como um único passo num processo de
+iterados esforços, teóricos e empíricos, que nos levem à melhor compreensão do
+fenômeno \cite{wilensky2015introduction}. Sendo assim, possui várias limitações
+cujas resoluções fogem ao seu escopo. A primeira limitação do trabalho é que não
+busca modelar o papel da mídia na formação da opinião dos agentes. A mídia pode
+ser considerada uma das principais fontes de influência social, mas investigar
+como modelar seu efeito envolve compreender outros tipos de mecanismo.
 
+Outra questão importante é referente à regra de interação. Muitos resultados em
+influência social, por exemplo os de influência social repulsiva, são na verdade
+encontrados em interações em grupo \cite{bramson2017understanding}. Compreender
+a diferença da interação entre pares e em grupo, quais as regras de interação e
+atualização subjacentes, como traduzir isso em \textit{schedules} em simulações
+e qual o impacto sistêmico disso é algo a ser explorado.
 
+A terceira, e talvez principal, limitação do trabalho é a falta de calibração e
+validação empírica do modelo. \citeonline{flache2017} argumenta que uma das
+principais limitações da literatura em OD é a falta de preocupação com o
+confrontamento rigoroso com dados. Dentre os diversos testes possíveis elencados
+por eles, consideramos que seria especialmente interessante testar as
+macro-predições do modelo com dados de \textit{surveys} (como o ESS).
+
+Uma limitação relacionada com a anterior é que não testamos diferentes
+topologias de interação entre os agentes. O modelo foi testado unicamente num
+grafo completo, mas um dos principais resultados da área de dinâmicas de opinião
+é exatamente a importância da topologia para explicar propriedades macroscópicas
+\cite{ball2002physical}. Calibrar a topologia com dados por sua vez é um
+desafio metodológico.
+
+Uma limitação mais geral da literatura em OD é a apontada por
+\citeonline{acemoglu2011opinion}: a literatura costuma focar em propriedades de
+longo prazo da dinâmica de opiniões. Muitos fenômenos sociais não são capturados
+por esse limite de longo prazo e uma fronteira para a área é quais regras de
+interação e atualização melhor caracterizam processos de médio e curto prazo.
+
+Por fim, o modelo teve por \textit{rationale} limitações nos modelos de tomada
+de decisão eleitoral e competição partidária. Uma das fronteiras de pesquisa em
+ABM é exatamente a construção de modelos multi-nível por meio do acoplamento de
+sub-modelos parcialmente autônomos \cite{hjorth2016turtles,head2015evolving}. Um
+prospecto animador, portanto, é a possibilidade de criar narrativas
+computacionais que liguem as áreas de opinião pública, comportamento eleitoral e
+competição partidária, de forma que possamos investigar \textit{feedbacks} entre
+os diferentes níveis de ação.
 
 
 
