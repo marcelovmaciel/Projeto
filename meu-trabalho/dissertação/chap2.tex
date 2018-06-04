@@ -37,7 +37,7 @@ considerar a área como um subgrupo da Sociofísica
 
 \section{Modelagem Baseada em Agentes e Dinâmicas de Opinião}
 
-Modelos Baseados em Agentes podem ser definidos como modelos que envolvem
+ABMs podem ser definidos como modelos que envolvem
 agentes discretos, onde agentes, seus atributos, e possivelmente um ambiente são
 definidos algoritmicamente \cite{sayama2015introduction} \footnote{ ABMs
   costumam ser implementados como simulações num computador, embora existam
@@ -78,8 +78,11 @@ propriedades típicas:
   na robustez de resultados \cite{de2014agent,wilensky2015introduction}. ABMs
   são assim capazes de conectar como propriedades macro surgem a partir das
   regras de interação e atributos dados a unidades discretas, os agentes
-  \cite{north2007managing}. Não por acaso, ABMs são amplamente usados em OD
-  \cite{castellano2012social,flache2017}.
+  \cite{north2007managing}. Ademais, tendo em vista sua flexibilidade,modelos
+  baseados em agentes são úteis quando sistemas ou situações de ação são
+  complicados demais para serem modelados por meio de modelos matemáticos
+  tradicionais \cite{kollman2003computational}. Não por acaso, ABMs são
+  amplamente usados em OD \cite{castellano2012social,flache2017}.
 
   Essas propriedades são ditas emergentes na medida em que caracterizam o
   sistema e não seus componentes. Isto é, propriedades emergentes são aquelas
@@ -131,11 +134,11 @@ propriedades típicas:
     à uma transição de fase, a uma mudança de comportamento qualitativo do
     sistema. Sendo assim, é aplicado em vários contextos além da sua concepção
     original, como mercados financeiros, sistemas ecológicos, e dinâmicas de
-    opinião \cite{sole2011phase}}. Nestes, variáveis discretas, \textit{spins},
-  com valores $s = \pm 1$, estão localizadas num grafo e têm uma tendência a
-  alinhar-se com seus vizinhos: se a maioria tem \(s = + 1 \) o spin muda seu
-  valor para \(+1\); se a maioria tem \(s = -1 \) o spin muda seu valor para
-  \(-1\); se houver empate o spin muda seu valor com probabilidade
+    opinião \cite{sole2011phase}}. Nestas adaptações, variáveis discretas,
+  \textit{spins}, com valores $s = \pm 1$, estão localizadas num grafo e têm uma
+  tendência a alinhar-se com seus vizinhos: se a maioria tem \(s = + 1 \) o spin
+  muda seu valor para \(+1\); se a maioria tem \(s = -1 \) o spin muda seu valor
+  para \(-1\); se houver empate o spin muda seu valor com probabilidade
   \(\frac{1}{2}\) \cite{castellano2012social,sole2011phase}. A reinterpretação
   para o contexto de OD é o seguinte: o spin é um agente; sua opinião pode ter
   os valores \(+1\) ou \(-1\); um agente interage com todos seus vizinhos por
@@ -161,11 +164,12 @@ propriedades típicas:
   \cite{galam2012sociophysics, galam1986majority}.
 
   O Modelo Sznajd também é bastante discutido na literatura
-  \cite{sznajd2000opinion, sirbu2017opinion,castellano2012social}. Neste cada
-  agente têm exatamente dois vizinhos, em uma grade unidimensional. A cada passo
-  um par $ij$ de vizinhos é selecionado e se sua opinião for igual os outros
-  vizinhos de \(i\) e \(j\) mudam a opinião para a opinião de convergência. Se
-  eles discordarem, \(i\) adota a opinião do outro vizinho, e \(j\) faz o mesmo.
+  \cite{sznajd2000opinion, sirbu2017opinion,castellano2012social}. Em sua versão
+  original, e mais simples, cada agente têm exatamente dois vizinhos, em uma
+  grade unidimensional. A cada passo um par $ij$ de vizinhos é selecionado e se
+  sua opinião for igual os outros vizinhos de \(i\) e \(j\) mudam a opinião para
+  a opinião de convergência. Se eles discordarem, \(i\) adota a opinião do outro
+  vizinho, e \(j\) faz o mesmo.
 
   Todos os modelos até agora representaram opiniões como uma variável que pode
   tomar valores binários. Além disso a regra de atualização dos modelos
@@ -205,8 +209,9 @@ propriedades típicas:
     verdade, ligar a literatura de OD com funções de utilidade em economia e com
     a noção geométrica de política é a justificativa dada por
     \citeonline{deffuant2000mixing} para considerar opiniões como contínuas.}; e
-  \(\epsilon\) pode ser interpretado como parte da regra de atualização, o que faz
-  modelo os agentes tenham viés de confirmação.
+  \(\epsilon\) pode ser interpretado\footnote{Essa distinção entre as interpretações de
+    \(\epsilon\) é feita por \citeonline{flache2017}.} como parte da regra de
+  atualização, o que faz modelo os agentes tenham viés de confirmação.
 
 Quando \(\epsilon\) é interpretado como parte da regra de interação temos o princípio
 da homofilia: padrões estruturais de interação social levam pessoas a ter maior
@@ -274,14 +279,14 @@ macrofenômenos ela ``deve ser mais implacável em relação aos micropressupost
 do que microcampos relacionados (como ciência cognitiva)''
 \cite[p.45]{bendor2010bounded}. Quanto mais complicados nossos modelos menor
 controle temos sobre qual o elemento responsável pelo seus resultados, e mais
-dados precisamos para a sua calibração e validação \cite{de2005computational}.
-Como argumentado por \citeonline{zaller1992nature}, a estratégia metodológica
-para modelar a opinião pública, um fenômeno social de larga escala, envolve
-incorporar no modelo somente os aspectos do processamento de informação que têm
-relevância para a compreensão das dinâmicas do fenômeno, ao invés de buscar
-desenvolver modelos que aproximam o mais próximo o possível os detalhes da mente
-humana\footnote{No contexto da análise institucional um argumento equivalente é
-  feito por \citeonline{ostrom1990governing}.}.
+dados precisamos para a sua calibração e validação \cite{de2005computational,
+  bendor2010bounded}. Como argumentado por \citeonline{zaller1992nature}, a
+estratégia metodológica para modelar a opinião pública, um fenômeno social de
+larga escala, envolve incorporar no modelo somente os aspectos do processamento
+de informação que têm relevância para a compreensão das dinâmicas do fenômeno,
+ao invés de buscar desenvolver modelos que aproximam o mais próximo o possível
+os detalhes da mente humana\footnote{No contexto da análise institucional um
+  argumento equivalente é feito por \citeonline{ostrom1990governing}.}.
 
 
 \citeonline{martins2012bayesian} apresenta um \textit{framework} para modelar
