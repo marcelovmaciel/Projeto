@@ -3,7 +3,7 @@ import DyDeo2
 const dd = DyDeo2
 using Plots
 using StatsBase
-gr(legend = false)
+inspectdr(legend = false)
 
 
 
@@ -16,11 +16,11 @@ fig = plot(show = false, xlabel = "iterações",
 
 #testar σ 0.02 0.04 0.06  e 0.1
 
-pa = dd.DyDeoParam(n_issues = 1, σ = 0.01,
+pa = dd.DyDeoParam(n_issues = 1, σ = 0.1,
                    size_nw = 500,
                    time = 500_000,
                    p = 0.9,
-                   ρ = 0.00,
+                   ρ = 0.0.5,
                    propintransigents = 0.0,
                    intranpositions = "extremes")
 
@@ -33,8 +33,9 @@ dd.@showprogress 1 "Plotting " for i in 1:pa.size_nw
     plot!(fig, pa_to_states[:,i])
 end
 
-png("image/n7-rho005andintran")
+png("image/tests01newrho")
 println("done")
+
 
 #runs arrays
 # parametrizations_to_states = map(dd.statesmatrix,parametrizations)
