@@ -1,13 +1,13 @@
 \section{Entidades e Processos}
 
-O trabalho tem por propósito explorar a emergência de distribuições de
-preferências fundamentando-se no diálogo entre a Teoria Política Espacial e a
-área de Dinâmicas de Opinião. Não temos por propósito um modelo que seja
-preditivo, mas que capture microfundamentos relevantes, como viés de confirmação
-e confiança nas crenças, e gere distribuições de preferência plausíveis, no
-sentido delimitado no Capítulo 1. O trabalho propõe, portanto, um modelo que
-abra a caixa-preta do processo de socialização que leva a cristalização de
-direcionamentos, ou posicionamentos, ideológicos.
+Dado o que foi discutido nos Capítulos 1 e 2 o trabalho está fundamentado no
+diálogo entre a Teoria Política Espacial e a área de Dinâmicas de Opinião. Não
+temos por propósito um modelo que seja preditivo, mas que capture
+microfundamentos relevantes, como viés de confirmação e confiança nas crenças, e
+gere distribuições de preferência plausíveis, no sentido delimitado no Capítulo
+1. O trabalho propõe, portanto, um modelo que abra a caixa-preta do processo de
+socialização que leva a cristalização de direcionamentos, ou posicionamentos,
+ideológicos.
 
 A Teoria Geométrica de política modela as preferências dos agentes como relações
 em um espaço contínuo, as quais, em ambientes macro, são construídas por meio da
@@ -105,18 +105,18 @@ populacional. A proporção de agentes intransigentes ou inflexíveis é assim u
 parâmetro da simulação.
 
 Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
-segundo uma probabilidade \(\rho\). Do ponto de vista teórico, estamos considerando
-a possibilidade de fatores não relacionados à influência social levarem o agente
-a mudar seu posicionamento sobre questões \cite{flache2017, lorenz2017modeling}.
+segundo um ruído. Do ponto de vista teórico, estamos considerando a
+possibilidade de fatores não relacionados à influência social levarem o agente a
+mudar seu posicionamento sobre questões \cite{flache2017, lorenz2017modeling}.
 Do ponto de vista metodológico, \citeonline{macy2015signal} argumenta que
 pequenas perturbações no comportamento local dos agentes pode levar a mudanças
 drásticas nas propriedades sistêmicas. Particularmente, consideram que adicionar
 ruído pode: eliminar equilíbrios frágeis, o que reduz o conjunto de resultados e
 tornando-os mais previsíveis; e embora aumente a heterogeneidade local isso pode
 acabar facilitando interações sociais que reduzem a diversidade global
-\cite[p.323]{macy2015signal}. A nova opinão é sorteada independentemente da
-opinião anterior do agente. Contudo, no caso em que o agente seja intransigente
-na questão ele não será sujeito ao efeito do ruído.
+\cite[p.323]{macy2015signal}. A nova opinão \(o(t+1)\) é igual a  \(o(t) + r\).
+Contudo, no caso em que o agente seja intransigente na questão ele não será
+sujeito ao efeito do ruído.
 
 
 \section{Parâmetros-Chave}
@@ -139,7 +139,14 @@ seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
   
 \item A proporção de agentes intransigentes \(0.0 \leq (\text{p\_intran}) \leq 0.1\);
 
-\item A probabilidade de reconsideração \(0.0 \leq \rho  \leq 0.1\);
+\item O parâmetro de reconsideração \(0.0 < \rho  \leq 0.1\), onde \(\rho\) é o desvio
+  padrão de uma Normal de média 0:
+  \begin{itemize}
+  \item Isso significa que o ruído, \textit{r}, é sorteado a partir de uma
+    normal N(0,\(\rho\)), de forma que \(o(t+1) = o(t) + r\);
+  \item Se \(o(t) + r > 1\) então \(o(t+1) = 1\);
+  \item Se \(o(t) + r < 0\) então \(o(t+1) = 0\).
+  \end{itemize}
   
 \end{itemize}
 
@@ -161,11 +168,10 @@ depende de qual a rede os agentes estão. Uma determinada proporção de agentes
 contudo, vai ter um \(\sigma_i = (1e-15 ) \approx 0.0 \). Qual em particular é sorteado de
 seu \(I\). Quantos agentes são intransigentes é dado por \(\text{p\_intran}\).
 
- Uma iteração da simulação, a
-passagem de digamos \(t=2\) para \(t=3\), é dada pela aplicação de dois
-procedimentos: a atualização via influência social e a atualização aleatória.
-Uma repetição da simulação é a aplicação iterativa desses dois procedimentos ao
-longo de um tempo \(t \).
+Uma iteração da simulação, a passagem de digamos \(t\) para \(t+1\), é dada pela
+aplicação de dois procedimentos: a atualização via influência social e a
+atualização aleatória. Uma repetição da simulação é a aplicação iterativa desses
+dois procedimentos ao longo de um tempo \(t \).
 
 O procedimento de influência social é o seguinte: escolhemos um agente \(i\) da
 população. Então escolhemos um de seus vizinhos, \(j\). Sorteamos uma das
@@ -177,11 +183,10 @@ cada repetição todos os agentes atualizam suas crenças segundo a mesma regra.
 
 Ademais, temos o ruído. Novamente escolhemos um agente \(i\) da população.
 Sorteamos uma questão e selecionamos \(o\) e \(\sigma^2\) correspondentes. Se o
-agente é intransigente naquela questão então ele não muda de opinião. Sorteamos
-um \(\xi\) retirado de uma distribuição uniforme \(U([0,1])\) e se \(\xi < \rho\) \(i\)
-muda \(o\) para um valor retirado de outra distribuição uniforme (U[0,1]). Os
-\(x_i\), o objeto de interesse de análise, são atualizados sempre que ocorrerem
-mudanças nas crenças dos agentes.
+agente é intransigente naquela questão então ele não muda de opinião.Sorteamos
+um \(r\) retirado de uma distribuição normal \(N(0,\rho)\) e atualizamos \(o\) de
+forma que \(o(t+1) = o(t) + r\). Os \(x_i\), o objeto de interesse de análise,
+são atualizados sempre que ocorrerem mudanças nas crenças dos agentes.
 
 \section{Metodologia de Análise}
 
@@ -231,7 +236,7 @@ subsequente dos índices de sensibilidade especificamos um \(n\) base de
        \caption{\(\sigma = 0.02\) }
       \end{subfigure}
       \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
-        Parametrização: \(  N = 500, p = 0.9, \rho = 0.0, n\_issues = 1 , p\_intra
+        Parametrização: \(  N = 500, p = 0.9, \rho =  1e-5, n\_issues = 1 , p\_intra
         n= 0.0 \)}
       \fonte{ O autor.}
       \label{fig:tseries1}
