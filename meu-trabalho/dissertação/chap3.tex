@@ -9,42 +9,42 @@ gere distribuições de preferência plausíveis, no sentido delimitado no Capí
 socialização que leva a cristalização de direcionamentos, ou posicionamentos,
 ideológicos.
 
-A Teoria Geométrica de política modela as preferências dos agentes como relações
-em um espaço contínuo, as quais, em ambientes macro, são construídas por meio da
-agregação das atitudes, crenças, posicionamentos, ou simplesmente opiniões dos
-agentes em diferentes questões (\textit{issues}). As preferências dos agentes
-numa dimensão são, assim, o sumário de um \textit{perfil ideológico} do agente
-sobre questões.
+Como discutido no Capítulo 1, teoria geométrica de política modela as
+preferências dos agentes como relações em um espaço contínuo de alternativas.
+Essas preferências, em ambientes macro, são construídas por meio da agregação
+das atitudes, crenças, posicionamentos, ou simplesmente opiniões dos agentes em
+diferentes questões (\textit{issues}). As preferências dos agentes numa dimensão
+são, assim, o sumário de um \textit{perfil ideológico} do agente sobre questões.
+Pretendemos gerar a distribuição de pontos ideais, as posições preferidas pelos
+agentes no espaço de alternativas, mas não precisamos especificar qual a função
+de utilidade centrada nestes pontos, já que não é interesse do trabalho modelar
+a tomada de decisão que os pressuporia, por exemplo a escolha de um candidato. É
+possível atribuir diferentes funções de utilidade aos agentes, mas o pressuposto
+modal é que a função vai ter um máximo e será simétrica \cite{eguia2013spatial,
+  carroll2013structure}. Como não é um modelo de tomada de decisão, mas sim um
+modelo de surgimento de posicionamentos ideológicos, não é necessário adicionar
+mais um elemento, funções de utilidade, que simplesmente alargaria o espaço de
+parâmetros e não seria utilizado na simulação. Não obstante, modelos futuros que
+busquem ligar, por exemplo, a distribuição de preferências com a escolha de
+candidatos/partidos poderiam fazer essa atribuição.
 
-Para gerar a distribuição de pontos ideais, contudo, não precisamos especificar
-qual a função de utilidade centrada nele, já que não é interesse do trabalho
-modelar a tomada de decisão que o pressuporia, por exemplo a escolha de um
-candidato. Como discutido no Capítulo 1, é possível atribuir diferentes funções
-de utilidade aos agentes, mas o pressuposto modal é que a função vai ter um
-máximo e será simétrica \cite{eguia2013spatial, carroll2013structure}. Como não
-é um modelo de tomada de decisão, mas sim um modelo de surgimento de
-posicionamentos ideológicos, não é necessário adicionar mais um elemento,
-funções de utilidade, que simplesmente alargaria o espaço de parâmetros e não
-seria utilizado na simulação. Contudo, modelos futuros que busquem ligar, por
-exemplo, a distribuição de preferências com a escolha de candidatos/partidos
-poderiam fazer essa atribuição.
 
-%Assumimos, portanto, que as preferências dos
-%agentes na dimensão são de pico-único, o pressuposto modal, desde
-%\citeonline{black1958theory}, na literatura em modelos fortemente espaciais, e
-%em trabalhos empíricos em estimação de pontos ideais \cite{carroll2013structure,
-% armstrong2014analyzing, schofield1998nash}.
-
-Pensar os agentes como tendo ideais derivados de posicionamentos em outras
-questões tem por base dois fundamentos. O primeiro é que esse elemento a mais, em
-comparativo aos modelos de \citeonline{deffuant2000mixing} e de
+Pensar os agentes como tendo pontos ideais derivados de posicionamentos em
+questões tem por base dois fundamentos. O primeiro é que esse elemento a mais,
+em comparativo aos modelos de \citeonline{deffuant2000mixing} e de
 \citeonline{martins2012bayesian}, nos permite ser mais condizentes com a
 literatura discutida no Capítulo 1 em contraposição à equiparação do ponto ideal
-a uma opinião. Isto é, os pontos ideais dos agentes vão mudar ao longo da
-simulação, mas isso ocorre devido à mudança nas suas crenças. É uma
-mudança assim indireta e condizente com a noção de que a ideologia do agente é
-um atributo extrínseco. O segundo fundamento é que essa modificação tem por
-implicação a capacidade de adicionar outros elementos à dinâmica do modelo.
+a uma opinião. Essa equiparação passaria por cima da distinção entre crenças e
+preferências \cite{list2009judgment}. Entretanto, em certos contextos, em
+particular nos macro-políticos, é possível abdicar da separação estrita entre
+esses dois conceitos e pensar a possibilidade de que alternativas sejam
+elencadas com base em ``atitudes'' prévias
+\cite{binmore2008rational,laver2014measuring}. Isto é, os pontos ideais dos
+agentes vão mudar ao longo da simulação, mas isso ocorre devido à mudança nas
+suas atitudes. É uma mudança assim indireta e condizente com a noção de que a
+ideologia do agente é um atributo extrínseco. O segundo fundamento é que essa
+modificação tem por implicação a capacidade de adicionar outros elementos à
+dinâmica do modelo.
 
 Sendo assim, cada agente na nossa população vai ter por atributo um perfil
 ideológico\footnote{Nisso o modelo aproxima-se do modelo de
@@ -54,17 +54,18 @@ elementos de \(I\) são as crenças dos agentes em cada questão. Seguindo
 \citeonline{martins2012bayesian}, vamos pressupor que os agentes têm uma
 probabilidade subjetiva sobre cada questão \(\theta\), e uma opinião \( o_i =
 E_i[\theta]\) e incerteza \( \sigma_i^2 = E[\sigma^2] - E_ i[\theta]^2\) associados. O ponto ideal
-\(x\) do agente vai ser a média aritmética das opiniões dele em \(I\). Do ponto
-de vista da implementação o atributo \(I\) é reduzido a um conjunto de pares
-\(I_i = ((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n}, \sigma_{i,n}^2) )\), sendo \(\sigma^2\) global.
-Se \(o\) for retirado de uma distribuição uniforme (U[0,1]), como em
-\citeonline{deffuant2000mixing}, quanto mais vezes fazemos esse sorteio (quanto
-maior o número de questões), pela Lei dos Grandes Números, mais centrada a média
-aritmética ( \(x_i = \frac{1}{n}\sum_{k=1}^{n} o_k\)) vai ser do valor esperado da
-distribuição (0.5). Isso significa que já na condição inicial os agentes seriam
-de centro. Para que isso não ocorra associamos para cada agente uma distribuição
-Beta, com \(\alpha\)s e \(\beta\)s entre 1.1 e 100. Destas distribuições sorteamos os
-valores de \(o_i\) para cada questão, de forma que as opiniões são
+\(x\) do agente vai ser a média aritmética das opiniões dele em \(I\). Os pontos
+ideais são implementados, portanto, como opiniões médias. Do ponto de vista da
+implementação o atributo \(I\) é reduzido a um conjunto de pares \(I_i =
+((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n}, \sigma_{i,n}^2) )\), sendo \(\sigma^2\) global, o mesmo
+para todo \(i\). Se \(o\) for retirado de uma distribuição uniforme (U[0,1]),
+como em \citeonline{deffuant2000mixing}, quanto mais vezes fazemos esse sorteio
+(quanto maior o número de questões), pela Lei dos Grandes Números, mais centrada
+a média aritmética ( \(x_i = \frac{1}{n}\sum_{k=1}^{n} o_k\)) vai ser do valor
+esperado da distribuição (0.5). Isso significa que já na condição inicial os
+agentes seriam de centro. Para que isso não ocorra associamos para cada agente
+uma distribuição Beta, com \(\alpha\)s e \(\beta\)s entre 1.1 e 100. Destas distribuições
+sorteamos os valores de \(o_i\) para cada questão, de forma que as opiniões são
 correlacionadas e as distribuições são centradas em diferentes pontos do espaço,
 como ilustrado na Figura \ref{fig:betas100}:
 
@@ -90,19 +91,22 @@ tendo em vista as interações dos agentes \cite{acemoglu2011opinion}
   metodológica.}.
 
 Quando os agentes interagem \(i\) atualiza sua opinião em alguma\footnote{Qual
-  questão vão ``debater'' vai ser definido por meio de um sorteio sem viés. Uma
-  outra implicação possível, a ser adicionada em trabalhos futuros, é considerar
-  um viés nessa seleção, o que representaria saliência no sentido dado por
-  \citeonline{zaller1992simple}: qual questão os agentes estão dando atenção,
-  isto é, qual questão está mais acessível na memória deles.} questão segundo as
-equações 2.3 e 2.4. Dado que os agentes agora tem um conjunto de opiniões é
-plausível considerar que um conjunto de agentes tenham determinadas opiniões em
-que eles tenham maior certeza, identificação, ou centralidade para o seu perfil
-ideológico. Sendo assim na condição inicial alguma proporção de agentes tem uma
-questão no seu perfil \(I\) cujos \(\sigma\) associados são aproximadamente zero. Com
-isso buscamos analisar o papel de agentes ``inflexíveis'' na dinâmica
-populacional. A proporção de agentes intransigentes ou inflexíveis é assim um
-parâmetro da simulação.
+  questão vão ``debater'' vai ser definido por meio de um sorteio sem viés. Se o
+  agente tem uma lista indexada \(l\) de opiniões sorteamos um índice que
+  determina qual a questão de debate por meio da função \textbf{rand},
+  \textbf{rand(1:length(\(l\)))}. Uma outra implicação possível, a ser
+  adicionada em trabalhos futuros, é considerar um viés nessa seleção, o que
+  representaria saliência no sentido dado por \citeonline{zaller1992simple}:
+  qual questão os agentes estão dando atenção, isto é, qual questão está mais
+  acessível na memória deles.} questão segundo as equações 2.3 e 2.4. Dado que
+os agentes agora tem um conjunto de opiniões é plausível considerar que um
+conjunto de agentes tenham determinadas opiniões em que eles tenham maior
+certeza, identificação, ou centralidade para o seu perfil ideológico. Sendo
+assim na condição inicial alguma proporção de agentes tem uma questão no seu
+perfil \(I\) cujos \(\sigma\) associados são aproximadamente zero. Com isso buscamos
+analisar o papel de agentes ``inflexíveis'' na dinâmica populacional. A
+proporção de agentes intransigentes ou inflexíveis é assim um parâmetro da
+simulação.
 
 Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
 segundo um ruído. Do ponto de vista teórico, estamos considerando a
@@ -114,9 +118,12 @@ drásticas nas propriedades sistêmicas. Particularmente, consideram que adicion
 ruído pode: eliminar equilíbrios frágeis, o que reduz o conjunto de resultados e
 tornando-os mais previsíveis; e embora aumente a heterogeneidade local isso pode
 acabar facilitando interações sociais que reduzem a diversidade global
-\cite[p.323]{macy2015signal}. A nova opinão \(o(t+1)\) é igual a  \(o(t) + r\).
-Contudo, no caso em que o agente seja intransigente na questão ele não será
-sujeito ao efeito do ruído.
+\cite[p.323]{macy2015signal}. A nova opinião \(o(t+1)\) é igual a \(o(t) + r\),
+onde \(r\) é retirado de uma distribuição normal de média 0 e desvio padrão
+\(\rho\), um parâmetro da simulação. No caso em que o agente seja
+intransigente na questão ele não será sujeito ao efeito do ruído \footnote{Uma
+  outra opção seria que agentes intransigentes sejam \textit{menos} afetados
+  pelo ruído. Optamos pela mais simples.}
 
 
 \section{Parâmetros-Chave}
@@ -132,7 +139,7 @@ seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
 \item As incertezas \(0.01 \leq \sigma_i \leq 0.5\);
   \begin{itemize}
   \item Agentes intransigentes vão ter uma de suas opiniões com incerteza
-    próxima a zero (\(1e-15\));
+    próxima a zero (\(1e-20\));
   \end{itemize}
 
 \item O parâmetro de confiança \(0.1 \leq p \leq 0.99\);
@@ -164,24 +171,26 @@ com valores\footnote{Paramêtros com valores \(\leq\) 1 ou geram distribuições
   \(\frac{\alpha}{\alpha + \beta}\), de forma que a média mínima é 0.011.} entre 1.1 e 30; o
 \(\sigma^2\) é uma variável global ; um posicionamento ideológico, ou ponto ideal,
 \(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um conjunto de vizinhos, o qual
-depende de qual a rede os agentes estão. Uma determinada proporção de agentes,
-contudo, vai ter um \(\sigma_i = (1e-15 ) \approx 0.0 \). Qual em particular é sorteado de
-seu \(I\). Quantos agentes são intransigentes é dado por \(\text{p\_intran}\).
+depende de qual a rede os agentes estão. Uma determinada proporção de agentes
+vai ter um \(\sigma_i = (1e-20 ) \approx 0.0 \). Quantos agentes são intransigentes é dado
+por \(\text{p\_intran}\). Em qual questão vão ser intransigentes é aleatório,
+sorteado de seu \(I\).
 
 Uma iteração da simulação, a passagem de digamos \(t\) para \(t+1\), é dada pela
 aplicação de dois procedimentos: a atualização via influência social e a
 atualização aleatória. Uma repetição da simulação é a aplicação iterativa desses
 dois procedimentos ao longo de um tempo \(t \).
 
-O procedimento de influência social é o seguinte: escolhemos um agente \(i\) da
-população. Então escolhemos um de seus vizinhos, \(j\). Sorteamos uma das
+O procedimento de influência social é o seguinte: sorteamos um agente \(i\) da
+população. Então sorteamos um de seus vizinhos, \(j\). Sorteamos uma das
 questões \(k \in (1,\ldots,n)\), e logo em seguida selecionamos os
 \((o_{i,k},o_{j,k})\) e \((\sigma_{i,k}^2,\sigma_{j,k}^2)\) correspondentes à questão. A
 partir daqui temos duas opções, \(i\) atualiza \(o_{i,k}\) segundo as equações
 2.3 e 2.4. Essa regra é um parâmetro global da simulação, o que significa que a
 cada repetição todos os agentes atualizam suas crenças segundo a mesma regra.
 
-Ademais, temos o ruído. Novamente escolhemos um agente \(i\) da população.
+Ademais, temos o ruído. Isto é, a cada iteração temos os efeito da influência
+social \textit{e} do ruído. Novamente escolhemos um agente \(i\) da população.
 Sorteamos uma questão e selecionamos \(o\) e \(\sigma^2\) correspondentes. Se o
 agente é intransigente naquela questão então ele não muda de opinião.Sorteamos
 um \(r\) retirado de uma distribuição normal \(N(0,\rho)\) e atualizamos \(o\) de
@@ -196,7 +205,7 @@ do modelo \cite{north2007managing}. O primeiro passo da análise envolve, então
  ter uma compreensão geral do comportamento do modelo para então passarmos
 para regiões particulares do espaço de parâmetros.
 
-Contudo, o alto custo computacional de varrer esse espaço de parâmetros faz com
+No entanto, o alto custo computacional de varrer esse espaço de parâmetros faz com
 que só seja possível realizarmos uma análise global, na maioria dos casos, se
 seguirmos métodos formais da literatura de análise de sensibilidade
 \cite{railsback2012agent}. Esses métodos trazem o benefício de determinar como
@@ -254,7 +263,7 @@ subsequente dos índices de sensibilidade especificamos um \(n\) base de
     uma maior cobertura implicaria num número maior de posicionamentos distintos
     \cite{bramson2016disambiguation}. Contudo, teríamos que estabelecer um \(N\)
     base, pois de outra forma esse parâmetro explica quase que totalmente o
-    valor do output a ser analisado pela análise de sensitividade.
+    valor do output a ser analisado pela análise de sensibilidade.
 
     No primeiro gráfico da figura \ref{fig:tseries1} temos um desvio padrão
     próximo zero, e um único posicionamento ideológico final. Já no segundo
@@ -290,17 +299,19 @@ subsequente dos índices de sensibilidade especificamos um \(n\) base de
   \end{figure}
 
   
-Para a análise, seguimos \citeonline{ten2016sensitivity} e combinamos
-histogramas da medida do sistema, gráficos de dispersão e índices de
-sensibilidade.Os índices de sensibilidade utilizados são os índices de
-Sobol\footnote{Tanto a amostragem quanto a análise de sensibilidade são feitas
-  usando o pacote de Python SALib \cite{herman2017salib}.}, particularmente
-índices de Sobol de primeira ordem e totais \cite{saltelli2008global}. Os
-índices de Sobol decompõem o impacto dos parâmetros na variância do
-\textit{output} de interesse. Os índices de primeira ordem incluem contribuições
-lineares e não-lineares dos parâmetros, mas não efeitos interativos
-\cite{ten2016sensitivity}. Já índices totais incluem todos os efeitos de ordem
-maior decorrentes das interações entre os parâmetros \cite{saltelli2008global}.
+  Para a análise, seguimos \citeonline{ten2016sensitivity} e combinamos
+  histogramas da medida do sistema, gráficos de dispersão e índices de
+  sensibilidade.Os índices de sensibilidade utilizados são os índices de
+  Sobol\footnote{Tanto a amostragem quanto a análise de sensibilidade são feitas
+    usando o pacote de Python SALib, por meio do pacote de Julia PyCall
+    \cite{herman2017salib, johnson2018}.}, particularmente índices de Sobol de
+  primeira ordem e totais \cite{saltelli2008global}. Os índices de Sobol
+  decompõem o impacto dos parâmetros na variância do \textit{output} de
+  interesse. Os índices de primeira ordem incluem contribuições lineares e
+  não-lineares dos parâmetros, mas não efeitos interativos
+  \cite{ten2016sensitivity}. Já índices totais incluem todos os efeitos de ordem
+  maior decorrentes das interações entre os parâmetros
+  \cite{saltelli2008global}.
 
 \section{Resultados}
 
@@ -350,7 +361,7 @@ ao fim das simulações para cada parametrização.
     com o fato dos agentes terem por vizinhos todos os outros agentes. Isto é,
     os agentes ao interagirem ou ficam mais parecidos ou não são influenciados.
     O modelo tem assim uma forte tendência assimilativa, ao menos num grafo
-    completo. Contudo, a figura não nos informa qual parâmetro é responsável por
+    completo. Todavia, a figura não nos informa qual parâmetro é responsável por
     isso, ou quais os valores de concentração (centrais ou extremos).
 
     A primeira pergunta pode começar a ser respondida por meio de gráficos de
@@ -413,7 +424,7 @@ os parâmetros. Ademais, os coeficientes de erro são pequenos\footnote{Para os
   valores precisos ver o Apêndice.} tendo em vista que a análise foi feita a
 partir de 70.000 parametrizações selecionadas por meio do método de Saltelli.
 
-Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetro
+Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
 \(p\_intran\). A comparação entre as figuras \ref{fig:tseries1} e
 \ref{fig:tseries2} sugere que esse resultado seja um artefato da medida Ystd.
 
@@ -429,7 +440,7 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
       \end{subfigure}
       \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
         Parametrização: \(p\_intran = 0.15, \text{ } N = 500,  \text{ }   p =
-        0.9,  \text{ }  \rho = 0.0,  \text{ }  n\_issues = 1 \)}
+        0.9,  \text{ }  \rho = 1e-5,  \text{ }  n\_issues = 1 \)}
       \fonte{ O autor.}
       \label{fig:tseries2}
     \end{figure}
@@ -455,7 +466,7 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
     \includegraphics[scale=0.7]{ims/sigma01extremes.png}
     \caption{ Evolução dos pontos ideais dos agentes sob efeito de
       intransigentes nos extremos. Parametrização: \(p\_intran = 0.15, \text{ }
-      N = 500, \text{ } p = 0.9, \text{ } \rho = 0.0, \text{ } n\_issues = 1 \)}
+      N = 500, \text{ } p = 0.9, \text{ } \rho = 1e-5, \text{ } n\_issues = 1 \)}
     \fonte{ O autor.}
     \label{fig:tseries3}
   \end{figure}
@@ -470,8 +481,8 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
 
     Dado o pequeno impacto de \(N\) e \(p\) vamos os manter constantes, com
     valores de 500 e 0.9 respectivamente. Uma conjunto de parametrizações não
-    abarcado pela análise de sensibilidade global é quando \(p\_intran = \rho  =
-    0.0\). Nesse caso, se tivermos como base \(N = 500\), é possível usar o
+    abarcado pela análise de sensibilidade global é quando \(p\_intran = 0.0, \rho \approx
+    0 \). Nesse caso, se tivermos como base \(N = 500\), é possível usar o
     número de pontos ideais finais como medida do sistema, de forma que podemos
     analisar o papel tanto de \(\sigma\) quanto de \(n\_issues\) num sistema sem
     ruído e sem intransigentes. Testamos 100 realizações para cada
@@ -481,22 +492,22 @@ Um resultado contra-intuitivo, contudo, é o baixo valor de impacto do parâmetr
   \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{ims/boxes4.png}
-    \caption{Parametrização: \(\rho = p\_intran = 0.0, p = 0.9, N =500\)}
+    \caption{Parametrização: \(\rho =1e-5, p\_intran = 0.0, p = 0.9, N =500\)}
     \fonte{O autor.}
     \label{fig:box4}
   \end{figure}
   
   Como mostra a figura \ref{fig:box4} quanto maior o valor de \(\sigma\) menor a
-  cobertura da configuração final. Contudo um resultado que aparenta ser
-  contrário ao da análise anterior é que quanto maior o número de questões
-  \textit{maior} a cobertura final, enquanto que a análise anterior demonstrou
-  uma relação negativa entre número de questões e dispersão. Isso só é verdade,
-  contudo, pelo fato dos parâmetros \(\rho\) e \(p\_intran\) serem nulos. Nesse
-  caso aumentar o número de questões faz com que sejam necessárias mais
-  interações entre os agentes para que eles se aproximem ideologicamente, já que
-  pelo procedimento da simulação eles só atualizam uma opinião por vez. Isso faz
-  com que aumentar o número de questões contribua para uma maior dispersão e
-  cobertura de posicionamento ideológicos.
+  cobertura da configuração final. Um resultado que aparenta ser contrário ao da
+  análise anterior é que quanto maior o número de questões \textit{maior} a
+  cobertura final, enquanto que a análise anterior demonstrou uma relação
+  negativa entre número de questões e dispersão. Isso só é verdade pelo fato dos
+  parâmetros \(\rho\) e \(p\_intran\) serem nulos. Nesse caso aumentar o número de
+  questões faz com que sejam necessárias mais interações entre os agentes para
+  que eles se aproximem ideologicamente, já que pelo procedimento da simulação
+  eles só atualizam uma opinião por vez. Isso faz com que aumentar o número de
+  questões contribua para uma maior dispersão e cobertura de posicionamento
+  ideológicos.
 
   
 \begin{figure}[H]
