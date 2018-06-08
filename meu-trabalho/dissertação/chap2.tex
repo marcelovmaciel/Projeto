@@ -37,18 +37,18 @@ considerar a área como um subgrupo da Sociofísica
 
 \section{Modelagem Baseada em Agentes e Dinâmicas de Opinião}
 
-ABMs podem ser definidos como modelos que envolvem
-agentes discretos, onde agentes, seus atributos, e possivelmente um ambiente são
-definidos algoritmicamente \cite{sayama2015introduction} \footnote{ ABMs
-  costumam ser implementados como simulações num computador, embora existam
-  modelos baseados em agentes que historicamente não tenham sido diretamente em
-  computadores, como os modelos de Schelling e de Sakoda
-  \cite{hegselmann2017thomas}.}. Num ABM existem três noções primitivas: os
-\textit{atributos}, os \textit{estados} e as \textit{configurações}
-\cite{de2014agent}. Os atributos dos agentes são o conjunto de propriedades
-que cada cada agente \(i\) tem. Os estados dos agentes são os valores de seus
-atributos num determinado tempo \(t\). Já as configurações são as coleções de
-todos os estados dos agentes num modelo.
+ABMs podem ser definidos como modelos que envolvem agentes discretos, onde
+agentes, seus atributos, e possivelmente um ambiente são definidos
+algoritmicamente \cite{sayama2015introduction} \footnote{ ABMs costumam ser
+  implementados como simulações num computador, embora existam modelos baseados
+  em agentes que historicamente não tenham sido diretamente em computadores,
+  como os modelos de Schelling e de Sakoda \cite{hegselmann2017thomas}.}.Segundo
+\citeonline{de2014agent}, num ABM existem três noções primitivas: os
+\textit{atributos}, os \textit{estados} e as \textit{configurações}. Os
+atributos dos agentes são o conjunto de propriedades que cada cada agente \(i\)
+tem. Os estados dos agentes são os valores de seus atributos num determinado
+tempo \(t\). Já as configurações são as coleções de todos os estados dos agentes
+num modelo.
 
 ABM é uma técnica flexível: podemos construir modelos metafóricos com
 objetivo de auxiliar o desenvolvimento de intuição segundo a elucidação de
@@ -209,9 +209,8 @@ propriedades típicas:
     verdade, ligar a literatura de OD com funções de utilidade em economia e com
     a noção geométrica de política é a justificativa dada por
     \citeonline{deffuant2000mixing} para considerar opiniões como contínuas.}; e
-  \(\epsilon\) pode ser interpretado\footnote{Essa distinção entre as interpretações de
-    \(\epsilon\) é feita por \citeonline{flache2017}.} como parte da regra de
-  atualização, o que faz modelo os agentes tenham viés de confirmação.
+  \(\epsilon\) pode ser interpretado como parte da regra de atualização, o que faz
+  modelo os agentes tenham viés de confirmação \cite{flache2017}.
 
 Quando \(\epsilon\) é interpretado como parte da regra de interação temos o princípio
 da homofilia: padrões estruturais de interação social levam pessoas a ter maior
@@ -328,12 +327,12 @@ para a construção de um modelo de dinâmicas de opinião com base num
 
 
 A aplicação desse \textit{framework} no caso de opiniões contínuas incorpora o
-mecanismo de viés de confirmação presente no modelo  Deffuant-Weisbuch,
-recupera seus resultados qualitativos, e ainda tem resultados adicionais
+mecanismo de viés de confirmação presente no modelo Deffuant-Weisbuch, encontra
+resultados qualitativamente semelhantes, e ainda tem resultados adicionais
 \cite{martins2009bayesian}. Dado que o modelo representa a atualização de uma
 variável contínua, incorpora viés de confirmação e fundamenta a regra de
-atualização num framework bayesiano de processamento de informação ele será a base
-do nosso trabalho. 
+atualização num framework bayesiano de processamento de informação ele será a
+base do nosso trabalho.
 
 Nele os agentes interagem num grafo completo e a regra de interação é uma díade
 interagindo a cada passo de tempo. A opinião inicial dos agentes é dada por uma

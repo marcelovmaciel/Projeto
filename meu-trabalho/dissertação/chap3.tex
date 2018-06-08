@@ -63,11 +63,16 @@ como em \citeonline{deffuant2000mixing}, quanto mais vezes fazemos esse sorteio
 (quanto maior o número de questões), pela Lei dos Grandes Números, mais centrada
 a média aritmética ( \(x_i = \frac{1}{n}\sum_{k=1}^{n} o_k\)) vai ser do valor
 esperado da distribuição (0.5). Isso significa que já na condição inicial os
-agentes seriam de centro. Para que isso não ocorra associamos para cada agente
-uma distribuição Beta, com \(\alpha\)s e \(\beta\)s entre 1.1 e 100. Destas distribuições
-sorteamos os valores de \(o_i\) para cada questão, de forma que as opiniões são
-correlacionadas e as distribuições são centradas em diferentes pontos do espaço,
-como ilustrado na Figura \ref{fig:betas100}:
+agentes seriam de centro. Para que isso não ocorra associamos\footnote{Dividimos
+  os intervalos de valores [1.1,100], para \(\alpha\) e \(\beta\), em \(N\) valores
+  igualmente espaçados, onde N é o número de agentes da população, criando uma
+  lista do tamanho da população de duplas \((\alpha,\beta)\). Então cada agente tem uma
+  dupla de parâmetros sorteada, sem repetição, dessa lista de duplas de
+  parâmetros.} para cada agente uma distribuição Beta, com \(\alpha\)s e \(\beta\)s entre
+1.1 e 100. Destas distribuições sorteamos os valores de \(o_i\) para cada
+questão, de forma que as opiniões são correlacionadas e as distribuições são
+centradas em diferentes pontos do espaço, como ilustrado na Figura
+\ref{fig:betas100}:
 
 \begin{figure}[H]
   \centering
@@ -93,9 +98,9 @@ tendo em vista as interações dos agentes \cite{acemoglu2011opinion}
 Quando os agentes interagem \(i\) atualiza sua opinião em alguma\footnote{Qual
   questão vão ``debater'' vai ser definido por meio de um sorteio sem viés. Se o
   agente tem uma lista indexada \(l\) de opiniões sorteamos um índice que
-  determina qual a questão de debate por meio da função \textbf{rand},
-  \textbf{rand(1:length(\(l\)))}. Uma outra implicação possível, a ser
-  adicionada em trabalhos futuros, é considerar um viés nessa seleção, o que
+  determina qual a questão de debate, por meio de um sorteio onde cada índice
+  tem igual probabilidade de ser selecionado. Uma outra implicação possível, a
+  ser adicionada em trabalhos futuros, é considerar um viés nessa seleção, o que
   representaria saliência no sentido dado por \citeonline{zaller1992simple}:
   qual questão os agentes estão dando atenção, isto é, qual questão está mais
   acessível na memória deles.} questão segundo as equações 2.3 e 2.4. Dado que
@@ -168,7 +173,7 @@ com valores\footnote{Paramêtros com valores \(\leq\) 1 ou geram distribuições
   formato uniforme, quando \(\alpha = \beta = 1.0\), ou com formato de U. Quanto ao
   limiar superior, o valor de 100 permite que tenhamos agentes com distribuições
   centralizadas em ambos os extremos, dado que a média \(\mu\) é dada por
-  \(\frac{\alpha}{\alpha + \beta}\), de forma que a média mínima é 0.011.} entre 1.1 e 30; o
+  \(\frac{\alpha}{\alpha + \beta}\), de forma que a média mínima é 0.011.} entre 1.1 e 100; o
 \(\sigma^2\) é uma variável global ; um posicionamento ideológico, ou ponto ideal,
 \(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um conjunto de vizinhos, o qual
 depende de qual a rede os agentes estão. Uma determinada proporção de agentes
@@ -220,16 +225,16 @@ de distribuições uniformes nos intervalos de valores dos parâmetros
 não é coberto igualmente, havendo a possibilidade de pontos de acumulação ou
 espaços vazios \cite{pereda2017brief}.
 
-\citeonline{saltelli2008global} argumenta que para manter uma dispersão equitativa
-dos pontos no espaço de parâmetros é necessário um algoritmo que enviese a
-seleção de novos pontos para mantê-los afastados dos pontos já presentes. Desta
-forma vamos usar o método de Saltelli de amostragem, dado que garante a partição
-equitativa do espaço de parâmetros \cite{herman2017salib}. Especificamos então
-um \(n\) base a partir do qual o ``sampler'' gera n * (2d + 2), onde \(d\) é o
-número de parâmetros. No nosso caso \(d = 6\), pois vamos ter como parâmetros :
-N (população), número de questões (codificado como n\_issues ), \(p\), \(\sigma\), a
-proporção de agentes intransigentes (codificado como p\_intran)
-\(\rho\). Para garantir um coeficiente de erro baixo no cálculo
+\citeonline{saltelli2008global} argumenta que para manter uma dispersão
+equitativa dos pontos no espaço de parâmetros é necessário um algoritmo que
+enviese a seleção de novos pontos para mantê-los afastados dos pontos já
+presentes. Desta forma vamos usar o método de Saltelli de amostragem, dado que
+garante a partição equitativa do espaço de parâmetros \cite{herman2017salib}.
+Especificamos então um \(n\) base a partir do qual o ``sampler'' gera n * (2d +
+2), onde \(d\) é o número de parâmetros. No nosso caso \(d = 6\), pois vamos ter
+como parâmetros : N (população), número de questões (codificado como n\_issues
+), \(p\), \(\sigma\), a proporção de agentes intransigentes (codificado como
+p\_intran), e \(\rho\). Para garantir um coeficiente de erro baixo no cálculo
 subsequente dos índices de sensibilidade especificamos um \(n\) base de
 \(5000\), de forma que rodamos \(70.000\) parametrizações.
 
@@ -301,7 +306,7 @@ subsequente dos índices de sensibilidade especificamos um \(n\) base de
   
   Para a análise, seguimos \citeonline{ten2016sensitivity} e combinamos
   histogramas da medida do sistema, gráficos de dispersão e índices de
-  sensibilidade.Os índices de sensibilidade utilizados são os índices de
+  sensibilidade. Os índices de sensibilidade utilizados são os índices de
   Sobol\footnote{Tanto a amostragem quanto a análise de sensibilidade são feitas
     usando o pacote de Python SALib, por meio do pacote de Julia PyCall
     \cite{herman2017salib, johnson2018}.}, particularmente índices de Sobol de
@@ -309,9 +314,20 @@ subsequente dos índices de sensibilidade especificamos um \(n\) base de
   decompõem o impacto dos parâmetros na variância do \textit{output} de
   interesse. Os índices de primeira ordem incluem contribuições lineares e
   não-lineares dos parâmetros, mas não efeitos interativos
-  \cite{ten2016sensitivity}. Já índices totais incluem todos os efeitos de ordem
-  maior decorrentes das interações entre os parâmetros
-  \cite{saltelli2008global}.
+  \cite{ten2016sensitivity}. Dois fatores interagem quando o seu efeito sobre o
+  output não pode ser expresso como a soma de seus efeitos individuais. Já
+  índices totais incluem todos os efeitos de ordem maior decorrentes das
+  interações entre os parâmetros. Digamos que temos um modelo com 3 fatores. O
+  efeito total, \(S_{T1}\) do primeiro fator \(X_1\) é dado pela soma dos termos
+  da equação \(S_{T1} = S_1 + S_{12} + S_{13} + S_{123}\), onde \(S_1 = Corr(Y,
+  E(Y|X_1))\), \(S_{12}\) é o impacto na variância de \(Y\), o output, da
+  interação entre \(X_1\) e \(X_2\), sendo portanto o efeito conjunto de \(X_1\)
+  e \(X_2\) menos os efeitos de primeira ordem para esses fatores; a mesma
+  lógica é aplicada aos outros termos. O índice total informa características
+  não aditivas de um modelo, de forma que para um fator \(X_j\) uma diferença
+  significativa entre \(S_{Tj}\) e \(S_j\) aponta para uma interação envolvendo
+  esse fator. Já num modelo puramente aditivo a soma dos índices de primeira
+  ordem \(\sum_{i=1}^k S_i\) é igual a 1 \cite{saltelli2008global}.
 
 \section{Resultados}
 
