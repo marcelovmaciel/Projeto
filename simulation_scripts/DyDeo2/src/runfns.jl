@@ -208,14 +208,14 @@ Then it runs the sim for each parametization and pushs system measures to anothe
 function sweep_sample(param_values; size_nw = 500, time = 250_000, agent_type = "mutating o")
     Y = []
 @showprogress 1 "Computing..." for i in 1:size(param_values)[1]
-        paramfromsaltelli = DyDeoParam(n_issues = round(Int,param_values[i,1]),
-                                       p = param_values[i,2],
-                                       σ = param_values[i,3],
-                                       ρ = param_values[i,4],
-                                       propintransigents = param_values[i,5],
-                                       size_nw = size_nw,
-                                       time = time,
-                                       agent_type = agent_type)
+    paramfromsaltelli = DyDeoParam(size_nw =  round(Int,param_values[i,1]),
+                                    n_issues = round(Int,param_values[i,2]),
+                                    p = param_values[i,3],
+                                    σ = param_values[i,4],
+                                    ρ = param_values[i,5],
+                                    propintransigents = param_values[i,6],
+                                    time = time,
+                                    agent_type = agent_type)
         out  =  simple_run(paramfromsaltelli) |> pullidealpoints |> outputfromsim
         push!(Y,out)
     end
@@ -263,37 +263,25 @@ function extractys(Ypairs)
 end
 
 
-
-function extractynips(Ypairs)
-    Ynips =  Int64[]
-    for i in Ypairs
-        push!(Ynips,i[2])
-    end
-    return(Ynips)
-end
-
-
-
 """
 function multiruns(sigmanissues::Tuple; repetitions = 50)
 
     helper function to plot the box plots
 """
-function multiruns(sigmanissues::Tuple; repetitions = 100)
- 
+function multiruns(sigmanissues::Tuple; repetitions = 100) 
     pa = DyDeoParam(n_issues = sigmanissues[1],
                        σ = sigmanissues[2],
                        size_nw = 500,
                        time = 1_000_000,
                        p = 0.9,
-                       ρ = 0.0,
+                       ρ = 1e-5,
                        propintransigents = 0.0,
-                       intranpositions = "center")
+                       intranpositions = "random")
 
-    repetitionsout = []
+    repetitionsout = Array{Float64}[]
 
 @showprogress 1 "Multiruns"    for run in 1:repetitions
-        singleout = simple_run(pa) |> pullidealpoints |> x->round.(x,5)  |> outputfromsim
+        singleout = simple_run(pa) |> pullidealpoints 
         push!(repetitionsout,singleout)
     end
     return(repetitionsout)

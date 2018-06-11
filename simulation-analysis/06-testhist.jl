@@ -3,7 +3,14 @@ import DyDeo2
 const dd = DyDeo2
 using Plots
 using StatsBase, CategoricalArrays
-inspectdr(legend = false)
+gr(legend = false)
+
+out = dd.multiruns((1,0.02))
+
+
+meanout(multirunout) = reduce((x,y)->broadcast(+,x,y),multirunout)/length(multirunout)
+
+meanpop = meanout(out)
 
 pa = dd.DyDeoParam(n_issues = 1, σ = 0.01,
                    size_nw = 500,
@@ -15,12 +22,11 @@ pa = dd.DyDeoParam(n_issues = 1, σ = 0.01,
 
 endpop = dd.simple_run(pa);
 
-histfit = (endpop |>
-           dd.pullidealpoints |>
+histfit = (meanpop |>
            x->(fit(Histogram,x,
-                   closed = :left,nbins = 15 )))
+                   closed = :left)))
 
-histfit.weights
+#histfit.weights
 
 plot(histfit)
 

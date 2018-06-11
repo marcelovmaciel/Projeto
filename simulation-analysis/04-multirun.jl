@@ -26,12 +26,15 @@ function extractynips(Ypairs)
     return(Ynips)
 end
 
-
-
 for i in 1:length(test)    
-    (map(x -> (x |> dd.multiruns |> extractynips), test[i]) |>
+    (map(x -> (x |> dd.multiruns |>
+               y->round.(y,5)  |>
+               dd.outputfromsim |>
+               extractynips), test[i]) |>
      x -> (push!(test_results,x)))
 end
+
+
 
 @save "data/multi-out2.jld2" test_results
 
