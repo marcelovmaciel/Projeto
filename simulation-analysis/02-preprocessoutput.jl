@@ -36,11 +36,11 @@ discretize(x) = round(Int,x)
 
 # Data structures from the simulation 
 
-@load  "data/sample5k6params.jld2" #paramvalues5k_6params 
+dd.@load  "data/sample5k6params.jld2" #paramvalues5k_6params 
 
-@load "data/saltelli-6params-70kvalues.jld2" #Ysaltelli6params_70kvalues
+dd.@load "data/saltelli-6params-70kvalues.jld2" #Ysaltelli6params_70kvalues
 
-@load "data/saltellisample5000initcond.jld2" #saltelli5000_initialcond
+dd.@load "data/saltellisample5000initcond.jld2" #saltelli5000_initialcond
 
 
 #Turn the array initcond array into df then save it
@@ -50,7 +50,6 @@ initYstd,initYnips = extractys(saltelli5000_initialcond)
 initcondf = DataFrame(std = initYstd, nips = initYnips)
 
 CSV.write("data/saltelli70kinitcond.csv", initcondf)
-
 
 
 # Create df for regression plot - 6params version
