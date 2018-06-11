@@ -72,9 +72,19 @@ CSV.write("data/5000paramsandresults.csv",totaldf)
 
 Si_std = sobol.analyze(problem, Ystd5000)
 
-delete!(Si_std, "S2"); delete!(Si_std, "S2_conf")
-
 varcolumn= DataFrame(Var = problem["names"])
+
+S2indices =hcat(varcolumn,
+                DataFrame(N = Si_std["S2"][:,1],
+                          n_issues = Si_std["S2"][:,2],
+                          p = Si_std["S2"][:,3],
+                          σ = Si_std["S2"][:,4], 
+                          ρ = Si_std["S2"][:,5],
+                          p_intran = Si_std["S2"][:,6]))
+
+CSV.write("data/saltelli5000S2.csv", S2indices)
+
+delete!(Si_std, "S2"); delete!(Si_std, "S2_conf")
 
 stdsi_df = hcat(varcolumn,DataFrame(Si_std))
 

@@ -178,24 +178,28 @@ propriedades típicas:
   diferença de suas opiniões \cite{flache2017}. O modelo de
   \citeonline{axelrod1997dissemination} difere em ambos os aspectos. Cada agente
   tem por opinião um vetor $F$ de componentes $(\sigma_1 , \ldots, \sigma_f)$
-  \cite{klemm2003role}. Esses $\sigma_i$ podem tomar valores inteiros de 0 a 9. Os
+  \cite{klemm2003role}. Esses $\sigma$ podem tomar valores inteiros de 0 a 9. Os
   componentes são as características culturais dos agentes e seus possíveis
   valores são seus traços culturais \cite{gomes2014}. O modelo considera
-  interação entre pares de vizinhos, os quais interagem com uma probabilidade
-  proporcional ao número de traços que têm igual. Isso significa que se \(i\)
-  tem uma opinião igual a 82330 e seu vizinho \(j\) tem uma opinião 67730 eles
-  têm \(40 \%\) de interagirem. Se eles interagirem, \(i\) troca um dos traços
-  em que difere \(por\) j um dos traços de \(j\)\cite{axelrod1997dissemination}.
-  Nesse modelo pessoas similares têm uma probabilidade maior de se interagirem
-  do que pessoas distintas, mas uma vez que a interação ocorre elas ficam mais
-  parecidas. Sendo assim, o modelo de Axelrod pode ser considerado um modelo de
-  assimilação enviesada: só indivíduos suficientemente similares podem
-  influenciar uns aos outros na redução de suas diferenças\footnote{Um terceiro
-    tipo de modelo elencado por \citeonline{flache2017}, além dos modelos de
-    influência social assimilativa e modelos com influência enviesada, são os
-    modelos de influência repulsiva: quando agentes são muito distintos em
-    opinião a interação pode levá-los a um aumento dessa diferença, isto é,
-    tornam-se mais distantes.} \cite{flache2017}.
+  interação entre pares de vizinhos, os quais interagem da seguinte forma: o
+  agente \(i\) sorteia algum dentre os seus \(f\) componentes. Se o vizinho,
+  \(j\), tiver o mesmo traço nesse componente eles interagem. Isso faz com que
+  eles interajam com uma probabilidade proporcional ao número de traços que têm
+  em comum. Por exemplo, se \(i\) tem uma opinião igual a 82330 e seu vizinho
+  \(j\) tem uma opinião 67730 eles têm \(40 \%\) de interagirem. Se eles
+  interagirem, \(i\) troca um dos traços em que diferem por um dos traços de
+  \(j\)\cite{axelrod1997dissemination}\todo{olhei no original. esssa descrição
+    esta correta}. Nesse modelo pessoas similares têm uma probabilidade maior
+  deinteragirem do que pessoas distintas, mas uma vez que a interação ocorre
+  elas ficam mais parecidas. Sendo assim, o modelo de Axelrod pode ser
+  considerado um modelo de assimilação enviesada: só indivíduos suficientemente
+  similares podem influenciar uns aos outros na redução de suas
+  diferenças\footnote{Um terceiro tipo de modelo elencado por
+    \citeonline{flache2017}, além dos modelos de influência social assimilativa
+    e modelos com influência enviesada, são os modelos de influência repulsiva:
+    quando agentes são muito distintos em opinião a interação pode levá-los a um
+    aumento dessa diferença, isto é, tornam-se mais distantes.}
+  \cite{flache2017}.
 
 
   Um outro modelo de assimilação enviesada é o Modelo de Deffuant-Weisbuch
@@ -316,8 +320,9 @@ para a construção de um modelo de dinâmicas de opinião com base num
   $ A_j$ pelo agente $j$ de tal forma que $A_j[f]$ é um funcional de
   $f_j(x)$.
 \item Os agentes tem que ter em sua mente  uma relação entre o
-  verdadeiro valor entre $x$ e o valor declarado $A_j$. Isso é dado
-  pela distribuição de probabilidade $P(A_j|x)$.
+  verdadeiro valor de \(x\) \(x^*\), ,  e o valor declarado $A_j$. Isso é dado
+  pela distribuição de probabilidade $P(A_j|x^*)$. Essa verossimilhança  mensura
+  a chance que um vizinho \(j\) comunique \(A_j\) dado que \(x^*\) seja o valor correto.
 \item Dado o prior $f_i(x)$ a opinião posterior $f_i(x|A_j)$ é dada
   por $A_i[f_i(x|A_j)]$ que é a nova opinião de $i$ .
 \end{enumerate}
