@@ -78,7 +78,7 @@ centradas em diferentes pontos do espaço, como ilustrado na Figura
   \centering
   \includegraphics[width=\textwidth]{ims/beta100.png}
   \caption{Distribuições Beta para 50 agentes}
-  \fonte{ O autor.}
+  \source{ O autor.}
   \label{fig:betas100}
 \end{figure}
 
@@ -252,7 +252,7 @@ subsequente dos índices de sensibilidade especificamos um \(n\) base de
       \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
         Parametrização: \(  N = 500, p = 0.9, \rho =  1e-5, n\_issues = 1 , p\_intra
         n= 0.0 \)}
-      \fonte{ O autor.}
+      \source{ O autor.}
       \label{fig:tseries1}
     \end{figure}
     
@@ -299,7 +299,7 @@ subsequente dos índices de sensibilidade especificamos um \(n\) base de
     \includegraphics[width =10cm]{ims/ts5.png}
     \caption{Parametrização equivalente a Figura \ref{fig:tseries1} (b),
       mas com \(\rho = 0.001\).}
-    \fonte{ O autor.}
+    \source{ O autor.}
     \label{fig:nonnullrho}
   \end{figure}
 
@@ -355,7 +355,7 @@ ao fim das simulações para cada parametrização.
       \end{subfigure}
       \caption{Desvio padrão dos pontos ideais das populações para cada
         parametrização}
-      \fonte{ O autor.}
+      \source{ O autor.}
       \label{fig:hists1}
     \end{figure}
     
@@ -412,7 +412,7 @@ ao fim das simulações para cada parametrização.
     \end{subfigure}
     \caption{Gráfico de dispersão para 70.000 parametrizações.}
     \label{fig:scatter1}
-    \fonte{ O autor.}
+    \source{ O autor.}
 \end{figure}
 
 O parâmetro \(\rho\), o ruído, por sua vez, tem uma relação positiva com a
@@ -426,7 +426,7 @@ claro na Figura \ref{fig:sobol1}:
   \centering
   \includegraphics{ims/barplotmuto5k.png}
   \caption{Índices de Sobol de sensibilidade}
-  \fonte{ O autor.}
+  \source{ O autor.}
   \label{fig:sobol1}
 \end{figure}
 
@@ -462,7 +462,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
       \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
         Parametrização: \(p\_intran = 0.15, \text{ } N = 500,  \text{ }   p =
         0.9,  \text{ }  \rho = 1e-5,  \text{ }  n\_issues = 1 \)}
-      \fonte{ O autor.}
+      \source{ O autor.}
       \label{fig:tseries2}
     \end{figure}
     
@@ -486,21 +486,58 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
     \centering
     \includegraphics[scale=0.7]{ims/sigma01extremes.png}
     \caption{ Evolução dos pontos ideais dos agentes sob efeito de
-      intransigentes nos extremos. Parametrização: \(p\_intran = 0.15, \text{ }
-      N = 500, \text{ } p = 0.9, \text{ } \rho = 1e-5, \text{ } n\_issues = 1 \)}
-    \fonte{ O autor.}
+      intransigentes nos extremos. Parametrização: \( \sigma = 0.1, \text{ }
+      p\_intran = 0.15, \text{ } N = 500, \text{ } p = 0.9, \text{ } \rho = 1e-5,
+      \text{ } n\_issues = 1 \)}
+    \source{ O autor.}
     \label{fig:tseries3}
   \end{figure}
+
+  Um caso interessante a ser considerado é quando existem agentes intransigentes
+  na população, mas a intransigência deles não é absoluta, isto é, o valor de
+  \(\sigma\) não é tão baixo. Testamos o efeito de intransigentes com \(\sigma = 0.01\)
+  tanto distribuídos ao longo do espaço ideológico quanto somente nos extremos.
+  No caso de agentes intransigentes extremistas temos um comportamento
+  semelhante ao da figura \ref{fig:tseries3}, a convergência de grande parte da
+  população para um dos extremos. O que difere é que o \textit{cluster} maior
+  agora converge para um único valor, enquanto com intransigentes absolutos ele
+  oscila dentro de um dos extremos. Curiosamente, quando os agentes
+  intransigentes estão localizados ao longo do espaço e não são absolutamente
+  intransigentes temos um comportamento totalmente distinto. Ao invés de haver a
+  manutenção da tendência central dada pelo \(\sigma\) global igual a 0.1, como
+  demonstrado na figura \ref{fig:tseries2}, ocorre uma convergência da maioria
+  da população para um dos extremos, sem precisarmos estabelecer previamente que
+  todos os intransigentes vão estar nos extremos. Nesse caso o \textit{cluster
+    maior} vai ``varrendo'' um dos lados do espaço atraindo os intransigentes desse
+  lado até um dos extremos.
+
+  \begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/n1-sigma1.png}
+      \caption{Intransigentes ideologicamente distribuídos.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/n1-sigma1-extremes.png}
+       \caption{Itransigentes localizados nos extremos.}
+     \end{subfigure}
+
+     \caption{ Intransigentes com \(\sigma = 0.01\). Parametrização global: \( \sigma =
+       0.1, \text{ } p\_intran = 0.15, \text{ } N = 500, \text{ } p = 0.9,
+       \text{ } \rho = 1e-5, \text{ } n\_issues = 1 \)}
+    \source{ O autor.}
+    \label{fig:newintrans}
+     \end{figure}
   
 
     Como nem o desvio padrão nem o número de pontos ideais finais,
-    como discutido anteriormente, nos dão medidas quantitativas desse impacto
+    como discutido anteriormente, nos dão medidas quantitativas desses impactos
     passamos a uma análise gráfica de certas combinações de parâmetros típicas.
     Os gráficos de dispersão nos indicam\footnote{Regressões polinomiais de
       terceira ordem foram usadas para auxiliar essa análise. Estão no
       Apêndice D.} possíveis restrições aos limiares dos parâmetros.
 
-    Dado o pequeno impacto de \(N\) e \(p\) vamos os manter constantes, com
+    Dado o pequeno impacto de \(N\) e \(p\) vamos mantê-los constantes, com
     valores de 500 e 0.9 respectivamente. Uma conjunto de parametrizações não
     abarcado pela análise de sensibilidade global é quando \(p\_intran = 0.0, \rho \approx
     0 \). Nesse caso, se tivermos como base \(N = 500\), é possível usar o
@@ -514,7 +551,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
     \centering
     \includegraphics[scale=0.7]{ims/boxes4.png}
     \caption{Parametrização: \(\rho =1e-5, p\_intran = 0.0, p = 0.9, N =500\)}
-    \fonte{O autor.}
+    \source{O autor.}
     \label{fig:box4}
   \end{figure}
   
@@ -569,11 +606,15 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
       \caption{Evolução dos pontos ideais quando há ruído e agentes intransigentes.
         Parametrização: \(p\_intran = 0.15, \text{ } N = 500,  \text{ }   p =
         0.9,  \text{ }  \rho = 0.05\)}
-      \fonte{ O autor.}
+      \source{ O autor.}
       \label{fig:tseries4}
     \end{figure}
 
 
+\todo[inline,color = yellow!10]{Ver o que mais discutir. Ver se André tem
+  sugestões/recomendações.}
+
+    
 %%% Local  Variables:
 %%% mode: latex
 %%% TeX-master: "master"
