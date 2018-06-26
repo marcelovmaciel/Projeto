@@ -1,6 +1,6 @@
 O Capítulo 1 suscita algumas definições formais apresentadas a seguir.
 
-\section*{Propriedades Lógicas da Preferência e Otimização de Utilidade}
+\section*{Propriedades Lógicas da Preferência}
 
  As seguintes propriedades definem a
 noção lógica de relação de preferência \cite{sep-preferences}:
@@ -13,13 +13,18 @@ noção lógica de relação de preferência \cite{sep-preferences}:
   \sim y)\).
 \end{enumerate}
 
+A definição axiomática das propriedades de uma relação de preferência é a
+seguinte \cite{gintis2016individuality, binmore2008rational}: para todo
+\(x,y,z\) $\in$ \(X\), onde \(X\) é o conjunto de alternativas, e para todo
+conjunto \(Z\) $\subset$ \(X\):
 
-No modelo do ator racional o agente age ``como se '' estivesse maximizando sua
-função de utilidade  pelo fato da alternativa
-preferida, ou ótima, por ele ser dada por \cite{binmore2008rational}:
-\[\max_{\substack{x \in  X}}
-  u_i(x)
-\]
+\begin{enumerate}
+\item \textit{Completude}: \(\{ x \succeq y | X \}\) ou \(\{ y \succeq x | X \}\);
+\item \textit{Transitividade}: \( \{x \succeq y | X\} \) e \(\{y \succeq z | X \}\) tem por
+  implicação \(\{x \succeq z | X\}\);
+ \item \textit{Independência das alternativas irrelevantes}: para \(x,y,z \in Z\),
+   \(\{x \succeq y | Z \}\) se e somente se \(\{x \succeq y | X\}\).
+ \end{enumerate}
 
 \section*{Regra de Bayes e Utilidade Esperada}
 

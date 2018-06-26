@@ -41,9 +41,8 @@ isso significa que tendem a ser construídos usando o intermédio da lógica
 formal, matemática ou computação \cite{morton1999methods}.
 \end{comment}
 
-Nosso foco na
-literatura em teoria política formal é justificado pelo fato dela ser um corpo
-teórico construído por meio de modelos
+Nosso foco na literatura em teoria política formal é justificado pelo fato dela
+ser um corpo teórico construído por meio de modelos
 \textit{explícitos}\cite{epstein2008model}. Embora não seja a única forma de
 construir modelos explícitos, o uso de um sistema formal é uma forma de forçar o
 pesquisador a delimitar claramente qual o modelo está sendo utilizado para
@@ -196,11 +195,16 @@ subjacente. Os agentes têm funções de utilidade abstratas, não especificadas
 
 Modelos fortemente espaciais, por outro lado, pressupõem que os agentes tem uma
 cognição geométrica. Isso significa que localizam as alternativas e sua
-alternativa preferida \(x_i\), seu ponto ideal, num espaço cognitivo, e
+alternativa preferida \(x_i\), seu \textbf{ponto ideal}, num espaço cognitivo, e
 ranqueiam as alternativas segundo uma medida de distância \(d_i(.,.)\). A função
 de utilidade dos agentes é a composição da função de distância e uma função de
 perda de forma que \(u_i(y) = f_i(d_i(x_i,y)) \) \cite{humphreys2010spatial,
-  laver2014measuring}.
+  laver2014measuring}. Se \(u_i\) é a função de utilidade de um agente então seu
+ponto preferido (ou ideal) é dado por \cite{binmore2008rational}\footnote{O que
+  faz com que eles ajam ``como se'' estivessem maximizando sua função de
+  utilidade.}:
+\[x_i =\max_{\substack{x \in X}}u_i(x) \]
+
 
 O pressuposto mais comum é que a métrica seja Euclidiana: os agentes medem a
 distância entre dois pontos no espaço de alternativas usando o Teorema de
@@ -215,7 +219,8 @@ quadrática e a gaussiana, ilustradas na Figura 1:
   \source{ Adaptado de \citeonline{armstrong2014analyzing}}
 \end{figure}
 
-Desde \citeonline{black1958theory}, essa estrutura básica do modelo espacial é
+Desde o trabalho fundacional \textit{The theory of committees and
+  elections}\cite{black1958theory}, essa estrutura básica do modelo espacial é
 aplicada em dois tipos de fenômenos: votos em comitê e eleições de massa
 \cite{munger2015choosing}. Há, contudo, uma grande diferença entre essas duas
 situações de ação, e essa diferença motiva nosso problema.
@@ -268,14 +273,14 @@ respondentes nos \textit{surveys} é um dos resultados recorrentes na literatura
 em opinião pública  desde sua fundação \cite{berelson1952democratic,
   converse2006nature, zaller1992simple, kuklinski2000misinformation}.
 
-A instabilidade nas respostas e a suscetibilidade dos cidadãos a \textit{framing
-  effects}\footnote{\textit{Framing effects} são ``situações nas quais formas
-  alternativas de apresentar uma questão política levam a diferentes respostas
-  do público'' \cite[p.56]{bartels2003democracy}.} levam
-\citeonline{bartels2003democracy} a contestar o uso da noção de preferência como
-base para o estudo do nexo democrático, pois cidadãos não teriam preferências
-consistentes, coerentes ou estáveis. Ele argumenta, contudo, que os eleitores
-têm posicionamentos, os quais são melhor teorizados como
+A instabilidade nas respostas a \textit{surveys} e a suscetibilidade dos
+cidadãos a \textit{framing effects}\footnote{\textit{Framing effects} são
+  ``situações nas quais formas alternativas de apresentar uma questão política
+  levam a diferentes respostas do público'' \cite[p.56]{bartels2003democracy}.}
+levam \citeonline{bartels2003democracy} a contestar o uso da noção de
+preferência como base para o estudo do nexo democrático, pois cidadãos não
+teriam preferências consistentes, coerentes ou estáveis. Ele argumenta, contudo,
+que os eleitores têm posicionamentos, os quais são melhor teorizados como
 \textit{atitudes}\footnote{ Ele define atitude como uma tendência psicológica
   que é expressa pela avaliação de uma entidade particular com algum grau de
   aprovação ou desaprovação \cite[p.52]{bartels2003democracy}.}.
@@ -327,20 +332,21 @@ de posicionamentos num conjunto de questões, por definição, elas são
 extrínsecas. Logo, são, potencialmente, sensíveis à mudanças no ambiente.Tendo
 em vista tanto a complexidade informacional do contexto, quanto os baixos
 incentivos à busca de informação, isso vai significar que os agentes serão
-\textit{incertos} quanto às suas preferências. Essa incerteza em relação às
+\textit{incertos quanto às suas preferências}. Essa incerteza em relação às
 preferências, e o baixo custo, percebido, da mudança permitem que modelos de
 dinâmicas de opinião possam ser usados para representar seu processo de formação
-e cristalização\footnote{É claro que poderíamos usar modelos de dinâmicas de
-  opinião para modelar as mudanças de crenças dos agentes. O que estamos
-  afirmando é que possível utilizá-los para modelar o surgimento de
-  \textit{preferências}, ou ao menos de alternativas ou pontos preferidos.}.
-Convergimos assim para um argumento análogo ao da escola de Michigan de opinião
-pública : o direcionamento político, ou ideologia, do agente é resultado, ou
-construído, a partir de um ``campo de atitudes'' ou sistema de crenças, que no
-Capítulo 4 chamaremos de perfil ideológico, o qual por sua vez é explicável por
-meio da socialização do agente, a interação de suas atitudes com as atitudes dos
-pares \cite{figueiredo2008decisao}. No Capítulo 3 discutimos a literatura em
-dinâmicas de opinião que nós dá o arcabouço para modelar esse processo.
+e cristalização\footnote{Seria não controverso afirmar que poderíamos usar
+  modelos de dinâmicas de opinião para modelar as mudanças de crenças dos
+  agentes. O que estamos argumentanddo, contudo, é que é  possível utilizá-los para
+  modelar o surgimento de \textit{preferências}, ou ao menos de alternativas ou
+  pontos preferidos.}. Convergimos assim para um argumento análogo ao da escola
+de Michigan de opinião pública : o direcionamento político, ou ideologia, do
+agente é resultado, ou construído, a partir de um ``campo de atitudes'' ou
+sistema de crenças, que no Capítulo 4 chamaremos de perfil ideológico, o qual
+por sua vez é explicável por meio da socialização do agente, a interação de suas
+atitudes com as atitudes dos pares \cite{figueiredo2008decisao}. No Capítulo 3
+discutimos a literatura em dinâmicas de opinião que nós dá o arcabouço para
+modelar esse processo.
 
 As preferências ideológicas dos cidadãos não são estáticas. Isso não significa,
 contudo, que estas necessariamente serão altamente instáveis. Como as
