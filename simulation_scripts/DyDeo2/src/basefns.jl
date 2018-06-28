@@ -1,24 +1,3 @@
-#= File with  base functions/types for my simulation
-
-This includes:
-* Types for Beliefs and Agents;
-* Functions to create agents;
-* Functions to create the network;
-* Functions to update the agents' beliefs;
-=#
-
-#= Type declarations
-
-The code primary elements are the the Belief and Agent types. A belief is a pair
-σ, μ of uncertainty and expected value of a distribution about a issue. So the
-type Belief has 3 fields. An Agent will have an id, a set of beliefs, an ideal
-point (which will be the mean of its opinions μ = o, a set of neighbors, and
-which issues it's certain. The opinion will be generated from a Beta, an each
-agent will have a Beta with α, β in [1.5,5] distribution, while the uncertainty
-is going to be, in this version, a global var. In some runs, though, some agents
-are going to be extremists =#
-
-
 #Structs for Agents and Beliefs --------------------
 
 abstract type  AbstractAgent end

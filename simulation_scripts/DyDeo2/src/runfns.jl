@@ -1,11 +1,3 @@
-#= File with functions to run the simulation and store/plot results
-
-This includes:
-* Fns to store the simulation information;
-* Fns to update the collections of agent;
-=#
-
-
 # Types needed for the simulation
 
 "Parameters for the simulation; makes the code cleaner"
@@ -288,37 +280,6 @@ function multiruns(sigmanissues::Tuple; repetitions = 100)
 end
 
 
-
-#= Plotting Functions
-
-I'm gonna create an output csv, and those plot functions will plot data from it.
-
-* Plot time series of ideal points
-* Plot histogram of a given time
-* Plot mg of a given time: coloured vertex!!! =#
-
-
-"Should be refactored; "
-function time_plot(which_df, params)
-    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents = params
-    
-    xlab = string("Iteration")
-    ylab = string("Ideal Point") 
-    striped_agenttype = filter(x -> !isspace(x),agent_type)
-
-    @df which_df plot(:time,[:ideal_point],
-                      group = :id,
-                      dpi = 120, color = :black,
-                      xlabel = xlab, ylabel = ylab,
-                      α = 0.3)
-    savefig("image/atype($(striped_agenttype))_n($(size_nw))_nissues($(n_issues))_p($(p))_sigma($(σ))_rho($(ρ))_graphis($(graphcreator))_tseries.png")
-end
-
-
 function mkdirs(filename)
     !(filename in readdir(pwd())) ? mkdir(filename): println("dir $(filename) exists... no need to create one ")
 end
-
-
-
-
