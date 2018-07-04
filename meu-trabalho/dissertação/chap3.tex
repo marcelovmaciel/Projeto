@@ -5,11 +5,11 @@ diálogo entre a Teoria Política Espacial e a área de Dinâmicas de Opinião. 
 temos por propósito um modelo que seja preditivo, mas que capture
 microfundamentos relevantes, como viés de confirmação e confiança nas crenças, e
 gere distribuições de preferência plausíveis, no sentido delimitado no Capítulo
-1. O trabalho propõe, portanto, um modelo que abra a caixa-preta do processo de
-socialização que leva a cristalização de direcionamentos, ou posicionamentos,
-ideológicos.
+1. O trabalho propõe, portanto, um modelo que contribua para uma agenda que
+busque abrir a caixa-preta do processo de socialização que leva a cristalização
+de direcionamentos, ou posicionamentos, ideológicos.
 
-Como discutido no Capítulo 1, teoria geométrica de política modela as
+Como discutido no Capítulo 1, a teoria geométrica de política modela as
 preferências dos agentes como relações em um espaço contínuo de alternativas.
 Essas preferências, em ambientes macro, são construídas por meio da agregação
 das atitudes, crenças, posicionamentos, ou simplesmente opiniões dos agentes em
@@ -52,27 +52,24 @@ ideológico\footnote{Nisso o modelo aproxima-se do modelo de
   conjunto de traços.} \(I\), onde \(I_i = (f_i(\theta_1), \ldots, f_i(\theta_n)) \). Os
 elementos de \(I\) são as crenças dos agentes em cada questão. Seguindo
 \citeonline{martins2012bayesian}, vamos pressupor que os agentes têm uma
-probabilidade subjetiva sobre cada questão \(\theta\), e uma opinião \( o_i =
-E_i[\theta]\) e incerteza \( \sigma_i^2 = E[\sigma^2] - E_ i[\theta]^2\) associados. O ponto ideal
-\(x\) do agente vai ser a média aritmética das opiniões dele em \(I\). Os pontos
-ideais são implementados, portanto, como opiniões médias. Do ponto de vista da
+probabilidade subjetiva sobre cada questão \(\theta\), um valor esperado da opinião
+\( o_i = E_i[\theta]\) e incerteza \( \sigma_i^2 = E[\sigma^2] - E_ i[\theta]^2\) associados. O
+ponto ideal \(x\) do agente vai ser a média aritmética ( \(x_i =
+\frac{1}{n}\sum_{k=1}^{n} o_k\)) das opiniões dele em \(I\). Os pontos ideais são
+implementados, portanto, como opiniões médias. Do ponto de vista da
 implementação o atributo \(I\) é reduzido a um conjunto de pares \(I_i =
 ((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n}, \sigma_{i,n}^2) )\), sendo \(\sigma^2\) global, o mesmo
-para todo \(i\). Se \(o\) for retirado de uma distribuição uniforme (U[0,1]),
-como em \citeonline{deffuant2000mixing}, quanto mais vezes fazemos esse sorteio
-(quanto maior o número de questões), pela Lei dos Grandes Números, mais centrada
-a média aritmética ( \(x_i = \frac{1}{n}\sum_{k=1}^{n} o_k\)) vai ser do valor
-esperado da distribuição (0.5). Isso significa que já na condição inicial os
-agentes seriam de centro. Para que isso não ocorra associamos\footnote{Dividimos
-  os intervalos de valores [1.1,100], para \(\alpha\) e \(\beta\), em \(N\) valores
-  igualmente espaçados, onde N é o número de agentes da população, criando uma
-  lista do tamanho da população de duplas \((\alpha,\beta)\). Então cada agente tem uma
-  dupla de parâmetros sorteada, sem repetição, dessa lista de duplas de
-  parâmetros.} para cada agente uma distribuição Beta, com \(\alpha\)s e \(\beta\)s entre
-1.1 e 100. Destas distribuições sorteamos os valores de \(o_i\) para cada
-questão, de forma que as opiniões são correlacionadas e as distribuições são
-centradas em diferentes pontos do espaço, como ilustrado na Figura
-\ref{fig:betas100}:
+para todo \(i\). Logo, \(\sigma_i = \sigma\). Consideraremos também uma proporção de
+agentes nos quais uma das questões tem \(\sigma\) próximo a zero. Se \(f_i(\theta)\)for
+uma distribuição uniforme (U[0,1]) quanto mais vezes fazemos o sorteio dos
+\(o_i\)(quanto maior o número de questões), pela Lei dos Grandes Números, mais
+centrada a média aritmética vai ser do valor esperado da distribuição (0.5).
+Isso significa que já na condição inicial os agentes seriam de centro. Para que
+isso não ocorra associamos para cada agente uma distribuição Beta, com \(\alpha\)s e
+\(\beta\)s entre 1.1 e 100. Destas distribuições sorteamos os valores de \(o_i\)
+para cada questão, de forma que os \(o\)s de cada agente são correlacionados e
+as distribuições são centradas em diferentes pontos do espaço, como ilustrado na
+Figura \ref{fig:betas100}:
 
 \begin{figure}[H]
   \centering
@@ -85,33 +82,34 @@ centradas em diferentes pontos do espaço, como ilustrado na Figura
 
 A cada iteração da simulação um dos agentes vai ser escolhido e vai interagir
 com um de seus vizinhos, a princípio num grafo completo imposto exogenamente
-(estabeleço na condição inicial quais os vizinhos). A interação é assim em
-díades, assíncrona (os agentes atualizam seus atributos em momentos distintos) e
-sequencial (um agente atualiza por vez) \cite{wilensky2015introduction}. A
-dependência dos resultados em relação ao número de agentes e de crenças vai ser
-explorada. Estamos interessados nas alterações ao longo prazo (em termos de
-iterações) da configuração dos \(x\) sob diferentes combinações de parâmetros,
-tendo em vista as interações dos agentes \cite{acemoglu2011opinion}
-\footnote{Como vamos definir longo prazo e analisar o modelo é tema da seção
-  metodológica.}.
+(estabeleço na condição inicial quais os vizinhos). Quanto à implementação,
+criamos um grafo de tamanho igual ao tamanho da população e fazemos com que cada
+agente da população tenha como um de seus atributos um conjunto de vizinhos
+igual a um vértice do grafo. A interação é em díades, assíncrona (os
+agentes atualizam seus atributos em momentos distintos) e sequencial (um agente
+atualiza por vez) \cite{wilensky2015introduction}. A dependência dos resultados
+em relação ao número de agentes e de crenças vai ser explorada. Estamos
+interessados nas alterações ao longo prazo (em termos de iterações) da
+configuração dos \(x\) sob diferentes combinações de parâmetros, tendo em vista
+as interações dos agentes \cite{acemoglu2011opinion} \footnote{Como vamos
+  definir longo prazo e analisar o modelo é tema da seção metodológica.}.
 
-Quando os agentes interagem \(i\) atualiza sua opinião em alguma\footnote{Qual
-  questão vão ``debater'' vai ser definido por meio de um sorteio sem viés. Se o
-  agente tem uma lista indexada \(l\) de opiniões sorteamos um índice que
-  determina qual a questão de debate, por meio de um sorteio onde cada índice
-  tem igual probabilidade de ser selecionado. Uma outra implicação possível, a
-  ser adicionada em trabalhos futuros, é considerar um viés nessa seleção, o que
-  representaria saliência no sentido dado por \citeonline{zaller1992simple}:
-  qual questão os agentes estão dando atenção, isto é, qual questão está mais
-  acessível na memória deles.} questão segundo as equações 2.3 e 2.4. Dado que
-os agentes agora tem um conjunto de opiniões é plausível considerar que um
-conjunto de agentes tenham determinadas opiniões em que eles tenham maior
-certeza, identificação, ou centralidade para o seu perfil ideológico. Sendo
-assim na condição inicial alguma proporção de agentes tem uma questão no seu
-perfil \(I\) cujos \(\sigma\) associados são aproximadamente zero. Com isso buscamos
-analisar o papel de agentes ``inflexíveis'' na dinâmica populacional. A
-proporção de agentes intransigentes ou inflexíveis é assim um parâmetro da
-simulação.
+Quando os agentes interagem o agente \(i\) atualiza sua opinião em alguma\footnote{ Uma
+  outra implicação possível, a ser adicionada em trabalhos futuros, é considerar
+  um viés nessa seleção, o que representaria saliência no sentido dado por
+  \citeonline{zaller1992simple}: qual questão os agentes estão dando atenção,
+  isto é, qual questão está mais acessível na memória deles.} questão segundo as
+equações 2.3 e 2.4. Qual questão vão ``debater'' vai ser definido por meio de um
+sorteio sem viés. Se o agente tem uma lista indexada \(l\) de opiniões sorteamos
+um índice que determina qual a questão de debate, por meio de um sorteio onde
+cada índice tem igual probabilidade de ser selecionado. Dado que os agentes
+agora tem um conjunto de opiniões é plausível considerar que um conjunto de
+agentes tenham determinadas opiniões em que eles tenham maior certeza,
+identificação, ou centralidade para o seu perfil ideológico. Sendo assim na
+condição inicial alguma proporção de agentes tem uma questão no seu perfil \(I\)
+cujos \(\sigma\) associados são aproximadamente zero. Com isso buscamos analisar o
+papel de agentes ``inflexíveis'' na dinâmica populacional. A proporção de
+agentes intransigentes ou inflexíveis é assim um parâmetro da simulação.
 
 Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
 segundo um ruído. Do ponto de vista teórico, estamos considerando a
@@ -173,13 +171,31 @@ com valores\footnote{Paramêtros com valores \(\leq\) 1 ou geram distribuições
   formato uniforme, quando \(\alpha = \beta = 1.0\), ou com formato de U. Quanto ao
   limiar superior, o valor de 100 permite que tenhamos agentes com distribuições
   centralizadas em ambos os extremos, dado que a média \(\mu\) é dada por
-  \(\frac{\alpha}{\alpha + \beta}\), de forma que a média mínima é 0.011.} entre 1.1 e 100; o
-\(\sigma^2\) é uma variável global ; um posicionamento ideológico, ou ponto ideal,
-\(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um conjunto de vizinhos, o qual
-depende de qual a rede os agentes estão. Uma determinada proporção de agentes
-vai ter um \(\sigma_i = (1e-20 ) \approx 0.0 \). Quantos agentes são intransigentes é dado
-por \(\text{p\_intran}\). Em qual questão vão ser intransigentes é aleatório,
-sorteado de seu \(I\).
+  \(\frac{\alpha}{\alpha + \beta}\), de forma que a média mínima é 0.011.} entre 1.1 e 100.
+
+Do ponto de vista da implementação, dividimos os intervalos de valores
+[1.1,100], para \(\alpha\) e \(\beta\), em \(N\) valores igualmente espaçados, onde N é o
+número de agentes da população, criando uma lista do tamanho da população de
+duplas \((\alpha,\beta)\). Isto é, temos duas listas, uma com valores de \(\alpha\) entre 1.1
+e 100 e outra com valores de \(\beta\) entre 1.1 e 100. Dividimos igualmente os
+intervalos de acordo com o tamanho da população. Por exemplo, se a população tem
+10 agentes então os valores de \(\alpha\) e \(\beta\) são [1.1, 12.0889, 23.0778,
+34.0667, 45.0556, 56.0444, 67.0333, 78.0222, 89.0111, 100.0]. Misturamos as
+listas para que os agentes tenham \(\alpha_i\) e \(\beta_i\) distintos, e coletamos pares
+numa terceira lista. Um formato possível para essa lista é [(1.1, 56.0444),
+(23.0778, 34.0667), (45.0556, 100.0), (78.0222, 67.0333), (89.0111, 23.0778),
+(67.0333, 12.0889), (100.0, 78.0222), (56.0444, 1.1), (34.0667, 89.0111),
+(12.0889, 45.0556)]. O primeiro agente da população vai então ter parâmetros
+\(\alpha,\beta = (1.1, 56.0444) \), o segundo \(\alpha,\beta=(23.0778,34.0667)\) e assim em
+diante.
+
+Voltando aos atributos dos agentes, o \(\sigma^2\) é uma variável global ; um
+posicionamento ideológico, ou ponto ideal, \(x_i = \frac{1}{n} \sum_{k = 1}^n
+o_{i,k} \); e um conjunto de vizinhos, o qual depende de qual a rede os agentes
+estão. Uma determinada proporção de agentes vai ter um \textit{único}\(\sigma_i =
+(1e-20 ) \approx 0.0 \). Quantos agentes são intransigentes em \textit{uma} questão é
+dado por \(\text{p\_intran}\). Em qual questão vão ser intransigentes é
+aleatório, sorteado de seu \(I\).
 
 Uma iteração da simulação, a passagem de digamos \(t\) para \(t+1\), é dada pela
 aplicação de dois procedimentos: a atualização via influência social e a
