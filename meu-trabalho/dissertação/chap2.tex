@@ -82,18 +82,19 @@ propriedades típicas:
   baseados em agentes são úteis quando sistemas ou situações de ação são
   complicados demais para serem modelados por meio de modelos matemáticos
   tradicionais \cite{kollman2003computational}. Não por acaso, ABMs são
-  amplamente usados em OD \cite{castellano2012social,flache2017}.
-
-  Essas propriedades são ditas emergentes na medida em que caracterizam o
-  sistema e não seus componentes. Isto é, propriedades emergentes são aquelas
-  que resultam da interação entre as partes do sistema, mas que não seriam a
-  priori dedutíveis unicamente das propriedades delas. O conceito, modernamente,
-  é relativo tanto ao quadro conceitual quanto às expectativas dos pesquisadores
-  sobre quais propriedades sistêmicas poderíamos deduzir a partir das
-  propriedades das partes \cite{epstein2006generative}. Em sua forma mais
-  simples propriedades emergentes condicionam indiretamente o comportamento dos
-  agentes. Se os agentes tiverem consciência dessa propriedade sistêmica temos,
-  contudo, um \textit{feedback} direto, ao invés de indireto, entre agentes e
+  amplamente usados em OD \cite{castellano2012social,flache2017}. Essas
+  propriedades são ditas emergentes na medida em que caracterizam o sistema e
+  não seus componentes. O conceito, modernamente, é relativo tanto ao quadro
+  conceitual quanto às expectativas dos pesquisadores sobre quais propriedades
+  sistêmicas poderíamos deduzir a partir das propriedades das partes
+  \cite{epstein2006generative}. Isto é, propriedades emergentes são aquelas que
+  resultam da interação entre as partes do sistema, mas que não seriam a priori
+  dedutíveis unicamente das propriedades delas. Em sistemas onde há emergência a
+  conexão entre as propriedades sistêmicas e das partes é feita pela compreensão
+  do papel da \textit{interação} entre as partes. Em sua forma mais simples
+  propriedades emergentes condicionam indiretamente o comportamento dos agentes.
+  Se os agentes tiverem consciência dessa propriedade sistêmica temos, contudo,
+  um \textit{feedback} direto, ao invés de indireto, entre agentes e
   propriedades sistêmicas, o que \citeonline{squazzoni2008micro} chama de
   emergência de segunda ordem. No nosso trabalho lidamos somente com
   \textit{feedbacks} indiretos, ou emergência de primeira ordem.
@@ -113,18 +114,22 @@ propriedades típicas:
   interação consiste no conjunto de agentes cujas ações e propriedades podem
   afetar a opinião de um agente \(i\) \cite{page2008uncertainty}.
 
-  Podemos dividir a estrutura de interação numa \textit{topologia} de interação e
-  numa \textit{regra de interação}. A topologia de interação define quais
+  Podemos dividir a estrutura de interação numa \textit{topologia} de interação
+  e numa \textit{regra de interação}. A topologia de interação define quais
   agentes estão conectados com \(i\), e podem, potencialmente, afetá-lo. A regra
   de interação define como \(i\) interage com os agentes desse conjunto(seus
-  ``vizinhos''). Em OD as regras de interação definem qual a
-  relação que o agente \(i\) tem com seus vizinhos: se interage com um vizinho
-  por vez, uma interação em díade, ou com algum subconjunto de seus vizinhos,
-  uma interação em grupo. Por fim, a regra de atualização define sob qual regra
-  a opinião do agente \(i\) muda do tempo \(t\) para o tempo \(t+1\). 
+  ``vizinhos''). Em OD as regras de interação definem qual a relação que o
+  agente \(i\) tem com seus vizinhos: se interage com um vizinho por vez, uma
+  interação em díade, ou com algum subconjunto de seus vizinhos, uma interação
+  em grupo. Por fim, a regra de atualização define sob qual regra a opinião do
+  agente \(i\) muda do tempo \(t\) para o tempo \(t+1\). Importante notar que
+  diferenciamos a regra de interação da regra de atualização. A primeira define
+  como o agente interage com os vizinhos. Já a segunda está relacionada como
+  essa interação muda o estado do agente, no caso sua opinião. É possível que
+  uma mesma regra de interação seja combinada com diferentes regras de
+  atualização.
 
   
-
   \section{Modelos Canônicos}
 
   Adaptações do Modelo de Ising são os modelos mais fundamentais na área. O
@@ -152,25 +157,32 @@ propriedades típicas:
   deles).
 
 
-  Já no modelo da Regra de Maioria a interação é : a cada
-  unidade de tempo um grupo
-  de tamanho \textit{r} é selecionado aleatoriamente e todos os agentes mudam
-  sua opinião para a opinião da maioria do grupo
+  Já no modelo da Regra de Maioria a interação é : a cada unidade de tempo um
+  grupo de tamanho \textit{r} é selecionado aleatoriamente e todos os agentes
+  mudam sua opinião para a opinião da maioria do grupo
   \cite{galam1990social,galam2012sociophysics}. O tamanho \textit{r} pode ser
   fixo ou ser tirado de alguma distribuição a cada passo. Se \textit{r} for par
   podem ocorrer empates nos grupos, de forma que ou o grupo escolhe uma das
   opiniões com probabilidade \(\frac{1}{2}\), ou introduz-se um viés, e toda vez
   que houver empate o grupo muda para uma das opiniões
-  \cite{galam2012sociophysics, galam1986majority}.
+  \cite{galam2012sociophysics, galam1986majority}. O Modelo Sznajd também é
+  bastante discutido na literatura \cite{sznajd2000opinion,
+    sirbu2017opinion,castellano2012social}. Em sua versão original, e mais
+  simples, os agentes estão localizados em uma grade unidimensional. A cada
+  passo um par $ij$ de vizinhos é selecionado e se sua opinião for igual os
+  outros vizinhos de \(i\) e \(j\) mudam a opinião para a opinião de
+  convergência. Se eles discordarem, \(i\) adota a opinião do outro vizinho, e
+  \(j\) faz o mesmo.
 
-  O Modelo Sznajd também é bastante discutido na literatura
-  \cite{sznajd2000opinion, sirbu2017opinion,castellano2012social}. Em sua versão
-  original, e mais simples, cada agente têm exatamente dois vizinhos, em uma
-  grade unidimensional. A cada passo um par $ij$ de vizinhos é selecionado e se
-  sua opinião for igual os outros vizinhos de \(i\) e \(j\) mudam a opinião para
-  a opinião de convergência. Se eles discordarem, \(i\) adota a opinião do outro
-  vizinho, e \(j\) faz o mesmo.
+  \todo[inline,color=yellow!10]{\citeonline{stauffer2003convince} na descrição
+    do modelo Sznajd realmente não menciona essa segunda regra, mas não discute
+    porque. Eles falam em frustração, mas é outra coisa ( quando na atualização
+    simultanea metade dos vizinhos sao +1 e a outra metade -1, no caso
+    unidimensional um vizinho de cada lado).\citeonline{sirbu2017opinion} fala
+    dessa segunda regra, e ela está na descrição do original; é para eu suprimir
+  essa segunda regra na descrição do modelo?}
 
+  
   Todos os modelos até agora representaram opiniões como uma variável que pode
   tomar valores binários. Além disso a regra de atualização dos modelos
   pressupõe uma interação assimilativa: indivíduos conectados por meio de uma
@@ -206,7 +218,8 @@ propriedades típicas:
   [0,1]\). Dois agentes são escolhidos aleatoriamente, e \(i\) é influenciado
   por \(j\) se \(| o_i - o_j| < \epsilon\). Se isso ocorrer suas opiniões se aproximam
   de acordo com um parâmetro $0 < \mu< \leq 0.5$, de forma que: $o_{i,t+1} = o_{it} +
-  \mu(o_{jt} - o_{it})$. Esse modelo é particularmente relevante para o presente
+  \mu(o_{jt} - o_{it})$ e  $o_{j,t+1} = o_{jt} +
+  \mu(o_{it} - o_{jt})$ . Esse modelo é particularmente relevante para o presente
   trabalho, por duas razões: a opinião é contínua, assim como a representação
   das ``utilidades'' dos agentes em Teoria Política Espacial \footnote{Na
     verdade, ligar a literatura de OD com funções de utilidade em economia e com
