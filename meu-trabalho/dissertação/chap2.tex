@@ -156,31 +156,27 @@ propriedades típicas:
   grupo inteiro) e de atualização (assume o valor do vizinho ao invés da maioria
   deles).
 
-
-  Já no modelo da Regra de Maioria a interação é : a cada unidade de tempo um
-  grupo de tamanho \textit{r} é selecionado aleatoriamente e todos os agentes
-  mudam sua opinião para a opinião da maioria do grupo
-  \cite{galam1990social,galam2012sociophysics}. O tamanho \textit{r} pode ser
-  fixo ou ser tirado de alguma distribuição a cada passo. Se \textit{r} for par
-  podem ocorrer empates nos grupos, de forma que ou o grupo escolhe uma das
-  opiniões com probabilidade \(\frac{1}{2}\), ou introduz-se um viés, e toda vez
-  que houver empate o grupo muda para uma das opiniões
-  \cite{galam2012sociophysics, galam1986majority}. O Modelo Sznajd também é
-  bastante discutido na literatura \cite{sznajd2000opinion,
+  Nos modelos inspirados em Ising e no modelo ``Voter'' a direção de influência
+  é dos vizinhos para o agente enquanto nos dois modelos seguintes ela é dos
+  agentes para os vizinhos \cite{stauffer2003convince}. No modelo da Regra de
+  Maioria a interação é : a cada unidade de tempo um grupo de tamanho \textit{r}
+  é selecionado aleatoriamente e todos os agentes mudam sua opinião para a
+  opinião da maioria do grupo \cite{galam1990social,galam2012sociophysics}. O
+  tamanho \textit{r} pode ser fixo ou ser tirado de alguma distribuição a cada
+  passo. Se \textit{r} for par podem ocorrer empates nos grupos, de forma que ou
+  o grupo escolhe uma das opiniões com probabilidade \(\frac{1}{2}\), ou
+  introduz-se um viés, e toda vez que houver empate o grupo muda para uma das
+  opiniões \cite{galam2012sociophysics, galam1986majority}. O Modelo Sznajd
+  também é bastante discutido na literatura \cite{sznajd2000opinion,
     sirbu2017opinion,castellano2012social}. Em sua versão original, e mais
   simples, os agentes estão localizados em uma grade unidimensional. A cada
   passo um par $ij$ de vizinhos é selecionado e se sua opinião for igual os
   outros vizinhos de \(i\) e \(j\) mudam a opinião para a opinião de
-  convergência. Se eles discordarem, \(i\) adota a opinião do outro vizinho, e
-  \(j\) faz o mesmo.
-
-  \todo[inline,color=yellow!10]{\citeonline{stauffer2003convince} na descrição
-    do modelo Sznajd realmente não menciona essa segunda regra, mas não discute
-    porque. Eles falam em frustração, mas é outra coisa ( quando na atualização
-    simultanea metade dos vizinhos sao +1 e a outra metade -1, no caso
-    unidimensional um vizinho de cada lado).\citeonline{sirbu2017opinion} fala
-    dessa segunda regra, e ela está na descrição do original; é para eu suprimir
-  essa segunda regra na descrição do modelo?}
+  convergência\footnote{No original existe uma segunda regra : Se eles
+    discordarem, \(i\) adota a opinião do outro vizinho, e \(j\) faz o mesmo.
+    Contudo, isso muda o comportamento do modelo e a literatura costuma suprimir
+    essa segunda regra na descrição do modelo \cite{castellano2012social,
+      stauffer2003convince}.}.
 
   
   Todos os modelos até agora representaram opiniões como uma variável que pode
@@ -201,7 +197,7 @@ propriedades típicas:
   \(j\) tem uma opinião 67730 eles têm \(40 \%\) de interagirem. Se eles
   interagirem, \(i\) troca um dos traços em que diferem por um dos traços de
   \(j\)\cite{axelrod1997dissemination}. Nesse modelo pessoas similares têm uma
-  probabilidade maior deinteragirem do que pessoas distintas, mas uma vez que a
+  probabilidade maior de interagirem do que pessoas distintas, mas uma vez que a
   interação ocorre elas ficam mais parecidas. Sendo assim, o modelo de Axelrod
   pode ser considerado um modelo de assimilação enviesada: só indivíduos
   suficientemente similares podem influenciar uns aos outros na redução de suas
