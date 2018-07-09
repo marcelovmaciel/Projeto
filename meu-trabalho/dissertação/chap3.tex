@@ -39,7 +39,7 @@ preferências \cite{list2009judgment}. Entretanto, em certos contextos, em
 particular nos macro-políticos, é possível abdicar da separação estrita entre
 esses dois conceitos e pensar a possibilidade de que alternativas sejam
 elencadas com base em ``atitudes'' prévias
-\cite{binmore2008rational,laver2014measuring}. Isto é, os pontos ideais dos
+\cite{binmore2008rational,laver2014measuring}. Os pontos ideais dos
 agentes vão mudar ao longo da simulação, mas isso ocorre devido à mudança nas
 suas atitudes. É uma mudança assim indireta e condizente com a noção de que a
 ideologia do agente é um atributo extrínseco. O segundo fundamento é que essa
@@ -73,7 +73,7 @@ uma distribuição Beta, com \(\alpha\)s e \(\beta\)s entre 1.1 e 100.
 Do ponto de vista da implementação, dividimos os intervalos de valores
 [1.1,100], para \(\alpha\) e \(\beta\), em \(N\) valores igualmente espaçados, onde N é o
 número de agentes da população, criando uma lista do tamanho da população de
-duplas \((\alpha,\beta)\). Isto é, temos duas listas, uma com valores de \(\alpha\) entre 1.1
+duplas \((\alpha,\beta)\). Ou seja, temos duas listas, uma com valores de \(\alpha\) entre 1.1
 e 100 e outra com valores de \(\beta\) entre 1.1 e 100. Dividimos igualmente os
 intervalos de acordo com o tamanho da população. Por exemplo, se a população tem
 10 agentes então os valores de \(\alpha\) e \(\beta\) são [1.1, 12.0889, 23.0778,
@@ -114,22 +114,23 @@ configuração dos \(x\) sob diferentes combinações de parâmetros, tendo em v
 as interações dos agentes \cite{acemoglu2011opinion} \footnote{Como vamos
   definir longo prazo e analisar o modelo é tema da seção metodológica.}.
 
-Quando os agentes interagem o agente \(i\) atualiza sua opinião em alguma\footnote{ Uma
-  outra implicação possível, a ser adicionada em trabalhos futuros, é considerar
-  um viés nessa seleção, o que representaria saliência no sentido dado por
-  \citeonline{zaller1992simple}: qual questão os agentes estão dando atenção,
-  isto é, qual questão está mais acessível na memória deles.} questão segundo as
-equações 2.3 e 2.4. Qual questão vão ``debater'' vai ser definido por meio de um
-sorteio sem viés. Se o agente tem uma lista indexada \(l\) de opiniões sorteamos
-um índice que determina qual a questão de debate, por meio de um sorteio onde
-cada índice tem igual probabilidade de ser selecionado. Dado que os agentes
-agora tem um conjunto de opiniões é plausível considerar que um conjunto de
-agentes tenham determinadas opiniões em que eles tenham maior certeza,
-identificação, ou centralidade para o seu perfil ideológico. Sendo assim na
-condição inicial alguma proporção de agentes tem uma questão no seu perfil \(I\)
-cujos \(\sigma\) associados são aproximadamente zero. Com isso buscamos analisar o
-papel de agentes ``inflexíveis'' na dinâmica populacional. A proporção de
-agentes intransigentes ou inflexíveis é assim um parâmetro da simulação.
+Quando os agentes interagem o agente \(i\) atualiza sua opinião em
+alguma\footnote{ Uma outra implicação possível, a ser adicionada em trabalhos
+  futuros, é considerar um viés nessa seleção, o que representaria saliência no
+  sentido dado por \citeonline{zaller1992simple}: qual questão os agentes estão
+  dando atenção, qual questão está mais acessível na memória deles.} questão
+segundo as equações 2.3 e 2.4. Qual questão vão ``debater'' vai ser definido por
+meio de um sorteio sem viés. Se o agente tem uma lista indexada \(l\) de
+opiniões sorteamos um índice que determina qual a questão de debate, por meio de
+um sorteio onde cada índice tem igual probabilidade de ser selecionado. Dado que
+os agentes agora tem um conjunto de opiniões é plausível considerar que um
+conjunto de agentes tenham determinadas opiniões em que eles tenham maior
+certeza, identificação, ou centralidade para o seu perfil ideológico. Sendo
+assim na condição inicial alguma proporção de agentes tem uma questão no seu
+perfil \(I\) cujos \(\sigma\) associados são aproximadamente zero. Com isso buscamos
+analisar o papel de agentes ``inflexíveis'' na dinâmica populacional. A
+proporção de agentes intransigentes ou inflexíveis é assim um parâmetro da
+simulação.
 
 Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
 segundo um ruído. Do ponto de vista teórico, estamos considerando a
@@ -197,15 +198,15 @@ com valores\footnote{Paramêtros com valores \(\leq\) 1 ou geram distribuições
   centralizadas em ambos os extremos, dado que a média \(\mu\) é dada por
   \(\frac{\alpha}{\alpha + \beta}\), de forma que a média mínima é 0.011.} entre 1.1 e 100.
 
-Voltando aos atributos dos agentes, o \(\sigma^2\) é uma variável global ; um
-posicionamento ideológico, ou ponto ideal, \(x_i = \frac{1}{n} \sum_{k = 1}^n
-o_{i,k} \); e um conjunto de vizinhos, o qual depende de qual a rede os agentes
-estão. Uma determinada proporção de agentes vai ter um \textit{único}\(\sigma_i =
-(1e-20 ) \approx 0.0 \). Quantos agentes são intransigentes em \textit{uma} questão é
-dado por \(\text{p\_intran}\). Em qual questão vão ser intransigentes é
-aleatório, sorteado de seu \(I\).
+Voltando aos atributos dos agentes, o\(\sigma^2\) é uma variável global de forma que
+\(\sigma_i^2 = \sigma^2\) ; têm também por atributo um posicionamento ideológico, ou ponto
+ideal, \(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um conjunto de vizinhos, o
+qual depende de qual a rede os agentes estão. Uma determinada proporção de
+agentes vai ter um \textit{único}\(\sigma_i = (1e-20 ) \approx 0.0 \). Quantos agentes são
+intransigentes em \textit{uma} questão é dado por \(\text{p\_intran}\). Em qual
+questão vão ser intransigentes é aleatório, sorteado de seu \(I\).
 
-Uma iteração da simulação, a passagem de digamos \(t\) para \(t+1\), é dada pela
+Uma iteração da simulação, a passagem de \(t\) para \(t+1\), é dada pela
 aplicação de dois procedimentos: a atualização da opinião via influência social
 e a atualização aleatória. Uma repetição da simulação é a aplicação iterativa
 desses dois procedimentos ao longo de um tempo \(t \). O procedimento de
@@ -215,14 +216,14 @@ sorteamos um de seus vizinhos, o agente \(j\). Sorteamos uma das questões \(k \
 \((\sigma_{i,k}^2,\sigma_{j,k}^2)\) correspondentes à questão. Então o agente \(i\)
 atualiza \(o_{i,k}\) segundo as equações 2.3 e 2.4. Essa regra é um parâmetro
 global da simulação, o que significa que a cada repetição todos os agentes
-atualizam suas crenças segundo a mesma regra. Ademais, temos o ruído. Isto é, a
-cada iteração temos os efeito da influência social \textit{e} do ruído.
-Novamente escolhemos um agente da população. Sorteamos uma questão de forma que
-temos \(o\) e \(\sigma^2\) correspondentes. Se o agente é intransigente naquela
-questão então ele não muda de opinião. Sorteamos um \(r\) retirado de uma
-distribuição normal \(N(0,\rho)\) e atualizamos \(o\) de forma que \(o(t+1) = o(t)
-+ r\). Os \(x_i\), o objeto de interesse de análise, são atualizados sempre que
-ocorrerem mudanças nas crenças dos agentes.
+atualizam suas crenças segundo a mesma regra. Ademais, temos o ruído. A cada
+iteração temos os efeito da influência social \textit{e} do ruído. Novamente
+escolhemos um agente da população. Sorteamos uma questão de forma que temos
+\(o\) e \(\sigma^2\) correspondentes. Se o agente é intransigente naquela questão
+então ele não muda de opinião. Sorteamos um \(r\) retirado de uma distribuição
+normal \(N(0,\rho)\) e atualizamos \(o\) de forma que \(o(t+1) = o(t) + r\). Os
+\(x_i\), o objeto de interesse de análise, são atualizados sempre que ocorrerem
+mudanças nas crenças dos agentes.
 
 \section{Metodologia de Análise}
 
@@ -396,9 +397,9 @@ ao fim das simulações para cada parametrização.
     com uma maior concentração das parametrizações em outputs de baixa dispersão
     (entre 0.0 e 0.1). Isso condiz com as regras de atualização (assimilativa,
     mas na qual agentes distantes tem pouco impacto na opinião um dos outros) e
-    com o fato dos agentes terem por vizinhos todos os outros agentes. Isto é,
-    os agentes ao interagirem ou ficam mais parecidos ou não são influenciados.
-    O modelo tem assim uma forte tendência assimilativa, ao menos num grafo
+    com o fato dos agentes terem por vizinhos todos os outros agentes. Os
+    agentes ao interagirem ou ficam mais parecidos ou não são influenciados. O
+    modelo tem assim uma forte tendência assimilativa, ao menos num grafo
     completo. Todavia, a figura não nos informa qual parâmetro é responsável por
     isso, ou quais os valores de concentração (centrais ou extremos).
 
@@ -516,22 +517,22 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
   \end{figure}
 
   Um caso interessante a ser considerado é quando existem agentes intransigentes
-  na população, mas a intransigência deles não é absoluta, isto é, o valor de
-  \(\sigma\) não é tão baixo. Testamos o efeito de intransigentes com \(\sigma = 0.01\)
-  tanto distribuídos ao longo do espaço ideológico quanto somente nos extremos.
-  No caso de agentes intransigentes extremistas temos um comportamento
-  semelhante ao da figura \ref{fig:tseries3}, a convergência de grande parte da
-  população para um dos extremos. O que difere é que o \textit{cluster} maior
-  agora converge para um único valor, enquanto com intransigentes absolutos ele
-  oscila dentro de um dos extremos. Curiosamente, quando os agentes
-  intransigentes estão localizados ao longo do espaço e não são absolutamente
-  intransigentes temos um comportamento totalmente distinto. Ao invés de haver a
-  manutenção da tendência central dada pelo \(\sigma\) global igual a 0.1, como
-  demonstrado na figura \ref{fig:tseries2}, ocorre uma convergência da maioria
-  da população para um dos extremos, sem precisarmos estabelecer previamente que
-  todos os intransigentes vão estar nos extremos. Nesse caso o \textit{cluster
-    maior} vai ``varrendo'' um dos lados do espaço atraindo os intransigentes desse
-  lado até um dos extremos.
+  na população, mas a intransigência deles não é absoluta, o valor de \(\sigma\) não
+  é tão baixo. Testamos o efeito de intransigentes com \(\sigma = 0.01\) tanto
+  distribuídos ao longo do espaço ideológico quanto somente nos extremos. No
+  caso de agentes intransigentes extremistas temos um comportamento semelhante
+  ao da figura \ref{fig:tseries3}, a convergência de grande parte da população
+  para um dos extremos. O que difere é que o \textit{cluster} maior agora
+  converge para um único valor, enquanto com intransigentes absolutos ele oscila
+  dentro de um dos extremos. Curiosamente, quando os agentes intransigentes
+  estão localizados ao longo do espaço e não são absolutamente intransigentes
+  temos um comportamento totalmente distinto. Ao invés de haver a manutenção da
+  tendência central dada pelo \(\sigma\) global igual a 0.1, como demonstrado na
+  figura \ref{fig:tseries2}, ocorre uma convergência da maioria da população
+  para um dos extremos, sem precisarmos estabelecer previamente que todos os
+  intransigentes vão estar nos extremos. Nesse caso o \textit{cluster maior} vai
+  ``varrendo'' um dos lados do espaço atraindo os intransigentes desse lado até
+  um dos extremos.
 
   \begin{figure}[H]
     \centering
