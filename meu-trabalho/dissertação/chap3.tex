@@ -241,26 +241,6 @@ selecionar subconjuntos de todas as combinações de parâmetros, reduzindo o
 número de realizações necessárias da simulação e de trazerem formas sistemáticas
 de interpretar os resultados \cite{railsback2012agent}.
 
-Quanto à amostragem uma estratégia comum são as parametrizações de Monte Carlo:
-sortear valores de parâmetros usados para as realizações das simulações a partir
-de distribuições uniformes nos intervalos de valores dos parâmetros
-\cite{laver2011party}. O problema dessa estratégia é que o espaço de parâmetros
-não é coberto igualmente, havendo a possibilidade de pontos de acumulação ou
-espaços vazios \cite{pereda2017brief}.
-
-\citeonline{saltelli2008global} argumenta que para manter uma dispersão
-equitativa dos pontos no espaço de parâmetros é necessário um algoritmo que
-enviese a seleção de novos pontos para mantê-los afastados dos pontos já
-presentes. Desta forma vamos usar o método de Saltelli de amostragem, dado que
-garante a partição equitativa do espaço de parâmetros \cite{herman2017salib}.
-Especificamos então um \(n\) base a partir do qual o ``sampler'' gera n * (2d +
-2), onde \(d\) é o número de parâmetros. No nosso caso \(d = 6\), pois vamos ter
-como parâmetros : N (população), número de questões (codificado como n\_issues
-), \(p\), \(\sigma\), a proporção de agentes intransigentes (codificado como
-p\_intran), e \(\rho\). Para garantir um coeficiente de erro baixo no cálculo
-subsequente dos índices de sensibilidade especificamos um \(n\) base de
-\(5000\), de forma que rodamos \(70.000\) parametrizações.
-
 
 \begin{figure}[h]
     \centering
@@ -279,16 +259,17 @@ subsequente dos índices de sensibilidade especificamos um \(n\) base de
       \label{fig:tseries1}
     \end{figure}
     
-    Uma vez especificado o método de amostragem especificamos uma medida do
-    sistema para que possamos analisá-lo \cite{railsback2012agent}. Escolhemos o
-    desvio padrão dos pontos ideais após \(1.000.000\) iterações como output
-    para análise\footnote{Testamos diversas parametrizações com n\_issues \(=
-      1\) e observamos que a partir de \(50.000\) iterações a implementação
-      replica os resultados de \citeonline{martins2009bayesian}.}, dado que nos
-    diz o quão concentrados/dispersos são os pontos ideais da população. Uma
-    outra opção de medida do sistema seria o número de opiniões finais distintas
-    após as iterações, o que nos daria uma medida de ``cobertura'' do sistema:
-    uma maior cobertura implicaria num número maior de posicionamentos distintos
+    Antes de discutirmos métodos de amostragem e análise, é necessário
+    estabelecer uma medida do sistema para que possamos analisá-lo
+    \cite{railsback2012agent}. Escolhemos o desvio padrão dos pontos ideais após
+    \(1.000.000\) iterações como output para análise\footnote{Testamos diversas
+      parametrizações com n\_issues \(= 1\) e observamos que a partir de
+      \(50.000\) iterações a implementação replica os resultados de
+      \citeonline{martins2009bayesian}.}, dado que nos diz o quão
+    concentrados/dispersos são os pontos ideais da população. Uma outra opção de
+    medida do sistema seria o número de opiniões finais distintas após as
+    iterações, o que nos daria uma medida de ``cobertura'' do sistema: uma maior
+    cobertura implicaria num número maior de posicionamentos distintos
     \cite{bramson2016disambiguation}. Contudo, teríamos que estabelecer um \(N\)
     base, pois de outra forma esse parâmetro explica quase que totalmente o
     valor do output a ser analisado pela análise de sensibilidade.
@@ -326,13 +307,59 @@ subsequente dos índices de sensibilidade especificamos um \(n\) base de
     \label{fig:nonnullrho}
   \end{figure}
 
-  
+
+
+
+
+
+
+Quanto à amostragem uma estratégia comum são as parametrizações de Monte Carlo:
+sortear valores de parâmetros usados para as realizações das simulações a partir
+de distribuições uniformes nos intervalos de valores dos parâmetros
+\cite{laver2011party}. O problema dessa estratégia é que o espaço de parâmetros
+não é coberto igualmente, havendo a possibilidade de pontos de acumulação ou
+espaços vazios \cite{pereda2017brief}.
+
+
+\citeonline{saltelli2008global} argumenta que para manter uma dispersão
+equitativa dos pontos no espaço de parâmetros é necessário um algoritmo que
+enviese a seleção de novos pontos para mantê-los afastados dos pontos já
+presentes. O pacote de Python SaLib\footnote{Fazemos uso da interoperabilidade
+  entre a linguagem Julia e Python, por meio do pacocte PyCall
+  \cite{johnson2018}.}, o qual usamos, implementa ``samplers'' que garantem essa
+dispersão equitativa por meio da geração de amostras sorteadas de sequências
+quasi-aleatórias de baixa discrepância\cite{herman2017salib}. A discrepância de
+uma sequência de pontos é a diferença absoluta máxima de um conjunto de regiões
+entre a fração de pontos e a fração de área. Por exemplo, se tivermos um
+quadrado unitário com 20 pontos, e o dividirmos em 16 quadrados menores de
+tamanho \(\frac{1}{6}\) e distribuirmos os pontos de forma equitativa os
+quadrados deveriam ter 1 ou 2 pontos. Se um dos quadrados tiver 5 pontos,
+contudo, a discrepância será de ao menos \(\frac{5}{20} - \frac{1}{16} =
+\frac{3}{16}\) \cite[p.83]{saltelli2008global}.
+
+A estratégia de amostragem não independe do método de análise. Seguimos
+\citeonline{jaxa2018pynetlogo} e \citeonline{brookes2015saltelli} em usar o
+esquema de \citeonline{saltelli2002making} para o cálculo de índices de
+sensibilidade global. Fazendo uso de sequências quasi-aleatórias, ele consiste
+em gerar n * (2d + 2) parametrizações, onde \(n\) é o tamanho amostral \(n\) e
+\(d\) é o número de parâmetros. Segundo \citeonline[p.286]{saltelli2002making}
+esse número de parametrizações nos permite calcular índices de Sobol de primeira
+e segunda ordem e índices totais, discutidos no parágrafo seguinte. No nosso
+caso \(d = 6\), pois vamos ter como parâmetros : N (população), número de
+questões (codificado como n\_issues ), \(p\), \(\sigma\), a proporção de agentes
+intransigentes (codificado como p\_intran), e \(\rho\). Para garantir um
+coeficiente de erro baixo no cálculo subsequente dos índices de sensibilidade
+especificamos um tamanho amostral base de \(5000\), de forma que rodamos
+\(70.000\) parametrizações. Nos limitamos a esse número de parametrizações pelo
+custo computacional de simular tantas parametrizações : aproximadamente 60 horas
+\footnote{Numa máquina: Intel(R) Core(TM) i7-6500U CPU @ 2.50GHz, com 15.4GiB de
+  RAM.}. Os baixos valores dos coeficientes de erro nos confirmam que amostras
+maiores não seriam necessárias.
+
   Para a análise, seguimos \citeonline{ten2016sensitivity} e combinamos
   histogramas da medida do sistema, gráficos de dispersão e índices de
   sensibilidade. Os índices de sensibilidade utilizados são os índices de
-  Sobol\footnote{Tanto a amostragem quanto a análise de sensibilidade são feitas
-    usando o pacote de Python SALib, por meio do pacote de Julia PyCall
-    \cite{herman2017salib, johnson2018}.}, particularmente índices de Sobol de
+  Sobol, particularmente índices de Sobol de
   primeira ordem e totais \cite{saltelli2008global}. Os índices de Sobol
   decompõem o impacto dos parâmetros na variância do \textit{output} de
   interesse. Os índices de primeira ordem incluem contribuições lineares e
