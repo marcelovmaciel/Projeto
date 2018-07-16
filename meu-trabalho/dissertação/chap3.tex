@@ -83,7 +83,7 @@ numa terceira lista. Um formato possível para essa lista é [(1.1, 56.0444),
 (23.0778, 34.0667), (45.0556, 100.0), (78.0222, 67.0333), (89.0111, 23.0778),
 (67.0333, 12.0889), (100.0, 78.0222), (56.0444, 1.1), (34.0667, 89.0111),
 (12.0889, 45.0556)]. O primeiro agente da população vai então ter uma
-distribuição Beta com parâmetros \(\alpha,\beta = (1.1, 56.0444) \), o segundo com
+distribuição Beta com parâmetros \(\alpha, \beta = (1.1, 56.0444) \), o segundo com
 \(\alpha,\beta=(23.0778,34.0667)\) e assim em diante.
 
 Destas distribuições sorteamos os valores de \(o_i\) iniciais para cada questão,
@@ -95,7 +95,7 @@ centradas em diferentes pontos do espaço, como ilustrado na Figura
   \centering
   \includegraphics[width=\textwidth]{ims/beta100.png}
   \caption{Distribuições Beta para 50 agentes}
-  \source{ O autor.}
+  \source{ Elaborada pelo autor.}
   \label{fig:betas100}
 \end{figure}
 
@@ -255,7 +255,7 @@ de interpretar os resultados \cite{railsback2012agent}.
       \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
         Parametrização: \(  N = 500, p = 0.9, \rho =  1e-5, n\_issues = 1 , p\_intra
         n= 0.0 \)}
-      \source{ O autor.}
+      \source{ Elaborada pelo autor.}
       \label{fig:tseries1}
     \end{figure}
     
@@ -287,31 +287,28 @@ de interpretar os resultados \cite{railsback2012agent}.
     agentes intransigentes diferentes de 0. Quando há ruído ou agentes
     intransigentes o número final de pontos ideais não informa muito sobre a
     dinâmica do sistema. Na Figura \ref{fig:nonnullrho} temos um comportamento
-    qualitativamente similar ao da Figura \ref{fig:tseries1} (b), mas o número
-    de opiniões finais é próximo de 500 \footnote{Isso envolve inclusive se
-      medirmos o número de pontos ideais finais com valores arredondados.
-      Arredondar demais faz com que perdamos a comparabilidade com a condição
-      inicial, que passa a não ter mais 500 pontos ideais. No caso da figura
-      \ref{fig:nonnullrho} usar o número de pontos ideais distintos como medida
-      nos informa que há grande cobertura no sistema, mas passaria dispercebido
-      o fato de que ao fim o comportamento é bastante similar ao caso com ruído
-      nulo. A dispersão não nos informa sobre a existência dos ``clusters'', mas
-      ao menos mantêm a consistência nos casos com e sem ruído.}.
+    qualitativamente similar ao da Figura \ref{fig:tseries1} (b), do ponto de
+    qualitativo seriam 5 questões com oscilações ao redor delas, mas
+    quantitativamente o número de opiniões finais distintas é próximo de 500.
+    Uma opção para tentar capturar em medidas essa oscilação ao redor de 5
+    opiniões seria  medirmos o número de pontos ideais
+      finais com valores arredondados. Arredondar demais faz com que perdamos a
+      comparabilidade com a condição inicial, que passa a não ter mais 500
+      pontos ideais. No caso da figura \ref{fig:nonnullrho} usar o número de
+      pontos ideais distintos como medida nos informa que há grande cobertura no
+      sistema, mas passaria despercebido o fato de que ao fim o comportamento é
+      bastante similar ao caso com ruído nulo. A dispersão não nos informa sobre
+      a existência dos ``clusters'', mas ao menos mantêm a consistência nos
+      casos com e sem ruído.
     
   \begin{figure}[H]
     \centering
     \includegraphics[width =10cm]{ims/ts5.png}
     \caption{Parametrização equivalente a Figura \ref{fig:tseries1} (b),
       mas com \(\rho = 0.001\).}
-    \source{ O autor.}
+    \source{ Elaborada pelo autor.}
     \label{fig:nonnullrho}
   \end{figure}
-
-
-
-
-
-
 
 Quanto à amostragem uma estratégia comum são as parametrizações de Monte Carlo:
 sortear valores de parâmetros usados para as realizações das simulações a partir
@@ -319,7 +316,6 @@ de distribuições uniformes nos intervalos de valores dos parâmetros
 \cite{laver2011party}. O problema dessa estratégia é que o espaço de parâmetros
 não é coberto igualmente, havendo a possibilidade de pontos de acumulação ou
 espaços vazios \cite{pereda2017brief}.
-
 
 \citeonline{saltelli2008global} argumenta que para manter uma dispersão
 equitativa dos pontos no espaço de parâmetros é necessário um algoritmo que
@@ -337,16 +333,18 @@ quadrados deveriam ter 1 ou 2 pontos. Se um dos quadrados tiver 5 pontos,
 contudo, a discrepância será de ao menos \(\frac{5}{20} - \frac{1}{16} =
 \frac{3}{16}\) \cite[p.83]{saltelli2008global}.
 
-A estratégia de amostragem não independe do método de análise. Seguimos
-\citeonline{jaxa2018pynetlogo} e \citeonline{brookes2015saltelli} em usar o
-esquema de \citeonline{saltelli2002making} para o cálculo de índices de
-sensibilidade global. Fazendo uso de sequências quasi-aleatórias, ele consiste
-em gerar n * (2d + 2) parametrizações, onde \(n\) é o tamanho amostral \(n\) e
-\(d\) é o número de parâmetros. Segundo \citeonline[p.286]{saltelli2002making}
-esse número de parametrizações nos permite calcular índices de Sobol de primeira
-e segunda ordem e índices totais, discutidos no parágrafo seguinte. No nosso
-caso \(d = 6\), pois vamos ter como parâmetros : N (população), número de
-questões (codificado como n\_issues ), \(p\), \(\sigma\), a proporção de agentes
+O tamanho amostral e número de parametrizações não independe do método de
+análise, dado que incorrem em custos computacionais distintos
+\cite{saltelli2002making}. Seguimos \citeonline{jaxa2018pynetlogo} e
+\citeonline{brookes2015saltelli} em usar o esquema de
+\citeonline{saltelli2002making} para o cálculo de índices de sensibilidade
+global. Fazendo uso de sequências quasi-aleatórias, ele consiste em gerar n *
+(2d + 2) parametrizações, onde \(n\) é o tamanho amostral \(n\) e \(d\) é o
+número de parâmetros. Segundo \citeonline[p.284]{saltelli2002making} esse número
+de parametrizações nos permite calcular índices de Sobol de primeira e segunda
+ordem e índices totais, discutidos no parágrafo seguinte. No nosso caso \(d =
+6\), pois vamos ter como parâmetros : N (população), número de questões
+(codificado como n\_issues ), \(p\), \(\sigma\), a proporção de agentes
 intransigentes (codificado como p\_intran), e \(\rho\). Para garantir um
 coeficiente de erro baixo no cálculo subsequente dos índices de sensibilidade
 especificamos um tamanho amostral base de \(5000\), de forma que rodamos
@@ -355,6 +353,14 @@ custo computacional de simular tantas parametrizações : aproximadamente 60 hor
 \footnote{Numa máquina: Intel(R) Core(TM) i7-6500U CPU @ 2.50GHz, com 15.4GiB de
   RAM.}. Os baixos valores dos coeficientes de erro nos confirmam que amostras
 maiores não seriam necessárias.
+
+\todo[inline,color = yellow!10]{Comentário: A discussão precisa sobre a relação entre
+  indices e número de avaliações esta em \citeonline{2002saltellimaking}, e
+  envolve método de monte carlo. Sinceramente, não tenho o treinamento matemático
+  para esmiuçar essa questão... faço uso do método para dar \textit{algum} rigor
+metodológico ao trabalho, para que as escolhas metodológicas não sejam
+arbritárias. Sei que poderia ser melhor explicado, mas só compreendo por cima e
+conceitualmente...}
 
   Para a análise, seguimos \citeonline{ten2016sensitivity} e combinamos
   histogramas da medida do sistema, gráficos de dispersão e índices de
@@ -405,7 +411,7 @@ ao fim das simulações para cada parametrização.
       \end{subfigure}
       \caption{Desvio padrão dos pontos ideais das populações para cada
         parametrização}
-      \source{ O autor.}
+      \source{ Elaborada pelo autor.}
       \label{fig:hists1}
     \end{figure}
     
@@ -462,7 +468,7 @@ ao fim das simulações para cada parametrização.
     \end{subfigure}
     \caption{Gráfico de dispersão para 70.000 parametrizações.}
     \label{fig:scatter1}
-    \source{ O autor.}
+    \source{ Elaborada pelo autor.}
 \end{figure}
 
 O parâmetro \(\rho\), o ruído, por sua vez, tem uma relação positiva com a
@@ -476,7 +482,7 @@ claro na Figura \ref{fig:sobol1}:
   \centering
   \includegraphics{ims/barplotmuto5k.png}
   \caption{Índices de Sobol de sensibilidade}
-  \source{ O autor.}
+  \source{ Elaborada pelo autor.}
   \label{fig:sobol1}
 \end{figure}
 
@@ -512,7 +518,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
       \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
         Parametrização: \(p\_intran = 0.15, \text{ } N = 500,  \text{ }   p =
         0.9,  \text{ }  \rho = 1e-5,  \text{ }  n\_issues = 1 \)}
-      \source{ O autor.}
+      \source{ Elaborada pelo autor.}
       \label{fig:tseries2}
     \end{figure}
     
@@ -539,7 +545,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
       intransigentes nos extremos. Parametrização: \( \sigma = 0.1, \text{ }
       p\_intran = 0.15, \text{ } N = 500, \text{ } p = 0.9, \text{ } \rho = 1e-5,
       \text{ } n\_issues = 1 \)}
-    \source{ O autor.}
+    \source{ Elaborada pelo autor.}
     \label{fig:tseries3}
   \end{figure}
 
@@ -575,7 +581,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
      \caption{ Intransigentes com \(\sigma = 0.01\). Parametrização global: \( \sigma =
        0.1, \text{ } p\_intran = 0.15, \text{ } N = 500, \text{ } p = 0.9,
        \text{ } \rho = 1e-5, \text{ } n\_issues = 1 \)}
-    \source{ O autor.}
+    \source{ Elaborada pelo autor.}
     \label{fig:newintrans}
      \end{figure}
   
@@ -601,7 +607,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
     \centering
     \includegraphics[scale=0.7]{ims/boxes4.png}
     \caption{Parametrização: \(\rho =1e-5, p\_intran = 0.0, p = 0.9, N =500\)}
-    \source{O autor.}
+    \source{Elaborada pelo autor.}
     \label{fig:box4}
   \end{figure}
   
@@ -656,7 +662,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
       \caption{Evolução dos pontos ideais quando há ruído e agentes intransigentes.
         Parametrização: \(p\_intran = 0.15, \text{ } N = 500,  \text{ }   p =
         0.9,  \text{ }  \rho = 0.05\)}
-      \source{ O autor.}
+      \source{ Elaborada pelo autor.}
       \label{fig:tseries4}
     \end{figure}
 
