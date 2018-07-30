@@ -202,7 +202,7 @@ Voltando aos atributos dos agentes, o\(\sigma^2\) é uma variável global de for
 \(\sigma_i^2 = \sigma^2\) ; têm também por atributo um posicionamento ideológico, ou ponto
 ideal, \(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um conjunto de vizinhos, o
 qual depende de qual a rede os agentes estão. Uma determinada proporção de
-agentes vai ter um \textit{único}\(\sigma_i = (1e-20 ) \approx 0.0 \). Quantos agentes são
+agentes vai ter um \textit{único} \(\sigma_i = (1e-20 ) \approx 0.0 \). Quantos agentes são
 intransigentes em \textit{uma} questão é dado por \(\text{p\_intran}\). Em qual
 questão vão ser intransigentes é aleatório, sorteado de seu \(I\).
 
@@ -269,11 +269,26 @@ de interpretar os resultados \cite{railsback2012agent}.
     concentrados/dispersos são os pontos ideais da população. Uma outra opção de
     medida do sistema seria o número de opiniões finais distintas após as
     iterações, o que nos daria uma medida de ``cobertura'' do sistema: uma maior
-    cobertura implicaria num número maior de posicionamentos distintos
-    \cite{bramson2016disambiguation}. Contudo, teríamos que estabelecer um \(N\)
-    base, pois de outra forma esse parâmetro explica quase que totalmente o
-    valor do output a ser analisado pela análise de sensibilidade.
+    cobertura equivale a um número maior de posicionamentos distintos
+    \cite{bramson2016disambiguation}. Na \ref{fig:coverage} a distribuição (b)
+    tem maior cobertura dado que uma maior quantidade de espaço é preenchido.
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width =12cm]{ims/coverage.png}
+      \caption{Distribuições com coberturas distintas}
+      \source{\citeonline{bramson2016disambiguation}}
+      \label{fig:coverage}
+    \end{figure}
 
+    
+    Usar cobertura como medida não nos indica
+    o quão diferente são os valores, ou se estão no centro ou extremos, mas
+    captura a variedade de atributos \cite[p.85]{bramson2016disambiguation}.
+    Contudo, teríamos que estabelecer um \(N\) base, pois de outra forma esse
+    parâmetro explica quase que totalmente o valor do output a ser analisado
+    pela análise de sensibilidade.
+    
     No primeiro gráfico da figura \ref{fig:tseries1} temos um desvio padrão
     próximo zero, e um único posicionamento ideológico final. Já no segundo
     gráfico precisaríamos arredondar os pontos ideais finais, para entre 1 e 6
@@ -288,18 +303,17 @@ de interpretar os resultados \cite{railsback2012agent}.
     intransigentes o número final de pontos ideais não informa muito sobre a
     dinâmica do sistema. Na Figura \ref{fig:nonnullrho} temos um comportamento
     qualitativamente similar ao da Figura \ref{fig:tseries1} (b), do ponto de
-    qualitativo seriam 5 questões com oscilações ao redor delas, mas
+    qualitativo seriam 6 opiniões médias com oscilações ao redor delas, mas
     quantitativamente o número de opiniões finais distintas é próximo de 500.
-    Uma opção para tentar capturar em medidas essa oscilação ao redor de 5
-    opiniões seria  medirmos o número de pontos ideais
-      finais com valores arredondados. Arredondar demais faz com que perdamos a
-      comparabilidade com a condição inicial, que passa a não ter mais 500
-      pontos ideais. No caso da figura \ref{fig:nonnullrho} usar o número de
-      pontos ideais distintos como medida nos informa que há grande cobertura no
-      sistema, mas passaria despercebido o fato de que ao fim o comportamento é
-      bastante similar ao caso com ruído nulo. A dispersão não nos informa sobre
-      a existência dos ``clusters'', mas ao menos mantêm a consistência nos
-      casos com e sem ruído.
+    Uma opção para tentar capturar em medidas essa oscilação ao redor de 6
+    opiniões médias seria medirmos o número de pontos ideais finais com valores
+    arredondados. Arredondar demais faz com que perdamos a comparabilidade com a
+    condição inicial, que passa a não ter mais 500 pontos ideais. No caso da
+    figura \ref{fig:nonnullrho} usar o número de pontos ideais distintos como
+    medida nos informa que há grande cobertura no sistema, mas passaria
+    despercebido o fato de que ao fim o comportamento é bastante similar ao caso
+    com ruído nulo. O desvio padrão não nos informa sobre a existência dos
+    ``clusters'', mas ao menos mantêm a consistência nos casos com e sem ruído.
     
   \begin{figure}[H]
     \centering
@@ -324,14 +338,18 @@ presentes. O pacote de Python SaLib\footnote{Fazemos uso da interoperabilidade
   entre a linguagem Julia e Python, por meio do pacocte PyCall
   \cite{johnson2018}.}, o qual usamos, implementa ``samplers'' que garantem essa
 dispersão equitativa por meio da geração de amostras sorteadas de sequências
-quasi-aleatórias de baixa discrepância\cite{herman2017salib}. A discrepância de
-uma sequência de pontos é a diferença absoluta máxima de um conjunto de regiões
-entre a fração de pontos e a fração de área. Por exemplo, se tivermos um
-quadrado unitário com 20 pontos, e o dividirmos em 16 quadrados menores de
-tamanho \(\frac{1}{6}\) e distribuirmos os pontos de forma equitativa os
-quadrados deveriam ter 1 ou 2 pontos. Se um dos quadrados tiver 5 pontos,
-contudo, a discrepância será de ao menos \(\frac{5}{20} - \frac{1}{16} =
-\frac{3}{16}\) \cite[p.83]{saltelli2008global}.
+quasi-aleatórias de baixa discrepância \cite{herman2017salib}. \footnote{ Se
+  pensarmos os parâmetros geometricamente podemos pensar num ``espaço'' de
+  parâmetros que queremos preencher de maneira equitativa. A discrepância de uma
+  sequência de pontos é a diferença absoluta máxima de um conjunto de regiões,
+  no espaço de parâmetros, entre a fração de pontos e a fração de área. Por
+  exemplo, se tivermos um quadrado unitário com 20 pontos, e o dividirmos em 16
+  quadrados menores de tamanho \(\frac{1}{6}\) e distribuirmos os pontos de
+  forma equitativa os quadrados deveriam ter 1 ou 2 pontos. Se um dos quadrados
+  tiver 5 pontos, contudo, a discrepância será de ao menos \(\frac{5}{20} -
+  \frac{1}{16} = \frac{3}{16}\) \cite[p.83]{saltelli2008global}. Para a
+  implementação do ``sampler'' ver
+  \url{http://salib.readthedocs.io/en/latest/_modules/SALib/sample/saltelli.html}.}
 
 O tamanho amostral e número de parametrizações não independe do método de
 análise, dado que incorrem em custos computacionais distintos
@@ -339,51 +357,63 @@ análise, dado que incorrem em custos computacionais distintos
 \citeonline{brookes2015saltelli} em usar o esquema de
 \citeonline{saltelli2002making} para o cálculo de índices de sensibilidade
 global. Fazendo uso de sequências quasi-aleatórias, ele consiste em gerar n *
-(2d + 2) parametrizações, onde \(n\) é o tamanho amostral \(n\) e \(d\) é o
+(2d + 2) parametrizações, onde \(n\) é o tamanho amostral  e \(d\) é o
 número de parâmetros. Segundo \citeonline[p.284]{saltelli2002making} esse número
 de parametrizações nos permite calcular índices de Sobol de primeira e segunda
 ordem e índices totais, discutidos no parágrafo seguinte. No nosso caso \(d =
 6\), pois vamos ter como parâmetros : N (população), número de questões
 (codificado como n\_issues ), \(p\), \(\sigma\), a proporção de agentes
-intransigentes (codificado como p\_intran), e \(\rho\). Para garantir um
+intransigentes (codificado como p\_intran), e \(\rho\). Quanto maior o tamanho da
+amostra  menor os coeficientes de erro para os índices. Para garantir um
 coeficiente de erro baixo no cálculo subsequente dos índices de sensibilidade
-especificamos um tamanho amostral base de \(5000\), de forma que rodamos
+especificamos um tamanho amostral base \(n\) de \(5000\), de forma que rodamos
 \(70.000\) parametrizações. Nos limitamos a esse número de parametrizações pelo
 custo computacional de simular tantas parametrizações : aproximadamente 60 horas
 \footnote{Numa máquina: Intel(R) Core(TM) i7-6500U CPU @ 2.50GHz, com 15.4GiB de
   RAM.}. Os baixos valores dos coeficientes de erro nos confirmam que amostras
 maiores não seriam necessárias.
 
-\todo[inline,color = yellow!10]{Comentário: A discussão precisa sobre a relação entre
-  indices e número de avaliações esta em \citeonline{2002saltellimaking}, e
-  envolve método de monte carlo. Sinceramente, não tenho o treinamento matemático
-  para esmiuçar essa questão... faço uso do método para dar \textit{algum} rigor
-metodológico ao trabalho, para que as escolhas metodológicas não sejam
-arbritárias. Sei que poderia ser melhor explicado, mas só compreendo por cima e
-conceitualmente...}
+%\todo[inline,color = yellow!10]{Comentário: A discussão precisa sobre a relação entre
+%  indices e número de avaliações esta em \citeonline{saltelli2002making}, e
+%  envolve método de monte carlo. Sinceramente, não tenho o treinamento matemático
+%  para esmiuçar essa questão... faço uso do método para dar \textit{algum} rigor
+%metodológico ao trabalho, para que as escolhas metodológicas não sejam
+%arbritárias. Sei que poderia ser melhor explicado, mas só compreendo por cima e
+%conceitualmente...}
 
-  Para a análise, seguimos \citeonline{ten2016sensitivity} e combinamos
-  histogramas da medida do sistema, gráficos de dispersão e índices de
-  sensibilidade. Os índices de sensibilidade utilizados são os índices de
-  Sobol, particularmente índices de Sobol de
-  primeira ordem e totais \cite{saltelli2008global}. Os índices de Sobol
-  decompõem o impacto dos parâmetros na variância do \textit{output} de
-  interesse. Os índices de primeira ordem incluem contribuições lineares e
-  não-lineares dos parâmetros, mas não efeitos interativos
-  \cite{ten2016sensitivity}. Dois fatores interagem quando o seu efeito sobre o
-  output não pode ser expresso como a soma de seus efeitos individuais. Já
-  índices totais incluem todos os efeitos de ordem maior decorrentes das
-  interações entre os parâmetros. Digamos que temos um modelo com 3 fatores. O
-  efeito total, \(S_{T1}\) do primeiro fator \(X_1\) é dado pela soma dos termos
-  da equação \(S_{T1} = S_1 + S_{12} + S_{13} + S_{123}\), onde \(S_1 = Corr(Y,
-  E(Y|X_1))\), \(S_{12}\) é o impacto na variância de \(Y\), o output, da
-  interação entre \(X_1\) e \(X_2\), sendo portanto o efeito conjunto de \(X_1\)
-  e \(X_2\) menos os efeitos de primeira ordem para esses fatores; a mesma
-  lógica é aplicada aos outros termos. O índice total informa características
-  não aditivas de um modelo, de forma que para um fator \(X_j\) uma diferença
-  significativa entre \(S_{Tj}\) e \(S_j\) aponta para uma interação envolvendo
-  esse fator. Já num modelo puramente aditivo a soma dos índices de primeira
-  ordem \(\sum_{i=1}^k S_i\) é igual a 1 \cite{saltelli2008global}.
+Para a análise, seguimos \citeonline{ten2016sensitivity} e combinamos
+histogramas da medida do sistema, gráficos de dispersão e índices de
+sensibilidade. Os índices de sensibilidade utilizados são os índices de Sobol,
+particularmente índices de Sobol de primeira ordem e totais
+\cite{saltelli2008global}. Os índices de Sobol decompõem o impacto dos
+parâmetros na variância do \textit{output} de interesse. Os índices de primeira
+ordem incluem contribuições lineares e não-lineares dos parâmetros, mas não
+efeitos interativos \cite{ten2016sensitivity}. Dois fatores interagem quando o
+seu efeito conjunto sobre o output não pode ser expresso como a soma de seus
+efeitos individuais\footnote{Essa é a definição usual de efeito interativo no
+  contexto da análise multivariada de dados \cite{hair2009analise}.}. Já índices
+totais incluem todos os efeitos de ordem maior decorrentes das interações entre
+os parâmetros. Digamos que temos um modelo com 3 fatores. O efeito total,
+\(S_{T1}\) do primeiro fator \(X_1\) é dado pela soma dos termos da equação
+\(S_{T1} = S_1 + S_{12} + S_{13} + S_{123}\), onde \(S_i =
+\frac{V[E(Y|X_i)]}{V(Y)}\), \(S_{12}\) é o impacto na variância de \(Y\), o
+output, da interação entre \(X_1\) e \(X_2\), sendo portanto o efeito conjunto
+de \(X_1\) e \(X_2\) menos os efeitos de primeira ordem para esses fatores:
+\(S_{ij}\) = \(\frac{V[E(Y|X_i,X_,)] - V[E(Y|X_i)] - V[E(Y|X_j)]}{V(Y)} \); a
+mesma lógica é aplicada aos outros termos \footnote{ Para maiores detalhes do
+  cálculo dos índices ver \citeonline[p.159-167]{saltelli2008global}.}. O índice
+total informa características não aditivas de um modelo, de forma que para um
+fator \(X_j\) uma diferença significativa entre \(S_{Tj}\), seu efeito total, e
+\(S_j\), seu efeito individual, aponta para um efeito interativo desse fator com
+outros fatores. Num modelo puramente aditivo a soma dos índices de primeira
+ordem \(\sum_{i=1}^k S_i\) é igual a 1, isto é, nesse caso o output seria
+totalmente explicado pela soma dos efeitos individuais
+\cite{saltelli2008global}. Num modelo em que \(S_i = 1\) e todos os outros
+\(S_{ij} = 0\) teríamos um modelo explicado por um único fator. Se \(S_1 = 0\)
+então esse fator não explica nada a variância do output. O usual, contudo, é que
+o modelo seja explicado parcialmente por certos fatores, e parcialmente pela
+interação deles.
+
 
 \section{Resultados}
 
@@ -415,7 +445,6 @@ ao fim das simulações para cada parametrização.
       \label{fig:hists1}
     \end{figure}
     
-
 %
 %
 %\begin{figure}[H]
@@ -522,21 +551,22 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
       \label{fig:tseries2}
     \end{figure}
     
-    Enquanto que na figura \ref{fig:tseries1} (a) o sistema converge para um
-    único valor, na figura \ref{fig:tseries2} a população oscila no espaço ao
-    redor desse valor. As figuras \ref{fig:tseries1} e \ref{fig:tseries2} (b)
-    exibem uma diferença equivalente de comportamento. O parâmetro parece assim
-    ter impacto sobre a dinâmica, particularmente sobre a cobertura. Quais
-    agentes são intransigentes é aleatório, mas como eles não mudam de opinião
-    em um determinado tema é de se esperar que acabem por atrair os outros
-    agentes para sua posição. Para testar a intuição de que os agentes
-    intransigentes enviesam a dinâmica para a posição deles testamos a mesma
-    parametrização que a figura \ref{fig:tseries2} (a), mas com os \(15\%\)
-    intransigentes localizados entre os valores maiores que 0.8 ou menores que
-    0.2 no espectro ideológico. A figura \ref{fig:tseries3} demonstra que a
-    atração para onde existem mais agentes intransigentes realmente
-    ocorre\footnote{Com a figura \ref{fig:tseries3} replicamos o comportamento
-      do modelo de \citeonline{deffuant2002can}.}.
+    Enquanto na figura \ref{fig:tseries1} (a) o sistema converge para um único
+    valor, na figura \ref{fig:tseries2} a população oscila no espaço ao redor
+    desse valor. As figuras \ref{fig:tseries1} e \ref{fig:tseries2} (b) exibem
+    uma diferença equivalente de comportamento. O parâmetro parece assim ter
+    impacto sobre a dinâmica, particularmente sobre a
+    cobertura\footnote{Definida da seção Metodologia de Análise}. Quais agentes
+    são intransigentes é aleatório, mas como eles não mudam de opinião em um
+    determinado tema é de se esperar que acabem por atrair os outros agentes
+    para sua posição. Para testar a intuição de que os agentes intransigentes
+    enviesam a dinâmica para a posição deles testamos a mesma parametrização que
+    a figura \ref{fig:tseries2} (a), mas com os \(15\%\) intransigentes
+    localizados entre os valores maiores que 0.8 ou menores que 0.2 no espectro
+    ideológico. A figura \ref{fig:tseries3} demonstra que a atração para onde
+    existem mais agentes intransigentes realmente ocorre\footnote{Com a figura
+      \ref{fig:tseries3} replicamos o comportamento do modelo de
+      \citeonline{deffuant2002can}.}.
 
       \begin{figure}[H]
     \centering
@@ -606,7 +636,8 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
   \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{ims/boxes4.png}
-    \caption{Parametrização: \(\rho =1e-5, p\_intran = 0.0, p = 0.9, N =500\)}
+    \caption{Número de pontos ideais finais para diferentes valores de \(\sigma\).
+      Parametrização: \(\rho =1e-5, p\_intran = 0.0, p = 0.9, N =500\)}
     \source{Elaborada pelo autor.}
     \label{fig:box4}
   \end{figure}
