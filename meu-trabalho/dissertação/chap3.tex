@@ -587,17 +587,9 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
   ao da figura \ref{fig:tseries3}, a convergência de grande parte da população
   para um dos extremos. O que difere é que o \textit{cluster} maior agora
   converge para um único valor, enquanto com intransigentes absolutos ele oscila
-  dentro de um dos extremos. Curiosamente, quando os agentes intransigentes
-  estão localizados ao longo do espaço e não são absolutamente intransigentes
-  temos um comportamento totalmente distinto. Ao invés de haver a manutenção da
-  tendência central dada pelo \(\sigma\) global igual a 0.1, como demonstrado na
-  figura \ref{fig:tseries2}, ocorre uma convergência da maioria da população
-  para um dos extremos, sem precisarmos estabelecer previamente que todos os
-  intransigentes vão estar nos extremos. Nesse caso o \textit{cluster maior} vai
-  ``varrendo'' um dos lados do espaço atraindo os intransigentes desse lado até
-  um dos extremos.
+  dentro de um dos extremos.
 
-  \begin{figure}[H]
+    \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
       \includegraphics[width=\textwidth]{ims/n1-sigma1.png}
@@ -615,7 +607,49 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
     \label{fig:newintrans}
      \end{figure}
   
+     Curiosamente, quando os agentes intransigentes estão localizados ao longo
+     do espaço e não são absolutamente intransigentes temos um comportamento
+     totalmente distinto. Ao invés de haver a manutenção da tendência central
+     dada pelo \(\sigma\) global igual a 0.1, como demonstrado na figura
+     \ref{fig:tseries2}, ocorre uma convergência da maioria da população para um
+     dos extremos, sem precisarmos estabelecer previamente que todos os
+     intransigentes vão estar nos extremos. Nesse caso, da figura
+     \ref{fig:newintrans} (a), o \textit{cluster maior} vai ``varrendo'' um dos
+     lados do espaço sendo atraído pelos  intransigentes desse lado até um dos extremos.
+     Esse comportamento sistêmico, contudo, depende tanto do tamanho da
+     população quanto do número de iterações. Como demonstrado na figura
+     \ref{fig:newintrans2} quanto menor o tamanho da população menos iterações
+     são necessárias para que a maioria da população seja atraída para um dos
+     extremos.
+  \begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/sigma01_pop200.png}
+      \caption{N = 200}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/sigma01_pop700.png}
+       \caption{N = 700}
+     \end{subfigure}
 
+         \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/sigma01_pop1000.png}
+       \caption{N = 1000}
+     \end{subfigure}
+         \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{ims/sigma01_pop1200.png}
+       \caption{N = 1200}
+     \end{subfigure}
+
+     \caption{ Intransigentes com \(\sigma = 0.01\). Parametrização global: \( \sigma =
+       0.1, \text{ } p\_intran = 0.15, \text{ } p = 0.9,
+       \text{ } \rho = 1e-5, \text{ } n\_issues = 1 \)}
+    \source{ Elaborada pelo autor.}
+    \label{fig:newintrans2}
+     \end{figure}
+  
+
+  
     Como nem o desvio padrão nem o número de pontos ideais finais,
     como discutido anteriormente, nos dão medidas quantitativas desses impactos
     passamos a uma análise gráfica de certas combinações de parâmetros típicas.
