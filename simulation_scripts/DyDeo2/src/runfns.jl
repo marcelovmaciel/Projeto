@@ -178,7 +178,7 @@ end
 fn to turn the system configurations (its state) into a matrix. I need to plot the agents' time series.
 Takes a lot of time (10 min for 1.000.000 iterations and 1000 agents)
 """
-function statesmatrix(pa; time = pa.time , size_nw = pa.size_nw)
+function statesmatrix(pa; time = pa.time, size_nw = pa.size_nw)
     a = Array{Float64}(time+1,size_nw)
     statesvec = simstatesvec(pa)
 
@@ -242,8 +242,7 @@ function getsample_initcond(param_values; time = 250_000, agent_type = "mutating
     return(Y)
 end
 
-
-
+"helper for analysis; it's here for DRY"
 function extractys(Ypairs)
     Ystd = Float64[]
     Ynips =  Int64[]
@@ -252,6 +251,29 @@ function extractys(Ypairs)
         push!(Ynips,i[2])
     end
     return(Ystd,Ynips)
+end
+
+
+function get_simpleinitcond(param)
+    Y = Tuple{Float64,Int64}[]
+    @unpack n_issues, size_nw, p, σ, time, ρ, agent_type,graphcreator, propintransigents, intranpositions = param
+    pop = create_initialcond(agent_type, σ, n_issues,
+                             size_nw,graphcreator, propintransigents,
+                             intranpositions = intranpositions)
+    out = pop |> pullidealpoints |> outputfromsim
+    push!(Y,out)
+    Ystd = Y[1][1]
+    return(Ystd)
+end
+
+
+function dist_initstds(param,repetition)
+    stdsout = []
+@showprogress 1 "Extracting stds" for run in 1:repetition
+        singlestd = get_simpleinitcond(param)
+        push!(stdsout, singlestd)
+    end
+    return(stdsout)
 end
 
 
