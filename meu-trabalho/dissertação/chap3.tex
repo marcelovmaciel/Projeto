@@ -615,12 +615,16 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
      dos extremos, sem precisarmos estabelecer previamente que todos os
      intransigentes vão estar nos extremos. Nesse caso, da figura
      \ref{fig:newintrans} (a), o \textit{cluster maior} vai ``varrendo'' um dos
-     lados do espaço sendo atraído pelos  intransigentes desse lado até um dos extremos.
-     Esse comportamento sistêmico, contudo, depende tanto do tamanho da
-     população quanto do número de iterações. Como demonstrado na figura
+     lados do espaço sendo atraído pelos intransigentes desse lado até um dos
+     extremos. Esse comportamento sistêmico, contudo, depende, tanto do tamanho
+     da população quanto do número de iterações.  Como demonstrado na figura
      \ref{fig:newintrans2} quanto menor o tamanho da população menos iterações
      são necessárias para que a maioria da população seja atraída para um dos
-     extremos.
+     extremos. Dessa forma esse caso especial no qual os intransigentes não são
+     completamente intransigentes difere do comportamento geral do modelo com
+     agentes totalmente intransigentes, no qual o tamanho da população não
+     parece ter efeito sobre a dinâmica.
+     
   \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -732,7 +736,44 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
     \end{figure}
 
 
-\todo[inline,color = yellow!10]{Fazer as considerações indicadas por André.}
+    À guisa de conclusão, o modelo pode ser pensado como uma extensão do modelo
+    de \citeonline{martins2009bayesian}, adicionando agentes com opiniões em
+    mais de uma questão, o ruído e agentes intransigentes inseridos numa
+    população de agentes normais (uma população com dois tipos de agentes ao
+    invés de um único). Desta forma, quando \(n\_issues = 1\), \(p\_intran = 0\)
+    e \(\rho \approx 0.0\) o modelo tem o mesmo comportamento do modelo de inspiração
+    bayesiana de \citeonline{martins2009bayesian}, que por sua vez recupera um
+    comportamento qualitativo similar ao modelo canônico de
+    \citeonline{deffuant2000mixing}. O modelo recupera também, de
+    duas formas distintas, a convergência da maioria da população a um dos
+    extremos encontrada por \citeonline{deffuant2002can} por meio tanto de
+    intransigentes nos extremos, quanto de agentes não totalmente intransigentes
+    distribuídos ao longo do espectro político.
+
+    Um comportamento novo encontrado usando o modelo é exatamente a importância
+    da interação entre o ruído e o número de questões. Um maior número de
+    questões torna o comportamento do sistema menos suscetível a grandes
+    oscilações causadas pelo aumento do ruído, enquanto que em um modelo com uma
+    única questão os agentes oscilam totalmente no espectro. Como argumentado
+    por \citeonline{flache2017} modelos de dinâmicas de opinião levam
+    naturalmente a questionamentos empíricos sobre os microfundamentos
+    comportamentais. Uma implicação observável é pensarmos a relação entre
+    ``sofisticação'' de posicionamento de indivíduos e a consistência deles
+    frente a argumentos e evidências fortes em determinadas questões. Do ponto
+    de vista empírico será verdade que aumentar o número de questões que os
+    indivíduos reconhecem como balizando um posicionamento faz com que a
+    população seja mais estável frente a perturbações nas crenças? Ou isso é um
+    artefato da simulação?
+
+    Do ponto de vista conceitual o uso de um modelo de inspiração bayesiana nos
+    permite conectar a área de dinâmicas de opinião com o quadro conceitual dos
+    modelos de utilidade esperada na ciência política, por meio do relaxamento
+    da separação típica entre preferência e crença, como discutido nos Capítulos
+    2 e 3. Embora o modelo suscite a necessidade de validação empírica tanto de
+    comportamentos sistêmicos quanto de fundamentos comportamentais ele pode ser
+    integrado a modelos futuros de comportamento eleitoral e competição
+    partidária.
+
 
     
 %%% Local  Variables:
