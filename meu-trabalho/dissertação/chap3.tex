@@ -100,37 +100,38 @@ centradas em diferentes pontos do espaço, como ilustrado na Figura
 \end{figure}
 
 
-A cada iteração da simulação um dos agentes vai ser escolhido e vai interagir
-com um de seus vizinhos, a princípio num grafo completo imposto exogenamente
-(estabelecemos na condição inicial quais os vizinhos). Quanto à implementação,
-criamos um grafo de tamanho igual ao tamanho da população e fazemos com que cada
-agente da população tenha como um de seus atributos um conjunto de vizinhos
-igual a um vértice do grafo. A interação é em díades, assíncrona (os
-agentes atualizam seus atributos em momentos distintos) e sequencial (um agente
-atualiza por vez) \cite{wilensky2015introduction}. A dependência dos resultados
-em relação ao número de agentes e de crenças vai ser explorada. Estamos
-interessados nas alterações ao longo prazo (em termos de iterações) da
-configuração dos \(x\) sob diferentes combinações de parâmetros, tendo em vista
-as interações dos agentes \cite{acemoglu2011opinion} \footnote{Como vamos
-  definir longo prazo e analisar o modelo é tema da seção metodológica.}.
+A cada iteração da simulação um dos agentes vai ser escolhido e vai
+interagir com um de seus vizinhos, a princípio num grafo completo imposto
+exogenamente (estabelecemos na condição inicial quais os vizinhos). Quanto à
+implementação, criamos um grafo de tamanho igual ao tamanho da população e
+fazemos com que cada agente da população tenha como um de seus atributos um
+conjunto de vizinhos igual ao de um vértice do grafo. A interação é em díades,
+assíncrona (os agentes atualizam seus atributos em momentos distintos) e
+sequencial (um agente atualiza por vez) \cite{wilensky2015introduction}. A
+dependência dos resultados em relação ao número de agentes e de crenças vai ser
+explorada. Estamos interessados nas alterações ao longo prazo (em termos de
+iterações) da configuração dos \(x\) sob diferentes combinações de parâmetros,
+tendo em vista as interações dos agentes \cite{acemoglu2011opinion}
+\footnote{Como vamos definir longo prazo e analisar o modelo é tema da seção
+  metodológica.}.
 
 Quando os agentes interagem o agente \(i\) atualiza sua opinião em
 alguma\footnote{ Uma outra implicação possível, a ser adicionada em trabalhos
   futuros, é considerar um viés nessa seleção, o que representaria saliência no
   sentido dado por \citeonline{zaller1992simple}: qual questão os agentes estão
   dando atenção, qual questão está mais acessível na memória deles.} questão
-segundo as equações 2.3 e 2.4. Qual questão vão ``debater'' vai ser definido por
-meio de um sorteio sem viés. Se o agente tem uma lista indexada \(l\) de
-opiniões sorteamos um índice que determina qual a questão de debate, por meio de
-um sorteio onde cada índice tem igual probabilidade de ser selecionado. Dado que
-os agentes agora tem um conjunto de opiniões é plausível considerar que um
-conjunto de agentes tenham determinadas opiniões em que eles tenham maior
-certeza, identificação, ou centralidade para o seu perfil ideológico. Sendo
-assim na condição inicial alguma proporção de agentes tem uma questão no seu
-perfil \(I\) cujos \(\sigma\) associados são aproximadamente zero. Com isso buscamos
-analisar o papel de agentes ``inflexíveis'' na dinâmica populacional. A
-proporção de agentes intransigentes ou inflexíveis é assim um parâmetro da
-simulação.
+segundo as equações (3) e (4), apresentadas no Capítulo 3. Qual questão vão
+``debater'' vai ser definido por meio de um sorteio sem viés. Se o agente tem
+uma lista indexada \(l\) de opiniões sorteamos um índice que determina qual a
+questão de debate. Nesse sorteio cada índice tem igual probabilidade de ser
+selecionado. Dado que os agentes agora tem um conjunto de opiniões é plausível
+considerar que um conjunto de agentes tenham determinadas opiniões em que eles
+tenham maior certeza, identificação, ou centralidade para o seu perfil
+ideológico. Sendo assim na condição inicial alguma proporção de agentes tem uma
+questão no seu perfil \(I\) cujos \(\sigma\) associados são aproximadamente zero. Com
+isso buscamos analisar o papel de agentes ``inflexíveis'' na dinâmica
+populacional. A proporção de agentes intransigentes ou inflexíveis é assim um
+parâmetro da simulação.
 
 Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
 segundo um ruído. Do ponto de vista teórico, estamos considerando a
@@ -138,16 +139,16 @@ possibilidade de fatores não relacionados à influência social levarem o agent
 mudar seu posicionamento sobre questões \cite{flache2017, lorenz2017modeling}.
 Do ponto de vista metodológico, \citeonline{macy2015signal} argumenta que
 pequenas perturbações no comportamento local dos agentes podem levar a mudanças
-drásticas nas propriedades sistêmicas. Particularmente, consideram que adicionar
-ruído pode: eliminar equilíbrios frágeis, o que reduz o conjunto de resultados e
-tornando-os mais previsíveis; e embora aumente a heterogeneidade local isso pode
-acabar facilitando interações sociais que reduzem a diversidade global
+drásticas nas propriedades sistêmicas. Consideram que adicionar ruído pode:
+eliminar equilíbrios frágeis, o que reduz o conjunto de resultados e tornando-os
+mais previsíveis; e embora aumente a heterogeneidade local isso pode acabar
+facilitando interações sociais que reduzem a diversidade global
 \cite[p.323]{macy2015signal}. A nova opinião \(o(t+1)\) é igual a \(o(t) + r\),
 onde \(r\) é retirado de uma distribuição normal de média 0 e desvio padrão
-\(\rho\), um parâmetro da simulação. No caso em que o agente seja
-intransigente na questão ele não será sujeito ao efeito do ruído \footnote{Uma
-  outra opção seria que agentes intransigentes sejam \textit{menos} afetados
-  pelo ruído. Optamos pela mais simples.}
+\(\rho\), um parâmetro da simulação. No caso em que o agente é intransigente na
+questão ele não será sujeito ao efeito do ruído \footnote{Uma outra opção seria
+  que agentes intransigentes sejam \textit{menos} afetados pelo ruído. Optamos
+  pela mais simples.}
 
 
 \section{Parâmetros-Chave}
@@ -198,7 +199,7 @@ com valores\footnote{Paramêtros com valores \(\leq\) 1 ou geram distribuições
   centralizadas em ambos os extremos, dado que a média \(\mu\) é dada por
   \(\frac{\alpha}{\alpha + \beta}\), de forma que a média mínima é 0.011.} entre 1.1 e 100.
 
-Voltando aos atributos dos agentes, o\(\sigma^2\) é uma variável global de forma que
+Voltando aos atributos dos agentes, o \(\sigma^2\) é uma variável global de forma que
 \(\sigma_i^2 = \sigma^2\) ; têm também por atributo um posicionamento ideológico, ou ponto
 ideal, \(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um conjunto de vizinhos, o
 qual depende de qual a rede os agentes estão. Uma determinada proporção de
@@ -214,7 +215,7 @@ influência social é o seguinte: sorteamos um agente \(i\) da população. Ent�
 sorteamos um de seus vizinhos, o agente \(j\). Sorteamos uma das questões \(k \in
 (1,\ldots,n)\) de forma que temos os \((o_{i,k},o_{j,k})\) e
 \((\sigma_{i,k}^2,\sigma_{j,k}^2)\) correspondentes à questão. Então o agente \(i\)
-atualiza \(o_{i,k}\) segundo as equações 2.3 e 2.4. Essa regra é um parâmetro
+atualiza \(o_{i,k}\) segundo as equações (3) e (4). Essa regra é um parâmetro
 global da simulação, o que significa que a cada repetição todos os agentes
 atualizam suas crenças segundo a mesma regra. Ademais, temos o ruído. A cada
 iteração temos os efeito da influência social \textit{e} do ruído. Novamente
@@ -773,7 +774,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
     modelos de utilidade esperada na ciência política, por meio do relaxamento
     da separação típica entre preferência e crença, como discutido nos Capítulos
     2 e 3. Embora o modelo suscite a necessidade de validação empírica tanto de
-    comportamentos sistêmicos quanto de fundamentos comportamentais ele pode ser
+    padrões sistêmicos quanto de fundamentos comportamentais ele pode ser
     integrado a modelos futuros de comportamento eleitoral e competição
     partidária.
 
