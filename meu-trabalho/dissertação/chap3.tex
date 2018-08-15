@@ -111,9 +111,7 @@ sequencial (um agente atualiza por vez) \cite{wilensky2015introduction}. A
 dependência dos resultados em relação ao número de agentes e de crenças vai ser
 explorada. Estamos interessados nas alterações ao longo prazo (em termos de
 iterações) da configuração dos \(x\) sob diferentes combinações de parâmetros,
-tendo em vista as interações dos agentes \cite{acemoglu2011opinion}
-\footnote{Como vamos definir longo prazo e analisar o modelo é tema da seção
-  metodológica.}.
+tendo em vista as interações dos agentes \cite{acemoglu2011opinion}.
 
 Quando os agentes interagem o agente \(i\) atualiza sua opinião em
 alguma\footnote{ Uma outra implicação possível, a ser adicionada em trabalhos
@@ -205,26 +203,24 @@ ideal, \(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um conjunto de vizinhos,
 qual depende de qual a rede os agentes estão. Uma determinada proporção de
 agentes vai ter um \textit{único} \(\sigma_i = (1e-20 ) \approx 0.0 \). Quantos agentes são
 intransigentes em \textit{uma} questão é dado por \(\text{p\_intran}\). Em qual
-questão vão ser intransigentes é aleatório, sorteado de seu \(I\).
+questão vão ser intransigentes é aleatório, sorteado de seus perfis ideológicos (\(I\)).
 
 Uma iteração da simulação, a passagem de \(t\) para \(t+1\), é dada pela
 aplicação de dois procedimentos: a atualização da opinião via influência social
-e a atualização aleatória. Uma repetição da simulação é a aplicação iterativa
-desses dois procedimentos ao longo de um tempo \(t \). O procedimento de
-influência social é o seguinte: sorteamos um agente \(i\) da população. Então
-sorteamos um de seus vizinhos, o agente \(j\). Sorteamos uma das questões \(k \in
-(1,\ldots,n)\) de forma que temos os \((o_{i,k},o_{j,k})\) e
-\((\sigma_{i,k}^2,\sigma_{j,k}^2)\) correspondentes à questão. Então o agente \(i\)
-atualiza \(o_{i,k}\) segundo as equações (3) e (4). Essa regra é um parâmetro
-global da simulação, o que significa que a cada repetição todos os agentes
-atualizam suas crenças segundo a mesma regra. Ademais, temos o ruído. A cada
-iteração temos os efeito da influência social \textit{e} do ruído. Novamente
-escolhemos um agente da população. Sorteamos uma questão de forma que temos
-\(o\) e \(\sigma^2\) correspondentes. Se o agente é intransigente naquela questão
-então ele não muda de opinião. Sorteamos um \(r\) retirado de uma distribuição
-normal \(N(0,\rho)\) e atualizamos \(o\) de forma que \(o(t+1) = o(t) + r\). Os
-\(x_i\), o objeto de interesse de análise, são atualizados sempre que ocorrerem
-mudanças nas crenças dos agentes.
+e a atualização aleatória. O procedimento de influência social é o seguinte:
+sorteamos um agente \(i\) da população. Então sorteamos um de seus
+vizinhos,agente \(j\). Sorteamos uma das questões \(k \in (1,\ldots,n)\) de forma que
+temos os \((o_{i,k},o_{j,k})\) e \((\sigma_{i,k}^2,\sigma_{j,k}^2)\) correspondentes à
+questão. Então o agente \(i\) atualiza \(o_{i,k}\) segundo as equações (3) e
+(4). Essa regra é uma característica global da simulação, o que significa que a
+cada repetição todos os agentes atualizam suas crenças segundo a mesma regra.
+Ademais, temos o ruído. A cada iteração temos os efeito da influência social
+\textit{e} do ruído. Novamente escolhemos um agente da população. Sorteamos uma
+questão de forma que temos \(o\) e \(\sigma^2\) correspondentes. Se o agente é
+intransigente naquela questão então ele não muda de opinião. Sorteamos um \(r\)
+retirado de uma distribuição normal \(N(0,\rho)\) e atualizamos \(o\) de forma que
+\(o(t+1) = o(t) + r\). Os \(x_i\), o objeto de interesse de análise, são
+atualizados sempre que ocorrerem mudanças nas crenças dos agentes.
 
 \section{Metodologia de Análise}
 
@@ -274,8 +270,8 @@ de interpretar os resultados \cite{railsback2012agent}.
     o número de opiniões finais distintas após as iterações, o que nos daria uma
     medida de ``cobertura'' do sistema: uma maior cobertura equivale a um número
     maior de posicionamentos distintos \cite{bramson2016disambiguation}. Na
-    \ref{fig:coverage} a distribuição (b) tem maior cobertura dado que uma maior
-    quantidade de espaço é preenchido.
+    Figura \ref{fig:coverage} a distribuição (b) tem maior cobertura dado que
+    uma maior quantidade de espaço é preenchido.
     
     \begin{figure}[H]
       \centering
@@ -711,8 +707,6 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
   tornar mais robusto o efeito de concentração ditado por \(\sigma\), o parâmetro de
   maior impacto.
 
-
-    
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -738,7 +732,6 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
       \source{ Elaborada pelo autor.}
       \label{fig:tseries4}
     \end{figure}
-
 
     À guisa de conclusão, o modelo pode ser pensado como uma extensão do modelo
     de \citeonline{martins2009bayesian}, adicionando agentes com opiniões em
