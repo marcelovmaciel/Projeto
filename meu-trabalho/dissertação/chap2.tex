@@ -1,10 +1,9 @@
 Nesse capítulo fazemos uma revisão bibliográfica da área de Dinâmicas de
-Opinião (OD). Definimos a área, o
-que são modelos baseados em agente e quais os constituintes típicos de um modelo
-de OD. Depois apresentamos modelos que inspiraram uma gama de modificações e
-extensões. Na seção seguinte discutimos algumas questões teóricas referentes à
-atualização da opinião dos agentes e concluímos o capítulo com uma discussão de
-nossa abordagem.
+Opinião. Definimos a área, o que são modelos baseados em agente e quais os
+constituintes típicos de um modelo de OD. Depois apresentamos modelos que
+inspiraram uma gama de modificações e extensões. Na seção seguinte discutimos
+algumas questões teóricas referentes à atualização da opinião dos agentes e
+concluímos o capítulo com uma discussão de nossa abordagem.
 
 
 \section{Definição da Área}
@@ -42,13 +41,22 @@ agentes, seus atributos, e possivelmente um ambiente são definidos
 algoritmicamente \cite{sayama2015introduction} \footnote{ ABMs costumam ser
   implementados como simulações num computador, embora existam modelos baseados
   em agentes que historicamente não tenham sido diretamente em computadores,
-  como os modelos de Schelling e de Sakoda \cite{hegselmann2017thomas}.}. Segundo
-\citeonline{de2014agent}, num ABM existem três noções primitivas: os
+  como os modelos de Schelling e de Sakoda \cite{hegselmann2017thomas}.}.
+Segundo \citeonline{de2014agent}, num ABM existem três noções primitivas: os
 \textit{atributos}, os \textit{estados} e as \textit{configurações}. Os
 atributos dos agentes são o conjunto de propriedades que cada cada agente \(i\)
 tem. Os estados dos agentes são os valores de seus atributos num determinado
 tempo \(t\). Já as configurações são as coleções de todos os estados dos agentes
-num modelo.
+num modelo. Outros conceitos importantes em ABM, particularmente para sua
+análise, são os de execução, repetição e iteração. Uma iteração é a aplicação
+dos procedimentos do modelo, após a sua inicialização. O número de iterações de
+uma repetição da simulação define o seu ``comprimento''. Uma repetição é a
+execução do modelo sob uma semente aleatória. Por fim a execução (\textit{run})
+do modelo é quando o rodamos para um conjunto fixo de parâmetros de
+\textit{input}, para uma parametrização \cite{laver2011party}. A análise de ABMs
+costuma envolver a repetição de diferentes execuções (diferentes
+parametrizações) sob um número \(t\) de iterações\footnote{Como isso é feito no
+  presente trabalho é discutido no Capítulo 4.}
 
 ABM é uma técnica flexível: podemos construir modelos metafóricos com
 objetivo de auxiliar o desenvolvimento de intuição segundo a elucidação de
