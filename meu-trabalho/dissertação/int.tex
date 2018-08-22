@@ -25,23 +25,50 @@ condicionadas pelas crenças e opiniões dos agentes. É plausível que haja tan
 um fundamento genético-evolucionário para nossas crenças e orientações, quanto
 uma fundamentação em mecanismos relacionados a sistemas de herança e
 aprendizados sociais \cite{jablonka2014evolution, fowler2008biology,
-fowler2013defense}. Um indivíduo ao tomar uma decisão não baseia-se unicamente
+  fowler2013defense}. Um indivíduo ao tomar uma decisão não baseia-se unicamente
 na informação e crença averiguadas individualmente, mas também pode considerar
 as crenças de outros agentes conectados a ele socialmente e informacionalmente
 \cite{gintis2016individuality}. Em política isso significa que as crenças dos
 agentes são uma combinação de sua crença ``idiossincrática'' e da combinação de
 mensagens/sinais que recebem dos seus pares e da mídia
-\cite{barabas2004deliberation,ryan2011social}.
+\cite{barabas2004deliberation,ryan2011social}. A ``cognição em rede''
+\cite{gintis2016individuality} dos agentes e essas duas fontes de informação,
+pares e mídia \footnote{O trabalho trata unicamente dos pares como fonte de
+  informação. Modelar a influência da mídia é tema para trabalhos futuros.},
+fornecem assim os dois mecanismos mínimos para micro-fundamentar abordagens
+generativas para a Opinião Pública.
 
-A ``cognição em rede'' \cite{gintis2016individuality} dos agentes e essas duas
-fontes de informação, pares e mídia \footnote{O trabalho trata unicamente dos
-pares como fonte de informação. Modelar a influência da mídia é tema para
-trabalhos futuros.}, fornecem assim os dois mecanismos mínimos para
-micro-fundamentar abordagens generativas para a Opinião Pública. Este trabalho,
-desta forma, tem por \textbf{objetivo geral} explorar, por meio de um modelo
-baseado em agentes de influência social, a geração de distribuições de
-preferências \footnote{A diferença entre crenças, preferências e opiniões será
-discutida nos Capítulo 2 e 3.} análogas a distribuições empíricas.
+Tendo em vista esses dois mecanismos, este trabalho, tem por \textbf{objetivo
+  geral} explorar, por meio de um modelo baseado em agentes de influência
+social, a geração de distribuições de preferências \footnote{A diferença entre
+  crenças, preferências e opiniões será discutida nos Capítulo 2 e 3.} análogas
+a distribuições empíricas. O fazemos por meio da adaptação do modelo de
+\citeonline{martins2009bayesian}. Esse modelo em particular é escolhido por
+estar no meio do espectro entre modelos complicados e simples demais do ponto de
+vista cognitivo, além de sua influência bayesiana ser coerente com o
+\textit{framework} do ator racional\footnote{Essas questões são discutidas no
+  Capítulo 3.}. As modificações foram as seguintes: primeiramente, seguimos a
+recomendação metodológica de \citeonline{macy2015signal} e incluimos ruído na
+dinâmica do modelo; segundo, os posicionamentos dos agentes no espectro político
+são derivados dos posicionamentos deles em várias questões, o que é mais
+consistente com o fato de que alternativas preferidas por agentes em contextos
+de massa são derivadas das atitudes deles em diferentes questões; ademais,
+adicionamos agentes intransigentes à população, o que é uma variante,
+possibilitada pelo modelo de \citeonline{martins2009bayesian}, da verificação do
+papel de extremistas\footnote{ Os extremistas são inseridos nos modelos com o
+  intuito de investigar quais propriedades de agentes e de suas interações levam
+  ao consenso, à populações isoladas ou polarizadas, dado que isso é tema
+  constante de debate e reflexão política e um dos problemas de pesquisa
+  centrais para a área de Dinâmicas de Opinião, \cite{fiorina2005culture,
+    pulick2016, bramson2016disambiguation}.} na dinâmica de opinião
+\cite{deffuant2002can, flache2017}. O modelo foi analisado por meio da
+combinação de análise de sensibilidade, histogramas e séries temporais de
+medidas do sistema e gráficos de dispersão, com o intuito de verificar em que
+medida essas modificações levam a mudanças de comportamento em contraste ao
+modelo original e quais os efeitos dos atributos dos agentes e parâmetros do
+modelo sobre a opinião populacional, mais precisamente sobre a dispersão e
+cobertura das opiniões\footnote{Ambas medidas de
+  polarização discutidas no Capítulo 4.}.
 
 Além desta Introdução, o trabalho é estruturado da seguinte forma: no Capítulo 2
 caracterizamos e justificamos o problema do trabalho. Para tal fazemos uma
