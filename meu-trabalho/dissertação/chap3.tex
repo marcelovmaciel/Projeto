@@ -1,4 +1,4 @@
-\section{Entidades e Processos}
+\section{Entidades e processos}
 
 Dado o que foi discutido nos Capítulos 1 e 2 o trabalho está fundamentado no
 diálogo entre a Teoria Política Espacial e a área de Dinâmicas de Opinião. Não
@@ -93,9 +93,9 @@ centradas em diferentes pontos do espaço, como ilustrado na Figura
 
 \begin{figure}[H]
   \centering
+\caption{Distribuições Beta para 50 agentes}
   \includegraphics[width=\textwidth]{ims/beta100.png}
-  \caption{Distribuições Beta para 50 agentes}
-  \source{ Elaborada pelo autor.}
+   \source{Marcelo Veloso Maciel, 2018.}
   \label{fig:betas100}
 \end{figure}
 
@@ -183,7 +183,7 @@ seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
  
 \end{itemize}
 
-\section{Inicialização e Iteração}
+\section{Inicialização e iteração}
 
 A inicialização da simulação depende dos parâmetros-chave apresentados. Na
 condição inicial temos uma população de \(N\) agentes, que tem por atributos: um
@@ -240,6 +240,9 @@ de interpretar os resultados \cite{railsback2012agent}.
 
 \begin{figure}[h]
     \centering
+      \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
+        Parametrização: \(  N = 500, p = 0.9, \rho =  1e-5, n\_issues = 1 , p\_intra
+        n= 0.0 \)}
     \begin{subfigure}[b]{0.49\textwidth}
       \includegraphics[width=\textwidth]{ims/timeseries1.png}
       \caption{\( \sigma = 0.1\) }
@@ -248,10 +251,7 @@ de interpretar os resultados \cite{railsback2012agent}.
       \includegraphics[width=\textwidth]{ims/timeseries2.png}
        \caption{\(\sigma = 0.02\) }
       \end{subfigure}
-      \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
-        Parametrização: \(  N = 500, p = 0.9, \rho =  1e-5, n\_issues = 1 , p\_intra
-        n= 0.0 \)}
-      \source{ Elaborada pelo autor.}
+      \source{Marcelo Veloso Maciel, 2018.}
       \label{fig:tseries1}
     \end{figure}
     
@@ -274,8 +274,8 @@ de interpretar os resultados \cite{railsback2012agent}.
     
     \begin{figure}[H]
       \centering
-      \includegraphics[width =12cm]{ims/coverage.png}
       \caption{Distribuições com coberturas distintas}
+      \includegraphics[width =12cm]{ims/coverage.png}
       \source{\citeonline{bramson2016disambiguation}}
       \label{fig:coverage}
     \end{figure}
@@ -316,10 +316,10 @@ de interpretar os resultados \cite{railsback2012agent}.
     
   \begin{figure}[H]
     \centering
-    \includegraphics[width =10cm]{ims/ts5.png}
     \caption{Parametrização equivalente a Figura \ref{fig:tseries1} (b),
       mas com \(\rho = 0.001\).}
-    \source{ Elaborada pelo autor.}
+    \includegraphics[width =10cm]{ims/ts5.png}
+    \source{Marcelo Veloso Maciel, 2018.}
     \label{fig:nonnullrho}
   \end{figure}
 
@@ -430,6 +430,8 @@ ao fim das simulações para cada parametrização.
 
 \begin{figure}[h]
     \centering
+      \caption{Desvio padrão dos pontos ideais das populações para cada
+        parametrização}
     \begin{subfigure}[b]{0.49\textwidth}
       \includegraphics[width=\textwidth]{ims/diststdinit.png}
       \caption{Condição inicial}
@@ -438,9 +440,7 @@ ao fim das simulações para cada parametrização.
       \includegraphics[width=\textwidth]{ims/distY.png}
        \caption{Após 1.000.000 iterações}
       \end{subfigure}
-      \caption{Desvio padrão dos pontos ideais das populações para cada
-        parametrização}
-      \source{ Elaborada pelo autor.}
+      \source{Marcelo Veloso Maciel, 2018.}
       \label{fig:hists1}
     \end{figure}
     
@@ -474,6 +474,7 @@ ao fim das simulações para cada parametrização.
 
 \begin{figure}[H]
     \centering
+    \caption{Gráfico de dispersão para 70.000 parametrizações.}
     \begin{subfigure}[b]{0.49\textwidth}
         \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingon_issues.png}
     \end{subfigure}
@@ -494,9 +495,8 @@ ao fim das simulações para cada parametrização.
                 \begin{subfigure}[b]{0.49\textwidth}
             \includegraphics[width=\textwidth]{ims/mutoregressions/regressionmutatingop_intran.png}
     \end{subfigure}
-    \caption{Gráfico de dispersão para 70.000 parametrizações.}
     \label{fig:scatter1}
-    \source{ Elaborada pelo autor.}
+    \source{Marcelo Veloso Maciel, 2018.}
 \end{figure}
 
 O parâmetro \(\rho\), o ruído, por sua vez, tem uma relação positiva com a
@@ -508,9 +508,9 @@ claro na Figura \ref{fig:sobol1}:
 
 \begin{figure}[H]
   \centering
-  \includegraphics{ims/barplotmuto5k.png}
   \caption{Índices de Sobol de sensibilidade}
-  \source{ Elaborada pelo autor.}
+  \includegraphics{ims/barplotmuto5k.png}
+  \source{Marcelo Veloso Maciel, 2018.}
   \label{fig:sobol1}
 \end{figure}
 
@@ -535,6 +535,9 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
 
 \begin{figure}[H]
     \centering
+      \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
+        Parametrização: \(p\_intran = 0.15, \text{ } N = 500,  \text{ }   p =
+        0.9,  \text{ }  \rho = 1e-5,  \text{ }  n\_issues = 1 \)}
     \begin{subfigure}[b]{0.49\textwidth}
       \includegraphics[width=\textwidth]{ims/timeseries3.png}
       \caption{\( \sigma = 0.1\) }
@@ -543,10 +546,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
       \includegraphics[width=\textwidth]{ims/timeseries4.png}
        \caption{\(\sigma = 0.02\) }
       \end{subfigure}
-      \caption{Evolução dos pontos ideais dos agentes ao longo de duas realizações.
-        Parametrização: \(p\_intran = 0.15, \text{ } N = 500,  \text{ }   p =
-        0.9,  \text{ }  \rho = 1e-5,  \text{ }  n\_issues = 1 \)}
-      \source{ Elaborada pelo autor.}
+      \source{Marcelo Veloso Maciel, 2018.}
       \label{fig:tseries2}
     \end{figure}
     
@@ -574,7 +574,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
       intransigentes nos extremos. Parametrização: \( \sigma = 0.1, \text{ }
       p\_intran = 0.15, \text{ } N = 500, \text{ } p = 0.9, \text{ } \rho = 1e-5,
       \text{ } n\_issues = 1 \)}
-    \source{ Elaborada pelo autor.}
+    \source{Marcelo Veloso Maciel, 2018.}
     \label{fig:tseries3}
   \end{figure}
 
@@ -590,6 +590,9 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
 
     \begin{figure}[H]
     \centering
+     \caption{ Intransigentes com \(\sigma = 0.01\). Parametrização global: \( \sigma =
+       0.1, \text{ } p\_intran = 0.15, \text{ } N = 500, \text{ } p = 0.9,
+       \text{ } \rho = 1e-5, \text{ } n\_issues = 1 \)}
     \begin{subfigure}[b]{0.49\textwidth}
       \includegraphics[width=\textwidth]{ims/n1-sigma1.png}
       \caption{Intransigentes ideologicamente distribuídos.}
@@ -599,10 +602,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
        \caption{Itransigentes localizados nos extremos.}
      \end{subfigure}
 
-     \caption{ Intransigentes com \(\sigma = 0.01\). Parametrização global: \( \sigma =
-       0.1, \text{ } p\_intran = 0.15, \text{ } N = 500, \text{ } p = 0.9,
-       \text{ } \rho = 1e-5, \text{ } n\_issues = 1 \)}
-    \source{ Elaborada pelo autor.}
+    \source{Marcelo Veloso Maciel, 2018.}
     \label{fig:newintrans}
      \end{figure}
   
@@ -626,6 +626,9 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
      
   \begin{figure}[H]
     \centering
+     \caption{ Intransigentes com \(\sigma = 0.01\). Parametrização global: \( \sigma =
+       0.1, \text{ } p\_intran = 0.15, \text{ } p = 0.9,
+       \text{ } \rho = 1e-5, \text{ } n\_issues = 1 \)}
     \begin{subfigure}[b]{0.49\textwidth}
       \includegraphics[width=\textwidth]{ims/sigma01_pop200.png}
       \caption{N = 200}
@@ -644,10 +647,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
        \caption{N = 1200}
      \end{subfigure}
 
-     \caption{ Intransigentes com \(\sigma = 0.01\). Parametrização global: \( \sigma =
-       0.1, \text{ } p\_intran = 0.15, \text{ } p = 0.9,
-       \text{ } \rho = 1e-5, \text{ } n\_issues = 1 \)}
-    \source{ Elaborada pelo autor.}
+    \source{Marcelo Veloso Maciel, 2018.}
     \label{fig:newintrans2}
      \end{figure}
   
@@ -672,10 +672,10 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
     
   \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.7]{ims/boxes4.png}
     \caption{Número de pontos ideais finais para diferentes valores de \(\sigma\).
       Parametrização: \(\rho =1e-5, p\_intran = 0.0, p = 0.9, N =500\)}
-    \source{Elaborada pelo autor.}
+    \includegraphics[scale=0.7]{ims/boxes4.png}
+     \source{Marcelo Veloso Maciel, 2018.}
     \label{fig:box4}
   \end{figure}
   
@@ -707,7 +707,10 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
   maior impacto.
 
 \begin{figure}[H]
-    \centering
+  \centering
+  \caption{Evolução dos pontos ideais quando há ruído e agentes intransigentes.
+        Parametrização: \(p\_intran = 0.15, \text{ } N = 500,  \text{ }   p =
+        0.9,  \text{ }  \rho = 0.05\)}
     \begin{subfigure}[b]{0.49\textwidth}
       \includegraphics[width=\textwidth]{ims/n1-sigma01.png}
       \caption{\( n\_issues = 1,  \sigma = 0.1\) }
@@ -725,10 +728,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
        \includegraphics[width=\textwidth]{ims/n7-sigma002.png}
        \caption{\(n\_issues = 7, \sigma = 0.02\)}
      \end{subfigure}
-      \caption{Evolução dos pontos ideais quando há ruído e agentes intransigentes.
-        Parametrização: \(p\_intran = 0.15, \text{ } N = 500,  \text{ }   p =
-        0.9,  \text{ }  \rho = 0.05\)}
-      \source{ Elaborada pelo autor.}
+      \source{Marcelo Veloso Maciel, 2018.}
       \label{fig:tseries4}
     \end{figure}
 

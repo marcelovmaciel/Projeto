@@ -94,13 +94,16 @@
 % Pacotes de citações
 % ---
 \usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
-\usepackage[alf,abnt-etal-list=0,abnt-etal-text=it]{abntex2cite}	% Citações padrão ABNT
+\usepackage[alf,abnt-etal-list=0,abnt-etal-text=it, abnt-show-options=list]{abntex2cite}	% Citações padrão ABNT
 \usepackage{verbatim} \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{soul}
 % --- 
 % CONFIGURAÇÕES DE PACOTES
 % --- 
 
+
+
+\AtBeginDocument{\renewcommand{\bibname}{Referências}}
 % ---
 % Configurações do pacote backref
 % Usado sem a opção hyperpageref de backref
@@ -149,7 +152,7 @@
 % Ele deve ser idêntico ao da versão original.
 %
 %-------------------------------------------------------------------------
-\titulo{Emergência de Distribuições de Posicionamentos Ideológicos: Uma abordagem
+\titulo{Emergência de distribuições de posicionamentos ideológicos: uma abordagem
   computacional}
 
 %-------------------------------------------------------------------------
@@ -570,8 +573,8 @@ Instituição: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\
 %
 %-------------------------------------------------------------------------
 \begin{flushleft}
-MACIEL, Marcelo Veloso. \textbf{Emergência de Distribuições de Posicionamentos
-  Ideológicos}: Uma abordagem computacional. \imprimirdata. \pageref{LastPage} f. Dissertação (Mestrado em Ciências) – Escola de Artes, Ciências e Humanidades, Universidade de São Paulo, São Paulo, 2018.
+MACIEL, Marcelo Veloso. \textbf{Emergência de distribuições de posicionamentos
+  ideológicos}: uma abordagem computacional. \imprimirdata. \pageref{LastPage} f. Dissertação (Mestrado em Ciências) – Escola de Artes, Ciências e Humanidades, Universidade de São Paulo, São Paulo, 2018.
 \end{flushleft}
 
 As democracias estão fundamentadas na conexão entre atitudes dos cidadãos e
@@ -581,9 +584,9 @@ como está distribuída a opinião pública. Contudo, modelos explícitos que ge
 essas distribuições, ao invés de pressupô-las, ainda são escassos. O presente
 trabalho gera estas distribuições por meio de um modelo computacional, baseado
 em agentes, de influência social. Nele os agentes interagem em díades e
-tornam-se mais próximos de seus vizinhos em alguma questão a depender da
+tornam-se mais próximos dos outros agentes em alguma questão a depender da
 distância de seus posicionamentos ideológicos, da incerteza dos agentes e do
-quanto confiam na opinião do vizinho. Por meio da combinação de análise de
+quanto confiam na opinião do outro. Por meio da combinação de análise de
 sensibilidade, histogramas e séries temporais de medidas do sistema e gráficos
 de dispersão, encontramos que o quão incertos são os agentes, o número de
 questões subjacentes ao seu posicionamento e o quanto estão sujeitos a mudanças
@@ -630,8 +633,8 @@ Palavras-chaves: Opinião Pública. Dinâmicas de Opinião. Modelo Baseado em Ag
 %
 %-------------------------------------------------------------------------
 \begin{flushleft} 
-MACIEL, Marcelo Veloso. \textbf{Emergence of Distributions of Ideological
-  Positioning}: A computational approach. \imprimirdata. \pageref{LastPage} p. Dissertation (Master of Science) – School of Arts, Sciences and Humanities, University of São Paulo, São Paulo, 2018. 
+MACIEL, Marcelo Veloso. \textbf{Emergence of distributions of ideological
+  positioning}: a computational approach. \imprimirdata. \pageref{LastPage} p. Dissertation (Master of Science) – School of Arts, Sciences and Humanities, University of São Paulo, São Paulo, 2018. 
 \end{flushleft}
 
 Democracies are based on the connection between citizens' attitudes and policies.
@@ -640,9 +643,9 @@ politicians and parties for the support and vote of the population depends on
 how the public opinion is distributed. However, explicit models that generate,
 instead of presupposing, them are still rare. This work generates those
 distributions through a computational, agent-based, model of social influence.
-In it the agents interact in pairs and become more similar to their neighbors in
+In it the agents interact in pairs and become more similar to the others in
 some issue conditional on their ideological positioning, their uncertainty and
-on how much they trust their neighbor's opinion. Through a combination of
+on how much they trust another agent's opinion. Through a combination of
 sensitivity analysis, histograms and time series of the system's measures and
 scatterplots, we find that how uncertain the agents are, the number of issues
 underneath their positioning and how much they're subject to random attitude
@@ -744,7 +747,7 @@ Keywords: Public Opinion. Opinion Dynamics. Agent-Based Model. Politics.
 \chapter[Introdução]{Introdução}
 	    %\addcontentsline{toc}{chapter}{Introdução}
       \input{int.tex}
-\chapter{Teoria Política Formal e Distribuição de Preferências}
+\chapter{Teoria Política Formal e distribuição de preferências}
 \input{chap1.tex}
 
 \chapter{Dinâmicas de Opinião}
@@ -772,7 +775,7 @@ Keywords: Public Opinion. Opinion Dynamics. Agent-Based Model. Politics.
 % Referências bibliográficas
 % ----------------------------------------------------------
 
-
+\bibliographystyle{abnt-alf}
 \bibliography{master-bib.bib}
 
 % ----------------------------------------------------------
@@ -813,7 +816,7 @@ Keywords: Public Opinion. Opinion Dynamics. Agent-Based Model. Politics.
 
   %\partapendices
 
-  \chapter{Definições Formais Complementares}
+  \chapter{Definições formais complementares}
   \input{appendix.tex}
 \chapter{Dos dados}
 
@@ -824,7 +827,7 @@ Keywords: Public Opinion. Opinion Dynamics. Agent-Based Model. Politics.
 \input{appendix2.tex}
 
 
-\chapter{Gráficos e Tabelas Complementares}
+\chapter{Gráficos e tabelas complementares}
 \input{appendix3.tex}
 
 
