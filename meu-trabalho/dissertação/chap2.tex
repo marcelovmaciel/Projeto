@@ -36,13 +36,13 @@ considerar a área como um subgrupo da Sociofísica
 
 \section{Modelagem Baseada em Agentes e Dinâmicas de Opinião}
 
-ABMs podem ser definidos como modelos que envolvem agentes discretos, onde
-agentes, seus atributos, e possivelmente um ambiente são definidos
-algoritmicamente \cite{sayama2015introduction} \footnote{ ABMs costumam ser
-  implementados como simulações num computador, embora existam modelos baseados
-  em agentes que historicamente não tenham sido diretamente em computadores,
-  como os modelos de Schelling e de Sakoda \cite{hegselmann2017thomas}.}.
-Segundo \citeonline{de2014agent}, num ABM existem três noções primitivas: os
+ABMs podem ser definidos como modelos que envolvem agentes discretos nos quais
+estes seus atributos e possivelmente um ambiente são definidos algoritmicamente
+\cite{sayama2015introduction}\footnote{ ABMs costumam ser implementados como
+  simulações num computador, embora existam modelos baseados em agentes que
+  historicamente não tenham sido diretamente em computadores, como os modelos de
+  Schelling e de Sakoda \cite{hegselmann2017thomas}.}. Segundo
+\citeonline{de2014agent}, num ABM existem três noções primitivas: os
 \textit{atributos}, os \textit{estados} e as \textit{configurações}. Os
 atributos dos agentes são o conjunto de propriedades que cada cada agente \(i\)
 tem. Os estados dos agentes são os valores de seus atributos num determinado
@@ -58,12 +58,12 @@ costuma envolver a repetição de diferentes execuções (diferentes
 parametrizações) sob um número \(t\) de iterações\footnote{Como isso é feito no
   presente trabalho é discutido no Capítulo 4.}
 
-ABM é uma técnica flexível: podemos construir modelos metafóricos com
-objetivo de auxiliar o desenvolvimento de intuição segundo a elucidação de
-princípios; ou de alta-fidelidade, com dezenas de atributos e um
-ambiente incluindo casas, escolas, sistemas de transporte, dentre outros, com o
-objetivo avaliar contrafactuais próximos a determinados casos concretos
-\cite{de2014agent, epstein2006generative}.
+ABM é uma técnica flexível: podemos construir modelos metafóricos com objetivo
+de auxiliar o desenvolvimento de intuição segundo a elucidação de princípios; ou
+de alta-fidelidade, com dezenas de atributos e um ambiente incluindo casas,
+escolas, sistemas de transporte, entre outros, com o objetivo de avaliar
+contrafactuais próximos a determinados casos concretos \cite{de2014agent,
+  epstein2006generative}.
 
 
 Segundo \citeonline[p.430-1]{sayama2015introduction}, ABMs têm as seguintes
@@ -75,19 +75,19 @@ propriedades típicas:
 \item agentes podem interagir segundo regras pré-definidas;
 \item agentes podem ser capazes de aprender e adaptar-se;
 \item agentes podem interagir com outros agentes;
-\item AMBs muitas vezes não tem supervisores/controladores centrais;
+\item AMBs muitas vezes não têm supervisores/controladores centrais;
   \item ABMs podem produzir comportamentos coletivos não triviais.
   \end{itemize}
 
   Tendo em vista essas propriedades, ABMs são particularmente úteis para o
-  estudo de sistemas complexos \cite{wilensky2015introduction}, tendo em vista:
+  estudo de sistemas complexos \cite{wilensky2015introduction}, tendo em vista
   sua capacidade de incluir redes e espaço; seu potencial de ligar múltiplos
   domínios e de incluir uma maior heterogeneidade de agentes; além de seu foco
   na robustez de resultados \cite{de2014agent,wilensky2015introduction}. ABMs
   são assim capazes de conectar como propriedades macro surgem, emergem, a
   partir das regras de interação e atributos dados a unidades discretas, os
-  agentes \cite{north2007managing}. Essas propriedades são ditas emergentes na
-  medida em que caracterizam o sistema e não seus componentes. O conceito,
+  agentes \cite{north2007managing}. Essas propriedades são ditas emergentes à
+  medida que caracterizam o sistema e não seus componentes. O conceito,
   modernamente, é relativo tanto ao quadro conceitual quanto às expectativas dos
   pesquisadores sobre quais propriedades sistêmicas poderíamos deduzir a partir
   das propriedades das partes \cite{epstein2006generative}. Propriedades
@@ -95,9 +95,9 @@ propriedades típicas:
   mas que não seriam a priori dedutíveis unicamente das propriedades delas. Em
   sistemas onde há emergência a conexão entre as propriedades sistêmicas e das
   partes é feita pela compreensão do papel da \textit{interação} entre as
-  partes. Em sua forma mais simples propriedades emergentes condicionam
+  partes. Em sua forma mais simples, propriedades emergentes condicionam
   indiretamente o comportamento dos agentes. Se os agentes tiverem consciência
-  dessa propriedade sistêmica temos, contudo, um \textit{feedback} direto, ao
+  dessa propriedade sistêmica temos, portanto, um \textit{feedback} direto, ao
   invés de indireto, entre agentes e propriedades sistêmicas, o que
   \citeonline{squazzoni2008micro} chama de emergência de segunda ordem. No nosso
   trabalho lidamos somente com \textit{feedbacks} indiretos, ou emergência de
@@ -108,12 +108,12 @@ propriedades típicas:
   OD \cite{castellano2012social,flache2017}.
 
   
-  Que elementos constituem os modelos de OD ? Podemos delimitar um modelo de
+  Que elementos constituem os modelos de OD? Podemos delimitar um modelo de
   dinâmicas de opinião da seguinte forma: agentes conectados possuem opiniões
   como variáveis e interagem segundo regras que explicam a mudança ou manutenção
   das opiniões individuais sob efeito da interação com outros agentes ou outras
   fontes (como a mídia) \cite{sirbu2017opinion}. Os agentes num modelo em OD têm
-  então: uma \textit{opinião}; uma \textit{estrutura de interação}; e uma
+  então uma \textit{opinião}, uma \textit{estrutura de interação} e uma
   \textit{regra de atualização} de sua opinião.
 
   A opinião dos agentes pode ser representada como uma variável ou conjunto de
@@ -124,7 +124,7 @@ propriedades típicas:
   Podemos dividir a estrutura de interação numa \textit{topologia} de interação
   e numa \textit{regra de interação}. A topologia de interação define quais
   agentes estão conectados com \(i\), e podem, potencialmente, afetá-lo. A regra
-  de interação define como \(i\) interage com os agentes desse conjunto(seus
+  de interação define como \(i\) interage com os agentes desse conjunto (seus
   ``vizinhos''). Em OD as regras de interação definem qual a relação que o
   agente \(i\) tem com seus vizinhos: se interage com um vizinho por vez, uma
   interação em díade, ou com algum subconjunto de seus vizinhos, uma interação
@@ -143,21 +143,21 @@ propriedades típicas:
   modelo de Ising é um modelo paradigmático da Mecânica Estatística, usado para
   representar o processo de magnetização de materiais\footnote{O modelo de Ising
     é um modelo paradigmático de sistemas com muitas partes interagindo levando
-    à uma transição de fase, a uma mudança de comportamento qualitativo do
+    a uma transição de fase, a uma mudança de comportamento qualitativo do
     sistema. Sendo assim, é aplicado em vários contextos além da sua concepção
-    original, como mercados financeiros, sistemas ecológicos, e dinâmicas de
+    original, como mercados financeiros, sistemas ecológicos e dinâmicas de
     opinião \cite{sole2011phase}}. Nestas adaptações, variáveis discretas,
   \textit{spins}, com valores $s = \pm 1$, estão localizadas num grafo e têm uma
-  tendência a alinhar-se com seus vizinhos: se a maioria tem \(s = + 1 \) o spin
-  muda seu valor para \(+1\); se a maioria tem \(s = -1 \) o spin muda seu valor
-  para \(-1\); se houver empate o spin muda seu valor com probabilidade
+  tendência a alinhar-se com seus vizinhos. Se a maioria tem \(s = + 1 \), o
+  spin muda seu valor para \(+1\); se a maioria tem \(s = -1 \), o spin muda seu
+  valor para \(-1\); se houver empate, o spin muda seu valor com probabilidade
   \(\frac{1}{2}\) \cite{castellano2012social,sole2011phase}. No contexto de OD é
   o seguinte: o spin é um agente; sua opinião pode ter os valores \(+1\) ou
   \(-1\); um agente interage com todos seus vizinhos por passo de tempo; ele
   assume a opinião da maioria deles.
 
-  Um modelo parecido com o anterior é o ``Voter'' \cite{holley1975ergodic}. Neste
-  cada agente tem uma opinião binária \(\pm\) 1 ; e a cada passo um agente é
+  Um modelo parecido com o anterior é o \textit{Voter} \cite{holley1975ergodic}. Neste
+  cada agente tem uma opinião binária \(\pm\) 1; e a cada passo um agente é
   selecionado aleatoriamente e assume a opinião de algum de seus vizinhos.
   Difere do modelo anterior, portanto, na regra de interação (díade ao invés do
   grupo inteiro) e de atualização (assume o valor do vizinho ao invés da maioria
@@ -166,20 +166,20 @@ propriedades típicas:
   Nos modelos inspirados em Ising e no modelo ``Voter'' a direção de influência
   é dos vizinhos para o agente enquanto nos dois modelos seguintes ela é dos
   agentes para os vizinhos \cite{stauffer2003convince}. No modelo da Regra de
-  Maioria a interação é : a cada unidade de tempo um grupo de tamanho \textit{r}
+  Maioria a interação é: a cada unidade de tempo, um grupo de tamanho \textit{r}
   é selecionado aleatoriamente e todos os agentes mudam sua opinião para a
   opinião da maioria do grupo \cite{galam1990social,galam2012sociophysics}. O
   tamanho \textit{r} pode ser fixo ou ser tirado de alguma distribuição a cada
   passo. Se \textit{r} for par podem ocorrer empates nos grupos, de forma que ou
   o grupo escolhe uma das opiniões com probabilidade \(\frac{1}{2}\), ou
-  introduz-se um viés, e toda vez que houver empate o grupo muda para uma das
-  opiniões \cite{galam2012sociophysics, galam1986majority}. O Modelo Sznajd
+  introduz-se um viés e, toda vez que houver empate, o grupo muda para uma das
+  opiniões \cite{galam2012sociophysics, galam1986majority}. O modelo Sznajd
   também é bastante discutido na literatura \cite{sznajd2000opinion,
     sirbu2017opinion,castellano2012social}. Em sua versão original, e mais
   simples, os agentes estão localizados em uma grade unidimensional. A cada
-  passo um par $ij$ de vizinhos é selecionado e se sua opinião for igual os
+  passo, um par $ij$ de vizinhos é selecionado e, se sua opinião for igual, os
   outros vizinhos de \(i\) e \(j\) mudam a opinião para a opinião de
-  convergência\footnote{No original existe uma segunda regra : Se eles
+  convergência\footnote{No original existe uma segunda regra: Se eles
     discordarem, \(i\) adota a opinião do outro vizinho, e \(j\) faz o mesmo.
     Contudo, isso muda o comportamento do modelo e a literatura costuma suprimir
     essa segunda regra na descrição do modelo \cite{castellano2012social,
@@ -201,19 +201,18 @@ propriedades típicas:
   \(j\), tiver o mesmo traço nesse componente eles interagem. Isso faz com que
   eles interajam com uma probabilidade proporcional ao número de traços que têm
   em comum. Por exemplo, se \(i\) tem uma opinião igual a 82330 e seu vizinho
-  \(j\) tem uma opinião 67730 eles têm \(40 \%\) de interagirem. Se eles
-  interagirem, \(i\) troca um dos traços em que diferem por um dos traços de
+  \(j\) tem uma opinião 67730, eles têm \(40 \%\) de chance de interagirem. Se
+  eles interagirem, \(i\) troca um dos traços em que difere por um dos traços de
   \(j\)\cite{axelrod1997dissemination}. Nesse modelo pessoas similares têm uma
-  probabilidade maior de interagirem do que pessoas distintas, mas uma vez que a
-  interação ocorre elas ficam mais parecidas. Sendo assim, o modelo de Axelrod
-  pode ser considerado um modelo de assimilação enviesada: só indivíduos
+  probabilidade maior de interagirem do que pessoas distintas, mas, uma vez que
+  a interação ocorre, elas ficam mais parecidas. Sendo assim, o modelo de
+  Axelrod pode ser considerado um modelo de assimilação enviesada: só indivíduos
   suficientemente similares podem influenciar uns aos outros na redução de suas
   diferenças\footnote{Um terceiro tipo de modelo elencado por
     \citeonline{flache2017}, além dos modelos de influência social assimilativa
     e modelos com influência enviesada, são os modelos de influência repulsiva:
-    quando agentes são muito distintos em opinião a interação pode levá-los a um
-    aumento dessa diferença, tornam-se mais distantes.}
-  \cite{flache2017}.
+    quando agentes são muito distintos em opinião, a interação pode levá-los a
+    um aumento dessa diferença, tornam-se mais distantes.} \cite{flache2017}.
 
   Um outro modelo de assimilação enviesada é o Modelo de Deffuant-Weisbuch
   \cite{deffuant2000mixing}. Nele cada agente \(i\) tem opinião inicial \( o_i \in
@@ -222,7 +221,7 @@ propriedades típicas:
   de acordo com um parâmetro $0 < \mu \leq 0.5$, de forma que: $o_{i,t+1} = o_{it} +
   \mu(o_{jt} - o_{it})$ e  $o_{j,t+1} = o_{jt} +
   \mu(o_{it} - o_{jt})$. Esse modelo é particularmente relevante para o presente
-  trabalho, por duas razões: a opinião é contínua, assim como a representação
+  trabalho  por duas razões: a opinião é contínua, assim como a representação
   das ``utilidades'' dos agentes em Teoria Política Espacial \footnote{Na
     verdade, ligar a literatura de OD com funções de utilidade em economia e com
     a noção geométrica de política é a justificativa dada por
@@ -230,23 +229,22 @@ propriedades típicas:
   \(\epsilon\) pode ser interpretado como parte da regra de atualização, o que faz
   modelo os agentes tenham viés de confirmação \cite{flache2017}.
 
-Quando \(\epsilon\) é interpretado como parte da regra de interação temos o princípio
+Quando \(\epsilon\) é interpretado como parte da regra de interação, temos o princípio
 da homofilia: padrões estruturais de interação social levam pessoas a ter maior
 probabilidade de interagirem com pessoas similares a elas
 \cite{mcpherson2001birds}. Quando \(\epsilon\) é interpretado como parte da regra de
-atualização temos o fenômeno do \textit{viés de confirmação}: a tendência das
+atualização, temos o fenômeno do \textit{viés de confirmação}: a tendência das
 pessoas de dar maior peso a informações que confirmem suas crenças anteriores
 \cite{nickerson1998confirmation}.
 
 \citeonline{huckfeldt2005patterns} argumenta que indivíduos escolhem redes de
 discussão com razões distintas às políticas (como interesses profissionais e
-hobbies) e acabam interagindo com indivíduos cujas filiações partidárias
+hobbies) e acabam interagindo com indivíduos cujas filiações partidárias são
 distintas. Desta forma, o papel da homofilia em política é atenuado. Já o
-\textit{vies partidário} dos cidadãos, o viés de confirmação no tocante a
-questões políticas, é um resultado estabelecido na literatura em opinião
-pública e psicologia política, e imprescindível para a modelagem generativa de
-opinião pública \cite{bartels2002beyond, flynn2017nature,
-  lodge2013rationalizing}.
+vies partidário dos cidadãos, o viés de confirmação no tocante a
+questões políticas, é um resultado estabelecido na literatura em opinião pública
+e psicologia política, e imprescindível para a modelagem generativa de opinião
+pública \cite{bartels2002beyond, flynn2017nature, lodge2013rationalizing}.
 
 
 \section{Regra de Atualização e processamento de informação}
@@ -254,15 +252,15 @@ opinião pública \cite{bartels2002beyond, flynn2017nature,
 
 Como lembra Dirk Helbing, não existe uma única forma de modelar agentes
 interagindo em sistemas sociais complexos \cite{helbing2010pluralistic}. Os
-modelos clássicos em OD têm uma abordagem que Helbing chama de
-\textit{fisicalista}: abstraem as interações sociais ao ponto delas poderem ser
-estudadas como um modelo de ``partículas''. Em OD essa abordagem é refletida na
-forma como se modela a regra de atualização: abstrai-se o processamento de
-informação, a cognição dos agentes. Isso, como frisa Helbing, não é uma falha
-dos modelos. Paul Ormerod defende que o \textit{null model} em sistemas sociais
-complexos deveria ser o de um \textit{zero intelligence actor}, pois a
-complexidade dos sistemas nos permitiria modelar os agentes ``como se fossem''
-átomos \cite{ormerod2008can, bentley2012agents}.
+modelos clássicos em OD têm uma abordagem que Helbing chama de fisicalista:
+abstraem as interações sociais ao ponto de serem estudadas como um modelo de
+``partículas''. Em OD essa abordagem é refletida na forma como se modela a regra
+de atualização: abstrai-se o processamento de informação, a cognição dos
+agentes. Isso, como frisa Helbing, não é uma falha dos modelos. Paul Ormerod
+defende que o \textit{null model} em sistemas sociais complexos deveria ser o de
+um \textit{zero intelligence actor}, pois a complexidade dos sistemas nos
+permitiria modelar os agentes como se fossem átomos \cite{ormerod2008can,
+  bentley2012agents}.
 
 Não obstante, um conjunto de trabalhos em OD tem buscado abrir a ``caixa-preta''
 da cognição dos agentes e tratam a atualização de opinião como resultado de um
@@ -273,10 +271,10 @@ Innomind de \citeonline{schroder2017modeling} e o modelo Lodge-Taber
 motivado são exemplos dessa tendência.
 
 Se pensarmos num espectro possível de abordagens para a cognição dos agentes,
-ilustrado na Figura \ref{fig4} , esses modelos estão posicionados no extremo oposto aos
-modelos fisicalistas. Enquanto os modelos fisicalistas abstraem totalmente o que
-se passa na cabeça dos agentes os modelos (neuro)cognitivos buscam representar a
-arquitetura cognitiva que alicerça as atitudes e crenças
+ilustrado na Figura \ref{fig4} , esses modelos estão posicionados no extremo
+oposto aos modelos fisicalistas. Enquanto os modelos fisicalistas abstraem
+totalmente o que se passa na cabeça dos agentes, os modelos (neuro)cognitivos
+buscam representar a arquitetura cognitiva que alicerça as atitudes e crenças
 deles \cite{kim2010computational}.
 
 \begin{figure}[H]
@@ -289,38 +287,38 @@ deles \cite{kim2010computational}.
 \end{figure}
 
 Modelos cognitivamente ``densos'' permitem que analisemos como processos de
-influência social estão micro-fundamentados em processos mentais subjacentes, e
+influência social estão microfundamentados em processos mentais subjacentes e
 são um fronte dentre os trabalhos que buscam aumentar o realismo das simulações
 sociais \cite{jager2017,epstein2014agent_zero, conte2013minding}. Contudo, como
-ressalta Jonathan Bendor, na medida em que a Ciência Política busca modelar
-macrofenômenos ela ``deve ser mais implacável em relação aos micropressupostos
+ressalta Jonathan Bendor, à medida que a Ciência Política busca modelar
+macrofenômenos, ela ``deve ser mais implacável em relação aos micropressupostos
 do que microcampos relacionados (como ciência cognitiva)''
 \cite[p.45]{bendor2010bounded}. Quanto mais complicados nossos modelos menor
-controle temos sobre qual o elemento responsável pelo seus resultados, e mais
-dados precisamos para a sua calibração e validação \cite{de2005computational,
+controle temos sobre o elemento responsável pelos resultados e mais dados
+precisamos para a sua calibração e validação \cite{de2005computational,
   bendor2010bounded}. Como argumentado por \citeonline{zaller1992nature}, a
 estratégia metodológica para modelar a opinião pública, um fenômeno social de
 larga escala, envolve incorporar no modelo somente os aspectos do processamento
 de informação que têm relevância para a compreensão das dinâmicas do fenômeno,
-ao invés de buscar desenvolver modelos que aproximam o mais próximo o possível
-os detalhes da mente humana\footnote{No contexto da análise institucional um
+ao invés de buscar desenvolver modelos que cheguem o mais próximo o possível dos
+detalhes da mente humana\footnote{No contexto da análise institucional um
   argumento equivalente é feito por \citeonline{ostrom1990governing}.}.
 
 
 \citeonline{martins2012bayesian} apresenta um \textit{framework} para modelar
-Dinâmicas de Opinião que é cognitivamente mais
-``denso'' que os modelos fisicalistas, mas sem buscar modelar as bases
-neurocognitivas de processamento de informação. O \textit{framework} está
-fundamentado no uso da inferência bayesiana como base da regra de atualização
-dos agentes. Embora seja bem documentado que as pessoas não seguem fielmente o
-princípio da racionalidade bayesiana, apresentado no primeiro capítulo, um
-conjunto de trabalhos em psicologia e ciência cognitiva vêm, nos últimos anos,
-defendendo a possibilidade de que sejamos ``bayesianos
+Dinâmicas de Opinião que é cognitivamente mais ``denso'' que os modelos
+fisicalistas, mas sem buscar modelar as bases neurocognitivas de processamento
+de informação. O \textit{framework} está fundamentado no uso da inferência
+bayesiana como base da regra de atualização dos agentes. Embora seja bem
+documentado que as pessoas não seguem fielmente o princípio da racionalidade
+bayesiana apresentado no primeiro capítulo, um conjunto de trabalhos em
+psicologia e ciência cognitiva vem, nos últimos anos, defendendo a possibilidade
+de que sejamos ``bayesianos
 imperfeitos''\cite{griffiths2006optimal,fujikawa2007perfect,baker2017rational,
   gintis2016individuality}. Usar um framework bayesiano é, desta forma, uma
 aproximação e permite a construção de modelos de dinâmicas de opinião de uma
 forma fundamentada num princípio comum, algo particularmente relevante numa área
-em que há a proliferação de modelos ad-hoc \cite{flache2017,jager2017}.
+em que há a proliferação de modelos \textit{ad-hoc} \cite{flache2017,jager2017}.
 
  \citeonline[p.214]{martins2012bayesian} oferece o seguinte passo a passo
 para a construção de um modelo de dinâmicas de opinião com base num
@@ -329,16 +327,16 @@ para a construção de um modelo de dinâmicas de opinião com base num
 \begin{enumerate}
 \item Identificar uma questão sob debate e chamá-la de $x$. \(x\) pode ser
   discreto ou contínuo.
-\item cada agente \(i\) tem uma opinião subjetiva sobre $x$ e essa opinião é
+\item Cada agente \(i\) tem uma opinião subjetiva sobre $x$ e essa opinião é
   representada pela distribuição de probabilidade $f_i(x)$ .
-\item Ocorre comunicação : a comunicação é a declaração de um valor
+\item Ocorre comunicação: a comunicação é a declaração de um valor
   $ A_j$ pelo agente $j$ de tal forma que $A_j[f]$ é um funcional de
   $f_j(x)$.
 \item Os agentes tem que ter em sua mente  uma relação entre o
   verdadeiro valor de \(x\),  \(x^*\),   e o valor declarado $A_j$. Isso é dado
   pela distribuição de probabilidade $P(A_j|x^*)$. Essa verossimilhança  mensura
   a chance que um vizinho \(j\) comunique \(A_j\) dado que \(x^*\) seja o valor correto.
-\item Dado o prior $f_i(x)$ a opinião posterior $f_i(x|A_j)$ é dada
+\item Dado o \textit{prior} $f_i(x)$ a opinião posterior $f_i(x|A_j)$ é dada
   por $A_i[f_i(x|A_j)]$ que é a nova opinião de $i$ .
 \end{enumerate}
 
@@ -348,10 +346,10 @@ para a construção de um modelo de dinâmicas de opinião com base num
 
 A aplicação desse \textit{framework} no caso de opiniões contínuas incorpora o
 mecanismo de viés de confirmação presente no modelo Deffuant-Weisbuch, encontra
-resultados qualitativamente semelhantes, e ainda tem resultados adicionais
+resultados qualitativamente semelhantes e ainda tem resultados adicionais
 \cite{martins2009bayesian}. Dado que o modelo representa a atualização de uma
 variável contínua, incorpora viés de confirmação e fundamenta a regra de
-atualização num framework bayesiano de processamento de informação ele será a
+atualização num \textit{framework} bayesiano de processamento de informação ele será a
 base do nosso trabalho.
 
 Nele os agentes interagem num grafo completo e a regra de interação é uma díade
@@ -368,7 +366,7 @@ f_i(\theta) = \frac{1}{\sqrt{2 \pi} \sigma_i} e^{-
   associa a \(\theta\). Para incluir viés de confirmação na regra de atualização,
   \citeonline{martins2009bayesian} introduz uma probabilidade \(p\) que o outro
   agente saiba algo sobre $\theta$, que tenha uma opinião plausível e que vale
-  a pena ser levada em conta ; e vai ter uma chance \(1 - p\) que o outro agente
+  a pena ser levada em conta; e vai ter uma chance \(1 - p\) que o outro agente
   não tenha informação sobre $\theta$ de forma que a verossimilhança de $j$ estar
   correto é dado por $ f(o_j|\theta) = p N(\theta,\sigma_j^2) + (1-p)U(0,1)$.
 
@@ -417,21 +415,21 @@ f_i(\theta) = \frac{1}{\sqrt{2 \pi} \sigma_i} e^{-
     }
   \end{align}
 
-  Importante notar que embora o modelo use a Regra de Bayes para derivar como o
-  agente atualiza sua opinião nele o agente não é perfeitamente racional. A
+  Importante notar que, embora o modelo use a Regra de Bayes para derivar como o
+  agente atualiza sua opinião, nele o agente não é perfeitamente racional. A
   regra de bayes foi usada para criar uma regra de atualização plausível, mas a
-  verossimilhança de um agente perfeitamente racional envolveria considerar
-  toda a informação possivelmente relevante
-  , por exemplo, se \(j\) tem um interesse estratégico em declarar um
-  determinado \(o_j\) ou como \(o_j\) é resultado da interação de j com outros
-  agentes. Ademais, suponha que \(i\) e \(j\) interagem num tempo \(t_a\) e
-  depois num tempo \(t_b\). Um agente perfeitamente racional corrigiria pela
-  repetição da interação \cite{acemoglu2011opinion}, já no modelo de
-  \citeonline{martins2009bayesian} o agente age segundo a heurística dada pela
-  Equação 2.4. Nele, portanto, os agentes são ``imperfeitamente'' bayesianos.
-  Com essa regra de atualização o modelo já recupera os resultados dos modelos
-  de confiança limitada. Contudo, também é possível considerar o caso em que a
-  incerteza dos agentes é atualizada:
+  verossimilhança de um agente perfeitamente racional envolveria considerar toda
+  a informação possivelmente relevante, por exemplo, se \(j\) tem um interesse
+  estratégico em declarar um determinado \(o_j\) ou como \(o_j\) é resultado da
+  interação de j com outros agentes. Ademais, suponha que \(i\) e \(j\)
+  interagem num tempo \(t_a\) e depois num tempo \(t_b\). Um agente
+  perfeitamente racional corrigiria pela repetição da interação
+  \cite{acemoglu2011opinion}, já no modelo de \citeonline{martins2009bayesian} o
+  agente age segundo a heurística dada pela Equação 2.4. Nele, portanto, os
+  agentes são ``imperfeitamente'' bayesianos. Com essa regra de atualização, o
+  modelo já recupera os resultados dos modelos de confiança limitada. Contudo,
+  também é possível considerar o caso em que a incerteza dos agentes é
+  atualizada:
 
       \begin{align}
     \sigma_i^2(t+1)
@@ -448,12 +446,12 @@ f_i(\theta) = \frac{1}{\sqrt{2 \pi} \sigma_i} e^{-
       os agentes fiquem mais certos de suas opiniões. Isso é relevante do ponto
       de vista da modelagem generativa de opinião pública.
       \citeonline{kuklinski2000misinformation} encontram que um grande
-      percentual,em média \( 60 \%\), dos respondentes em um
-      \textit{survey} por telefone sobre questões factuais da agenda política
-      americana da época são confiantes em suas crenças. Ademais, encontram uma
+      percentual, em média \( 60 \%\), dos respondentes em um
+      \textit{survey} por telefone, sobre questões factuais da agenda política
+      americana da época, são confiantes em suas crenças. Ademais, encontram uma
       correlação entre confiança e partidarismo. É interessante, portanto,
       incorporar não só a dinâmica da opinião dos agentes, mas também o papel da
-      incerteza quanto as crenças nessa dinâmica \footnote{Para um trabalho em
+      incerteza quanto às crenças nessa dinâmica \footnote{Para um trabalho em
         OD que lida com incerteza, mas de maneira ``fisicalista'' ver
         \citeonline{deffuant2002can}.}.
 

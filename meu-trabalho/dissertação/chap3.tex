@@ -1,9 +1,9 @@
 \section{Entidades e processos}
 
-Dado o que foi discutido nos Capítulos 1 e 2 o trabalho está fundamentado no
+Dado o que foi discutido nos Capítulos 1 e 2, o trabalho está fundamentado no
 diálogo entre a Teoria Política Espacial e a área de Dinâmicas de Opinião. Não
 temos por propósito um modelo que seja preditivo, mas que capture
-microfundamentos relevantes, como viés de confirmação e confiança nas crenças, e
+microfundamentos relevantes, como viés de confirmação e confiança nas crenças e
 gere distribuições de preferência plausíveis, no sentido delimitado no Capítulo
 1. O trabalho propõe, portanto, um modelo que contribua para uma agenda que
 busque abrir a caixa-preta do processo de socialização que leva a cristalização
@@ -11,22 +11,23 @@ de direcionamentos, ou posicionamentos, ideológicos.
 
 Como discutido no Capítulo 1, a teoria geométrica de política modela as
 preferências dos agentes como relações em um espaço contínuo de alternativas.
-Essas preferências, em ambientes macro, são construídas por meio da agregação
-das atitudes, crenças, posicionamentos, ou simplesmente opiniões dos agentes em
+Essas preferências, em ambientes macro são construídas por meio da agregação das
+atitudes, crenças, posicionamentos, ou simplesmente opiniões dos agentes em
 diferentes questões (\textit{issues}). As preferências dos agentes numa dimensão
-são, assim, o sumário de um \textit{perfil ideológico} do agente sobre questões.
+são, assim, o sumário de um perfil ideológico do agente sobre questões.
 Pretendemos gerar a distribuição de pontos ideais, as posições preferidas pelos
 agentes no espaço de alternativas, mas não precisamos especificar qual a função
 de utilidade centrada nestes pontos, já que não é interesse do trabalho modelar
-a tomada de decisão que os pressuporia, por exemplo a escolha de um candidato. É
-possível atribuir diferentes funções de utilidade aos agentes, mas o pressuposto
-modal é que a função vai ter um máximo e será simétrica \cite{eguia2013spatial,
-  carroll2013structure}. Como não é um modelo de tomada de decisão, mas sim um
-modelo de surgimento de posicionamentos ideológicos, não é necessário adicionar
-mais um elemento, funções de utilidade, que simplesmente alargaria o espaço de
-parâmetros e não seria utilizado na simulação. Não obstante, modelos futuros que
-busquem ligar, por exemplo, a distribuição de preferências com a escolha de
-candidatos/partidos poderiam fazer essa atribuição.
+a tomada de decisão que os pressuporia, por exemplo, a escolha de um candidato.
+É possível atribuir diferentes funções de utilidade aos agentes, mas o
+pressuposto modal é que a função vai ter um máximo e será simétrica
+\cite{eguia2013spatial, carroll2013structure}. Como não é um modelo de tomada de
+decisão, mas, sim, um modelo de surgimento de posicionamentos ideológicos, não é
+necessário adicionar mais um elemento, funções de utilidade, que simplesmente
+alargaria o espaço de parâmetros e não seria utilizado na simulação. Não
+obstante, modelos futuros que busquem ligar, por exemplo, a distribuição de
+preferências com a escolha de candidatos/partidos poderiam fazer essa
+atribuição.
 
 
 Pensar os agentes como tendo pontos ideais derivados de posicionamentos em
@@ -61,7 +62,7 @@ implementação o atributo \(I\) é reduzido a um conjunto de pares \(I_i =
 ((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n}, \sigma_{i,n}^2) )\), sendo \(\sigma^2\) global, o mesmo
 para todo \(i\). Logo, \(\sigma_i = \sigma\). Consideraremos também uma proporção de
 agentes nos quais uma das questões tem \(\sigma\) próximo a zero\footnote{Agentes
-  ``intransigentes'' ou ``inflexíveis'', discutidos mais a frente.}. Se
+  ``intransigentes'' ou ``inflexíveis'' serão discutidos mais à frente.}. Se
 seguirmos \citeonline{deffuant2000mixing} e usarmos uma distribuição uniforme
 (U[0,1]) para gerar os posicionamentos dos agentes na condição inicial quanto
 mais vezes fizermos o sorteio dos \(o_i\) (quanto maior o número de questões),
@@ -76,7 +77,7 @@ número de agentes da população, criando uma lista do tamanho da população d
 duplas \((\alpha,\beta)\). Ou seja, temos duas listas, uma com valores de \(\alpha\) entre 1.1
 e 100 e outra com valores de \(\beta\) entre 1.1 e 100. Dividimos igualmente os
 intervalos de acordo com o tamanho da população. Por exemplo, se a população tem
-10 agentes então os valores de \(\alpha\) e \(\beta\) são [1.1, 12.0889, 23.0778,
+10 agentes,  então os valores de \(\alpha\) e \(\beta\) são [1.1, 12.0889, 23.0778,
 34.0667, 45.0556, 56.0444, 67.0333, 78.0222, 89.0111, 100.0]. Misturamos as
 listas para que os agentes tenham \(\alpha_i\) e \(\beta_i\) distintos, e coletamos pares
 numa terceira lista. Um formato possível para essa lista é [(1.1, 56.0444),
@@ -87,8 +88,8 @@ distribuição Beta com parâmetros \(\alpha, \beta = (1.1, 56.0444) \), o segun
 \(\alpha,\beta=(23.0778,34.0667)\) e assim em diante.
 
 Destas distribuições sorteamos os valores de \(o_i\) iniciais para cada questão,
-de forma que os \(o\)s de cada agente são correlacionados e as distribuições são
-centradas em diferentes pontos do espaço, como ilustrado na Figura
+de forma que os \(o\)s de cada agente sejam correlacionados e as distribuições
+são centradas em diferentes pontos do espaço, como ilustrado na Figura
 \ref{fig:betas100}:
 
 \begin{figure}[H]
@@ -100,49 +101,49 @@ centradas em diferentes pontos do espaço, como ilustrado na Figura
 \end{figure}
 
 
-A cada iteração da simulação um dos agentes vai ser escolhido e vai
-interagir com um de seus vizinhos, a princípio num grafo completo imposto
-exogenamente (estabelecemos na condição inicial quais os vizinhos). Quanto à
-implementação, criamos um grafo de tamanho igual ao tamanho da população e
-fazemos com que cada agente da população tenha como um de seus atributos um
-conjunto de vizinhos igual ao de um vértice do grafo. A interação é em díades,
-assíncrona (os agentes atualizam seus atributos em momentos distintos) e
-sequencial (um agente atualiza por vez) \cite{wilensky2015introduction}. A
-dependência dos resultados em relação ao número de agentes e de crenças vai ser
-explorada. Estamos interessados nas alterações ao longo prazo (em termos de
-iterações) da configuração dos \(x\) sob diferentes combinações de parâmetros,
-tendo em vista as interações dos agentes \cite{acemoglu2011opinion}.
+A cada iteração da simulação um dos agentes vai ser escolhido e vai interagir
+com um de seus vizinhos, a princípio num grafo completo imposto exogenamente
+(estabelecemos na condição inicial quais os vizinhos). Quanto à implementação,
+criamos um grafo de tamanho igual ao tamanho da população e fazemos com que cada
+agente dela tenha como um de seus atributos um conjunto de vizinhos igual ao de
+um vértice do grafo. A interação é em díades, assíncrona (os agentes atualizam
+seus atributos em momentos distintos) e sequencial (um agente atualiza por vez)
+\cite{wilensky2015introduction}. A dependência dos resultados em relação ao
+número de agentes e de crenças vai ser explorada. Estamos interessados nas
+alterações a longo prazo (em termos de iterações) da configuração dos \(x\) sob
+diferentes combinações de parâmetros, tendo em vista as interações dos agentes
+\cite{acemoglu2011opinion}.
 
-Quando os agentes interagem o agente \(i\) atualiza sua opinião em
+Quando os agentes interagem, o agente \(i\) atualiza sua opinião em
 alguma\footnote{ Uma outra implicação possível, a ser adicionada em trabalhos
   futuros, é considerar um viés nessa seleção, o que representaria saliência no
-  sentido dado por \citeonline{zaller1992simple}: qual questão os agentes estão
-  dando atenção, qual questão está mais acessível na memória deles.} questão
-segundo as equações (3) e (4), apresentadas no Capítulo 3. Qual questão vão
-``debater'' vai ser definido por meio de um sorteio sem viés. Se o agente tem
-uma lista indexada \(l\) de opiniões sorteamos um índice que determina qual a
-questão de debate. Nesse sorteio cada índice tem igual probabilidade de ser
-selecionado. Dado que os agentes agora tem um conjunto de opiniões é plausível
-considerar que um conjunto de agentes tenham determinadas opiniões em que eles
-tenham maior certeza, identificação, ou centralidade para o seu perfil
-ideológico. Sendo assim na condição inicial alguma proporção de agentes tem uma
-questão no seu perfil \(I\) cujos \(\sigma\) associados são aproximadamente zero. Com
-isso buscamos analisar o papel de agentes ``inflexíveis'' na dinâmica
-populacional. A proporção de agentes intransigentes ou inflexíveis é assim um
+  sentido dado por \citeonline{zaller1992simple}: a qual questão os agentes
+  estão dando atenção, qual questão está mais acessível na memória deles.}
+questão segundo as equações (3) e (4), apresentadas no Capítulo 3. A questão a
+ser ``debatida'' vai ser definida por meio de um sorteio sem viés. Se o agente
+tem uma lista indexada \(l\) de opiniões sorteamos um índice que determina qual
+a questão de debate. Nesse sorteio cada índice tem igual probabilidade de ser
+selecionado. Dado que os agentes agora têm um conjunto de opiniões, é plausível
+considerar que um conjunto de agentes tenha determinadas opiniões em que eles
+tenham maior certeza, identificação ou centralidade para o seu perfil
+ideológico. Sendo assim, na condição inicial, alguma proporção de agentes tem
+uma questão no seu perfil \(I\) cujos \(\sigma\) associados são aproximadamente
+zero. Com isso buscamos analisar o papel de agentes ``inflexíveis'' na dinâmica
+populacional. A proporção de agentes intransigentes ou inflexíveis é, assim, um
 parâmetro da simulação.
 
 Os agentes também vão reconsiderar suas opiniões e certezas sobre as questões
 segundo um ruído. Do ponto de vista teórico, estamos considerando a
 possibilidade de fatores não relacionados à influência social levarem o agente a
 mudar seu posicionamento sobre questões \cite{flache2017, lorenz2017modeling}.
-Do ponto de vista metodológico, \citeonline{macy2015signal} argumenta que
+Do ponto de vista metodológico, \citeonline{macy2015signal} argumentam que
 pequenas perturbações no comportamento local dos agentes podem levar a mudanças
-drásticas nas propriedades sistêmicas. Consideram que adicionar ruído pode:
+drásticas nas propriedades sistêmicas. Consideram que adicionar ruído pode
 eliminar equilíbrios frágeis, o que reduz o conjunto de resultados e tornando-os
-mais previsíveis; e embora aumente a heterogeneidade local isso pode acabar
+mais previsíveis; e, embora aumente a heterogeneidade local, isso pode acabar
 facilitando interações sociais que reduzem a diversidade global
 \cite[p.323]{macy2015signal}. A nova opinião \(o(t+1)\) é igual a \(o(t) + r\),
-onde \(r\) é retirado de uma distribuição normal de média 0 e desvio padrão
+em que \(r\) é retirado de uma distribuição normal de média 0 e desvio padrão
 \(\rho\), um parâmetro da simulação. No caso em que o agente é intransigente na
 questão ele não será sujeito ao efeito do ruído \footnote{Uma outra opção seria
   que agentes intransigentes sejam \textit{menos} afetados pelo ruído. Optamos
@@ -186,48 +187,52 @@ seguem \citeonline{martins2008continuous}, \citeonline{deffuant2000mixing} e
 \section{Inicialização e iteração}
 
 A inicialização da simulação depende dos parâmetros-chave apresentados. Na
-condição inicial temos uma população de \(N\) agentes, que tem por atributos: um
-conjunto de pares \(I_i = ((o_{i,1},\sigma_{i,1}^2), \ldots, (o_{i,n},\sigma_{i,n}^2))\), onde
-o número de questões, \(n\), é uma variável global, cada \(o\) é retirado de uma
-distribuição Beta(\(\alpha,\beta\)), onde cada agente tem um \(\alpha\) e um \(\beta\) próprio,
-com valores\footnote{Paramêtros com valores \(\leq\) 1 ou geram distribuições de
-  formato uniforme, quando \(\alpha = \beta = 1.0\), ou com formato de U. Quanto ao
-  limiar superior, o valor de 100 permite que tenhamos agentes com distribuições
-  centralizadas em ambos os extremos, dado que a média \(\mu\) é dada por
-  \(\frac{\alpha}{\alpha + \beta}\), de forma que a média mínima é 0.011.} entre 1.1 e 100.
+condição inicial temos uma população de \(N\) agentes que tem por atributos um
+conjunto de pares \(I_i = ((o_{i,1},\sigma_{i,1}^2), \ldots,
+(o_{i,n},\sigma_{i,n}^2))\), no qual o número de questões, \(n\), é uma variável
+global, cada \(o\) é retirado de uma distribuição Beta(\(\alpha,\beta\)), onde
+cada agente tem um \(\alpha\) e um \(\beta\) próprio, com
+valores\footnote{Paramêtros com valores \(\leq\) 1 ou geram distribuições de
+  formato uniforme, quando \(\alpha = \beta = 1.0\), ou com formato de U. Quanto
+  ao limiar superior, o valor de 100 permite que tenhamos agentes com
+  distribuições centralizadas em ambos os extremos, dado que a média \(\mu\) é
+  dada por \(\frac{\alpha}{\alpha + \beta}\), de forma que a média mínima é
+  0.011.} entre 1.1 e 100.
 
-Voltando aos atributos dos agentes, o \(\sigma^2\) é uma variável global de forma que
-\(\sigma_i^2 = \sigma^2\) ; têm também por atributo um posicionamento ideológico, ou ponto
-ideal, \(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um conjunto de vizinhos, o
-qual depende de qual a rede os agentes estão. Uma determinada proporção de
-agentes vai ter um \textit{único} \(\sigma_i = (1e-20 ) \approx 0.0 \). Quantos agentes são
-intransigentes em \textit{uma} questão é dado por \(\text{p\_intran}\). Em qual
-questão vão ser intransigentes é aleatório, sorteado de seus perfis ideológicos (\(I\)).
+Voltando aos atributos dos agentes, o \(\sigma^2\) é uma variável global de
+forma que \(\sigma_i^2 = \sigma^2\) ; têm também por atributo um posicionamento
+ideológico, ou ponto ideal, \(x_i = \frac{1}{n} \sum_{k = 1}^n o_{i,k} \); e um
+conjunto de vizinhos, que depende de qual a rede os agentes estão. Uma
+determinada proporção de agentes vai ter um \textit{único} \(\sigma_i = (1e-20 )
+\approx 0.0 \). Quantos agentes são intransigentes em \textit{uma} questão é
+dado por \(\text{p\_intran}\). Em qual questão serão intransigentes é aleatório,
+sorteado de seus perfis ideológicos (\(I\)).
 
 Uma iteração da simulação, a passagem de \(t\) para \(t+1\), é dada pela
 aplicação de dois procedimentos: a atualização da opinião via influência social
 e a atualização aleatória. O procedimento de influência social é o seguinte:
-sorteamos um agente \(i\) da população. Então sorteamos um de seus
-vizinhos,agente \(j\). Sorteamos uma das questões \(k \in (1,\ldots,n)\) de forma que
-temos os \((o_{i,k},o_{j,k})\) e \((\sigma_{i,k}^2,\sigma_{j,k}^2)\) correspondentes à
-questão. Então o agente \(i\) atualiza \(o_{i,k}\) segundo as equações (3) e
-(4). Essa regra é uma característica global da simulação, o que significa que a
-cada repetição todos os agentes atualizam suas crenças segundo a mesma regra.
-Ademais, temos o ruído. A cada iteração temos os efeito da influência social
-\textit{e} do ruído. Novamente escolhemos um agente da população. Sorteamos uma
-questão de forma que temos \(o\) e \(\sigma^2\) correspondentes. Se o agente é
-intransigente naquela questão então ele não muda de opinião. Sorteamos um \(r\)
-retirado de uma distribuição normal \(N(0,\rho)\) e atualizamos \(o\) de forma que
-\(o(t+1) = o(t) + r\). Os \(x_i\), o objeto de interesse de análise, são
-atualizados sempre que ocorrerem mudanças nas crenças dos agentes.
+sorteamos um agente \(i\) da população. Então sorteamos um de seus vizinhos,
+agente \(j\). Sorteamos uma das questões \(k \in (1,\ldots,n)\) de forma que
+temos os \((o_{i,k},o_{j,k})\) e \((\sigma_{i,k}^2,\sigma_{j,k}^2)\)
+correspondentes à questão. Então o agente \(i\) atualiza \(o_{i,k}\) segundo as
+equações (3) e (4). Essa regra é uma característica global da simulação, o que
+significa que a cada repetição todos os agentes atualizam suas crenças segundo a
+mesma regra. Ademais, temos o ruído. A cada iteração temos os efeitos da
+influência social \textit{e} do ruído. Novamente escolhemos um agente da
+população. Sorteamos uma questão de forma que temos \(o\) e \(\sigma^2\)
+correspondentes. Se o agente é intransigente naquela questão então ele não muda
+de opinião. Sorteamos um \(r\) retirado de uma distribuição normal \(N(0,\rho)\)
+e atualizamos \(o\) de forma que \(o(t+1) = o(t) + r\). Os \(x_i\), os objetos
+de interesse de análise, são atualizados sempre que ocorrerem mudanças nas
+crenças dos agentes.
 
 \section{Metodologia de Análise}
 
-Dentre as diversas formas de analisar um ABM a análise de sensibilidade global
+Dentre as diversas formas de analisar um ABM, a análise de sensibilidade global
 se destaca como uma forma de ter uma compreensão ampla, geral, do comportamento
 do modelo \cite{north2007managing}. O primeiro passo da análise envolve, então,
- ter uma compreensão geral do comportamento do modelo para então passarmos
-para regiões particulares do espaço de parâmetros.
+ter uma compreensão geral do comportamento do modelo para então passarmos para
+regiões particulares do espaço de parâmetros.
 
 No entanto, o alto custo computacional de varrer esse espaço de parâmetros faz com
 que só seja possível realizarmos uma análise global, na maioria dos casos, se
@@ -259,8 +264,8 @@ de interpretar os resultados \cite{railsback2012agent}.
     estabelecer uma medida do sistema para que possamos analisá-lo
     \cite{railsback2012agent}. Escolhemos o desvio padrão dos pontos ideais após
     \(1.000.000\) iterações como output para análise\footnote{Testamos diversas
-      parametrizações com n\_issues \(= 1\) e observamos que a partir de
-      \(50.000\) iterações a implementação replica os resultados de
+      parametrizações com n\_issues \(= 1\) e observamos que, a partir de
+      \(50.000\) iterações, a implementação replica os resultados de
       \citeonline{martins2009bayesian}.}, dado que nos diz o quão
     concentrados/dispersos são os pontos ideais da população e é uma medida
     usual de polarização\footnote{\citeonline{bramson2016disambiguation} discute
@@ -281,38 +286,38 @@ de interpretar os resultados \cite{railsback2012agent}.
     \end{figure}
 
     
-    Usar cobertura como medida não nos indica
-    o quão diferente são os valores, ou se estão no centro ou extremos, mas
-    captura a variedade de atributos \cite[p.85]{bramson2016disambiguation}.
-    Contudo, teríamos que estabelecer um \(N\) base, pois de outra forma esse
-    parâmetro explica quase que totalmente o valor do output a ser analisado
-    pela análise de sensibilidade.
+    Usar cobertura como medida não nos indica o quão diferentes são os valores
+    ou se estão no centro ou extremos, mas captura a variedade de atributos
+    \cite[p.85]{bramson2016disambiguation}. Contudo, teríamos que estabelecer um
+    \(N\) base, pois de outra forma esse parâmetro explica quase que totalmente
+    o valor do \textit{output} a ser analisado pela análise de sensibilidade.
     
-    No primeiro gráfico da figura \ref{fig:tseries1} temos um desvio padrão
-    próximo zero, e um único posicionamento ideológico final. Já no segundo
-    gráfico precisaríamos arredondar os pontos ideais finais, para entre 1 e 6
-    casas decimais, para chegarmos a conclusão que existem cerca de 6 pontos de
-    convergência. Se não arredondarmos o resultado final teríamos uma medida
-    próxima de 500 pontos ideais, e que não nos informaria a respeito da
+    No primeiro gráfico da Figura \ref{fig:tseries1} temos um desvio padrão
+    próximo a zero, e um único posicionamento ideológico final. Já no segundo
+    gráfico precisaríamos arredondar os pontos ideais finais, entre 1 e 6 casas
+    decimais para chegarmos à conclusão de que existem cerca de 6 pontos de
+    convergência. Se não arredondássemos o resultado final, teríamos uma medida
+    próxima de 500 pontos ideais e que não nos informaria a respeito da
     cobertura do sistema. Já o desvio padrão nos indica a dispersão dos pontos
     ideais, pois tem valor de aproximadamente 0.24, próximo ao da condição
     inicial. Um outro problema do uso do número final de pontos ideais ao fim de
     uma realização é que a medida não é robusta a ruídos ou proporções de
     agentes intransigentes diferentes de 0. Quando há ruído ou agentes
     intransigentes o número final de pontos ideais não informa muito sobre a
-    dinâmica do sistema. Na Figura \ref{fig:nonnullrho} temos um comportamento
+    dinâmica do sistema. Na Figura \ref{fig:nonnullrho} teremos um comportamento
     qualitativamente similar ao da Figura \ref{fig:tseries1} (b), do ponto de
-    qualitativo seriam 6 opiniões médias com oscilações ao redor delas, mas
-    quantitativamente o número de opiniões finais distintas é próximo de 500.
-    Uma opção para tentar capturar em medidas essa oscilação ao redor de 6
+    vista qualitativo seriam 6 opiniões médias com oscilações ao redor delas,
+    mas quantitativamente o número de opiniões finais distintas é próximo de
+    500. Uma opção para tentar capturar em medidas essa oscilação ao redor de 6
     opiniões médias seria medirmos o número de pontos ideais finais com valores
     arredondados. Arredondar demais faz com que perdamos a comparabilidade com a
     condição inicial, que passa a não ter mais 500 pontos ideais. No caso da
-    figura \ref{fig:nonnullrho} usar o número de pontos ideais distintos como
+    Figura \ref{fig:nonnullrho}, usar o número de pontos ideais distintos como
     medida nos informa que há grande cobertura no sistema, mas passaria
     despercebido o fato de que ao fim o comportamento é bastante similar ao caso
     com ruído nulo. O desvio padrão não nos informa sobre a existência dos
-    ``clusters'', mas ao menos mantêm a consistência nos casos com e sem ruído.
+    \textit{clusters}, mas ao menos mantêm a consistência nos casos com e sem
+    ruído.
     
   \begin{figure}[H]
     \centering
@@ -330,12 +335,12 @@ de distribuições uniformes nos intervalos de valores dos parâmetros
 não é coberto igualmente, havendo a possibilidade de pontos de acumulação ou
 espaços vazios \cite{pereda2017brief}.
 
-\citeonline{saltelli2008global} argumenta que para manter uma dispersão
-equitativa dos pontos no espaço de parâmetros é necessário um algoritmo que
+\citeonline{saltelli2008global} argumenta que, para manter uma dispersão
+equitativa dos pontos no espaço de parâmetros, é necessário um algoritmo que
 enviese a seleção de novos pontos para mantê-los afastados dos pontos já
 presentes. O pacote de Python SaLib\footnote{Fazemos uso da interoperabilidade
   entre a linguagem Julia e Python, por meio do pacocte PyCall
-  \cite{johnson2018}.}, o qual usamos, implementa ``samplers'' que garantem essa
+  \cite{johnson2018}.}, o qual usamos, implementa \textit{samplers} que garantem essa
 dispersão equitativa por meio da geração de amostras sorteadas de sequências
 quasi-aleatórias de baixa discrepância \cite{herman2017salib}. \footnote{ Se
   pensarmos os parâmetros geometricamente podemos pensar num ``espaço'' de
@@ -350,24 +355,24 @@ quasi-aleatórias de baixa discrepância \cite{herman2017salib}. \footnote{ Se
   implementação do ``sampler'' ver
   \url{http://salib.readthedocs.io/en/latest/_modules/SALib/sample/saltelli.html}.}
 
-O tamanho amostral e número de parametrizações não independe do método de
+O tamanho amostral e o número de parametrizações não independem do método de
 análise, dado que incorrem em custos computacionais distintos
 \cite{saltelli2002making}. Seguimos \citeonline{jaxa2018pynetlogo} e
 \citeonline{brookes2015saltelli} em usar o esquema de
 \citeonline{saltelli2002making} para o cálculo de índices de sensibilidade
 global. Fazendo uso de sequências quasi-aleatórias, ele consiste em gerar n *
-(2d + 2) parametrizações, onde \(n\) é o tamanho amostral  e \(d\) é o
-número de parâmetros. Segundo \citeonline[p.284]{saltelli2002making} esse número
-de parametrizações nos permite calcular índices de Sobol de primeira e segunda
+(2d + 2) parametrizações, onde \(n\) é o tamanho amostral e \(d\) é o número de
+parâmetros. Segundo \citeonline[p.284]{saltelli2002making} esse número de
+parametrizações nos permite calcular índices de Sobol de primeira e segunda
 ordem e índices totais, discutidos no parágrafo seguinte. No nosso caso \(d =
-6\), pois vamos ter como parâmetros : N (população), número de questões
-(codificado como n\_issues ), \(p\), \(\sigma\), a proporção de agentes
-intransigentes (codificado como p\_intran), e \(\rho\). Quanto maior o tamanho da
-amostra  menor os coeficientes de erro para os índices. Para garantir um
-coeficiente de erro baixo no cálculo subsequente dos índices de sensibilidade
-especificamos um tamanho amostral base \(n\) de \(5000\), de forma que rodamos
-\(70.000\) parametrizações. Nos limitamos a esse número de parametrizações pelo
-custo computacional de simular tantas parametrizações : aproximadamente 60 horas
+6\), teremos como parâmetros: N (população), número de questões (codificado como
+n\_issues ), \(p\), \(\sigma\), a proporção de agentes intransigentes
+(codificado como p\_intran), e \(\rho\). Quanto maior o tamanho da amostra menor
+os coeficientes de erro para os índices. Para garantir um coeficiente de erro
+baixo no cálculo subsequente dos índices de sensibilidade, especificamos um
+tamanho amostral base \(n\) de \(5000\), de forma que rodamos \(70.000\)
+parametrizações. Nos limitamos a esse número de parametrizações pelo custo
+computacional de simular tantas parametrizações: aproximadamente 60 horas
 \footnote{Numa máquina: Intel(R) Core(TM) i7-6500U CPU @ 2.50GHz, com 15.4GiB de
   RAM.}. Os baixos valores dos coeficientes de erro nos confirmam que amostras
 maiores não seriam necessárias.
@@ -388,41 +393,40 @@ particularmente índices de Sobol de primeira ordem e totais
 parâmetros na variância do \textit{output} de interesse. Os índices de primeira
 ordem incluem contribuições lineares e não-lineares dos parâmetros, mas não
 efeitos interativos \cite{ten2016sensitivity}. Dois fatores interagem quando o
-seu efeito conjunto sobre o output não pode ser expresso como a soma de seus
-efeitos individuais\footnote{Essa é a definição usual de efeito interativo no
-  contexto da análise multivariada de dados \cite{hair2009analise}.}. Já índices
-totais incluem todos os efeitos de ordem maior decorrentes das interações entre
-os parâmetros. Digamos que temos um modelo com 3 fatores. O efeito total,
-\(S_{T1}\) do primeiro fator \(X_1\) é dado pela soma dos termos da equação
-\(S_{T1} = S_1 + S_{12} + S_{13} + S_{123}\), onde \(S_i =
+seu efeito conjunto sobre o \textit{output} não pode ser expresso como a soma de
+seus efeitos individuais\footnote{Essa é a definição usual de efeito interativo
+  no contexto da análise multivariada de dados \cite{hair2009analise}.}. Já
+índices totais incluem todos os efeitos de ordem maior decorrentes das
+interações entre os parâmetros. Digamos que temos um modelo com 3 fatores. O
+efeito total, \(S_{T1}\) do primeiro fator \(X_1\) é dado pela soma dos termos
+da equação \(S_{T1} = S_1 + S_{12} + S_{13} + S_{123}\), onde \(S_i =
 \frac{V[E(Y|X_i)]}{V(Y)}\), \(S_{12}\) é o impacto na variância de \(Y\), o
-output, da interação entre \(X_1\) e \(X_2\), sendo portanto o efeito conjunto
-de \(X_1\) e \(X_2\) menos os efeitos de primeira ordem para esses fatores:
-\(S_{ij}\) = \(\frac{V[E(Y|X_i,X_,)] - V[E(Y|X_i)] - V[E(Y|X_j)]}{V(Y)} \); a
-mesma lógica é aplicada aos outros termos \footnote{ Para maiores detalhes do
-  cálculo dos índices ver \citeonline[p.159-167]{saltelli2008global}.}. O índice
-total informa características não aditivas de um modelo, de forma que para um
-fator \(X_j\) uma diferença significativa entre \(S_{Tj}\), seu efeito total, e
-\(S_j\), seu efeito individual, aponta para um efeito interativo desse fator com
-outros fatores. Num modelo puramente aditivo a soma dos índices de primeira
-ordem \(\sum_{i=1}^k S_i\) é igual a 1, isto é, nesse caso o output seria
-totalmente explicado pela soma dos efeitos individuais
+\textit{output}, da interação entre \(X_1\) e \(X_2\), sendo portanto o efeito
+conjunto de \(X_1\) e \(X_2\) menos os efeitos de primeira ordem para esses
+fatores: \(S_{ij}\) = \(\frac{V[E(Y|X_i,X_,)] - V[E(Y|X_i)] - V[E(Y|X_j)]}{V(Y)}
+\); a mesma lógica é aplicada aos outros termos \footnote{ Para maiores detalhes
+  do cálculo dos índices ver \citeonline[p.159-167]{saltelli2008global}.}. O
+índice total informa características não aditivas de um modelo, de forma que,
+para um fator \(X_j\), uma diferença significativa entre \(S_{Tj}\), seu efeito
+total, e \(S_j\), seu efeito individual, aponta para um efeito interativo desse
+fator com outros fatores. Num modelo puramente aditivo a soma dos índices de
+primeira ordem \(\sum_{i=1}^k S_i\) é igual a 1, isto é, nesse caso o
+\textit{output} seria totalmente explicado pela soma dos efeitos individuais
 \cite{saltelli2008global}. Num modelo em que \(S_i = 1\) e todos os outros
-\(S_{ij} = 0\) teríamos um modelo explicado por um único fator. Se \(S_1 = 0\)
-então esse fator não explica nada a variância do output. O usual, contudo, é que
-o modelo seja explicado parcialmente por certos fatores, e parcialmente pela
-interação deles.
-
+\(S_{ij} = 0\), teríamos um modelo explicado por um único fator. Se \(S_1 = 0\)
+então esse fator não explica em nada a variância do \textit{output}. O usual,
+contudo, é que o modelo seja explicado parcialmente por certos fatores e
+parcialmente pela interação deles.
 
 \section{Resultados}
 
-Rodamos então \(70.000\) parametrizações por \(1.000.000\) de iterações tendo
-por \(Y\), o \textit{output} de interesse, o desvio padrão  dos pontos ideais da
-população (\(\text{Ystd}\)) após as iterações. São \(6\) os parâmetros de input
-: o número de agentes (\(N\)), o número de questões (\(\text{n\_issues}\)), o
-parâmetro de confiança (\(p\)), a incerteza (\(\sigma\)),  o ruído \(\rho\), e a
-proporção de agentes intransigentes (\(p\_intran\)) nos
-limiares apresentados na seção Parâmetros-Chave.
+Rodamos, então, \(70.000\) parametrizações por \(1.000.000\) de iterações tendo
+por \(Y\), o \textit{output} de interesse, o desvio padrão dos pontos ideais da
+população (\(\text{Ystd}\)) após as iterações. São seis os parâmetros de
+\textit{input}: o número de agentes (\(N\)), o número de questões
+(\(\text{n\_issues}\)), o parâmetro de confiança (\(p\)), a incerteza
+(\(\sigma\)), o ruído \(\rho\), e a proporção de agentes intransigentes
+(\(p\_intran\)) nos limiares apresentados na seção Parâmetros-Chave.
 
 Como uma primeira aproximação do comportamento geral do modelo, a Figura
 \ref{fig:hists1} apresenta a dispersão dos pontos ideais na condição inicial e
@@ -454,12 +458,12 @@ ao fim das simulações para cada parametrização.
 %\end{figure}
 
     A Figura \ref{fig:hists1} nos leva a interpretar que a aplicação iterativa
-    do procedimento do modelo, deixa a distribuição de opiniões menos dispersa,
-    com uma maior concentração das parametrizações em outputs de baixa dispersão
-    (entre 0.0 e 0.1). Isso condiz com as regras de atualização (assimilativa,
-    mas na qual agentes distantes tem pouco impacto na opinião um dos outros) e
-    com o fato dos agentes terem por vizinhos todos os outros agentes. Os
-    agentes ao interagirem ou ficam mais parecidos ou não são influenciados. O
+    do procedimento do modelo deixa a distribuição de opiniões menos dispersa,
+    com uma maior concentração das parametrizações em \textit{outputs} de baixa
+    dispersão (entre 0.0 e 0.1). Isso condiz com as regras de atualização
+    (assimilativa, mas na qual agentes distantes têm pouco impacto na opinião
+    uns dos outros) e com o fato dos agentes terem por vizinhos todos os outros
+    agentes. Ao interagirem ou ficam mais parecidos, ou não são influenciados. O
     modelo tem assim uma forte tendência assimilativa, ao menos num grafo
     completo. Todavia, a figura não nos informa qual parâmetro é responsável por
     isso, ou quais os valores de concentração (centrais ou extremos).
@@ -468,7 +472,7 @@ ao fim das simulações para cada parametrização.
     dispersão. A partir da Figura \ref{fig:scatter1} podemos inferir que há uma
     relação negativa entre os parâmetros \(\text{n\_issues}, p, \sigma \) e a
     dispersão dos pontos ideais (\( \text{Ystd}) \). A relação entre \(p\) e
-    \(\sigma\) são explicadas pelo fato de agentes que ``confiam'' mais na opinião
+    \(\sigma\) é explicada pelo fato de agentes que ``confiam'' mais na opinião
     dos outros agentes e são mais incertos vão convergir mais rápido para a
     mesma opinião.
 
@@ -504,7 +508,7 @@ dispersão do sistema. Interessante notar, contudo, que o tamanho da população
 parece não ter relação com o desvio padrão dos pontos ideais da população.
 
 A intensidade dos parâmetros na variância da medida do sistema (Ystd) fica mais
-claro na Figura \ref{fig:sobol1}:
+clara na Figura \ref{fig:sobol1}:
 
 \begin{figure}[H]
   \centering
@@ -516,20 +520,20 @@ claro na Figura \ref{fig:sobol1}:
 
 Como mostra a Figura \ref{fig:sobol1} o parâmetro \(N\) não tem impacto sobre a
 variância de \(Ystd\), de forma que podemos tratá-lo como uma constante para
-análise subsequentes. A figura mostra que a maior parte da variância na
-dispersão dos pontos ideais pode ser explicada pelos parâmetros \(\sigma\), com S1\(
-= 0.4621\) e ST \(= 0.5761\), e \(\text{n\_issues}\) e \(\rho\), que juntos tem um
-S1\(= 0.32\). As somas dos S1 e ST são iguais a \(0.847\) e \(1.202\)
+análises subsequentes. A figura mostra que a maior parte da variância na
+dispersão dos pontos ideais pode ser explicada pelos parâmetros \(\sigma\), com
+S1\( = 0.4621\) e ST \(= 0.5761\), e \(\text{n\_issues}\) e \(\rho\), que juntos
+têm um S1\(= 0.32\). As somas dos S1 e ST são iguais a \(0.847\) e \(1.202\),
 respectivamente, o que implica numa contribuição de \(0.3552\), que podemos
 considerar grande, de efeitos interativos. Desses efeitos de interação entre
 parâmetros 0.227 são devido a interações maiores do que de segunda ordem. Dentre
-as de segunda ordem a maior interação é entre os parâmetros \(\sigma\) e \(\rho\).
-Ademais, os coeficientes de erro são pequenos\footnote{Para os valores precisos
-  ver as tabelas dos coeficientes S1, S2 e ST no Apêndice C.} tendo em vista que
-a análise foi feita a partir de uma amostra grande, 70.000 parametrizações,
-selecionadas por meio do método de Saltelli.
+as de segunda ordem a maior interação é entre os parâmetros \(\sigma\) e
+\(\rho\). Ademais, os coeficientes de erro são pequenos\footnote{Para os valores
+  precisos ver as tabelas dos coeficientes S1, S2 e ST no Apêndice C.} tendo em
+vista que a análise foi feita a partir de uma amostra grande, 70.000
+parametrizações, selecionadas por meio do método de Saltelli.
 
-Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
+Um resultado contraintuitivo é o baixo valor de impacto do parâmetro
 \(p\_intran\). A comparação entre as figuras \ref{fig:tseries1} e
 \ref{fig:tseries2} sugere que esse resultado seja um artefato da medida Ystd.
 
@@ -550,17 +554,17 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
       \label{fig:tseries2}
     \end{figure}
     
-    Enquanto na figura \ref{fig:tseries1} (a) o sistema converge para um único
+    Enquanto na, Figura \ref{fig:tseries1} (a), o sistema converge para um único
     valor, na figura \ref{fig:tseries2} a população oscila no espaço ao redor
     desse valor. As figuras \ref{fig:tseries1} e \ref{fig:tseries2} (b) exibem
     uma diferença equivalente de comportamento. O parâmetro parece assim ter
     impacto sobre a dinâmica, particularmente sobre a
     cobertura\footnote{Definida da seção Metodologia de Análise.}. Quais agentes
-    são intransigentes é aleatório, mas como eles não mudam de opinião em um
-    determinado tema é de se esperar que acabem por atrair os outros agentes
+    são intransigentes é aleatório, mas, como eles não mudam de opinião em um
+    determinado tema, é de se esperar que acabem por atrair os outros agentes
     para sua posição. Para testar a intuição de que os agentes intransigentes
-    enviesam a dinâmica para a posição deles testamos a mesma parametrização que
-    a figura \ref{fig:tseries2} (a), mas com os \(15\%\) intransigentes
+    enviesam a dinâmica para a posição deles, testamos a mesma parametrização
+    que a figura \ref{fig:tseries2} (a), mas com os \(15\%\) intransigentes
     localizados entre os valores maiores que 0.8 ou menores que 0.2 no espectro
     ideológico. A figura \ref{fig:tseries3} demonstra que a atração para onde
     existem mais agentes intransigentes realmente ocorre\footnote{Com a figura
@@ -579,14 +583,14 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
   \end{figure}
 
   Um caso interessante a ser considerado é quando existem agentes intransigentes
-  na população, mas a intransigência deles não é absoluta, o valor de \(\sigma\) não
-  é tão baixo. Testamos o efeito de intransigentes com \(\sigma = 0.01\) tanto
-  distribuídos ao longo do espaço ideológico quanto somente nos extremos. No
-  caso de agentes intransigentes extremistas temos um comportamento semelhante
-  ao da figura \ref{fig:tseries3}, a convergência de grande parte da população
-  para um dos extremos. O que difere é que o \textit{cluster} maior agora
-  converge para um único valor, enquanto com intransigentes absolutos ele oscila
-  dentro de um dos extremos.
+  na população, mas a intransigência deles não é absoluta, o valor de \(\sigma\)
+  não é tão baixo. Testamos o efeito de intransigentes com \(\sigma = 0.01\)
+  tanto distribuídos ao longo do espaço ideológico quanto somente nos extremos.
+  No caso de agentes intransigentes extremistas, temos um comportamento
+  semelhante ao da Figura \ref{fig:tseries3}, a convergência de grande parte da
+  população para um dos extremos. O que difere é que o \textit{cluster} maior
+  agora converge para um único valor, enquanto com intransigentes absolutos ele
+  oscila dentro de um dos extremos.
 
     \begin{figure}[H]
     \centering
@@ -607,7 +611,7 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
      \end{figure}
   
      Curiosamente, quando os agentes intransigentes estão localizados ao longo
-     do espaço e não são absolutamente intransigentes temos um comportamento
+     do espaço e não são absolutamente intransigentes, temos um comportamento
      totalmente distinto. Ao invés de haver a manutenção da tendência central
      dada pelo \(\sigma\) global igual a 0.1, como demonstrado na figura
      \ref{fig:tseries2}, ocorre uma convergência da maioria da população para um
@@ -615,12 +619,12 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
      intransigentes vão estar nos extremos. Nesse caso, da figura
      \ref{fig:newintrans} (a), o \textit{cluster maior} vai ``varrendo'' um dos
      lados do espaço sendo atraído pelos intransigentes desse lado até um dos
-     extremos. Esse comportamento sistêmico, contudo, depende, tanto do tamanho
-     da população quanto do número de iterações.  Como demonstrado na figura
-     \ref{fig:newintrans2} quanto menor o tamanho da população menos iterações
+     extremos. Esse comportamento sistêmico, contudo, depende tanto do tamanho
+     da população quanto do número de iterações. Como demonstrado na Figura
+     \ref{fig:newintrans2}, quanto menor o tamanho da população menos iterações
      são necessárias para que a maioria da população seja atraída para um dos
-     extremos. Dessa forma esse caso especial no qual os intransigentes não são
-     completamente intransigentes difere do comportamento geral do modelo com
+     extremos. Dessa forma esse caso especial, no qual os intransigentes não são
+     completamente intransigentes, difere do comportamento geral do modelo com
      agentes totalmente intransigentes, no qual o tamanho da população não
      parece ter efeito sobre a dinâmica.
      
@@ -653,15 +657,15 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
   
 
   
-    Como nem o desvio padrão nem o número de pontos ideais finais,
-    como discutido anteriormente, nos dão medidas quantitativas desses impactos
-    passamos a uma análise gráfica de certas combinações de parâmetros típicas.
-    Os gráficos de dispersão nos indicam\footnote{Regressões polinomiais de
-      terceira ordem foram usadas para auxiliar essa análise. Estão no
-      Apêndice D.} possíveis restrições aos limiares dos parâmetros.
+     Como nem o desvio padrão nem o número de pontos ideais finais, discutidos
+     anteriormente, nos dão medidas quantitativas desses impactos, passamos a
+     uma análise gráfica de certas combinações de parâmetros típicas. Os
+     gráficos de dispersão nos indicam\footnote{Regressões polinomiais de
+       terceira ordem foram usadas para auxiliar essa análise. Estão no Apêndice
+       D.} possíveis restrições aos limiares dos parâmetros.
 
-    Dado o pequeno impacto de \(N\) e \(p\) vamos mantê-los constantes, com
-    valores de 500 e 0.9 respectivamente. Uma conjunto de parametrizações não
+    Dado o pequeno impacto de \(N\) e \(p\), vamos mantê-los constantes, com
+    valores de 500 e 0.9 respectivamente. Um conjunto de parametrizações não
     abarcado pela análise de sensibilidade global é quando \(p\_intran = 0.0, \rho \approx
     0 \). Nesse caso, se tivermos como base \(N = 500\), é possível usar o
     número de pontos ideais finais como medida do sistema, de forma que podemos
@@ -679,32 +683,32 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
     \label{fig:box4}
   \end{figure}
   
-  Como mostra a figura \ref{fig:box4} quanto maior o valor de \(\sigma\) menor a
-  cobertura da configuração final. Um resultado que aparenta ser contrário ao da
-  análise anterior é que quanto maior o número de questões \textit{maior} a
+  Como mostra a Figura \ref{fig:box4}, quanto maior o valor de \(\sigma\) menor
+  a cobertura da configuração final. Um resultado que aparenta ser contrário ao
+  da análise anterior é que quanto maior o número de questões \textit{maior} a
   cobertura final, enquanto que a análise anterior demonstrou uma relação
   negativa entre número de questões e dispersão. Isso só é verdade pelo fato dos
-  parâmetros \(\rho\) e \(p\_intran\) serem nulos, ou aproximadamente nulos. Nesse
-  caso aumentar o número de questões faz com que sejam necessárias mais
-  interações entre os agentes para que eles se aproximem ideologicamente, já que
-  pelo procedimento da simulação eles só atualizam uma opinião por vez. Isso faz
-  com que aumentar o número de questões contribua para uma maior dispersão e
+  parâmetros \(\rho\) e \(p\_intran\) serem nulos ou aproximadamente nulos.
+  Nesse caso aumentar o número de questões faz com que sejam necessárias mais
+  interações entre os agentes para que eles se aproximem ideologicamente, já
+  que, pelo procedimento da simulação, eles só atualizam uma opinião por vez.
+  Portanto, aumentar o número de questões contribui para uma maior dispersão e
   cobertura de posicionamento ideológicos.
   
   Contudo, a partir do momento que a proporção de agentes intransigentes e o
-  ruído são não-nulos o número de questões passa a ter o efeito contrário. Como
-  demonstrado na figura \ref{fig:tseries4} quando \(n\_issues = 1\) o sistema
+  ruído são não nulos, o número de questões passa a ter o efeito contrário. Como
+  demonstrado na Figura \ref{fig:tseries4}, quando \(n\_issues = 1\), o sistema
   passa a ter sua configuração facilmente controlada por aqueles parâmetros.
-  Como só há uma única questão os agentes quando sofrem o efeito do ruído
+  Como só há uma única questão, os agentes quando sofrem o efeito do ruído
   passeiam pelo espectro todo. Já quando interagem com agentes intransigentes
-  tem seu ponto ideal atraído bem mais em direção a opinião deles, em
+  têm seu ponto ideal atraído bem mais em direção a opinião deles, em
   contraposição ao caso em que seu ponto ideal é derivado de várias opiniões,
-  pois mesmo que o agente mude, aleatoriamente ou sob o efeito da interação com
-  um agente intransigentes, \textit{uma} de suas opiniões o ponto ideal é
+  pois, mesmo que o agente mude, aleatoriamente ou sob o efeito da interação com
+  um agente intransigente, uma de suas opiniões o ponto ideal é
   estabilizado pelo posicionamento dele em outras questões. O número de questões
   serve então para controlar o efeito dos agentes intransigentes e do ruído, e
-  tornar mais robusto o efeito de concentração ditado por \(\sigma\), o parâmetro de
-  maior impacto.
+  tornar mais robusto o efeito de concentração ditado por \(\sigma\), o
+  parâmetro de maior impacto.
 
 \begin{figure}[H]
   \centering
@@ -734,39 +738,38 @@ Um resultado contra-intuitivo é o baixo valor de impacto do parâmetro
 
     À guisa de conclusão, o modelo pode ser pensado como uma extensão do modelo
     de \citeonline{martins2009bayesian}, adicionando agentes com opiniões em
-    mais de uma questão, o ruído e agentes intransigentes inseridos numa
+    mais de uma questão, o ruído e os agentes intransigentes inseridos numa
     população de agentes normais (uma população com dois tipos de agentes ao
     invés de um único). Desta forma, quando \(n\_issues = 1\), \(p\_intran = 0\)
-    e \(\rho \approx 0.0\) o modelo tem o mesmo comportamento do modelo de
+    e \(\rho \approx 0.0\), o modelo tem o mesmo comportamento do modelo de
     inspiração bayesiana de \citeonline{martins2009bayesian}, que por sua vez
     recupera um comportamento qualitativo similar ao modelo canônico de
-    \citeonline{deffuant2000mixing}. Nosso modelo  recupera também,
-    de duas formas distintas, a convergência da maioria da população a um dos
-    extremos encontrada por \citeonline{deffuant2002can} por meio tanto de
-    intransigentes nos extremos, quanto de agentes não totalmente intransigentes
-    distribuídos ao longo do espectro político.
+    \citeonline{deffuant2000mixing}. Nosso modelo recupera também, de duas
+    formas distintas, a convergência da maioria da população a um dos extremos
+    encontrada por \citeonline{deffuant2002can} por meio tanto de intransigentes
+    nos extremos, quanto de agentes não totalmente intransigentes distribuídos
+    ao longo do espectro político.
 
-    Um comportamento novo encontrado usando o modelo é a importância
-    da interação entre o ruído e o número de questões. Um maior número de
-    questões torna o comportamento do sistema menos suscetível a grandes
-    oscilações causadas pelo aumento do ruído, enquanto que em um modelo com uma
-    única questão os agentes oscilam totalmente no espectro. Como argumentado
-    por \citeonline{flache2017} modelos de dinâmicas de opinião levam
-    naturalmente a questionamentos empíricos sobre os microfundamentos
-    comportamentais. Uma implicação observável é pensarmos a relação entre
-    ``sofisticação'' de posicionamento de indivíduos e a consistência deles
-    frente a argumentos e evidências fortes em determinadas questões. Do ponto
-    de vista empírico será verdade que aumentar o número de questões que os
-    indivíduos reconhecem como balizando um posicionamento faz com que a
-    população seja mais estável frente a perturbações nas crenças? Ou isso é um
-    artefato da simulação?
+    Um comportamento novo encontrado usando o modelo é a importância da
+    interação entre o ruído e o número de questões. Um maior número de questões
+    torna o comportamento do sistema menos suscetível a grandes oscilações
+    causadas pelo aumento do ruído, enquanto que em um modelo com uma única
+    questão os agentes oscilam totalmente no espectro. Como argumentado por
+    \citeonline{flache2017}, modelos de dinâmicas de opinião levam naturalmente
+    a questionamentos empíricos sobre os microfundamentos comportamentais. Uma
+    implicação observável é pensarmos a relação entre ``sofisticação'' de
+    posicionamento de indivíduos e a consistência deles frente a argumentos e
+    evidências fortes em determinadas questões. Do ponto de vista empírico, será
+    verdade que aumentar o número de questões que os indivíduos reconhecem como
+    balizando um posicionamento faz com que a população seja mais estável frente
+    a perturbações nas crenças? Ou isso é um artefato da simulação?
 
-    Do ponto de vista conceitual o uso de um modelo de inspiração bayesiana nos
+    Do ponto de vista conceitual, o uso de um modelo de inspiração bayesiana nos
     permite conectar a área de dinâmicas de opinião com o quadro conceitual dos
     modelos de utilidade esperada na ciência política, por meio do relaxamento
     da separação típica entre preferência e crença, como discutido nos Capítulos
     2 e 3. Embora o modelo suscite a necessidade de validação empírica tanto de
-    padrões sistêmicos quanto de fundamentos comportamentais ele pode ser
+    padrões sistêmicos quanto de fundamentos comportamentais, ele pode ser
     integrado a modelos futuros de comportamento eleitoral e competição
     partidária.
 
